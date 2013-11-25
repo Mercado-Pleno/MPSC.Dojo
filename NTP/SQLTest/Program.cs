@@ -1,0 +1,105 @@
+﻿using System;
+using System.Data;
+using System.Data.SqlClient;
+
+namespace SQLTest
+{
+	public enum Tipo
+	{
+		Scalar,
+		NonQuery,
+		Reader,
+		DataSet
+	}
+
+	public class Principal
+	{
+		private static String _stringConexao = @"Data Source=ServidorIP;Initial Catalog=BancoDeDados;User ID=NomeDeUsuario;Password=Senha;MultipleActiveResultSets=True;";
+		private static String _comandoSQL = @"
+Set NoCount On;
+Print 'Bom dia pessoal!';
+Select GetDate() as Data;
+Print 'Valeu pessoal.';
+";
+		public static void Main(String[] args)
+		{
+			Testar(_stringConexao, _comandoSQL, Tipo.Reader);
+			Console.ReadKey();
+		}
+
+		public static void Testar(String stringConexao, String comandoSQL, Tipo tipo)
+		{
+			using (SqlConnection vSqlConnection = new SqlConnection(stringConexao))
+			{
+				vSqlConnection.Open();
+				vSqlConnection.InfoMessage += MostrarPrints;
+
+				var vSqlCommand = vSqlConnection.CreateCommand();
+				vSqlCommand.CommandText = comandoSQL;
+
+				switch (tipo)
+				{
+					case Tipo.Scalar: // Só mostra a primeira Mensagem
+						MostrarDados(vSqlCommand.ExecuteScalar());
+						break;
+
+					case Tipo.NonQuery: // Mostra as duas mensagens, mas não é possível saber a data e hora
+						MostrarDados(vSqlCommand.ExecuteNonQuery());
+						break;
+
+					case Tipo.Reader: // Assim, mostra tudo, na ordem de execução dos comandos
+						var vSqlDataReader = vSqlCommand.ExecuteReader();
+						do
+						{
+							while (vSqlDataReader.Read())
+								MostrarDados(vSqlDataReader.GetDateTime(0));
+						} while (vSqlDataReader.NextResult()); // <- Se não tiver esta linha, só mostra a mensagem do primeiro Print.
+
+						vSqlDataReader.Close();
+						vSqlDataReader.Dispose();
+						break;
+
+					case Tipo.DataSet: // Assim, mostra todas as mensagens, e por fim, a Data
+						var vDataSet = new DataSet();
+						var vSqlDataAdapter = new SqlDataAdapter(vSqlCommand);
+						vSqlDataAdapter.Fill(vDataSet, "DataEHoraDoServidor");
+						var vDataTable = vDataSet.Tables["DataEHoraDoServidor"];
+						var vDataRow = vDataTable.Rows[0];
+						MostrarDados(vDataRow["Data"]);
+
+						vDataTable.Clear();
+						vDataTable.Dispose();
+
+						vDataSet.Clear();
+						vDataSet.Dispose();
+
+						vSqlDataAdapter.Dispose();
+						break;
+					default:
+						break;
+				}
+
+				vSqlCommand.Dispose();
+				vSqlConnection.Close();
+			}
+		}
+
+		private static void MostrarPrints(Object sender, SqlInfoMessageEventArgs e)
+		{
+			Console.WriteLine(e.Message);
+		}
+
+		private static void MostrarDados(Object dados)
+		{
+			if (dados is DateTime)
+				MostrarDados(Convert.ToDateTime(dados));
+			else
+				Console.WriteLine(dados);
+		}
+
+		private static void MostrarDados(DateTime dataEHora)
+		{
+			Console.WriteLine(dataEHora.ToString("dd/MM/yyyy HH:mm:ss:fff"));
+		}
+	}
+}
