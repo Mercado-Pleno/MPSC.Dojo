@@ -14,7 +14,7 @@
 
 	public class ComoPegarAsMensagensDePrintsDoSqlServer : IExecutavel
 	{
-		private static String _stringConexao = @"Data Source=ServidorIP;Initial Catalog=BancoDeDados;User ID=NomeDeUsuario;Password=Senha;MultipleActiveResultSets=True;";
+		private static String _stringConexao = @"Data Source=127.0.0.1;Initial Catalog=Master;User ID=NomeDeUsuario;Password=Senha;MultipleActiveResultSets=True;";
 		private static String _comandoSQL = @"
 Set NoCount On;
 Print 'Bom dia pessoal!';

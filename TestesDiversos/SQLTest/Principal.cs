@@ -40,7 +40,7 @@ namespace MPSC.Lib
 
 		public String Executar()
 		{
-			Console.WriteLine("Opção inválida");
+			Console.WriteLine(" Opção inválida");
 			return Console.ReadKey().ToString();
 		}
 	}
