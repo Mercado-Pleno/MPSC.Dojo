@@ -12,7 +12,7 @@ namespace SQLTest
 		DataSet
 	}
 
-	public class Principal
+	public class ComoPegarAsMensagensDePrintsDoSqlServer
 	{
 		private static String _stringConexao = @"Data Source=ServidorIP;Initial Catalog=BancoDeDados;User ID=NomeDeUsuario;Password=Senha;MultipleActiveResultSets=True;";
 		private static String _comandoSQL = @"
@@ -21,10 +21,9 @@ Print 'Bom dia pessoal!';
 Select GetDate() as Data;
 Print 'Valeu pessoal.';
 ";
-		public static void Main(String[] args)
+		public static void Testar(Tipo tipo)
 		{
-			Testar(_stringConexao, _comandoSQL, Tipo.Reader);
-			Console.ReadKey();
+			Testar(_stringConexao, _comandoSQL, tipo);
 		}
 
 		public static void Testar(String stringConexao, String comandoSQL, Tipo tipo)
