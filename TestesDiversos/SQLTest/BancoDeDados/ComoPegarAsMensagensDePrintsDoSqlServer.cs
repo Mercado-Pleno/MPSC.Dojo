@@ -1,9 +1,9 @@
-﻿using System;
-using System.Data;
-using System.Data.SqlClient;
-
-namespace SQLTest
+﻿namespace MPSC.Lib.BancoDados
 {
+	using System;
+	using System.Data;
+	using System.Data.SqlClient;
+
 	public enum Tipo
 	{
 		Scalar,
@@ -12,7 +12,7 @@ namespace SQLTest
 		DataSet
 	}
 
-	public class ComoPegarAsMensagensDePrintsDoSqlServer
+	public class ComoPegarAsMensagensDePrintsDoSqlServer : IExecutavel
 	{
 		private static String _stringConexao = @"Data Source=ServidorIP;Initial Catalog=BancoDeDados;User ID=NomeDeUsuario;Password=Senha;MultipleActiveResultSets=True;";
 		private static String _comandoSQL = @"
@@ -21,9 +21,10 @@ Print 'Bom dia pessoal!';
 Select GetDate() as Data;
 Print 'Valeu pessoal.';
 ";
-		public static void Testar(Tipo tipo)
+		public String Executar()
 		{
-			Testar(_stringConexao, _comandoSQL, tipo);
+			Testar(_stringConexao, _comandoSQL, Tipo.NonQuery);
+			return "";
 		}
 
 		public static void Testar(String stringConexao, String comandoSQL, Tipo tipo)
