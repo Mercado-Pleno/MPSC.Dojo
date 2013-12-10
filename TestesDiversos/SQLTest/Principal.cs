@@ -1,52 +1,69 @@
-﻿using System;
-using System.Data;
-using System.Data.SqlClient;
-using MPSC.Lib.BancoDados;
-
-namespace MPSC.Lib
+﻿namespace MPSC.Lib
 {
-	public class Principal : IExecutavel
+	using System;
+	using System.Data;
+	using System.Data.SqlClient;
+	using MPSC.Lib.BancoDados;
+
+	public static class Principal
 	{
 		public static void Main(String[] args)
 		{
-			String opcao = "";
+			byte opcao = 0;
 			do
 			{
 				opcao = MostrarMenu();
 				IExecutavel executavel = AbrirProgram(opcao);
-				opcao = executavel.Executar();
+				opcao = executavel.Executar(opcao);
 			}
-			while (!opcao.Equals(ConsoleKey.Escape.ToString()));
+			while (opcao != ConsoleKey.Escape.ToKeyCode());
 		}
 
-		private static String MostrarMenu()
+		private static byte MostrarMenu()
 		{
 			Console.Clear();
 			Console.WriteLine("1 - ComoPegarAsMensagensDePrintsDoSqlServer");
-			return Console.ReadKey().KeyChar.ToString();
+			return Console.ReadKey().Key.ToKeyCode();
 		}
 
-		private static IExecutavel AbrirProgram(String opcao)
+		private static IExecutavel AbrirProgram(byte opcao)
 		{
-			IExecutavel executavel = new Principal();
-			switch (opcao)
+			IExecutavel executavel = new Padrao();
+			switch (opcao.ToConsoleKey())
 			{
-				case "1":
+				case ConsoleKey.NumPad1:
 					executavel = new ComoPegarAsMensagensDePrintsDoSqlServer();
 					break;
 			}
 			return executavel;
 		}
 
-		public String Executar()
+		public static byte ToKeyCode(this ConsoleKey key)
 		{
-			Console.WriteLine(" Opção inválida");
-			return Console.ReadKey().ToString();
+			return (byte)key;
+		}
+		public static ConsoleKey ToConsoleKey(this byte key)
+		{
+			return (ConsoleKey)key;
 		}
 	}
 
+	public class Padrao : IExecutavel
+	{
+		public byte Executar(byte key)
+		{
+			if (key != 27)
+			{
+				Console.WriteLine(" Opção inválida");
+				key = Console.ReadKey().Key.ToKeyCode();
+			}
+			return key;
+		}
+	}
+
+
 	public interface IExecutavel
 	{
-		String Executar();
+		byte Executar(byte key);
 	}
 }

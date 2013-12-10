@@ -21,10 +21,10 @@ Print 'Bom dia pessoal!';
 Select GetDate() as Data;
 Print 'Valeu pessoal.';
 ";
-		public String Executar()
+		public byte Executar(byte key)
 		{
 			Testar(_stringConexao, _comandoSQL, Tipo.NonQuery);
-			return "";
+			return key;
 		}
 
 		public static void Testar(String stringConexao, String comandoSQL, Tipo tipo)
