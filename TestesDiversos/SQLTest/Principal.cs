@@ -45,6 +45,7 @@
 		public ListaMenu Menus = new ListaMenu();
 		public IExecutavel Comando { get; set; }
 
+		#region //Contrutores
 		public ItemMenu(Char codigo, String descricao)
 		{
 			Codigo = codigo;
@@ -65,6 +66,7 @@
 			foreach (var item in menus)
 				Menus.Add(item);
 		}
+		#endregion //Contrutores
 
 		public void Mostrar()
 		{
