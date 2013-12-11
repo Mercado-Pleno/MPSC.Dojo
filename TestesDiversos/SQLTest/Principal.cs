@@ -9,34 +9,29 @@
 	{
 		public static void Main(String[] args)
 		{
-			var menuRepository = new MenuRepository();
+			ListaMenu mainMenu = MenuRepository();
 			ItemMenu itemMenu;
-			while (((itemMenu = menuRepository.Mostrar()) != null) && (itemMenu.Comando != null))
+			while (((itemMenu = mainMenu.Mostrar()) != null) && (itemMenu.Comando != null))
 			{
 				itemMenu.Comando.Executar();
 				Console.ReadLine();
 			}
 		}
-	}
 
-	public class MenuRepository
-	{
-		private ListaMenu mainMenu = new ListaMenu();
 
-		public MenuRepository()
+		private static ListaMenu MenuRepository()
 		{
-			var imBanco = mainMenu.Adicionar('1', "Banco de Dados", null);
-			var imSql = imBanco.Adicionar('1', "Sql Server", null);
-			var itemMenu = imSql.Adicionar('1', "Como Pegar As Mensagens De Prints Do Sql Server", new ComoPegarAsMensagensDePrintsDoSqlServer());
-
-			var imSair = mainMenu.Adicionar('2', "Sair", null);
-		}
-
-		public ItemMenu Mostrar()
-		{
-			return mainMenu.Mostrar();
+			return new ListaMenu(
+				new ItemMenu('1', "Banco de Dados"
+					, new ItemMenu('1', "Sql Server"
+						, new ItemMenu('1', "Como Pegar As Mensagens De Prints Do Sql Server", new ComoPegarAsMensagensDePrintsDoSqlServer())
+					)
+				)
+				, new ItemMenu('2', "Sair")
+			);
 		}
 	}
+
 
 	public interface IExecutavel
 	{
@@ -50,6 +45,27 @@
 		public ListaMenu Menus = new ListaMenu();
 		public IExecutavel Comando { get; set; }
 
+		public ItemMenu(Char codigo, String descricao)
+		{
+			Codigo = codigo;
+			Descricao = descricao;
+		}
+
+		public ItemMenu(Char codigo, String descricao, IExecutavel comando)
+			: this(codigo, descricao)
+		{
+			Comando = comando;
+		}
+
+		public ItemMenu(Char codigo, String descricao, params ItemMenu[] menus)
+			: this(codigo, descricao)
+		{
+			Comando = this;
+
+			foreach (var item in menus)
+				Menus.Add(item);
+		}
+
 		public void Mostrar()
 		{
 			Console.WriteLine(Codigo + " - " + Descricao);
@@ -59,22 +75,14 @@
 		{
 			return Menus.Mostrar();
 		}
-
-		public ItemMenu Adicionar(Char codigo, String descricao, IExecutavel comando)
-		{
-			this.Comando = this;
-			return Menus.Adicionar(codigo, descricao, comando);
-		}
-
 	}
 
 	public class ListaMenu : List<ItemMenu>
 	{
-		public ItemMenu Adicionar(Char codigo, String descricao, IExecutavel comando)
+		public ListaMenu(params ItemMenu[] menus)
 		{
-			var menu = new ItemMenu() { Codigo = codigo, Descricao = descricao, Comando = comando };
-			this.Add(menu);
-			return menu;
+			foreach (var item in menus)
+				this.Add(item);
 		}
 
 		public ItemMenu Mostrar()
