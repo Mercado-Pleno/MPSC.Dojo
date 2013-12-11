@@ -1,69 +1,119 @@
 ﻿namespace MPSC.Lib
 {
 	using System;
-	using System.Data;
-	using System.Data.SqlClient;
+	using System.Collections.Generic;
+	using System.Linq;
 	using MPSC.Lib.BancoDados;
 
 	public static class Principal
 	{
 		public static void Main(String[] args)
 		{
-			byte opcao = 0;
-			do
+			var menuRepository = new MenuRepository();
+			ItemMenu itemMenu;
+			while (((itemMenu = menuRepository.Mostrar()) != null) && (itemMenu.Comando != null))
 			{
-				opcao = MostrarMenu();
-				IExecutavel executavel = AbrirProgram(opcao);
-				opcao = executavel.Executar(opcao);
+				itemMenu.Comando.Executar();
+				Console.ReadLine();
 			}
-			while (opcao != ConsoleKey.Escape.ToKeyCode());
-		}
-
-		private static byte MostrarMenu()
-		{
-			Console.Clear();
-			Console.WriteLine("1 - ComoPegarAsMensagensDePrintsDoSqlServer");
-			return Console.ReadKey().Key.ToKeyCode();
-		}
-
-		private static IExecutavel AbrirProgram(byte opcao)
-		{
-			IExecutavel executavel = new Padrao();
-			switch (opcao.ToConsoleKey())
-			{
-				case ConsoleKey.NumPad1:
-					executavel = new ComoPegarAsMensagensDePrintsDoSqlServer();
-					break;
-			}
-			return executavel;
-		}
-
-		public static byte ToKeyCode(this ConsoleKey key)
-		{
-			return (byte)key;
-		}
-		public static ConsoleKey ToConsoleKey(this byte key)
-		{
-			return (ConsoleKey)key;
 		}
 	}
 
-	public class Padrao : IExecutavel
+	public class MenuRepository
 	{
-		public byte Executar(byte key)
+		private ListaMenu mainMenu = new ListaMenu();
+
+		public MenuRepository()
 		{
-			if (key != 27)
-			{
-				Console.WriteLine(" Opção inválida");
-				key = Console.ReadKey().Key.ToKeyCode();
-			}
-			return key;
+			var imBanco = mainMenu.Adicionar('1', "Banco de Dados", null);
+			var imSql = imBanco.Adicionar('1', "Sql Server", null);
+			var itemMenu = imSql.Adicionar('1', "Como Pegar As Mensagens De Prints Do Sql Server", new ComoPegarAsMensagensDePrintsDoSqlServer());
+
+			var imSair = mainMenu.Adicionar('2', "Sair", null);
+		}
+
+		public ItemMenu Mostrar()
+		{
+			return mainMenu.Mostrar();
 		}
 	}
-
 
 	public interface IExecutavel
 	{
-		byte Executar(byte key);
+		ItemMenu Executar();
+	}
+
+	public class ItemMenu : IExecutavel
+	{
+		public Char Codigo { get; set; }
+		public String Descricao { get; set; }
+		public ListaMenu Menus = new ListaMenu();
+		public IExecutavel Comando { get; set; }
+
+		public void Mostrar()
+		{
+			Console.WriteLine(Codigo + " - " + Descricao);
+		}
+
+		public ItemMenu Executar()
+		{
+			return Menus.Mostrar();
+		}
+
+		public ItemMenu Adicionar(Char codigo, String descricao, IExecutavel comando)
+		{
+			this.Comando = this;
+			return Menus.Adicionar(codigo, descricao, comando);
+		}
+
+	}
+
+	public class ListaMenu : List<ItemMenu>
+	{
+		public ItemMenu Adicionar(Char codigo, String descricao, IExecutavel comando)
+		{
+			var menu = new ItemMenu() { Codigo = codigo, Descricao = descricao, Comando = comando };
+			this.Add(menu);
+			return menu;
+		}
+
+		public ItemMenu Mostrar()
+		{
+			Console.Clear();
+			foreach (ItemMenu item in this)
+				item.Mostrar();
+
+			ItemMenu itemMenu = EsperarUsuario();
+
+			Console.Clear();
+			return itemMenu;
+		}
+
+		private ItemMenu EsperarUsuario()
+		{
+			ItemMenu itemMenu = Avaliar();
+			while (itemMenu == null)
+			{
+				Console.Clear();
+				Console.WriteLine("Opção inválida");
+				foreach (ItemMenu item in this)
+					item.Mostrar();
+				itemMenu = Avaliar();
+			}
+
+			return itemMenu;
+		}
+
+		private ItemMenu Avaliar()
+		{
+			var codigo = Console.ReadKey().KeyChar;
+
+			ItemMenu itemMenu = this.FirstOrDefault(m => m.Codigo == codigo);
+
+			while ((itemMenu != null) && (itemMenu is ItemMenu) && (itemMenu.Comando != null) && (itemMenu.Comando is ItemMenu))
+				itemMenu = itemMenu.Comando.Executar();
+
+			return itemMenu;
+		}
 	}
 }
