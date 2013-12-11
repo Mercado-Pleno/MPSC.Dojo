@@ -14,17 +14,17 @@
 
 	public class ComoPegarAsMensagensDePrintsDoSqlServer : IExecutavel
 	{
-		private static String _stringConexao = @"Data Source=127.0.0.1;Initial Catalog=Master;User ID=NomeDeUsuario;Password=Senha;MultipleActiveResultSets=True;";
+		private static String _stringConexao = @"Persist Security Info=True;Data Source=127.0.0.1;Initial Catalog=Master;User ID=sa;Password=SenhaDeAcessoSuperSecreta;MultipleActiveResultSets=True;";
 		private static String _comandoSQL = @"
 Set NoCount On;
 Print 'Bom dia pessoal!';
 Select GetDate() as Data;
 Print 'Valeu pessoal.';
 ";
-		public byte Executar(byte key)
+		public ItemMenu Executar()
 		{
 			Testar(_stringConexao, _comandoSQL, Tipo.NonQuery);
-			return key;
+			return null;
 		}
 
 		public static void Testar(String stringConexao, String comandoSQL, Tipo tipo)
