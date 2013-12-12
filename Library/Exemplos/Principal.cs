@@ -29,7 +29,8 @@
 				new ItemMenu('1', "Banco de Dados",
 					new ItemMenu('1', "Sql Server",
 						new ItemMenu('1', "Como Pegar As Mensagens De Prints Do Sql Server", new ComoPegarAsMensagensDePrintsDoSqlServer())
-					)
+					),
+					new ItemMenu('2', "Varias Coisas Com Objetos De Banco De Dados", new VariasCoisasComObjetosDeBancoDeDados())
 				),
 
 				new ItemMenu('2', "Controle de Fluxo",
