@@ -46,10 +46,11 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BancoDeDados\VariasCoisasComObjetosDeBancoDeDados.cs" />
     <Compile Include="BancoDeDados\ComoPegarAsMensagensDePrintsDoSqlServer.cs" />
     <Compile Include="Principal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Source\Acesso.cs" />
+    <Compile Include="Source\TransformacaoDeDadosParaDTO.cs" />
     <Compile Include="Medidas\DuracaoIntervaloTempoAltaPrecisao.cs" />
     <Compile Include="ControleDeFluxo\MaquinaDeEstado.cs" />
     <Compile Include="Utilidades\CriptografiaComOperadorXOR.cs" />

@@ -1,40 +1,16 @@
-﻿namespace TestCase
+﻿namespace MPSC.Library.Exemplos.BancoDeDados
 {
-	using IBM.Data.DB2.iSeries;
-	using System.Windows.Forms;
 	using System;
-	using System.Linq;
-	using System.Data.Common;
 	using System.Collections.Generic;
+	using System.Data.Common;
 	using System.Globalization;
+	using IBM.Data.DB2.iSeries;
 
-	public interface IFormatoDTO
+	public class VariasCoisasComObjetosDeBancoDeDados : IExecutavel
 	{
-		String ObterCampo(String pNomeAtributo, Object pObjeto);
-	}
-
-	public class XMLFormatoDTO : IFormatoDTO
-	{
-		public String ObterCampo(String pNomeAtributo, Object pObjeto)
+		public void Executar()
 		{
-			return "\t<" + pNomeAtributo + ">" + pObjeto + "</" + pNomeAtributo + ">\r\n";
-		}
-	}
-
-	public class JSONFormatoDTO : IFormatoDTO
-	{
-		//http://www.json.org/example.html
-		public String ObterCampo(String pNomeAtributo, Object pObjeto)
-		{
-			return " \"" + pNomeAtributo + "\": \"" + pObjeto + "\"";
-		}
-	}
-
-	public class CNPFormatoDTO : IFormatoDTO
-	{
-		public String ObterCampo(String pNomeAtributo, Object pObjeto)
-		{
-			return ", " + pNomeAtributo + " = " + pObjeto;
+			
 		}
 	}
 
