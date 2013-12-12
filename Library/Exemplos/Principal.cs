@@ -5,6 +5,8 @@
 	using System.Linq;
 	using MPSC.Library.Exemplos.BancoDeDados;
 	using MPSC.Library.Exemplos.ControleDeFluxo;
+	using MPSC.Library.Exemplos.ControleDeFluxo.Reflection;
+	using MPSC.Library.Exemplos.Medidas;
 
 	public static class Principal
 	{
@@ -30,12 +32,17 @@
 				),
 
 				new ItemMenu('2', "Controle de Fluxo",
-					new ItemMenu('1', "Controle de Fluxo",
-						new ItemMenu('1', "Maquina de Estado", new ValidarTransicoesDeEstado()),
-						new ItemMenu('2', "Saber Quem Instanciou", new SaberQuemInstanciou())						
-					)
+					new ItemMenu('1', "Maquina de Estado", new ValidarTransicoesDeEstado()),
+					new ItemMenu('2', "Saber Quem Instanciou", new SaberQuemInstanciou())
 				),
-				
+
+				new ItemMenu('3', "Reflection",
+					new ItemMenu('1', "Atributos Descritivos Dos Enumerados", new AtributosDescritivosDosEnumerados())
+				),
+
+				new ItemMenu('4', "Medidas",
+					new ItemMenu('1', "Duracção de um Intervalo de Tempo de Alta Precisão", new DuracaoIntervaloTempoAltaPrecisao())
+				),
 
 				new ItemMenu('←', "Sair")
 			);
