@@ -1,349 +1,349 @@
-﻿using IBM.Data.DB2.iSeries;
-using System.Windows.Forms;
-using System;
-using System.Linq;
-using System.Data.Common;
-using System.Collections.Generic;
-using System.Globalization;
-
-namespace TestCase
+﻿namespace TestCase
 {
-    public interface IFormatoDTO
-    {
-        String ObterCampo(String pNomeAtributo, Object pObjeto);
-    }
+	using IBM.Data.DB2.iSeries;
+	using System.Windows.Forms;
+	using System;
+	using System.Linq;
+	using System.Data.Common;
+	using System.Collections.Generic;
+	using System.Globalization;
 
-    public class XMLFormatoDTO : IFormatoDTO
-    {
-        public String ObterCampo(String pNomeAtributo, Object pObjeto)
-        {
-            return "\t<" + pNomeAtributo + ">" + pObjeto + "</" + pNomeAtributo + ">\r\n";
-        }
-    }
+	public interface IFormatoDTO
+	{
+		String ObterCampo(String pNomeAtributo, Object pObjeto);
+	}
 
-    public class JSONFormatoDTO : IFormatoDTO
-    {
-        //http://www.json.org/example.html
-        public String ObterCampo(String pNomeAtributo, Object pObjeto)
-        {
-            return " \"" + pNomeAtributo + "\": \"" + pObjeto + "\"";
-        }
-    }
+	public class XMLFormatoDTO : IFormatoDTO
+	{
+		public String ObterCampo(String pNomeAtributo, Object pObjeto)
+		{
+			return "\t<" + pNomeAtributo + ">" + pObjeto + "</" + pNomeAtributo + ">\r\n";
+		}
+	}
 
-    public class CNPFormatoDTO : IFormatoDTO
-    {
-        public String ObterCampo(String pNomeAtributo, Object pObjeto)
-        {
-            return ", " + pNomeAtributo + " = " + pObjeto;
-        }
-    }
+	public class JSONFormatoDTO : IFormatoDTO
+	{
+		//http://www.json.org/example.html
+		public String ObterCampo(String pNomeAtributo, Object pObjeto)
+		{
+			return " \"" + pNomeAtributo + "\": \"" + pObjeto + "\"";
+		}
+	}
 
-    public class Acesso
-    {
-        DbConnection _DbConnection;
-        public Acesso(DbConnection pDbConnection)
-        {
-            _DbConnection = pDbConnection;
-            _DbConnection.Open();
-        }
+	public class CNPFormatoDTO : IFormatoDTO
+	{
+		public String ObterCampo(String pNomeAtributo, Object pObjeto)
+		{
+			return ", " + pNomeAtributo + " = " + pObjeto;
+		}
+	}
 
-        public IList<AtributoValorado> ExecutarSQL(String pComandoSQL, DbConnection pDbConnection)
-        {
-            IList<AtributoValorado> vListaAtributoValorTipado = new List<AtributoValorado>();
+	public class Acesso
+	{
+		DbConnection _DbConnection;
+		public Acesso(DbConnection pDbConnection)
+		{
+			_DbConnection = pDbConnection;
+			_DbConnection.Open();
+		}
 
-            DbCommand vDbCommand = pDbConnection.CreateCommand();
-            vDbCommand.CommandText = pComandoSQL;
+		public IList<AtributoValorado> ExecutarSQL(String pComandoSQL, DbConnection pDbConnection)
+		{
+			IList<AtributoValorado> vListaAtributoValorTipado = new List<AtributoValorado>();
 
-            DbDataReader vDbDataReader = vDbCommand.ExecuteReader();
-            IList<Coluna> listaAtributo = vDbDataReader.GetFieldInfo();
+			DbCommand vDbCommand = pDbConnection.CreateCommand();
+			vDbCommand.CommandText = pComandoSQL;
 
-            while (vDbDataReader.Read())
-            {
-                AtributoValorado vAtributoValorado = new AtributoValorado();
-                foreach (Coluna vAtributo in listaAtributo)
-                    vAtributoValorado[vAtributo.Nome] = vDbDataReader[vAtributo.Posicao];
+			DbDataReader vDbDataReader = vDbCommand.ExecuteReader();
+			IList<Coluna> listaAtributo = vDbDataReader.GetFieldInfo();
 
-                vListaAtributoValorTipado.Add(vAtributoValorado);
-            }
+			while (vDbDataReader.Read())
+			{
+				AtributoValorado vAtributoValorado = new AtributoValorado();
+				foreach (Coluna vAtributo in listaAtributo)
+					vAtributoValorado[vAtributo.Nome] = vDbDataReader[vAtributo.Posicao];
 
-            return vListaAtributoValorTipado;
-        }
+				vListaAtributoValorTipado.Add(vAtributoValorado);
+			}
 
-        public IList<AtributoValorado> ExecutarSQL(String pComandoSQL)
-        {
-            return ExecutarSQL(pComandoSQL, _DbConnection);
-        }
+			return vListaAtributoValorTipado;
+		}
 
-
-        [STAThread]
-        public static void Main2()
-        {
-            DbConnection vDbConnection = new iDB2Connection("Password=Bl100709;Persist Security Info=True;User ID=NOGUEIRA;Data Source=192.168.0.11;Initial Catalog=Addsrva1;DefaultCollection=eSimHmo;");
-            Acesso vAcesso = new Acesso(vDbConnection);
-            vAcesso.ExecutarSQL("Select * From Pessoa P Inner Join Cosseguradora C ON C.PessoaId = P.PessoaId Where C.PessoaId = (Select Max(PessoaId) From ESIMHMO.Cosseguradora)");
-        }
-    }
+		public IList<AtributoValorado> ExecutarSQL(String pComandoSQL)
+		{
+			return ExecutarSQL(pComandoSQL, _DbConnection);
+		}
 
 
-    class A
-    {
-        public static int X;
-        static A()
-        {
-            X = B.Y + 1;
-        }
-    }
-    class B
-    {
-        public static int Y = A.X + 1;
-        static B() { }
-        static void Main2()
-        {
-            Console.WriteLine("X = {0}, Y = {1}", A.X, B.Y);
-        }
-    }
-
-    public class Objeto
-    {
-
-        private Object _valor;
-        public Type Type { get; set; }
-
-        public Objeto(Object pObjValor)
-        {
-            Valor = pObjValor;
-        }
-
-        public Object Valor
-        {
-            get
-            {
-                return _valor;
-            }
-            set
-            {
-                Type = ((value == null) ? typeof(Object) : value.GetType());
-                _valor = value;
-            }
-        }
-
-        public Byte Byte
-        {
-            get
-            {
-                return (Byte)Valor;
-            }
-            set
-            {
-                Type = typeof(Byte);
-                Valor = value;
-            }
-        }
-
-        public Int16 InteiroCurto
-        {
-            get
-            {
-                return (Int16)Valor;
-            }
-            set
-            {
-                Type = typeof(Int16);
-                Valor = value;
-            }
-        }
-
-        public Int32 Inteiro
-        {
-            get
-            {
-                return (Int32)Valor;
-            }
-            set
-            {
-                Type = typeof(Int32);
-                Valor = value;
-            }
-        }
-
-        public Int64 InteiroLongo
-        {
-            get
-            {
-                return (Int64)Valor;
-            }
-            set
-            {
-                Type = typeof(Int64);
-                Valor = value;
-            }
-        }
-
-        public Decimal Decimal
-        {
-            get
-            {
-                return (Decimal)Valor;
-            }
-            set
-            {
-                Type = typeof(Decimal);
-                Valor = value;
-            }
-        }
-
-        public Double Real
-        {
-            get
-            {
-                return (Double)Valor;
-            }
-            set
-            {
-                Type = typeof(Double);
-                Valor = value;
-            }
-        }
-
-        public float Flutuante
-        {
-            get
-            {
-                return (float)Valor;
-            }
-            set
-            {
-                Type = typeof(float);
-                Valor = value;
-            }
-        }
-
-        public DateTime DataHora
-        {
-            get
-            {
-                return (DateTime)Valor;
-            }
-            set
-            {
-                Type = typeof(DateTime);
-                Valor = value;
-            }
-        }
-
-        public DateTime Data
-        {
-            get
-            {
-                return ((DateTime)Valor).Date;
-            }
-            set
-            {
-                Type = typeof(DateTime);
-                Valor = value.Date;
-            }
-        }
-
-        public Char Caracter
-        {
-            get
-            {
-                return (Char)Valor;
-            }
-            set
-            {
-                Type = typeof(Char);
-                Valor = value;
-            }
-        }
-
-        public String Texto
-        {
-            get
-            {
-                return (String)Valor;
-            }
-            set
-            {
-                Type = typeof(String);
-                Valor = value;
-            }
-        }
-
-        public Boolean Logico
-        {
-            get
-            {
-                return (Boolean)Valor;
-            }
-            set
-            {
-                Type = typeof(Boolean);
-                Valor = value;
-            }
-        }
+		[STAThread]
+		public static void Main2()
+		{
+			DbConnection vDbConnection = new iDB2Connection("Password=Bl100709;Persist Security Info=True;User ID=NOGUEIRA;Data Source=192.168.0.11;Initial Catalog=Addsrva1;DefaultCollection=eSimHmo;");
+			Acesso vAcesso = new Acesso(vDbConnection);
+			vAcesso.ExecutarSQL("Select * From Pessoa P Inner Join Cosseguradora C ON C.PessoaId = P.PessoaId Where C.PessoaId = (Select Max(PessoaId) From ESIMHMO.Cosseguradora)");
+		}
+	}
 
 
+	class A
+	{
+		public static int X;
+		static A()
+		{
+			X = B.Y + 1;
+		}
+	}
+	class B
+	{
+		public static int Y = A.X + 1;
+		static B() { }
+		static void Main2()
+		{
+			Console.WriteLine("X = {0}, Y = {1}", A.X, B.Y);
+		}
+	}
+
+	public class Objeto
+	{
+
+		private Object _valor;
+		public Type Type { get; set; }
+
+		public Objeto(Object pObjValor)
+		{
+			Valor = pObjValor;
+		}
+
+		public Object Valor
+		{
+			get
+			{
+				return _valor;
+			}
+			set
+			{
+				Type = ((value == null) ? typeof(Object) : value.GetType());
+				_valor = value;
+			}
+		}
+
+		public Byte Byte
+		{
+			get
+			{
+				return (Byte)Valor;
+			}
+			set
+			{
+				Type = typeof(Byte);
+				Valor = value;
+			}
+		}
+
+		public Int16 InteiroCurto
+		{
+			get
+			{
+				return (Int16)Valor;
+			}
+			set
+			{
+				Type = typeof(Int16);
+				Valor = value;
+			}
+		}
+
+		public Int32 Inteiro
+		{
+			get
+			{
+				return (Int32)Valor;
+			}
+			set
+			{
+				Type = typeof(Int32);
+				Valor = value;
+			}
+		}
+
+		public Int64 InteiroLongo
+		{
+			get
+			{
+				return (Int64)Valor;
+			}
+			set
+			{
+				Type = typeof(Int64);
+				Valor = value;
+			}
+		}
+
+		public Decimal Decimal
+		{
+			get
+			{
+				return (Decimal)Valor;
+			}
+			set
+			{
+				Type = typeof(Decimal);
+				Valor = value;
+			}
+		}
+
+		public Double Real
+		{
+			get
+			{
+				return (Double)Valor;
+			}
+			set
+			{
+				Type = typeof(Double);
+				Valor = value;
+			}
+		}
+
+		public float Flutuante
+		{
+			get
+			{
+				return (float)Valor;
+			}
+			set
+			{
+				Type = typeof(float);
+				Valor = value;
+			}
+		}
+
+		public DateTime DataHora
+		{
+			get
+			{
+				return (DateTime)Valor;
+			}
+			set
+			{
+				Type = typeof(DateTime);
+				Valor = value;
+			}
+		}
+
+		public DateTime Data
+		{
+			get
+			{
+				return ((DateTime)Valor).Date;
+			}
+			set
+			{
+				Type = typeof(DateTime);
+				Valor = value.Date;
+			}
+		}
+
+		public Char Caracter
+		{
+			get
+			{
+				return (Char)Valor;
+			}
+			set
+			{
+				Type = typeof(Char);
+				Valor = value;
+			}
+		}
+
+		public String Texto
+		{
+			get
+			{
+				return (String)Valor;
+			}
+			set
+			{
+				Type = typeof(String);
+				Valor = value;
+			}
+		}
+
+		public Boolean Logico
+		{
+			get
+			{
+				return (Boolean)Valor;
+			}
+			set
+			{
+				Type = typeof(Boolean);
+				Valor = value;
+			}
+		}
 
 
-    }
 
-    public class AtributoValorado : Dictionary<String, Object>
-    {
 
-    }
+	}
 
-    public class Coluna
-    {
-        private string tipo;
-        public int Posicao { get; set; }
-        public String Nome { get; set; }
-        public String Tipo
-        {
-            set
-            { tipo = value; }
-        }
-        public Type Type
-        {
-            get { return typeof(int); }
-        }
-    }
-    public static class Extensao
-    {
-        public static Objeto Objeto(this Object pObjValor)
-        {
-            return new Objeto(pObjValor);
-        }
+	public class AtributoValorado : Dictionary<String, Object>
+	{
 
-        public static IList<Coluna> GetFieldInfo(this DbDataReader pDbDataReader)
-        {
-            IList<Coluna> lista = new List<Coluna>();
-            int vFieldCount = pDbDataReader.FieldCount;
-            for (int posicao = 0; posicao < vFieldCount; posicao++)
-            {
-                lista.Add(new Coluna() { Posicao = posicao, Nome = pDbDataReader.GetName(posicao), Tipo = pDbDataReader.GetDataTypeName(posicao) });
+	}
 
-            }
+	public class Coluna
+	{
+		private string tipo;
+		public int Posicao { get; set; }
+		public String Nome { get; set; }
+		public String Tipo
+		{
+			set
+			{ tipo = value; }
+		}
+		public Type Type
+		{
+			get { return typeof(int); }
+		}
+	}
+	public static class Extensao
+	{
+		public static Objeto Objeto(this Object pObjValor)
+		{
+			return new Objeto(pObjValor);
+		}
 
-            return lista;
-        }
+		public static IList<Coluna> GetFieldInfo(this DbDataReader pDbDataReader)
+		{
+			IList<Coluna> lista = new List<Coluna>();
+			int vFieldCount = pDbDataReader.FieldCount;
+			for (int posicao = 0; posicao < vFieldCount; posicao++)
+			{
+				lista.Add(new Coluna() { Posicao = posicao, Nome = pDbDataReader.GetName(posicao), Tipo = pDbDataReader.GetDataTypeName(posicao) });
 
-        public static void AddRange<T>(this IList<T> pIListDestino, IEnumerable<T> pIEnumerableOrigem)
-        {
-            foreach (T vItemLista in pIEnumerableOrigem)
-                pIListDestino.Add(vItemLista);
-        }
+			}
 
-        public static String ToCapitalizeCase(this String pTexto)
-        {
-            CultureInfo vCultureInfo = new CultureInfo("pt-BR");
-            return vCultureInfo.TextInfo.ToTitleCase(pTexto);
-        }
+			return lista;
+		}
 
-        public static String ToString(this DateTime pData)
-        {
-            return pData.ToString("MMMM").ToCapitalizeCase();
-            
-        }
-    }
+		public static void AddRange<T>(this IList<T> pIListDestino, IEnumerable<T> pIEnumerableOrigem)
+		{
+			foreach (T vItemLista in pIEnumerableOrigem)
+				pIListDestino.Add(vItemLista);
+		}
+
+		public static String ToCapitalizeCase(this String pTexto)
+		{
+			CultureInfo vCultureInfo = new CultureInfo("pt-BR");
+			return vCultureInfo.TextInfo.ToTitleCase(pTexto);
+		}
+
+		public static String ToString(this DateTime pData)
+		{
+			return pData.ToString("MMMM").ToCapitalizeCase();
+
+		}
+	}
 }

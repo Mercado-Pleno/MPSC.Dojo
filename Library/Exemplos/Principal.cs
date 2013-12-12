@@ -3,7 +3,8 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using MPSC.Library.Exemplos.BancoDados;
+	using MPSC.Library.Exemplos.BancoDeDados;
+	using MPSC.Library.Exemplos.ControleDeFluxo;
 
 	public static class Principal
 	{
@@ -22,12 +23,21 @@
 		private static ListaMenu MenuRepository()
 		{
 			return new ListaMenu(
-				new ItemMenu('1', "Banco de Dados"
-					, new ItemMenu('1', "Sql Server"
-						, new ItemMenu('1', "Como Pegar As Mensagens De Prints Do Sql Server", new ComoPegarAsMensagensDePrintsDoSqlServer())
+				new ItemMenu('1', "Banco de Dados",
+					new ItemMenu('1', "Sql Server",
+						new ItemMenu('1', "Como Pegar As Mensagens De Prints Do Sql Server", new ComoPegarAsMensagensDePrintsDoSqlServer())
 					)
-				)
-				, new ItemMenu('2', "Sair")
+				),
+
+				new ItemMenu('2', "Controle de Fluxo",
+					new ItemMenu('1', "Controle de Fluxo",
+						new ItemMenu('1', "Maquina de Estado", new ValidarTransicoesDeEstado()),
+						new ItemMenu('2', "Saber Quem Instanciou", new SaberQuemInstanciou())						
+					)
+				),
+				
+
+				new ItemMenu('←', "Sair")
 			);
 		}
 	}
@@ -35,10 +45,10 @@
 
 	public interface IExecutavel
 	{
-		ItemMenu Executar();
+		void Executar();
 	}
 
-	public class ItemMenu : IExecutavel
+	public class ItemMenu
 	{
 		public Char Codigo { get; set; }
 		public String Descricao { get; set; }
@@ -61,8 +71,6 @@
 		public ItemMenu(Char codigo, String descricao, params ItemMenu[] menus)
 			: this(codigo, descricao)
 		{
-			Comando = this;
-
 			foreach (var item in menus)
 				Menus.Add(item);
 		}
@@ -71,11 +79,6 @@
 		public void Mostrar()
 		{
 			Console.WriteLine(Codigo + " - " + Descricao);
-		}
-
-		public ItemMenu Executar()
-		{
-			return Menus.Mostrar();
 		}
 	}
 
@@ -120,8 +123,8 @@
 
 			ItemMenu itemMenu = this.FirstOrDefault(m => m.Codigo == codigo);
 
-			while ((itemMenu != null) && (itemMenu is ItemMenu) && (itemMenu.Comando != null) && (itemMenu.Comando is ItemMenu))
-				itemMenu = itemMenu.Comando.Executar();
+			while ((itemMenu != null) && (itemMenu.Menus != null) && (itemMenu.Menus.Count > 0))
+				itemMenu = itemMenu.Menus.Mostrar();
 
 			return itemMenu;
 		}
