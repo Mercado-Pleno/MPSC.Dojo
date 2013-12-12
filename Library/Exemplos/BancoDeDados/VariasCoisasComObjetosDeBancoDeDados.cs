@@ -10,7 +10,9 @@
 	{
 		public void Executar()
 		{
-			
+			DbConnection vDbConnection = new iDB2Connection("Password=Bl100709;Persist Security Info=True;User ID=NOGUEIRA;Data Source=192.168.0.11;Initial Catalog=Addsrva1;DefaultCollection=eSimHmo;");
+			Acesso vAcesso = new Acesso(vDbConnection);
+			vAcesso.ExecutarSQL("Select * From Pessoa P Inner Join Cosseguradora C ON C.PessoaId = P.PessoaId Where C.PessoaId = (Select Max(PessoaId) From ESIMHMO.Cosseguradora)");
 		}
 	}
 
@@ -48,15 +50,6 @@
 		public IList<AtributoValorado> ExecutarSQL(String pComandoSQL)
 		{
 			return ExecutarSQL(pComandoSQL, _DbConnection);
-		}
-
-
-		[STAThread]
-		public static void Main2()
-		{
-			DbConnection vDbConnection = new iDB2Connection("Password=Bl100709;Persist Security Info=True;User ID=NOGUEIRA;Data Source=192.168.0.11;Initial Catalog=Addsrva1;DefaultCollection=eSimHmo;");
-			Acesso vAcesso = new Acesso(vDbConnection);
-			vAcesso.ExecutarSQL("Select * From Pessoa P Inner Join Cosseguradora C ON C.PessoaId = P.PessoaId Where C.PessoaId = (Select Max(PessoaId) From ESIMHMO.Cosseguradora)");
 		}
 	}
 
