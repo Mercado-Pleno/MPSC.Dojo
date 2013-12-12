@@ -3,13 +3,47 @@
 	using System;
 	using System.Collections.Generic;
 
+	public enum Dias { Dom, Seg, Ter, Qua, Qui, Sex, Sab }
+	public enum Tempo { Amanha, DepoisDeAmanha, Daqui4Dias, Daqui6Dias }
+
 	public class ValidarTransicoesDeEstado : IExecutavel
 	{
-		public ItemMenu Executar()
+		public void Executar()
 		{
-			throw new NotImplementedException();
-		}
-	}
+			var maquinaDeEstado = new MaquinaDeEstado<Dias, Tempo>();
+			maquinaDeEstado[Dias.Dom, Tempo.Amanha] = Dias.Seg;
+			maquinaDeEstado[Dias.Seg, Tempo.Amanha] = Dias.Ter;
+			maquinaDeEstado[Dias.Ter, Tempo.Amanha] = Dias.Qua;
+			maquinaDeEstado[Dias.Qua, Tempo.Amanha] = Dias.Qui;
+			maquinaDeEstado[Dias.Qui, Tempo.Amanha] = Dias.Sex;
+			maquinaDeEstado[Dias.Sex, Tempo.Amanha] = Dias.Sab;
+			maquinaDeEstado[Dias.Sab, Tempo.Amanha] = Dias.Dom;
+
+			maquinaDeEstado[Dias.Dom, Tempo.DepoisDeAmanha] = Dias.Ter;
+			maquinaDeEstado[Dias.Seg, Tempo.DepoisDeAmanha] = Dias.Qua;
+			maquinaDeEstado[Dias.Ter, Tempo.DepoisDeAmanha] = Dias.Qui;
+			maquinaDeEstado[Dias.Qua, Tempo.DepoisDeAmanha] = Dias.Sex;
+			maquinaDeEstado[Dias.Qui, Tempo.DepoisDeAmanha] = Dias.Sab;
+			maquinaDeEstado[Dias.Sex, Tempo.DepoisDeAmanha] = Dias.Dom;
+			maquinaDeEstado[Dias.Sab, Tempo.DepoisDeAmanha] = Dias.Seg;
+
+			maquinaDeEstado[Dias.Dom, Tempo.Daqui4Dias] = Dias.Qui;
+			maquinaDeEstado[Dias.Seg, Tempo.Daqui4Dias] = Dias.Sex;
+			maquinaDeEstado[Dias.Ter, Tempo.Daqui4Dias] = Dias.Sab;
+			maquinaDeEstado[Dias.Qua, Tempo.Daqui4Dias] = Dias.Dom;
+			maquinaDeEstado[Dias.Qui, Tempo.Daqui4Dias] = Dias.Seg;
+			maquinaDeEstado[Dias.Sex, Tempo.Daqui4Dias] = Dias.Ter;
+			maquinaDeEstado[Dias.Sab, Tempo.Daqui4Dias] = Dias.Qua;
+															   
+			maquinaDeEstado[Dias.Dom, Tempo.Daqui6Dias] = Dias.Sab;
+			maquinaDeEstado[Dias.Seg, Tempo.Daqui6Dias] = Dias.Dom;
+			maquinaDeEstado[Dias.Ter, Tempo.Daqui6Dias] = Dias.Seg;
+			maquinaDeEstado[Dias.Qua, Tempo.Daqui6Dias] = Dias.Ter;
+			maquinaDeEstado[Dias.Qui, Tempo.Daqui6Dias] = Dias.Qua;
+			maquinaDeEstado[Dias.Sex, Tempo.Daqui6Dias] = Dias.Qui;
+			maquinaDeEstado[Dias.Sab, Tempo.Daqui6Dias] = Dias.Sex;
+		}													   
+	}														   
 
 	public class MaquinaDeEstado<TEstado, TTransicao>
 	{

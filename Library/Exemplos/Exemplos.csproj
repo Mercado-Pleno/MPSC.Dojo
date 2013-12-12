@@ -37,8 +37,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IBM.Data.DB2.iSeries">
+      <HintPath>..\Lib\IBM.Data.DB2.iSeries.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +54,7 @@
     <Compile Include="ControleDeFluxo\MaquinaDeEstado.cs" />
     <Compile Include="Source\Program.cs" />
     <Compile Include="ControleDeFluxo\SaberQuemInstanciou.cs" />
+    <Compile Include="Source\Reflection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

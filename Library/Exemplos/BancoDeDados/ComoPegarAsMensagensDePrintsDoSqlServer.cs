@@ -1,4 +1,4 @@
-﻿namespace MPSC.Library.Exemplos.BancoDados
+﻿namespace MPSC.Library.Exemplos.BancoDeDados
 {
 	using System;
 	using System.Data;
@@ -21,10 +21,9 @@ Print 'Bom dia pessoal!';
 Select GetDate() as Data;
 Print 'Valeu pessoal.';
 ";
-		public ItemMenu Executar()
+		public void Executar()
 		{
 			Testar(_stringConexao, _comandoSQL, Tipo.NonQuery);
-			return null;
 		}
 
 		public static void Testar(String stringConexao, String comandoSQL, Tipo tipo)

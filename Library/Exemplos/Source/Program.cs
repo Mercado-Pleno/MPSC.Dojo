@@ -83,11 +83,11 @@ namespace WindowsFormsApplication1
 
     public static class Program
     {
-       public static void Main()
+       public static void Executar()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(new Relatorio()));
+            //Application.Run(new Form1(new Relatorio()));
         }
         public static ListaDados PreencherDataSource()
         {
