@@ -58,6 +58,7 @@
     <Compile Include="Utilidades\AlgumaCoisaComRelatoriosUsandoLinq.cs" />
     <Compile Include="ControleDeFluxo\SaberQuemInstanciou.cs" />
     <Compile Include="Reflection\AtributosDescritivosDosEnumerados.cs" />
+    <Compile Include="ControleDeFluxo\TesteDeConstrutoresEstaticos.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
