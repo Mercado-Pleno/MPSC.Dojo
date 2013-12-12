@@ -1,4 +1,0 @@
-D:\Projeto\MP\MPSC.Dojo\TestesDiversos\SQLTest\bin\Debug\SQLTest.exe
-D:\Projeto\MP\MPSC.Dojo\TestesDiversos\SQLTest\bin\Debug\SQLTest.pdb
-D:\Projeto\MP\MPSC.Dojo\TestesDiversos\SQLTest\obj\x86\Debug\SQLTest.exe
-D:\Projeto\MP\MPSC.Dojo\TestesDiversos\SQLTest\obj\x86\Debug\SQLTest.pdb
