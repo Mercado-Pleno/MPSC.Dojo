@@ -47,7 +47,8 @@
 
 				new ItemMenu('5', "Utilidades",
 					new ItemMenu('1', "Separar Lista EMails E Remover Duplicados", new SeparaListaEMailsERemoveDuplicados()),
-					new ItemMenu('2', "Criptografia Com Operador XOR", new CriptografiaComOperadorXOR())
+					new ItemMenu('2', "Criptografia Com Operador XOR", new CriptografiaComOperadorXOR()),
+					new ItemMenu('3', "Alguma Coisa Com Relatorios usando Linq", new AlgumaCoisaComRelatoriosUsandoLinq())
 				),
 
 				new ItemMenu('←', "Sair")
