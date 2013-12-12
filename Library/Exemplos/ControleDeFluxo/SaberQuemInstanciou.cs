@@ -72,4 +72,13 @@
 			return vRetorno;
 		}
 	}
+
+	public class Objeto
+	{
+		private static readonly Object LockObject = new Object();
+		private static Int64 id = 0;
+		private static Int64 Id { get { lock (LockObject) id++; return id; } }
+
+		private Int64 ObjectInstanceId = Id;
+	}
 }
