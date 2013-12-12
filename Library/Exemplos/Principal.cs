@@ -7,6 +7,7 @@
 	using MPSC.Library.Exemplos.ControleDeFluxo;
 	using MPSC.Library.Exemplos.ControleDeFluxo.Reflection;
 	using MPSC.Library.Exemplos.Medidas;
+	using MPSC.Library.Exemplos.Utilidades;
 
 	public static class Principal
 	{
@@ -42,6 +43,11 @@
 
 				new ItemMenu('4', "Medidas",
 					new ItemMenu('1', "Duracção de um Intervalo de Tempo de Alta Precisão", new DuracaoIntervaloTempoAltaPrecisao())
+				),
+
+				new ItemMenu('5', "Utilidades",
+					new ItemMenu('1', "Separar Lista EMails E Remover Duplicados", new SeparaListaEMailsERemoveDuplicados()),
+					new ItemMenu('2', "Criptografia Com Operador XOR", new CriptografiaComOperadorXOR())
 				),
 
 				new ItemMenu('←', "Sair")
