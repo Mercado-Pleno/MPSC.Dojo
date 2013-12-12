@@ -54,7 +54,7 @@
     <Compile Include="ControleDeFluxo\MaquinaDeEstado.cs" />
     <Compile Include="Utilidades\CriptografiaComOperadorXOR.cs" />
     <Compile Include="Utilidades\SeparaListaEMailsERemoveDuplicados.cs" />
-    <Compile Include="Source\Program.cs" />
+    <Compile Include="Utilidades\AlgumaCoisaComRelatoriosUsandoLinq.cs" />
     <Compile Include="ControleDeFluxo\SaberQuemInstanciou.cs" />
     <Compile Include="Reflection\AtributosDescritivosDosEnumerados.cs" />
   </ItemGroup>

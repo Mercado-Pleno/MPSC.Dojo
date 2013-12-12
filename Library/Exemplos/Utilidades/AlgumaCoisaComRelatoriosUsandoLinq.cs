@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Windows.Forms;
-using System.IO;
-
-namespace WindowsFormsApplication1
+﻿namespace MPSC.Library.Exemplos.Utilidades
 {
-	public static class Program
+	using System;
+	using System.Collections.Generic;
+	using System.Globalization;
+	using System.Linq;
+
+	public class AlgumaCoisaComRelatoriosUsandoLinq : IExecutavel
 	{
-		public static void Executar()
+		public void Executar()
 		{
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
-			//Application.Run(new Form1(new Relatorio()));
+			var relatorio = new Relatorio();
+			Console.WriteLine(relatorio.DataSource.Any());
 		}
+
 		public static ListaDados PreencherDataSource()
 		{
 			ListaDados retorno = new ListaDados();
@@ -31,9 +29,9 @@ namespace WindowsFormsApplication1
 
 	public class Relatorio
 	{
-		public IList<String> Produtos { get { return Program.PreencherDataSource().Select(dados => dados.Produto).Distinct().ToList(); } }
-		public IList<String> Meses { get { return Program.PreencherDataSource().Select(dados => dados.Mes).Distinct().ToList(); } }
-		public ListaDados DataSource { get { return Program.PreencherDataSource(); } }
+		public IList<String> Produtos { get { return AlgumaCoisaComRelatoriosUsandoLinq.PreencherDataSource().Select(dados => dados.Produto).Distinct().ToList(); } }
+		public IList<String> Meses { get { return AlgumaCoisaComRelatoriosUsandoLinq.PreencherDataSource().Select(dados => dados.Mes).Distinct().ToList(); } }
+		public ListaDados DataSource { get { return AlgumaCoisaComRelatoriosUsandoLinq.PreencherDataSource(); } }
 	}
 
 	public class ListaDados : List<Dados>, IList<Dados>, IEnumerable<Dados> { }
