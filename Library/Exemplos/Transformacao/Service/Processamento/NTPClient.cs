@@ -1,15 +1,23 @@
-﻿namespace MP.LBJC.Util
+﻿namespace MP.LBJC.Utils
 {
 	using System;
 	using System.IO;
 	using System.Net;
 	using System.Runtime.InteropServices;
 	using System.Text;
+	using MP.LBJC.Util;
+	using MP.LBJC.Util.Servico;
 
-	public class NTPClient
+	public class NTPClient : IProcessoService
 	{
 		[DllImport("kernel32.dll")]
 		private extern static uint SetSystemTime(ref SYSTEMTIME lpSystemTime);
+
+		public Boolean Processar()
+		{
+			NTPClient.SetSystemTime();
+			return true;
+		}
 
 		public static DateTime SetSystemTime()
 		{
