@@ -40,6 +40,9 @@
     <Reference Include="IBM.Data.DB2.iSeries">
       <HintPath>..\Lib\IBM.Data.DB2.iSeries.dll</HintPath>
     </Reference>
+    <Reference Include="MP.LBJC.ServicoWindows">
+      <HintPath>..\FrameWork\MP.LBJC.ServicoWindows.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
@@ -53,14 +56,8 @@
     <Compile Include="BancoDeDados\ComoPegarAsMensagensDePrintsDoSqlServer.cs" />
     <Compile Include="Principal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transformacao\Service\Processamento\NTPClient.cs" />
-    <Compile Include="Transformacao\Service\Servico\Principal.cs" />
-    <Compile Include="Transformacao\Service\Servico\ServiceInstallerUtil.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Transformacao\Service\Servico\ServiceBaseUtil.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Transformacao\Service\NTPClient.cs" />
+    <Compile Include="Transformacao\Service\Principal.cs" />
     <Compile Include="Transformacao\TransformacaoDeDadosParaDTO.cs" />
     <Compile Include="Medidas\DuracaoIntervaloTempoAltaPrecisao.cs" />
     <Compile Include="ControleDeFluxo\MaquinaDeEstado.cs" />
