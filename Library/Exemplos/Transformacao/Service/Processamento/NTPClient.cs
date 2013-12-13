@@ -5,8 +5,7 @@
 	using System.Net;
 	using System.Runtime.InteropServices;
 	using System.Text;
-	using MP.LBJC.Util;
-	using MP.LBJC.Util.Servico;
+	using MP.LBJC.Util.ServicoWindows;
 
 	public class NTPClient : IProcessoService
 	{

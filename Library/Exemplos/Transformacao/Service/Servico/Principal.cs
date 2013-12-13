@@ -1,7 +1,6 @@
-﻿namespace MP.LBJC.Util.Servico
+﻿namespace MP.LBJC.Util.ServicoWindows
 {
 	using System;
-	using System.ServiceProcess;
 	using MP.LBJC.Utils;
 
 	public static class Principal
