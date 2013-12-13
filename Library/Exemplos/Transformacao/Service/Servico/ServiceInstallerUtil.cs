@@ -16,10 +16,68 @@
 		private ServiceProcessInstaller _serviceProcessInstaller;
 		public string ServiceName { get; private set; }
 
+		public ServiceInstallerUtil(String serviceName)
+		{
+			InitializeComponent(serviceName, serviceName, serviceName, ServiceStartMode.Automatic, ServiceAccount.LocalSystem, null, null);
+		}
+
+		public ServiceInstallerUtil(String serviceName, ServiceStartMode serviceStartMode)
+		{
+			InitializeComponent(serviceName, serviceName, serviceName, serviceStartMode, ServiceAccount.LocalSystem, null, null);
+		}
+
+		public ServiceInstallerUtil(String serviceName, ServiceStartMode serviceStartMode, ServiceAccount serviceAccount)
+		{
+			InitializeComponent(serviceName, serviceName, serviceName, serviceStartMode, serviceAccount, null, null);
+		}
+
+		public ServiceInstallerUtil(String serviceName, ServiceStartMode serviceStartMode, ServiceAccount serviceAccount, String username, String password)
+		{
+			InitializeComponent(serviceName, serviceName, serviceName, serviceStartMode, serviceAccount, username, password);
+		}
+
+
+		public ServiceInstallerUtil(String serviceName, String displayName)
+		{
+			InitializeComponent(serviceName, displayName, serviceName, ServiceStartMode.Automatic, ServiceAccount.LocalSystem, null, null);
+		}
+
+		public ServiceInstallerUtil(String serviceName, String displayName, ServiceStartMode serviceStartMode)
+		{
+			InitializeComponent(serviceName, displayName, displayName, serviceStartMode, ServiceAccount.LocalSystem, null, null);
+		}
+
+		public ServiceInstallerUtil(String serviceName, String displayName, ServiceStartMode serviceStartMode, ServiceAccount serviceAccount)
+		{
+			InitializeComponent(serviceName, displayName, displayName, serviceStartMode, serviceAccount, null, null);
+		}
+
+		public ServiceInstallerUtil(String serviceName, String displayName, ServiceStartMode serviceStartMode, ServiceAccount serviceAccount, String username, String password)
+		{
+			InitializeComponent(serviceName, displayName, displayName, serviceStartMode, serviceAccount, username, password);
+		}
+
+
+		public ServiceInstallerUtil(String serviceName, String displayName, String description)
+		{
+			InitializeComponent(serviceName, displayName, description, ServiceStartMode.Automatic, ServiceAccount.LocalSystem, null, null);
+		}
+
+		public ServiceInstallerUtil(String serviceName, String displayName, String description, ServiceStartMode serviceStartMode)
+		{
+			InitializeComponent(serviceName, displayName, description, serviceStartMode, ServiceAccount.LocalSystem, null, null);
+		}
+
+		public ServiceInstallerUtil(String serviceName, String displayName, String description, ServiceStartMode serviceStartMode, ServiceAccount serviceAccount)
+		{
+			InitializeComponent(serviceName, displayName, description, serviceStartMode, serviceAccount, null, null);
+		}
+
 		public ServiceInstallerUtil(String serviceName, String displayName, String description, ServiceStartMode serviceStartMode, ServiceAccount serviceAccount, String username, String password)
 		{
 			InitializeComponent(serviceName, displayName, description, serviceStartMode, serviceAccount, username, password);
 		}
+
 
 		private void InitializeComponent(String serviceName, String displayName, String description, ServiceStartMode serviceStartMode, ServiceAccount serviceAccount, String username, String password)
 		{
@@ -275,7 +333,7 @@
 				{
 					if (vParam.Contains("/R") || vParam.Contains("/E"))
 						processoService.Processar();
-					
+
 					if (vParam.Contains("/I"))
 						Instalar();
 
@@ -307,7 +365,7 @@
 
 	}
 
-	public interface IProcessoService
+	public interface IProcessoService : IDisposable
 	{
 		Boolean Processar();
 	}

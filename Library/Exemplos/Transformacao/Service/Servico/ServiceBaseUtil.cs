@@ -6,34 +6,46 @@
 
 	public partial class ServiceBaseUtil : ServiceBase, IProcessoService
 	{
-		private ServiceInstallerUtil _serviceInstallerUtil;
-		private IProcessoService _processoService;
-		private Timer _timer;
-		private Boolean _iniciaProcessando;
-		private Boolean Enabled
+		protected ServiceInstallerUtil serviceInstallerUtil;
+		protected IProcessoService processoService;
+		protected Timer timer;
+		protected Boolean iniciaProcessando;
+		protected virtual Boolean PodeSerProcessado { get { return true; } }
+		protected virtual Boolean Enabled
 		{
-			get { return _timer.Enabled; }
-			set { try { _timer.Enabled = value; } catch (Exception) { } }
+			get { return timer.Enabled; }
+			set { try { timer.Enabled = value; } catch (Exception) { } }
 		}
 
-		public ServiceBaseUtil(ServiceInstallerUtil serviceInstallerUtil, IProcessoService processoService, Decimal intervaloEmSegundos, Boolean iniciaProcessando, Boolean podePausarContinuar, Boolean podeSerDerrubado)
+		public ServiceBaseUtil(ServiceInstallerUtil serviceInstallerUtil, IProcessoService processoService, Decimal intervaloEmSegundos)
 		{
-			InitializeComponent(serviceInstallerUtil, processoService, Convert.ToInt32(intervaloEmSegundos * 1000), iniciaProcessando, podePausarContinuar, podeSerDerrubado);
-			serviceInstallerUtil.Log(LogEnum.Informativo, "Serviço Instanciado");
+			InitializeComponent(serviceInstallerUtil, processoService, Convert.ToInt32(intervaloEmSegundos * 1000), false, true, true);
 		}
 
-		private void InitializeComponent(ServiceInstallerUtil serviceInstallerUtil, IProcessoService processoService, Int32 intervaloEmMiliSegundos, Boolean iniciaProcessando, Boolean podePausarContinuar, Boolean podeSerDerrubado)
+		public ServiceBaseUtil(ServiceInstallerUtil serviceInstallerUtil, IProcessoService processoService, Decimal intervaloEmSegundos, Boolean iniciaProcessando)
 		{
-			ServiceName = serviceInstallerUtil.ServiceName;
-			CanShutdown = podeSerDerrubado;
-			CanPauseAndContinue = podePausarContinuar;
+			InitializeComponent(serviceInstallerUtil, processoService, Convert.ToInt32(intervaloEmSegundos * 1000), iniciaProcessando, true, true);
+		}
 
-			_iniciaProcessando = iniciaProcessando;
-			_processoService = processoService;
-			_serviceInstallerUtil = serviceInstallerUtil;
-			_timer = new Timer(intervaloEmMiliSegundos);
-			_timer.Enabled = false;
-			_timer.Elapsed += new ElapsedEventHandler(TenteProcessar);
+		public ServiceBaseUtil(ServiceInstallerUtil serviceInstallerUtil, IProcessoService processoService, Decimal intervaloEmSegundos, Boolean iniciaProcessando, Boolean podePausarContinuar, Boolean podeFazerShutDown)
+		{
+			InitializeComponent(serviceInstallerUtil, processoService, Convert.ToInt32(intervaloEmSegundos * 1000), iniciaProcessando, podePausarContinuar, podeFazerShutDown);
+		}
+
+		private void InitializeComponent(ServiceInstallerUtil serviceInstallerUtil, IProcessoService processoService, Int32 intervaloEmMiliSegundos, Boolean iniciaProcessando, Boolean podePausarContinuar, Boolean podeFazerShutDown)
+		{
+			base.ServiceName = serviceInstallerUtil.ServiceName;
+			base.CanShutdown = podeFazerShutDown;
+			base.CanPauseAndContinue = podePausarContinuar;
+
+			this.iniciaProcessando = iniciaProcessando;
+			this.processoService = processoService;
+			this.serviceInstallerUtil = serviceInstallerUtil;
+			this.timer = new Timer(intervaloEmMiliSegundos);
+			this.timer.Enabled = false;
+			this.timer.Elapsed += new ElapsedEventHandler(TenteProcessar);
+
+			Log(LogEnum.Informativo, String.Format(@"Serviço Instanciado. Parametros: serviceInstallerUtil={0}; processoService={1}; intervaloEmMiliSegundos={2}; iniciaProcessando={3}; podePausarContinuar={4}; podeFazerShutDown={5};", serviceInstallerUtil.GetType().Name, processoService.GetType().Name, intervaloEmMiliSegundos, iniciaProcessando, podePausarContinuar, podeFazerShutDown));
 		}
 
 		protected override void Dispose(bool disposing)
@@ -42,85 +54,126 @@
 			GC.Collect();
 		}
 
-
 		~ServiceBaseUtil()
 		{
-			_serviceInstallerUtil.Log(LogEnum.Informativo, "Serviço Destruido");
-			_timer.Stop();
-			_timer.Close();
-			_timer.Dispose();
+			Log(LogEnum.Informativo, "Serviço Destruido");
+			internalDispose();
+		}
+
+		private void internalDispose()
+		{
+			if (timer != null)
+			{
+				try
+				{
+					timer.Stop();
+					timer.Close();
+					timer.Dispose();
+				}
+				catch (Exception)
+				{ }
+				finally
+				{
+					timer = null;
+				}
+			}
+
+			if (processoService != null)
+			{
+				try
+				{
+					processoService.Dispose();
+				}
+				catch (Exception)
+				{ }
+				finally
+				{
+					processoService = null;
+				}
+			}
+
+			if (serviceInstallerUtil != null)
+			{
+				try
+				{
+					serviceInstallerUtil.Dispose();
+				}
+				catch (Exception)
+				{ }
+				finally
+				{
+					serviceInstallerUtil = null;
+				}
+			}
 		}
 
 		protected override void OnStart(string[] args)
 		{
-			_serviceInstallerUtil.Log(LogEnum.Administrativo, "Serviço Iniciado");
+			Log(LogEnum.Administrativo, "Serviço Iniciado");
 			Enabled = true;
 			base.OnStart(args);
-			if (_iniciaProcessando) Processar();
+			if (iniciaProcessando) Processar();
 		}
 
 		protected override void OnStop()
 		{
-			_serviceInstallerUtil.Log(LogEnum.Administrativo, "Serviço Parado");
+			Log(LogEnum.Administrativo, "Serviço Parado");
 			Enabled = false;
 			base.OnStop();
 		}
 
 		protected override void OnPause()
 		{
-			_serviceInstallerUtil.Log(LogEnum.Administrativo, "Serviço Pausado");
+			Log(LogEnum.Administrativo, "Serviço Pausado");
 			Enabled = false;
 			base.OnPause();
 		}
 
 		protected override void OnContinue()
 		{
-			_serviceInstallerUtil.Log(LogEnum.Administrativo, "Serviço Continuado");
+			Log(LogEnum.Administrativo, "Serviço Continuado");
 			Enabled = true;
 			base.OnContinue();
-			Processar();
+			if (iniciaProcessando) Processar();
 		}
 
 		protected override void OnShutdown()
 		{
-			_serviceInstallerUtil.Log(LogEnum.Administrativo, "Serviço Quebrado");
+			Log(LogEnum.Administrativo, "Serviço Quebrado");
 			Enabled = false;
 			base.OnShutdown();
 		}
 
-		private void TenteProcessar(Object sender, ElapsedEventArgs e)
+		protected virtual void TenteProcessar(Object sender, ElapsedEventArgs e)
 		{
 			Enabled = false;
-			VerifiqueSeAtendeOsRequisitosParaProcessar();
-			Enabled = true;
-		}
-
-		protected void VerifiqueSeAtendeOsRequisitosParaProcessar()
-		{
 			try
 			{
 				Processar();
 			}
 			catch (Exception vException)
 			{
-				_serviceInstallerUtil.Log(LogEnum.Exception, "Erro: " + vException.Message + "\r\n\r\n");
+				Log(LogEnum.Exception, "Erro: " + vException.Message + "\r\n\r\n");
 			}
-			finally
-			{
-			}
+			Enabled = true;
 		}
 
-		public Boolean Processar()
+		public virtual Boolean Processar()
 		{
-			_serviceInstallerUtil.Log(LogEnum.Informativo, "Ini: Processamento");
-			var vRetorno = _processoService.Processar();
-			_serviceInstallerUtil.Log(LogEnum.Informativo, "Fim: Processamento" + "\r\n");
+			Log(LogEnum.Informativo, "Ini: Processamento");
+			var vRetorno = PodeSerProcessado && processoService.Processar();
+			Log(LogEnum.Informativo, "Fim: Processamento" + "\r\n");
 			return vRetorno;
 		}
 
-		public int ProcessarParametro(String[] parametros)
+		public virtual int ProcessarParametro(String[] parametros)
 		{
-			return _serviceInstallerUtil.ProcessarParametro(parametros, this);
+			return serviceInstallerUtil.ProcessarParametro(parametros, this);
+		}
+
+		private void Log(LogEnum logEnum, string mensagem)
+		{
+			if (serviceInstallerUtil != null) serviceInstallerUtil.Log(logEnum, mensagem);
 		}
 	}
 }
