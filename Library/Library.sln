@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exemplos", "Exemplos\Exemplos.csproj", "{EC3FFAC1-2161-4CBE-9A29-A020686E466E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTPClient", "NTPClient\NTPClient.csproj", "{240043CD-0CA6-447E-8BAA-8B421E3DF664}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,10 @@ Global
 		{EC3FFAC1-2161-4CBE-9A29-A020686E466E}.Debug|x86.Build.0 = Debug|x86
 		{EC3FFAC1-2161-4CBE-9A29-A020686E466E}.Release|x86.ActiveCfg = Release|x86
 		{EC3FFAC1-2161-4CBE-9A29-A020686E466E}.Release|x86.Build.0 = Release|x86
+		{240043CD-0CA6-447E-8BAA-8B421E3DF664}.Debug|x86.ActiveCfg = Debug|x86
+		{240043CD-0CA6-447E-8BAA-8B421E3DF664}.Debug|x86.Build.0 = Debug|x86
+		{240043CD-0CA6-447E-8BAA-8B421E3DF664}.Release|x86.ActiveCfg = Release|x86
+		{240043CD-0CA6-447E-8BAA-8B421E3DF664}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
