@@ -1,4 +1,4 @@
-﻿namespace MP.LBJC.Util.ServicoWindows
+﻿namespace MP.LBJC.ServicoWindows.Util
 {
 	using System;
 	using MP.LBJC.Utils;
