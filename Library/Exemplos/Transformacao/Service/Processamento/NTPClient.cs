@@ -19,6 +19,8 @@
 			return true;
 		}
 
+		public void Dispose() { }
+
 		public static DateTime SetSystemTime()
 		{
 			var start = DateTime.Now;
