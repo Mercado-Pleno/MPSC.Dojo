@@ -1,20 +1,22 @@
-﻿namespace MP.LBJC.Util.Servico
+﻿namespace MP.LBJC.Util.ServicoWindows
 {
 	using System;
 	using System.Collections;
+	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Configuration.Install;
 	using System.IO;
 	using System.Reflection;
 	using System.ServiceProcess;
-	using System.Collections.Generic;
 
 	[RunInstaller(true)]
-	public class ServiceInstallerUtil : Installer
+	public class ServiceInstallerUtil : Installer, IServiceInstallerUtil
 	{
-		private ServiceInstaller _serviceInstaller;
-		private ServiceProcessInstaller _serviceProcessInstaller;
+		protected ServiceInstaller serviceInstaller;
+		protected ServiceProcessInstaller serviceProcessInstaller;
 		public string ServiceName { get; private set; }
+
+		#region // Construtores
 
 		public ServiceInstallerUtil(String serviceName)
 		{
@@ -78,23 +80,24 @@
 			InitializeComponent(serviceName, displayName, description, serviceStartMode, serviceAccount, username, password);
 		}
 
+		#endregion // Construtores
 
 		private void InitializeComponent(String serviceName, String displayName, String description, ServiceStartMode serviceStartMode, ServiceAccount serviceAccount, String username, String password)
 		{
 			ServiceName = serviceName;
-			_serviceProcessInstaller = new ServiceProcessInstaller();
-			_serviceInstaller = new ServiceInstaller();
+			serviceProcessInstaller = new ServiceProcessInstaller();
+			serviceInstaller = new ServiceInstaller();
 
-			_serviceProcessInstaller.Account = serviceAccount;
-			_serviceProcessInstaller.Username = username;
-			_serviceProcessInstaller.Password = password;
+			serviceProcessInstaller.Account = serviceAccount;
+			serviceProcessInstaller.Username = username;
+			serviceProcessInstaller.Password = password;
 
-			_serviceInstaller.ServiceName = serviceName;
-			_serviceInstaller.DisplayName = displayName;
-			_serviceInstaller.Description = description;
-			_serviceInstaller.StartType = serviceStartMode;
+			serviceInstaller.ServiceName = serviceName;
+			serviceInstaller.DisplayName = displayName;
+			serviceInstaller.Description = description;
+			serviceInstaller.StartType = serviceStartMode;
 
-			Installers.AddRange(new Installer[] { this._serviceProcessInstaller, this._serviceInstaller });
+			Installers.AddRange(new Installer[] { this.serviceProcessInstaller, this.serviceInstaller });
 		}
 
 		protected override void Dispose(bool disposing)
@@ -102,6 +105,18 @@
 			base.Dispose(disposing);
 			while (Installers.Count > 0)
 				Installers.RemoveAt(0);
+
+			if (serviceInstaller != null)
+			{
+				serviceInstaller.Dispose();
+				serviceInstaller = null;
+			}
+
+			if (serviceProcessInstaller != null)
+			{
+				serviceProcessInstaller.Dispose();
+				serviceProcessInstaller = null;
+			}
 		}
 
 		public Boolean Instalar()
@@ -368,6 +383,13 @@
 	public interface IProcessoService : IDisposable
 	{
 		Boolean Processar();
+	}
+
+	public interface IServiceInstallerUtil : IDisposable
+	{
+		String ServiceName { get; }
+		Boolean Log(LogEnum tipo, String mensagem);
+		int ProcessarParametro(String[] parametros, IProcessoService processoService);
 	}
 
 	public enum LogEnum

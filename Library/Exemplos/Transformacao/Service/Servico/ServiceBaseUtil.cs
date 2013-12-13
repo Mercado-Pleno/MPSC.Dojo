@@ -1,4 +1,4 @@
-﻿namespace MP.LBJC.Util.Servico
+﻿namespace MP.LBJC.Util.ServicoWindows
 {
 	using System;
 	using System.ServiceProcess;
@@ -6,7 +6,7 @@
 
 	public partial class ServiceBaseUtil : ServiceBase, IProcessoService
 	{
-		protected ServiceInstallerUtil serviceInstallerUtil;
+		protected IServiceInstallerUtil serviceInstallerUtil;
 		protected IProcessoService processoService;
 		protected Timer timer;
 		protected Boolean iniciaProcessando;
@@ -17,22 +17,22 @@
 			set { try { timer.Enabled = value; } catch (Exception) { } }
 		}
 
-		public ServiceBaseUtil(ServiceInstallerUtil serviceInstallerUtil, IProcessoService processoService, Decimal intervaloEmSegundos)
+		public ServiceBaseUtil(IServiceInstallerUtil serviceInstallerUtil, IProcessoService processoService, Decimal intervaloEmSegundos)
 		{
 			InitializeComponent(serviceInstallerUtil, processoService, Convert.ToInt32(intervaloEmSegundos * 1000), false, true, true);
 		}
 
-		public ServiceBaseUtil(ServiceInstallerUtil serviceInstallerUtil, IProcessoService processoService, Decimal intervaloEmSegundos, Boolean iniciaProcessando)
+		public ServiceBaseUtil(IServiceInstallerUtil serviceInstallerUtil, IProcessoService processoService, Decimal intervaloEmSegundos, Boolean iniciaProcessando)
 		{
 			InitializeComponent(serviceInstallerUtil, processoService, Convert.ToInt32(intervaloEmSegundos * 1000), iniciaProcessando, true, true);
 		}
 
-		public ServiceBaseUtil(ServiceInstallerUtil serviceInstallerUtil, IProcessoService processoService, Decimal intervaloEmSegundos, Boolean iniciaProcessando, Boolean podePausarContinuar, Boolean podeFazerShutDown)
+		public ServiceBaseUtil(IServiceInstallerUtil serviceInstallerUtil, IProcessoService processoService, Decimal intervaloEmSegundos, Boolean iniciaProcessando, Boolean podePausarContinuar, Boolean podeFazerShutDown)
 		{
 			InitializeComponent(serviceInstallerUtil, processoService, Convert.ToInt32(intervaloEmSegundos * 1000), iniciaProcessando, podePausarContinuar, podeFazerShutDown);
 		}
 
-		private void InitializeComponent(ServiceInstallerUtil serviceInstallerUtil, IProcessoService processoService, Int32 intervaloEmMiliSegundos, Boolean iniciaProcessando, Boolean podePausarContinuar, Boolean podeFazerShutDown)
+		private void InitializeComponent(IServiceInstallerUtil serviceInstallerUtil, IProcessoService processoService, Int32 intervaloEmMiliSegundos, Boolean iniciaProcessando, Boolean podePausarContinuar, Boolean podeFazerShutDown)
 		{
 			base.ServiceName = serviceInstallerUtil.ServiceName;
 			base.CanShutdown = podeFazerShutDown;
@@ -168,7 +168,7 @@
 
 		public virtual int ProcessarParametro(String[] parametros)
 		{
-			return serviceInstallerUtil.ProcessarParametro(parametros, this);
+			return (serviceInstallerUtil != null) ? serviceInstallerUtil.ProcessarParametro(parametros, this) : -99;
 		}
 
 		private void Log(LogEnum logEnum, string mensagem)
