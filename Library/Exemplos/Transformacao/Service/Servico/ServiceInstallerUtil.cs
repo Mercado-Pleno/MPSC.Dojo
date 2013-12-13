@@ -1,4 +1,4 @@
-﻿namespace MP.LBJC.Util.ServicoWindows
+﻿namespace MP.LBJC.ServicoWindows.Util
 {
 	using System;
 	using System.Collections;
@@ -10,7 +10,7 @@
 	using System.ServiceProcess;
 
 	[RunInstaller(true)]
-	public class ServiceInstallerUtil : Installer, IServiceInstallerUtil
+	public class ServiceInstallerUtil : Installer, IServiceInstaller
 	{
 		protected ServiceInstaller serviceInstaller;
 		protected ServiceProcessInstaller serviceProcessInstaller;
@@ -335,7 +335,7 @@
 			return vRetorno;
 		}
 
-		public int ProcessarParametro(String[] parametros, IProcessoService processoService)
+		public int ProcessarParametro(String[] parametros, IProcessamento processoService)
 		{
 			var vRetorno = 0;
 			try
@@ -380,16 +380,16 @@
 
 	}
 
-	public interface IProcessoService : IDisposable
+	public interface IProcessamento : IDisposable
 	{
 		Boolean Processar();
 	}
 
-	public interface IServiceInstallerUtil : IDisposable
+	public interface IServiceInstaller : IDisposable
 	{
 		String ServiceName { get; }
 		Boolean Log(LogEnum tipo, String mensagem);
-		int ProcessarParametro(String[] parametros, IProcessoService processoService);
+		int ProcessarParametro(String[] parametros, IProcessamento processoService);
 	}
 
 	public enum LogEnum
