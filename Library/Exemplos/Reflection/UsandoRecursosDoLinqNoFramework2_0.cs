@@ -29,7 +29,7 @@ namespace System.Linq
 			return lista.Count > 0;
 		}
 
-		public static IList<T> OrderBy<T>(this IList<T> lista, Func<T, String> acao)
+		public static IList<T> OrderBy<T>(this IList<T> lista, Func<T, T> acao) where T : IComparable, IComparable<T>
 		{
 			Comparison<T> comparison = (a, b) => acao(a).CompareTo(acao(b));
 			var vLista = new List<T>();
