@@ -5,9 +5,9 @@
 	using System.Net;
 	using System.Runtime.InteropServices;
 	using System.Text;
-	using MP.LBJC.ServicoWindows.Util;
+	using MP.LBJC.ServicoWindows.Interface;
 
-	public class NTPClient : IProcessamento
+	public class NTPClient : IProcessador
 	{
 		[DllImport("kernel32.dll")]
 		private extern static uint SetSystemTime(ref SYSTEMTIME lpSystemTime);
