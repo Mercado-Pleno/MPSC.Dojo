@@ -45,10 +45,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\NTPClient.cs" />
     <Compile Include="Service\Instalador.cs">
       <SubType>Component</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Exemplos\Exemplos.csproj">
+      <Project>{EC3FFAC1-2161-4CBE-9A29-A020686E466E}</Project>
+      <Name>Exemplos</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
