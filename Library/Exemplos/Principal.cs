@@ -31,6 +31,7 @@
 
 		private static ListaMenu MenuRepository()
 		{
+			const char esc = (char)27;
 			return new ListaMenu(
 				new ItemMenu('1', "Banco de Dados",
 					new ItemMenu('1', "Sql Server",
@@ -60,10 +61,11 @@
 				),
 
 				new ItemMenu('6', "Design Pattern",
-					new ItemMenu('1', "Strategy - Mini Simulador De Patos", new MiniSimuladorDePatos())
+					new ItemMenu('1', "Strategy - Mini Simulador De Patos", new MiniSimuladorDePatos()),
+					new ItemMenu('2', "Observer - Estação de Monitoramento")
 				),
 
-				new ItemMenu('←', "Sair")
+				new ItemMenu(esc, "Sair")
 			);
 		}
 	}
