@@ -53,6 +53,12 @@
   <ItemGroup>
     <Compile Include="BancoDeDados\VariasCoisasComObjetosDeBancoDeDados.cs" />
     <Compile Include="BancoDeDados\ComoPegarAsMensagensDePrintsDoSqlServer.cs" />
+    <Compile Include="DesignPattern\Strategy\Classes\MiniSimuladorDePatos.cs" />
+    <Compile Include="DesignPattern\Strategy\Classes\Pato.cs" />
+    <Compile Include="DesignPattern\Strategy\Classes\PatoDeBorracha.cs" />
+    <Compile Include="DesignPattern\Strategy\Classes\PatoSelvagem.cs" />
+    <Compile Include="DesignPattern\Strategy\Comportamento\IBarulho.cs" />
+    <Compile Include="DesignPattern\Strategy\Comportamento\IVoador.cs" />
     <Compile Include="Principal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\UsandoRecursosDoLinqNoFramework2_0.cs" />
