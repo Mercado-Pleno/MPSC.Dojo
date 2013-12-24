@@ -6,8 +6,14 @@
 	using MPSC.Library.Exemplos.BancoDeDados;
 	using MPSC.Library.Exemplos.ControleDeFluxo;
 	using MPSC.Library.Exemplos.ControleDeFluxo.Reflection;
+	using MPSC.Library.Exemplos.DesignPattern.Strategy.Classes;
 	using MPSC.Library.Exemplos.Medidas;
 	using MPSC.Library.Exemplos.Utilidades;
+
+	public interface IExecutavel
+	{
+		void Executar();
+	}
 
 	public static class Principal
 	{
@@ -53,15 +59,13 @@
 					new ItemMenu('3', "Alguma Coisa Com Relatorios usando Linq", new AlgumaCoisaComRelatoriosUsandoLinq())
 				),
 
+				new ItemMenu('6', "Design Pattern",
+					new ItemMenu('1', "Strategy - Mini Simulador De Patos", new MiniSimuladorDePatos())
+				),
+
 				new ItemMenu('←', "Sair")
 			);
 		}
-	}
-
-
-	public interface IExecutavel
-	{
-		void Executar();
 	}
 
 	public class ItemMenu
