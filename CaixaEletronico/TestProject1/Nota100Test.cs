@@ -11,6 +11,8 @@ namespace TestProject1
 		public void Se_a_Nota_For_Uma_Nota_de_100_Reais_o_Valor_da_Nota_Deve_Ser_100()
 		{
 			Nota nota = new Nota100();
+			Assert.IsNotNull(nota, "Objeto da classe Nota");
+			Assert.IsNotNull(nota.Valor, "Valor");
 
 			Assert.AreEqual(100, nota.Valor, "Valor da Nota"); 
 		}
