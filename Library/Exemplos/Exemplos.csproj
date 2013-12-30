@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MPSC.Library.Exemplos</RootNamespace>
     <AssemblyName>MPSC.Library.Exemplos</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -72,6 +72,9 @@
     <Compile Include="ControleDeFluxo\SaberQuemInstanciou.cs" />
     <Compile Include="Reflection\AtributosDescritivosDosEnumerados.cs" />
     <Compile Include="ControleDeFluxo\TesteDeConstrutoresEstaticos.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
