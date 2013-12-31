@@ -3,16 +3,25 @@
 	using System.ComponentModel;
 	using System.Runtime.InteropServices;
 	using System.Threading;
+	using System;
 
 	public class DuracaoIntervaloTempoAltaPrecisao : IExecutavel
 	{
 		public void Executar()
 		{
 			var performance = new TempoAltaPrecisao();
+
+			Console.WriteLine("Pressione alguma Tecla para Iniciar a contagem");
+			Console.ReadKey();
 			performance.Start();
-			Thread.Sleep(1000);
+
+			//Thread.Sleep(1000);
+
+			Console.WriteLine("Pressione alguma Tecla para Parar a contagem");
+			Console.ReadKey();
 			performance.Stop();
-			System.Console.WriteLine(performance.Duration);
+
+			Console.WriteLine("Tempo entre o início e o término: " + performance.Duration);
 		}
 	}
 
