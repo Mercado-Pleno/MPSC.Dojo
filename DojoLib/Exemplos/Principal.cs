@@ -43,7 +43,8 @@
 				new ItemMenu('2', "Controle de Fluxo",
 					new ItemMenu('1', "Maquina de Estado", new ValidarTransicoesDeEstado()),
 					new ItemMenu('2', "Saber Quem Instanciou", new SaberQuemInstanciou()),
-					new ItemMenu('3', "Teste De Construtores Estaticos", new TesteDeConstrutoresEstaticos())
+					new ItemMenu('3', "Teste De Construtores Estaticos", new TesteDeConstrutoresEstaticos()),
+					new ItemMenu('4', "Diretiva De Pré-Processamento Via Reflection", new DiretivaDePreProcessamentoViaReflection())
 				),
 
 				new ItemMenu('3', "Reflection",
