@@ -13,14 +13,12 @@ namespace LBJC
 		{
 			Container.IoC
 				.Map<IPessoa, Pessoa>()
-				.Map<IAnimal, Animal>("Gato")
+				.Map<IAnimal, Animal>()
 				;
 			
-			Container.IoC = new Container();
-			
-			var vObj1 = Container.IoC.New<IPessoa>();
-			var vObj2 = Container.IoC.New<IAnimal>();
-			var vObj3 = Container.IoC.New<IAnimal>("Cachorro");
+			//var vObj1 = Container.IoC.New<IPessoa>();
+			//var vObj2 = Container.IoC.New<IAnimal>();
+			//var vObj3 = Container.IoC.New<IAnimal>("Cachorro");
 			
 		}
 	}
@@ -36,14 +34,16 @@ namespace LBJC
 		
 	}
 	
-	public interface IAnimal
+	public interface IAnimal:IPessoa
 	{
-		String Nome { get; set; }
+		//String Nome { get; set; }
 	}
 	
 	public class Animal: IAnimal
 	{
 		public String Nome { get; set; }
+		public Animal(){}
+		public Animal(int a, int b){}
 		public Animal(String nome)
 		{
 			Nome = nome;
@@ -81,18 +81,30 @@ namespace LBJC
 		}
 		
 		
-		protected virtual ContainerIoC Add(Type Interface, Type classe, params Object[] parametrosDefault)
+		protected virtual ContainerIoC Add(Type Interface, Type Classe, params Object[] parametrosDefault)
 		{
 			if (Interface == null)
 				throw new ArgumentNullException("Interface");
-			if (classe == null)
-				throw new ArgumentNullException("classe");
-			if (dic.ContainsKey(Interface))
-				throw new ArgumentException("Esta Interface já está mapeada para outra classe");
-			if (!classe.GetInterfaces().Any(i => i == Interface))
-				throw new ArgumentException("Esta Classe não implementa esta interface");
 
-			dic.Add(Interface, new TipoComParametrosDefault(classe, parametrosDefault));
+			if (Classe == null)
+				throw new ArgumentNullException("Classe");
+			
+			if (dic.ContainsKey(Interface))
+				throw new ArgumentException(String.Format("A Interface {0} já está mapeada para a classe {1}", Interface.Name, Get(Interface).Type.Name));
+
+			if (!Classe.GetInterfaces().Any(i => i == Interface))
+				throw new ArgumentException(String.Format("A Classe {0} não implementa a interface {1}", Classe.Name, Interface.Name));
+
+			if (Classe.IsInterface)
+				throw new ArgumentException(String.Format("O Parâmetro {0} deve ser uma classe concreta", Classe.Name));
+
+			if (Classe.IsAbstract)
+				throw new ArgumentException(String.Format("A Classe {0} não pode ser abstrata", Classe.Name));
+			
+			if (!Classe.GetConstructors().Any(c => c.GetParameters().Length == parametrosDefault.Length))
+				throw new ArgumentException(String.Format("Você Precisa definir Parâmetros Default para o construtor da classe {0}", Classe.Name));
+
+			dic.Add(Interface, new TipoComParametrosDefault(Classe, parametrosDefault));
 
 			return this;
 		}
