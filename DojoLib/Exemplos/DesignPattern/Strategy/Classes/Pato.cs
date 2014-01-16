@@ -7,11 +7,11 @@
 	{
 		protected IVoador voador { get; set; }
 		protected IBarulho barulho { get; set; }
-
-		public Pato()
+        
+		public Pato(IVoador voa, IBarulho barulho)
 		{
-			voador = new Voa();
-			barulho = new Grasnar();
+			this.voador = voa;
+			this.barulho = barulho;
 		}
 
 		public void Mostar()
