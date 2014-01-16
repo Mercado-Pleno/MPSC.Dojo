@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+# SharpDevelop 4.4
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exemplos", "Exemplos\Exemplos.csproj", "{EC3FFAC1-2161-4CBE-9A29-A020686E466E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTPClient", "NTPClient\NTPClient.csproj", "{240043CD-0CA6-447E-8BAA-8B421E3DF664}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceBus", "ServiceBus\ServiceBus.csproj", "{4EE3C004-4028-4201-A540-D2E3E2E0D98E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +22,10 @@ Global
 		{240043CD-0CA6-447E-8BAA-8B421E3DF664}.Debug|x86.Build.0 = Debug|x86
 		{240043CD-0CA6-447E-8BAA-8B421E3DF664}.Release|x86.ActiveCfg = Release|x86
 		{240043CD-0CA6-447E-8BAA-8B421E3DF664}.Release|x86.Build.0 = Release|x86
+		{4EE3C004-4028-4201-A540-D2E3E2E0D98E}.Debug|x86.Build.0 = Debug|Any CPU
+		{4EE3C004-4028-4201-A540-D2E3E2E0D98E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4EE3C004-4028-4201-A540-D2E3E2E0D98E}.Release|x86.Build.0 = Release|Any CPU
+		{4EE3C004-4028-4201-A540-D2E3E2E0D98E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
