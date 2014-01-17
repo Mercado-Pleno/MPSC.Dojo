@@ -1,0 +1,13 @@
+Princípios da Engenharia de Software
+
+Os princípios da Engenharia de software são formalidade, Abstração, Decomposição, Generalização e Flexibilização.
+
+Formalidade:Ter programas mais confiáveis com baixo custo e bom desempenho e o software deve ser desenvolvido de acordo com passos definitivos com precisão e seguidos de maneira efetiva.
+
+Abstração:É o processo de identificação de um determinado fenômeno da realidade considerando apenas os aspectos mais relevantes.Ou seja ignorar os detalhes.
+
+Decomposição:É o processo de dividir o problema para que cada subproblema seja resolvido de uma maneira específica.É usado para controlar a complexidade do software.
+
+Generalização:Reutilizar as soluções dos problemas
+
+Flexibilização: Alterar o software sem que ele tenha um problema de execução
