@@ -1,6 +1,7 @@
 ﻿namespace MPSC.Library.Exemplos.PrincipiosSOLID.SingleResponsability
 {
-	using System;
+	using MPSC.Library.Exemplos.PrincipiosSOLID.SingleResponsability.Controller;
+	using MPSC.Library.Exemplos.PrincipiosSOLID.SingleResponsability.Domain;
 
 	public class SingleResponsabilityCRUD : IExecutavel
 	{

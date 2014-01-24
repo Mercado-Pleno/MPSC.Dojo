@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Data.SqlClient;
-using System.Data.Common;
-using System.Data;
-
-namespace MPSC.Library.Exemplos.PrincipiosSOLID.SingleResponsability.Repository
+﻿namespace MPSC.Library.Exemplos.PrincipiosSOLID.SingleResponsability.Controller.Repository
 {
-	public class ClienteRepository: Repositorio<Cliente>
+	using System;
+	using System.Data;
+	using System.Data.Common;
+	using System.Data.SqlClient;
+	using MPSC.Library.Exemplos.PrincipiosSOLID.SingleResponsability.Abstracao;
+	using MPSC.Library.Exemplos.PrincipiosSOLID.SingleResponsability.Domain;
+
+	public class ClienteRepository : Repositorio<Cliente>
 	{
 		public ClienteRepository()
 			: base(new SqlConnection())
@@ -49,37 +49,5 @@ namespace MPSC.Library.Exemplos.PrincipiosSOLID.SingleResponsability.Repository
 			parametro.Direction = direcaoDoParametro;
 			comando.Parameters.Add(parametro);
 		}
-
-
-		public void emitirRelatorio_Click(Object sender, EventArgs e)
-		{
-			EmitirRelatorio();
-		}
-
-		public void gravar_Click(Object sender, EventArgs e)
-		{
-			ProcessarGravacao();
-		}
-
-		private void EmitirRelatorio()
-		{
-			ProcessarGravacao();
-			/* 
-			 * MOstra mensagem de sucesso ou erro
-				Emite Relatorio 
-			 */
-		}		
-		private void ProcessarGravacao()
-		{
-			/*
-			 * if (Valida os camposa na tela)
-			 * if (Valida os camposa na tela)
-			 * if (Valida os camposa na tela)
-			 * preenche a entidade
-			 * Chama o metodo grava
-			 */
-
-		}
-
 	}
 }
