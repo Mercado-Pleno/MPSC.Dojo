@@ -52,10 +52,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Container.cs" />
-    <Compile Include="ContainerIoC.cs" />
-    <Compile Include="IContainerIoC.cs" />
-    <Compile Include="IoC.cs" />
+    <Compile Include="LBJC\CID.cs" />
+    <Compile Include="LBJC\IoC.cs" />
+    <Compile Include="LBJC\IIoC.cs" />
+    <Compile Include="Principal.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

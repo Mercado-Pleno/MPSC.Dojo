@@ -1,14 +1,14 @@
-﻿namespace ServiceBus
+﻿namespace LBJC
 {
 	using System;
 
-	public class Container : ContainerIoC
+	public class CID : IoC
 	{
 		private static readonly Object _lock = new Object();
-		private static IContainerIoC instancia;
-		public static IContainerIoC IoC
+		private static IIoC instancia;
+		public static IIoC IoC
 		{
-			get { return (instancia ?? (IoC = new Container())); }
+			get { return (instancia ?? (IoC = new CID())); }
 			set
 			{
 				if (PodeAlterar(instancia, value))
