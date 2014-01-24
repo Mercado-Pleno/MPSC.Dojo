@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Data.Common;
-
-namespace MPSC.Library.Exemplos.PrincipiosSOLID.SingleResponsability.Repository
+﻿namespace MPSC.Library.Exemplos.PrincipiosSOLID.SingleResponsability.Abstracao
 {
+	using System.Data.Common;
+
 	public interface IRepositorio<T>
 	{
 		void Alterar(T entidade);
 		void Incluir(T entidade);
 	}
 
-	public abstract class Repositorio<T> : IRepositorio<T> where T: Entidade
+	public abstract class Repositorio<T> : IRepositorio<T> where T : Entidade
 	{
 		protected DbConnection conexao;
 

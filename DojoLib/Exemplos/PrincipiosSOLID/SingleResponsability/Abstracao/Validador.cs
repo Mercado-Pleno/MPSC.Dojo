@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MPSC.Library.Exemplos.PrincipiosSOLID.SingleResponsability.Domain.Validadores
+﻿namespace MPSC.Library.Exemplos.PrincipiosSOLID.SingleResponsability.Abstracao
 {
+	using System;
+
 	public interface IValidador
 	{
 		Boolean Validar(Entidade entidade);
@@ -17,5 +15,4 @@ namespace MPSC.Library.Exemplos.PrincipiosSOLID.SingleResponsability.Domain.Vali
 			throw new NotImplementedException();
 		}
 	}
-
 }

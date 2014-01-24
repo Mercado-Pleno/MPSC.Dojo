@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MPSC.Library.Exemplos.PrincipiosSOLID.SingleResponsability.Domain.Validadores
+﻿namespace MPSC.Library.Exemplos.PrincipiosSOLID.SingleResponsability.Domain.Validadores
 {
+	using System;
+	using MPSC.Library.Exemplos.PrincipiosSOLID.SingleResponsability.Abstracao;
+
 	public class ValidadorCliente : Validador
 	{
 		public Boolean Validar(Cliente cliente)
