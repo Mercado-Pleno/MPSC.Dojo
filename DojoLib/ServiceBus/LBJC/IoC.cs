@@ -1,18 +1,18 @@
-﻿namespace ServiceBus
+﻿namespace LBJC
 {
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 
-	public abstract class ContainerIoC : IContainerIoC
+	public abstract class IoC : IIoC
 	{
 		protected readonly Dictionary<Type, TipoComParametrosDefault> dic;
-		public ContainerIoC()
+		public IoC()
 		{
 			dic = new Dictionary<Type, TipoComParametrosDefault>();
 		}
 
-		public virtual ContainerIoC Map<Interface, Classe>(params Object[] parametrosDefault)
+		public virtual IIoC Map<Interface, Classe>(params Object[] parametrosDefault)
 			where Interface : class
 			where Classe : class
 		{
@@ -30,7 +30,7 @@
 		}
 
 
-		protected virtual ContainerIoC Add(Type Interface, Type Classe, params Object[] parametrosDefault)
+		protected virtual IIoC Add(Type Interface, Type Classe, params Object[] parametrosDefault)
 		{
 			if (Interface == null)
 				throw new ArgumentNullException("Interface");
