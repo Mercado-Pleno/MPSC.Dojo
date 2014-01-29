@@ -34,8 +34,8 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Nota2.cs" />
     <Compile Include="Nota200.cs" />
+    <Compile Include="Nota2.cs" />
     <Compile Include="Nota5.cs" />
     <Compile Include="Nota10.cs" />
     <Compile Include="Nota20.cs" />

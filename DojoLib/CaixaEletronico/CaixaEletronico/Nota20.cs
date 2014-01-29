@@ -1,5 +1,4 @@
-﻿
-namespace CaixaEletronico
+﻿namespace CaixaEletronico
 {
 	public class Nota20 : Nota
 	{
