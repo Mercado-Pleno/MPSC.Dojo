@@ -78,7 +78,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CaixaEletronico\CaixaEletronico.csproj">
       <Project>{378955D6-7B4F-46FD-9AC0-FE50F6383518}</Project>
-      <Name>CaixaEletronico</Name>
+      <Name>CaixaEletronico %28CaixaEletronico\CaixaEletronico%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
