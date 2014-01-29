@@ -61,15 +61,16 @@
     <Compile Include="DesignPattern\Strategy\Comportamento\IBarulho.cs" />
     <Compile Include="DesignPattern\Strategy\Comportamento\IVoador.cs" />
     <Compile Include="Principal.cs" />
-    <Compile Include="PrincipiosSOLID\SingleResponsability\Model\Cliente.cs" />
-    <Compile Include="PrincipiosSOLID\SingleResponsability\Controller\ClienteController.cs" />
-    <Compile Include="PrincipiosSOLID\SingleResponsability\Abstracao\Entidade.cs" />
-    <Compile Include="PrincipiosSOLID\SingleResponsability\Model\Produto.cs" />
-    <Compile Include="PrincipiosSOLID\SingleResponsability\Abstracao\Validador.cs" />
-    <Compile Include="PrincipiosSOLID\SingleResponsability\Model\Validadores\ValidadorCliente.cs" />
-    <Compile Include="PrincipiosSOLID\SingleResponsability\Controller\Repository\ClienteRepository.cs" />
-    <Compile Include="PrincipiosSOLID\SingleResponsability\Abstracao\Repositorio.cs" />
-    <Compile Include="PrincipiosSOLID\SingleResponsability\SingleResponsability.cs" />
+    <Compile Include="PrincipiosSOLID\1SingleResponsability\Model\Cliente.cs" />
+    <Compile Include="PrincipiosSOLID\1SingleResponsability\Controller\ClienteController.cs" />
+    <Compile Include="PrincipiosSOLID\1SingleResponsability\Abstracao\Entidade.cs" />
+    <Compile Include="PrincipiosSOLID\1SingleResponsability\Model\Produto.cs" />
+    <Compile Include="PrincipiosSOLID\1SingleResponsability\Abstracao\Validador.cs" />
+    <Compile Include="PrincipiosSOLID\1SingleResponsability\Model\Validadores\ValidadorCliente.cs" />
+    <Compile Include="PrincipiosSOLID\1SingleResponsability\Controller\Repository\ClienteRepository.cs" />
+    <Compile Include="PrincipiosSOLID\1SingleResponsability\Abstracao\Repositorio.cs" />
+    <Compile Include="PrincipiosSOLID\1SingleResponsability\Model\Validadores\ValidadorProduto.cs" />
+    <Compile Include="PrincipiosSOLID\1SingleResponsability\SingleResponsability.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\UsandoRecursosDoLinqNoFramework2_0.cs" />
     <Compile Include="Service\NTPClient.cs" />
@@ -85,6 +86,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Medidas\DateTimeHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PrincipiosSOLID\2OpenClosed\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

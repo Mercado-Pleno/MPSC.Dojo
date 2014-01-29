@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="f6020e6d-b27d-4d08-a2fb-809fa982b51b" name="bruno.fernandes@NOTECCE 2014-01-29 21:10:11" runUser="NoteCCE\bruno.fernandes" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="fe9ba7f5-8eb0-47f2-9c04-f415fa3cc01c">
+    <Deployment runDeploymentRoot="bruno.fernandes_NOTECCE 2014-01-29 21_10_11">
+      <DeploymentItem filename="D:\Projeto\MercadoPleno\MPSC.Dojo\Projeto\[CaixaEletronico]\Bin\CaixaEletronico.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2014-01-29T21:10:11.0729015-02:00" queuing="2014-01-29T21:10:13.5970458-02:00" start="2014-01-29T21:10:13.6720501-02:00" finish="2014-01-29T21:10:14.6781077-02:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="32" executed="32" passed="32" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="Se_Tentar_Sacar_Centavos_ou_Valores_Menores_Que_10_Reais_Deve_Disparar_Excecao" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="5cc7b6b5-1411-8e85-cfa1-aea5ff3ae8e1">
+      <Execution id="b225018e-a1f9-4cee-8af5-eb79ffa3689c" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.SaqueTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Tentar_Sacar_Centavos_ou_Valores_Menores_Que_10_Reais_Deve_Disparar_Excecao" />
+    </UnitTest>
+    <UnitTest name="Se_Clonar_10_Nota50_Deve_Retornar_10_Notas_de_50_Reais" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="80044c07-c8ee-f918-ee80-e471e604d7db">
+      <Execution id="b9b47e90-80d6-482d-b749-d09acb1407c6" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.NotaTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Clonar_10_Nota50_Deve_Retornar_10_Notas_de_50_Reais" />
+    </UnitTest>
+    <UnitTest name="Se_Sacar_30_Reais_Deve_Retornar_1_Nota_de_20_Reais_e_1_Nota_de_10_Reais" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="300b6de9-d0dc-1a87-dfbe-f0df6e7f5586">
+      <Execution id="eb127ce8-6730-49a4-8b14-4ec03eaa8cf2" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.SaqueTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Sacar_30_Reais_Deve_Retornar_1_Nota_de_20_Reais_e_1_Nota_de_10_Reais" />
+    </UnitTest>
+    <UnitTest name="Se_Sacar_100_Reais_Deve_Retornar_1_Nota_de_100_Reais" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="704680a5-4ea5-56e8-1845-06251993585e">
+      <Execution id="09ef5750-6152-4c8f-81f7-48fa73f8daa2" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.SaqueTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Sacar_100_Reais_Deve_Retornar_1_Nota_de_100_Reais" />
+    </UnitTest>
+    <UnitTest name="Se_Clonar_10_Nota100_Deve_Retornar_10_Notas_de_100_Reais" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="ed9e88f8-debe-02e0-c578-2981478b820e">
+      <Execution id="595dc4c2-9193-4ab1-95f6-c835abcd4fed" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.NotaTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Clonar_10_Nota100_Deve_Retornar_10_Notas_de_100_Reais" />
+    </UnitTest>
+    <UnitTest name="Se_Comparar_Uma_Nota_de_20_Reais_Com_Outra_Nota_De_10_Reais_a_Comparacao_Deve_Retornar_1_Positivo" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="de16fd6c-5a2b-44da-e81b-4f630ecf4796">
+      <Execution id="425d8653-d5b1-4269-9779-50bc4e991bb1" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.NotaTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Comparar_Uma_Nota_de_20_Reais_Com_Outra_Nota_De_10_Reais_a_Comparacao_Deve_Retornar_1_Positivo" />
+    </UnitTest>
+    <UnitTest name="Se_Clonar_10_Nota5_Deve_Retornar_10_Notas_de_5_Reais" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="20a542dd-9550-7f48-a2d1-cd115ec38b68">
+      <Execution id="f724f362-0805-4682-831d-514ce81f69eb" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.NotaTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Clonar_10_Nota5_Deve_Retornar_10_Notas_de_5_Reais" />
+    </UnitTest>
+    <UnitTest name="Se_Sacar_190_Reais_Deve_Retornar_1_Nota_de_100_Reais_1_Nota_de_50_Reais_2_Notas_de_20_Reais_e_0_Notas_de_10_Reais" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="197b5169-cc06-f432-df95-c320417e284f">
+      <Execution id="7ce27654-324e-4498-b783-cccc1e768dea" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.SaqueTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Sacar_190_Reais_Deve_Retornar_1_Nota_de_100_Reais_1_Nota_de_50_Reais_2_Notas_de_20_Reais_e_0_Notas_de_10_Reais" />
+    </UnitTest>
+    <UnitTest name="Se_Tentar_Sacar_Valores_Maiores_e_Nao_Multiplos_de_10_Reais_Deve_Disparar_Excecao" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="b4cb7266-3ac4-2c40-b6b1-7b72353912d7">
+      <Execution id="1531edde-396b-4975-9727-8d7a050c26b7" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.SaqueTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Tentar_Sacar_Valores_Maiores_e_Nao_Multiplos_de_10_Reais_Deve_Disparar_Excecao" />
+    </UnitTest>
+    <UnitTest name="Se_Sacar_20_Reais_Deve_Retornar_1_Nota_de_20_Reais" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="6e16e2f8-6dfa-d1ea-0438-ac6751dfb314">
+      <Execution id="37496783-1af5-4925-9e95-33333c623078" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.SaqueTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Sacar_20_Reais_Deve_Retornar_1_Nota_de_20_Reais" />
+    </UnitTest>
+    <UnitTest name="Se_Sacar_180_Reais_Deve_Retornar_1_Nota_de_100_Reais_1_Nota_de_50_Reais_1_Nota_de_20_Reais_e_1_Nota_de_10_Reais" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="a95c582e-4e43-0dde-2aad-13bd6187c9bc">
+      <Execution id="640c1a82-5ad6-42aa-a493-13854e54ecfb" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.SaqueTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Sacar_180_Reais_Deve_Retornar_1_Nota_de_100_Reais_1_Nota_de_50_Reais_1_Nota_de_20_Reais_e_1_Nota_de_10_Reais" />
+    </UnitTest>
+    <UnitTest name="Se_Comparar_Uma_Nota_de_20_Reais_Com_Algum_Objeto_Que_Nao_Herda_De_Nota_a_Comparacao_Deve_Retornar_Zero" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="09d99368-afcb-506a-1958-6522c5224b65">
+      <Execution id="443b2557-d8ce-41ab-b404-7815af0394bf" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.NotaTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Comparar_Uma_Nota_de_20_Reais_Com_Algum_Objeto_Que_Nao_Herda_De_Nota_a_Comparacao_Deve_Retornar_Zero" />
+    </UnitTest>
+    <UnitTest name="Se_Sacar_10_Reais_Deve_Retornar_1_Nota_de_10_Reais" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="f2cdae1c-5ebf-a493-0bc0-175f41d25da1">
+      <Execution id="edbd5814-3f20-4218-8b84-385db4a81573" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.SaqueTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Sacar_10_Reais_Deve_Retornar_1_Nota_de_10_Reais" />
+    </UnitTest>
+    <UnitTest name="Se_a_Nota_For_Uma_Nota_de_10_Reais_o_Valor_da_Nota_Deve_Ser_10" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="930d456f-b8ae-0087-bd87-56faa6d32eba">
+      <Execution id="df6d6f80-768a-406b-bc4e-722a68923ed0" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.Nota10Test, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_a_Nota_For_Uma_Nota_de_10_Reais_o_Valor_da_Nota_Deve_Ser_10" />
+    </UnitTest>
+    <UnitTest name="Se_a_Nota_For_Uma_Nota_de_100_Reais_o_Valor_da_Nota_Deve_Ser_100" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="b67200fb-ea1e-a607-753e-c37b9458bbb6">
+      <Execution id="2daae190-8371-45d6-bcf9-860e5b7d9bb3" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.Nota100Test, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_a_Nota_For_Uma_Nota_de_100_Reais_o_Valor_da_Nota_Deve_Ser_100" />
+    </UnitTest>
+    <UnitTest name="Se_Sacar_80_Reais_Deve_Retornar_1_Nota_de_50_Reais_1_Nota_de_20_Reais_e_1_Nota_de_10_Reais" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="4797777f-bf26-36d3-2d38-6334817c033b">
+      <Execution id="ab58a115-0ec4-4017-a49c-9e76aa5291fc" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.SaqueTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Sacar_80_Reais_Deve_Retornar_1_Nota_de_50_Reais_1_Nota_de_20_Reais_e_1_Nota_de_10_Reais" />
+    </UnitTest>
+    <UnitTest name="Se_Clonar_10_Nota2_Deve_Retornar_10_Notas_de_2_Reais" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="22cd456a-186a-a466-38bb-b1e95e62ff48">
+      <Execution id="8cc16772-87e2-48e5-85e0-eee88bccde87" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.NotaTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Clonar_10_Nota2_Deve_Retornar_10_Notas_de_2_Reais" />
+    </UnitTest>
+    <UnitTest name="Se_Comparar_Uma_Nota_de_20_Reais_Com_Nulo_a_Comparacao_Deve_Retornar_Zero" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="55ee2f92-aab3-9094-983f-8cc302925878">
+      <Execution id="2f4f5478-6895-4893-b7b8-80b86ce89210" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.NotaTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Comparar_Uma_Nota_de_20_Reais_Com_Nulo_a_Comparacao_Deve_Retornar_Zero" />
+    </UnitTest>
+    <UnitTest name="Se_Clonar_10_Nota10_Deve_Retornar_10_Notas_de_10_Reais" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="29083e18-16cc-b146-14bb-a994d7dfb5b7">
+      <Execution id="c7a073ec-277b-4188-8301-2c0d8cae5068" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.NotaTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Clonar_10_Nota10_Deve_Retornar_10_Notas_de_10_Reais" />
+    </UnitTest>
+    <UnitTest name="Se_Comparar_Uma_Nota_de_20_Reais_Com_Outra_Nota_De_50_Reais_a_Comparacao_Deve_Retornar_1_Negativo" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="66cb628d-7acc-c9b1-8631-f96ca7d344e0">
+      <Execution id="6cea03fe-ad2b-425f-82b9-e66dc9800366" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.NotaTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Comparar_Uma_Nota_de_20_Reais_Com_Outra_Nota_De_50_Reais_a_Comparacao_Deve_Retornar_1_Negativo" />
+    </UnitTest>
+    <UnitTest name="Quando_Converter_Uma_Nota_de_50_Reais_Em_String_Deve_Retornar_RS_50_00" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="ec342dcf-0526-54d2-8c18-ca38d305f76e">
+      <Execution id="16edaeb3-7a89-426f-9c90-e0c27ac1972f" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.NotaTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Quando_Converter_Uma_Nota_de_50_Reais_Em_String_Deve_Retornar_RS_50_00" />
+    </UnitTest>
+    <UnitTest name="Se_a_Nota_For_Uma_Nota_de_5_Reais_o_Valor_da_Nota_Deve_Ser_5" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="44dacb2b-9dfe-dbb3-d5c6-9677f3b62d3d">
+      <Execution id="d40c9f76-41b8-4220-845f-e9d43effec46" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.Nota5Test, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_a_Nota_For_Uma_Nota_de_5_Reais_o_Valor_da_Nota_Deve_Ser_5" />
+    </UnitTest>
+    <UnitTest name="Quando_Converter_Uma_Nota_de_100_Reais_Em_String_Deve_Retornar_RS_100_00" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="2107c396-686f-a326-6312-36d0c2bbc10a">
+      <Execution id="899220a9-a028-4d67-b450-fdd3f6c8e307" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.NotaTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Quando_Converter_Uma_Nota_de_100_Reais_Em_String_Deve_Retornar_RS_100_00" />
+    </UnitTest>
+    <UnitTest name="Quando_Converter_Uma_Nota_de_20_Reais_Em_String_Deve_Retornar_RS_20_00" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="860f946e-92b7-1543-98ff-8d2e7c3d4ef8">
+      <Execution id="993b0dd2-1da2-478e-a2fa-0f38b27a52d6" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.NotaTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Quando_Converter_Uma_Nota_de_20_Reais_Em_String_Deve_Retornar_RS_20_00" />
+    </UnitTest>
+    <UnitTest name="Se_a_Nota_For_Uma_Nota_de_2_Reais_o_Valor_da_Nota_Deve_Ser_2" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="7a1d35e5-5785-4a3a-c216-22705071e935">
+      <Execution id="ad8c9c2f-8882-453c-b858-fa91ae0a646d" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.Nota2Test, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_a_Nota_For_Uma_Nota_de_2_Reais_o_Valor_da_Nota_Deve_Ser_2" />
+    </UnitTest>
+    <UnitTest name="Se_a_Nota_For_Uma_Nota_de_20_Reais_o_Valor_da_Nota_Deve_Ser_20" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="73dc9e4f-2c8c-d15e-d52f-d475af3a0850">
+      <Execution id="0ecc050a-5aaf-4ed4-a08f-6dfdb783ac44" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.Nota20Test, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_a_Nota_For_Uma_Nota_de_20_Reais_o_Valor_da_Nota_Deve_Ser_20" />
+    </UnitTest>
+    <UnitTest name="Se_a_Nota_For_Uma_Nota_de_50_Reais_o_Valor_da_Nota_Deve_Ser_50" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="9457131f-544f-5591-8251-e7578deb6455">
+      <Execution id="26a7af5c-7d6e-45cd-8226-63be18b2675b" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.Nota50Test, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_a_Nota_For_Uma_Nota_de_50_Reais_o_Valor_da_Nota_Deve_Ser_50" />
+    </UnitTest>
+    <UnitTest name="Se_Clonar_10_Nota20_Deve_Retornar_10_Notas_de_20_Reais" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="f1521d28-1897-ff2d-24cb-e2e9bf30c299">
+      <Execution id="6e29b0e9-a1dd-47d0-8115-2e15b0f91275" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.NotaTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Clonar_10_Nota20_Deve_Retornar_10_Notas_de_20_Reais" />
+    </UnitTest>
+    <UnitTest name="Se_Comparar_Uma_Nota_de_20_Reais_Com_Outra_Nota_De_20_Reais_a_Comparacao_Deve_Retornar_Zero" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="30d2833d-3268-9b1c-8a50-e04e3b528867">
+      <Execution id="a89820c8-98d3-4463-a45f-101f9159571c" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.NotaTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Comparar_Uma_Nota_de_20_Reais_Com_Outra_Nota_De_20_Reais_a_Comparacao_Deve_Retornar_Zero" />
+    </UnitTest>
+    <UnitTest name="Quando_Converter_Uma_Nota_de_10_Reais_Em_String_Deve_Retornar_RS_10_00" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="5aa50530-99d6-523d-7662-f8973e20fdad">
+      <Execution id="1d632839-fd2e-4367-92bd-54c54aebf7ee" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.NotaTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Quando_Converter_Uma_Nota_de_10_Reais_Em_String_Deve_Retornar_RS_10_00" />
+    </UnitTest>
+    <UnitTest name="Se_a_Nota_For_Uma_Nota_de_200_Reais_o_Valor_da_Nota_Deve_Ser_200" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="84542a07-e847-6e27-8987-a1ab1ca1a9dd">
+      <Execution id="fdd7dcba-91a6-44fd-83ef-e9199ea63e1a" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.Nota200Test, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_a_Nota_For_Uma_Nota_de_200_Reais_o_Valor_da_Nota_Deve_Ser_200" />
+    </UnitTest>
+    <UnitTest name="Se_Sacar_50_Reais_Deve_Retornar_1_Nota_de_50_Reais" storage="d:\projeto\mercadopleno\mpsc.dojo\projeto\[caixaeletronico]\bin\testproject1.dll" id="ee3ccdff-4b66-cc42-0198-13b6ecbdf4b4">
+      <Execution id="f135efcf-3f25-466d-ad26-d3218faa1e93" />
+      <TestMethod codeBase="D:/Projeto/MercadoPleno/MPSC.Dojo/Projeto/[CaixaEletronico]/Bin/TestProject1.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestProject1.SaqueTest, TestProject1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Se_Sacar_50_Reais_Deve_Retornar_1_Nota_de_50_Reais" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="09d99368-afcb-506a-1958-6522c5224b65" executionId="443b2557-d8ce-41ab-b404-7815af0394bf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="197b5169-cc06-f432-df95-c320417e284f" executionId="7ce27654-324e-4498-b783-cccc1e768dea" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="20a542dd-9550-7f48-a2d1-cd115ec38b68" executionId="f724f362-0805-4682-831d-514ce81f69eb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2107c396-686f-a326-6312-36d0c2bbc10a" executionId="899220a9-a028-4d67-b450-fdd3f6c8e307" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="22cd456a-186a-a466-38bb-b1e95e62ff48" executionId="8cc16772-87e2-48e5-85e0-eee88bccde87" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="29083e18-16cc-b146-14bb-a994d7dfb5b7" executionId="c7a073ec-277b-4188-8301-2c0d8cae5068" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="300b6de9-d0dc-1a87-dfbe-f0df6e7f5586" executionId="eb127ce8-6730-49a4-8b14-4ec03eaa8cf2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="30d2833d-3268-9b1c-8a50-e04e3b528867" executionId="a89820c8-98d3-4463-a45f-101f9159571c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="44dacb2b-9dfe-dbb3-d5c6-9677f3b62d3d" executionId="d40c9f76-41b8-4220-845f-e9d43effec46" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4797777f-bf26-36d3-2d38-6334817c033b" executionId="ab58a115-0ec4-4017-a49c-9e76aa5291fc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="55ee2f92-aab3-9094-983f-8cc302925878" executionId="2f4f5478-6895-4893-b7b8-80b86ce89210" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5aa50530-99d6-523d-7662-f8973e20fdad" executionId="1d632839-fd2e-4367-92bd-54c54aebf7ee" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5cc7b6b5-1411-8e85-cfa1-aea5ff3ae8e1" executionId="b225018e-a1f9-4cee-8af5-eb79ffa3689c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="66cb628d-7acc-c9b1-8631-f96ca7d344e0" executionId="6cea03fe-ad2b-425f-82b9-e66dc9800366" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6e16e2f8-6dfa-d1ea-0438-ac6751dfb314" executionId="37496783-1af5-4925-9e95-33333c623078" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="704680a5-4ea5-56e8-1845-06251993585e" executionId="09ef5750-6152-4c8f-81f7-48fa73f8daa2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="73dc9e4f-2c8c-d15e-d52f-d475af3a0850" executionId="0ecc050a-5aaf-4ed4-a08f-6dfdb783ac44" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7a1d35e5-5785-4a3a-c216-22705071e935" executionId="ad8c9c2f-8882-453c-b858-fa91ae0a646d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="80044c07-c8ee-f918-ee80-e471e604d7db" executionId="b9b47e90-80d6-482d-b749-d09acb1407c6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="84542a07-e847-6e27-8987-a1ab1ca1a9dd" executionId="fdd7dcba-91a6-44fd-83ef-e9199ea63e1a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="860f946e-92b7-1543-98ff-8d2e7c3d4ef8" executionId="993b0dd2-1da2-478e-a2fa-0f38b27a52d6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="930d456f-b8ae-0087-bd87-56faa6d32eba" executionId="df6d6f80-768a-406b-bc4e-722a68923ed0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9457131f-544f-5591-8251-e7578deb6455" executionId="26a7af5c-7d6e-45cd-8226-63be18b2675b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a95c582e-4e43-0dde-2aad-13bd6187c9bc" executionId="640c1a82-5ad6-42aa-a493-13854e54ecfb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b4cb7266-3ac4-2c40-b6b1-7b72353912d7" executionId="1531edde-396b-4975-9727-8d7a050c26b7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b67200fb-ea1e-a607-753e-c37b9458bbb6" executionId="2daae190-8371-45d6-bcf9-860e5b7d9bb3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="de16fd6c-5a2b-44da-e81b-4f630ecf4796" executionId="425d8653-d5b1-4269-9779-50bc4e991bb1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ec342dcf-0526-54d2-8c18-ca38d305f76e" executionId="16edaeb3-7a89-426f-9c90-e0c27ac1972f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ed9e88f8-debe-02e0-c578-2981478b820e" executionId="595dc4c2-9193-4ab1-95f6-c835abcd4fed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ee3ccdff-4b66-cc42-0198-13b6ecbdf4b4" executionId="f135efcf-3f25-466d-ad26-d3218faa1e93" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f1521d28-1897-ff2d-24cb-e2e9bf30c299" executionId="6e29b0e9-a1dd-47d0-8115-2e15b0f91275" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f2cdae1c-5ebf-a493-0bc0-175f41d25da1" executionId="edbd5814-3f20-4218-8b84-385db4a81573" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="443b2557-d8ce-41ab-b404-7815af0394bf" testId="09d99368-afcb-506a-1958-6522c5224b65" testName="Se_Comparar_Uma_Nota_de_20_Reais_Com_Algum_Objeto_Que_Nao_Herda_De_Nota_a_Comparacao_Deve_Retornar_Zero" computerName="NOTECCE" duration="00:00:00.0275178" startTime="2014-01-29T21:10:13.8920627-02:00" endTime="2014-01-29T21:10:14.3150869-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="443b2557-d8ce-41ab-b404-7815af0394bf">
+    </UnitTestResult>
+    <UnitTestResult executionId="7ce27654-324e-4498-b783-cccc1e768dea" testId="197b5169-cc06-f432-df95-c320417e284f" testName="Se_Sacar_190_Reais_Deve_Retornar_1_Nota_de_100_Reais_1_Nota_de_50_Reais_2_Notas_de_20_Reais_e_0_Notas_de_10_Reais" computerName="NOTECCE" duration="00:00:00.0043083" startTime="2014-01-29T21:10:14.3160870-02:00" endTime="2014-01-29T21:10:14.3270876-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7ce27654-324e-4498-b783-cccc1e768dea">
+    </UnitTestResult>
+    <UnitTestResult executionId="f724f362-0805-4682-831d-514ce81f69eb" testId="20a542dd-9550-7f48-a2d1-cd115ec38b68" testName="Se_Clonar_10_Nota5_Deve_Retornar_10_Notas_de_5_Reais" computerName="NOTECCE" duration="00:00:00.0009811" startTime="2014-01-29T21:10:14.3280877-02:00" endTime="2014-01-29T21:10:14.3360881-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f724f362-0805-4682-831d-514ce81f69eb">
+    </UnitTestResult>
+    <UnitTestResult executionId="899220a9-a028-4d67-b450-fdd3f6c8e307" testId="2107c396-686f-a326-6312-36d0c2bbc10a" testName="Quando_Converter_Uma_Nota_de_100_Reais_Em_String_Deve_Retornar_RS_100_00" computerName="NOTECCE" duration="00:00:00.0005372" startTime="2014-01-29T21:10:14.3450886-02:00" endTime="2014-01-29T21:10:14.3530891-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="899220a9-a028-4d67-b450-fdd3f6c8e307">
+    </UnitTestResult>
+    <UnitTestResult executionId="8cc16772-87e2-48e5-85e0-eee88bccde87" testId="22cd456a-186a-a466-38bb-b1e95e62ff48" testName="Se_Clonar_10_Nota2_Deve_Retornar_10_Notas_de_2_Reais" computerName="NOTECCE" duration="00:00:00.0006188" startTime="2014-01-29T21:10:14.3550892-02:00" endTime="2014-01-29T21:10:14.3610895-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8cc16772-87e2-48e5-85e0-eee88bccde87">
+    </UnitTestResult>
+    <UnitTestResult executionId="c7a073ec-277b-4188-8301-2c0d8cae5068" testId="29083e18-16cc-b146-14bb-a994d7dfb5b7" testName="Se_Clonar_10_Nota10_Deve_Retornar_10_Notas_de_10_Reais" computerName="NOTECCE" duration="00:00:00.0005100" startTime="2014-01-29T21:10:14.3620896-02:00" endTime="2014-01-29T21:10:14.3690900-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c7a073ec-277b-4188-8301-2c0d8cae5068">
+    </UnitTestResult>
+    <UnitTestResult executionId="eb127ce8-6730-49a4-8b14-4ec03eaa8cf2" testId="300b6de9-d0dc-1a87-dfbe-f0df6e7f5586" testName="Se_Sacar_30_Reais_Deve_Retornar_1_Nota_de_20_Reais_e_1_Nota_de_10_Reais" computerName="NOTECCE" duration="00:00:00.0006665" startTime="2014-01-29T21:10:14.3700901-02:00" endTime="2014-01-29T21:10:14.3770905-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="eb127ce8-6730-49a4-8b14-4ec03eaa8cf2">
+    </UnitTestResult>
+    <UnitTestResult executionId="a89820c8-98d3-4463-a45f-101f9159571c" testId="30d2833d-3268-9b1c-8a50-e04e3b528867" testName="Se_Comparar_Uma_Nota_de_20_Reais_Com_Outra_Nota_De_20_Reais_a_Comparacao_Deve_Retornar_Zero" computerName="NOTECCE" duration="00:00:00.0002524" startTime="2014-01-29T21:10:14.3780905-02:00" endTime="2014-01-29T21:10:14.3840909-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a89820c8-98d3-4463-a45f-101f9159571c">
+    </UnitTestResult>
+    <UnitTestResult executionId="d40c9f76-41b8-4220-845f-e9d43effec46" testId="44dacb2b-9dfe-dbb3-d5c6-9677f3b62d3d" testName="Se_a_Nota_For_Uma_Nota_de_5_Reais_o_Valor_da_Nota_Deve_Ser_5" computerName="NOTECCE" duration="00:00:00.0002817" startTime="2014-01-29T21:10:14.3850909-02:00" endTime="2014-01-29T21:10:14.3910913-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d40c9f76-41b8-4220-845f-e9d43effec46">
+    </UnitTestResult>
+    <UnitTestResult executionId="ab58a115-0ec4-4017-a49c-9e76aa5291fc" testId="4797777f-bf26-36d3-2d38-6334817c033b" testName="Se_Sacar_80_Reais_Deve_Retornar_1_Nota_de_50_Reais_1_Nota_de_20_Reais_e_1_Nota_de_10_Reais" computerName="NOTECCE" duration="00:00:00.0007050" startTime="2014-01-29T21:10:14.3930914-02:00" endTime="2014-01-29T21:10:14.3990917-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ab58a115-0ec4-4017-a49c-9e76aa5291fc">
+    </UnitTestResult>
+    <UnitTestResult executionId="2f4f5478-6895-4893-b7b8-80b86ce89210" testId="55ee2f92-aab3-9094-983f-8cc302925878" testName="Se_Comparar_Uma_Nota_de_20_Reais_Com_Nulo_a_Comparacao_Deve_Retornar_Zero" computerName="NOTECCE" duration="00:00:00.0002160" startTime="2014-01-29T21:10:14.4000918-02:00" endTime="2014-01-29T21:10:14.4060921-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2f4f5478-6895-4893-b7b8-80b86ce89210">
+    </UnitTestResult>
+    <UnitTestResult executionId="1d632839-fd2e-4367-92bd-54c54aebf7ee" testId="5aa50530-99d6-523d-7662-f8973e20fdad" testName="Quando_Converter_Uma_Nota_de_10_Reais_Em_String_Deve_Retornar_RS_10_00" computerName="NOTECCE" duration="00:00:00.0002221" startTime="2014-01-29T21:10:14.4070922-02:00" endTime="2014-01-29T21:10:14.4120925-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1d632839-fd2e-4367-92bd-54c54aebf7ee">
+    </UnitTestResult>
+    <UnitTestResult executionId="b225018e-a1f9-4cee-8af5-eb79ffa3689c" testId="5cc7b6b5-1411-8e85-cfa1-aea5ff3ae8e1" testName="Se_Tentar_Sacar_Centavos_ou_Valores_Menores_Que_10_Reais_Deve_Disparar_Excecao" computerName="NOTECCE" duration="00:00:00.0091473" startTime="2014-01-29T21:10:14.4130925-02:00" endTime="2014-01-29T21:10:14.4280934-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b225018e-a1f9-4cee-8af5-eb79ffa3689c">
+    </UnitTestResult>
+    <UnitTestResult executionId="6cea03fe-ad2b-425f-82b9-e66dc9800366" testId="66cb628d-7acc-c9b1-8631-f96ca7d344e0" testName="Se_Comparar_Uma_Nota_de_20_Reais_Com_Outra_Nota_De_50_Reais_a_Comparacao_Deve_Retornar_1_Negativo" computerName="NOTECCE" duration="00:00:00.0002355" startTime="2014-01-29T21:10:14.4290934-02:00" endTime="2014-01-29T21:10:14.4360938-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6cea03fe-ad2b-425f-82b9-e66dc9800366">
+    </UnitTestResult>
+    <UnitTestResult executionId="37496783-1af5-4925-9e95-33333c623078" testId="6e16e2f8-6dfa-d1ea-0438-ac6751dfb314" testName="Se_Sacar_20_Reais_Deve_Retornar_1_Nota_de_20_Reais" computerName="NOTECCE" duration="00:00:00.0005885" startTime="2014-01-29T21:10:14.4370939-02:00" endTime="2014-01-29T21:10:14.4430942-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="37496783-1af5-4925-9e95-33333c623078">
+    </UnitTestResult>
+    <UnitTestResult executionId="09ef5750-6152-4c8f-81f7-48fa73f8daa2" testId="704680a5-4ea5-56e8-1845-06251993585e" testName="Se_Sacar_100_Reais_Deve_Retornar_1_Nota_de_100_Reais" computerName="NOTECCE" duration="00:00:00.0005747" startTime="2014-01-29T21:10:14.4440943-02:00" endTime="2014-01-29T21:10:14.4510947-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="09ef5750-6152-4c8f-81f7-48fa73f8daa2">
+    </UnitTestResult>
+    <UnitTestResult executionId="0ecc050a-5aaf-4ed4-a08f-6dfdb783ac44" testId="73dc9e4f-2c8c-d15e-d52f-d475af3a0850" testName="Se_a_Nota_For_Uma_Nota_de_20_Reais_o_Valor_da_Nota_Deve_Ser_20" computerName="NOTECCE" duration="00:00:00.0002868" startTime="2014-01-29T21:10:14.4520948-02:00" endTime="2014-01-29T21:10:14.4580951-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0ecc050a-5aaf-4ed4-a08f-6dfdb783ac44">
+    </UnitTestResult>
+    <UnitTestResult executionId="ad8c9c2f-8882-453c-b858-fa91ae0a646d" testId="7a1d35e5-5785-4a3a-c216-22705071e935" testName="Se_a_Nota_For_Uma_Nota_de_2_Reais_o_Valor_da_Nota_Deve_Ser_2" computerName="NOTECCE" duration="00:00:00.0002781" startTime="2014-01-29T21:10:14.4590952-02:00" endTime="2014-01-29T21:10:14.4650955-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ad8c9c2f-8882-453c-b858-fa91ae0a646d">
+    </UnitTestResult>
+    <UnitTestResult executionId="b9b47e90-80d6-482d-b749-d09acb1407c6" testId="80044c07-c8ee-f918-ee80-e471e604d7db" testName="Se_Clonar_10_Nota50_Deve_Retornar_10_Notas_de_50_Reais" computerName="NOTECCE" duration="00:00:00.0005490" startTime="2014-01-29T21:10:14.4660956-02:00" endTime="2014-01-29T21:10:14.4730960-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b9b47e90-80d6-482d-b749-d09acb1407c6">
+    </UnitTestResult>
+    <UnitTestResult executionId="fdd7dcba-91a6-44fd-83ef-e9199ea63e1a" testId="84542a07-e847-6e27-8987-a1ab1ca1a9dd" testName="Se_a_Nota_For_Uma_Nota_de_200_Reais_o_Valor_da_Nota_Deve_Ser_200" computerName="NOTECCE" duration="00:00:00.0004413" startTime="2014-01-29T21:10:14.4750961-02:00" endTime="2014-01-29T21:10:14.4820965-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fdd7dcba-91a6-44fd-83ef-e9199ea63e1a">
+    </UnitTestResult>
+    <UnitTestResult executionId="993b0dd2-1da2-478e-a2fa-0f38b27a52d6" testId="860f946e-92b7-1543-98ff-8d2e7c3d4ef8" testName="Quando_Converter_Uma_Nota_de_20_Reais_Em_String_Deve_Retornar_RS_20_00" computerName="NOTECCE" duration="00:00:00.0002658" startTime="2014-01-29T21:10:14.4830965-02:00" endTime="2014-01-29T21:10:14.4890969-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="993b0dd2-1da2-478e-a2fa-0f38b27a52d6">
+    </UnitTestResult>
+    <UnitTestResult executionId="df6d6f80-768a-406b-bc4e-722a68923ed0" testId="930d456f-b8ae-0087-bd87-56faa6d32eba" testName="Se_a_Nota_For_Uma_Nota_de_10_Reais_o_Valor_da_Nota_Deve_Ser_10" computerName="NOTECCE" duration="00:00:00.0003135" startTime="2014-01-29T21:10:14.4900969-02:00" endTime="2014-01-29T21:10:14.4960973-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="df6d6f80-768a-406b-bc4e-722a68923ed0">
+    </UnitTestResult>
+    <UnitTestResult executionId="26a7af5c-7d6e-45cd-8226-63be18b2675b" testId="9457131f-544f-5591-8251-e7578deb6455" testName="Se_a_Nota_For_Uma_Nota_de_50_Reais_o_Valor_da_Nota_Deve_Ser_50" computerName="NOTECCE" duration="00:00:00.0002889" startTime="2014-01-29T21:10:14.4980974-02:00" endTime="2014-01-29T21:10:14.5040977-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="26a7af5c-7d6e-45cd-8226-63be18b2675b">
+    </UnitTestResult>
+    <UnitTestResult executionId="640c1a82-5ad6-42aa-a493-13854e54ecfb" testId="a95c582e-4e43-0dde-2aad-13bd6187c9bc" testName="Se_Sacar_180_Reais_Deve_Retornar_1_Nota_de_100_Reais_1_Nota_de_50_Reais_1_Nota_de_20_Reais_e_1_Nota_de_10_Reais" computerName="NOTECCE" duration="00:00:00.0007158" startTime="2014-01-29T21:10:14.5050978-02:00" endTime="2014-01-29T21:10:14.5120982-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="640c1a82-5ad6-42aa-a493-13854e54ecfb">
+    </UnitTestResult>
+    <UnitTestResult executionId="1531edde-396b-4975-9727-8d7a050c26b7" testId="b4cb7266-3ac4-2c40-b6b1-7b72353912d7" testName="Se_Tentar_Sacar_Valores_Maiores_e_Nao_Multiplos_de_10_Reais_Deve_Disparar_Excecao" computerName="NOTECCE" duration="00:00:00.0009488" startTime="2014-01-29T21:10:14.5130982-02:00" endTime="2014-01-29T21:10:14.5190986-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1531edde-396b-4975-9727-8d7a050c26b7">
+    </UnitTestResult>
+    <UnitTestResult executionId="2daae190-8371-45d6-bcf9-860e5b7d9bb3" testId="b67200fb-ea1e-a607-753e-c37b9458bbb6" testName="Se_a_Nota_For_Uma_Nota_de_100_Reais_o_Valor_da_Nota_Deve_Ser_100" computerName="NOTECCE" duration="00:00:00.0003766" startTime="2014-01-29T21:10:14.5210987-02:00" endTime="2014-01-29T21:10:14.5280991-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2daae190-8371-45d6-bcf9-860e5b7d9bb3">
+    </UnitTestResult>
+    <UnitTestResult executionId="425d8653-d5b1-4269-9779-50bc4e991bb1" testId="de16fd6c-5a2b-44da-e81b-4f630ecf4796" testName="Se_Comparar_Uma_Nota_de_20_Reais_Com_Outra_Nota_De_10_Reais_a_Comparacao_Deve_Retornar_1_Positivo" computerName="NOTECCE" duration="00:00:00.0002714" startTime="2014-01-29T21:10:14.5310993-02:00" endTime="2014-01-29T21:10:14.5390997-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="425d8653-d5b1-4269-9779-50bc4e991bb1">
+    </UnitTestResult>
+    <UnitTestResult executionId="16edaeb3-7a89-426f-9c90-e0c27ac1972f" testId="ec342dcf-0526-54d2-8c18-ca38d305f76e" testName="Quando_Converter_Uma_Nota_de_50_Reais_Em_String_Deve_Retornar_RS_50_00" computerName="NOTECCE" duration="00:00:00.0002842" startTime="2014-01-29T21:10:14.5410998-02:00" endTime="2014-01-29T21:10:14.5481002-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="16edaeb3-7a89-426f-9c90-e0c27ac1972f">
+    </UnitTestResult>
+    <UnitTestResult executionId="595dc4c2-9193-4ab1-95f6-c835abcd4fed" testId="ed9e88f8-debe-02e0-c578-2981478b820e" testName="Se_Clonar_10_Nota100_Deve_Retornar_10_Notas_de_100_Reais" computerName="NOTECCE" duration="00:00:00.0005228" startTime="2014-01-29T21:10:14.5501004-02:00" endTime="2014-01-29T21:10:14.5561007-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="595dc4c2-9193-4ab1-95f6-c835abcd4fed">
+    </UnitTestResult>
+    <UnitTestResult executionId="f135efcf-3f25-466d-ad26-d3218faa1e93" testId="ee3ccdff-4b66-cc42-0198-13b6ecbdf4b4" testName="Se_Sacar_50_Reais_Deve_Retornar_1_Nota_de_50_Reais" computerName="NOTECCE" duration="00:00:00.0005772" startTime="2014-01-29T21:10:14.5571008-02:00" endTime="2014-01-29T21:10:14.5641012-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f135efcf-3f25-466d-ad26-d3218faa1e93">
+    </UnitTestResult>
+    <UnitTestResult executionId="6e29b0e9-a1dd-47d0-8115-2e15b0f91275" testId="f1521d28-1897-ff2d-24cb-e2e9bf30c299" testName="Se_Clonar_10_Nota20_Deve_Retornar_10_Notas_de_20_Reais" computerName="NOTECCE" duration="00:00:00.0005305" startTime="2014-01-29T21:10:14.5651012-02:00" endTime="2014-01-29T21:10:14.5721016-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6e29b0e9-a1dd-47d0-8115-2e15b0f91275">
+    </UnitTestResult>
+    <UnitTestResult executionId="edbd5814-3f20-4218-8b84-385db4a81573" testId="f2cdae1c-5ebf-a493-0bc0-175f41d25da1" testName="Se_Sacar_10_Reais_Deve_Retornar_1_Nota_de_10_Reais" computerName="NOTECCE" duration="00:00:00.0005711" startTime="2014-01-29T21:10:14.5731017-02:00" endTime="2014-01-29T21:10:14.5801021-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="edbd5814-3f20-4218-8b84-385db4a81573">
+    </UnitTestResult>
+  </Results>
+</TestRun>
