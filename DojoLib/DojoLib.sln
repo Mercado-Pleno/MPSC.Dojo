@@ -9,19 +9,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceBus", "ServiceBus\Se
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestesUnitarios", "TestesUnitarios", "{6784F855-478F-4860-9046-5E40C833C763}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CaixaEletronico", "CaixaEletronico", "{4928335C-2A8E-4007-96D0-378B9B798F16}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[CaixaEletronico]", "[CaixaEletronico]", "{4928335C-2A8E-4007-96D0-378B9B798F16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaixaEletronico", "CaixaEletronico\CaixaEletronico\CaixaEletronico.csproj", "{378955D6-7B4F-46FD-9AC0-FE50F6383518}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaixaEletronico", "[CaixaEletronico]\CaixaEletronico\CaixaEletronico.csproj", "{378955D6-7B4F-46FD-9AC0-FE50F6383518}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaixaEletronicoWeb", "CaixaEletronico\CaixaEletronicoWeb\CaixaEletronicoWeb.csproj", "{CD176A12-B57F-4E2B-A777-6E6718B351E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaixaEletronicoWeb", "[CaixaEletronico]\CaixaEletronicoWeb\CaixaEletronicoWeb.csproj", "{CD176A12-B57F-4E2B-A777-6E6718B351E1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vendas", "Vendas", "{A7650E02-89E1-41A8-8691-75F682A2A04A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[Vendas]", "[Vendas]", "{A7650E02-89E1-41A8-8691-75F682A2A04A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendasView", "Vendas\VendasView\VendasView.csproj", "{0585196C-2171-493F-9654-14E1B8E97D94}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendasView", "[Vendas]\VendasView\VendasView.csproj", "{0585196C-2171-493F-9654-14E1B8E97D94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendasModel", "Vendas\VendasModel\VendasModel.csproj", "{773A3340-447A-4EF7-83FA-DB3FDD1EB87C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendasModel", "[Vendas]\VendasModel\VendasModel.csproj", "{773A3340-447A-4EF7-83FA-DB3FDD1EB87C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendasController", "Vendas\VendasController\VendasController.csproj", "{59B29EA4-6134-4E52-BE2A-C89B3528B080}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendasController", "[Vendas]\VendasController\VendasController.csproj", "{59B29EA4-6134-4E52-BE2A-C89B3528B080}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
