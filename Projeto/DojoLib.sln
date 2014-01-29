@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendasModel", "[Vendas]\Ven
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendasController", "[Vendas]\VendasController\VendasController.csproj", "{59B29EA4-6134-4E52-BE2A-C89B3528B080}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaixaEletronicoTest", "[CaixaEletronico]\CaixaEletronicoTest\CaixaEletronicoTest.csproj", "{345570C3-2354-4927-90C3-E4F38B247D31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +117,16 @@ Global
 		{59B29EA4-6134-4E52-BE2A-C89B3528B080}.Release|Mixed Platforms.Build.0 = Release|x86
 		{59B29EA4-6134-4E52-BE2A-C89B3528B080}.Release|x86.ActiveCfg = Release|x86
 		{59B29EA4-6134-4E52-BE2A-C89B3528B080}.Release|x86.Build.0 = Release|x86
+		{345570C3-2354-4927-90C3-E4F38B247D31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{345570C3-2354-4927-90C3-E4F38B247D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{345570C3-2354-4927-90C3-E4F38B247D31}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{345570C3-2354-4927-90C3-E4F38B247D31}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{345570C3-2354-4927-90C3-E4F38B247D31}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{345570C3-2354-4927-90C3-E4F38B247D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{345570C3-2354-4927-90C3-E4F38B247D31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{345570C3-2354-4927-90C3-E4F38B247D31}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{345570C3-2354-4927-90C3-E4F38B247D31}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{345570C3-2354-4927-90C3-E4F38B247D31}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -122,6 +134,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{378955D6-7B4F-46FD-9AC0-FE50F6383518} = {4928335C-2A8E-4007-96D0-378B9B798F16}
 		{CD176A12-B57F-4E2B-A777-6E6718B351E1} = {4928335C-2A8E-4007-96D0-378B9B798F16}
+		{345570C3-2354-4927-90C3-E4F38B247D31} = {4928335C-2A8E-4007-96D0-378B9B798F16}
 		{0585196C-2171-493F-9654-14E1B8E97D94} = {A7650E02-89E1-41A8-8691-75F682A2A04A}
 		{773A3340-447A-4EF7-83FA-DB3FDD1EB87C} = {A7650E02-89E1-41A8-8691-75F682A2A04A}
 		{59B29EA4-6134-4E52-BE2A-C89B3528B080} = {A7650E02-89E1-41A8-8691-75F682A2A04A}
