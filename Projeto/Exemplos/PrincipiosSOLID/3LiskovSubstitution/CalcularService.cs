@@ -3,6 +3,7 @@ using MPSC.Library.Exemplos.PrincipiosSOLID._3LiskovSubstitution;
 
 namespace MPSC.Library.Exemplos.PrincipiosSOLID.LiskovSubstitution
 {
+	//http://www.codeproject.com/Articles/595160/Understand-Liskov-Substitution-Principle-LSP
 	public class CalculaImpostoService
 	{
 		public Decimal CalcularImposto(Produto produto, Imposto imposto)
