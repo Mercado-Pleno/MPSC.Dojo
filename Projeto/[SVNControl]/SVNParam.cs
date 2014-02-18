@@ -34,7 +34,7 @@
             FullScriptName = Get(param, 0, true);
             RepositoryRoot = Get(param, 1, true);
             ScriptName = FullScriptName.Substring(FullScriptName.LastIndexOf("/") + 1);
-            IsOK = Get(param, 11).Equals(";");
+            IsOK = Get(param, 10).Equals(";");
 
             if (ScriptName.Contains("start-commit"))
             {
@@ -112,7 +112,6 @@
                 Adicional1 = Get(param, 7);
                 Adicional2 = Get(param, 8);
                 Adicional3 = Get(param, 9);
-                Adicional4 = Get(param, 10);
             }
             else if (ScriptName.Contains("post-revprop-change"))
             {
@@ -124,7 +123,6 @@
                 Adicional1 = Get(param, 7);
                 Adicional2 = Get(param, 8);
                 Adicional3 = Get(param, 9);
-                Adicional4 = Get(param, 10);
             }
         }
 
