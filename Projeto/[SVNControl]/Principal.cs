@@ -10,7 +10,7 @@
 	public static class Principal
 	{
 		[STAThread]
-		public static int Main(String[] args)
+		public static int Mains(String[] args)
 		{
 			SVNParam vSVNParam = new SVNParam(args);
 			Principal.Write(vSVNParam.ToString());
