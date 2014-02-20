@@ -41,8 +41,12 @@
     <Compile Include="MockData\DataBaseInterface\IBancoDados.cs" />
     <Compile Include="MockData\DataBaseInterface\IRecurso.cs" />
     <Compile Include="MockData\DataBaseInterface\IServidor.cs" />
+    <Compile Include="MockData\DataBaseInterface\IStoredProcedure.cs" />
     <Compile Include="MockData\DataBaseInterface\ITabela.cs" />
+    <Compile Include="MockData\MockCommand.cs" />
     <Compile Include="MockData\MockConnection.cs" />
+    <Compile Include="MockData\MockDataParameter.cs" />
+    <Compile Include="MockData\MockParameterCollection.cs" />
     <Compile Include="Principal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SVNParam.cs" />

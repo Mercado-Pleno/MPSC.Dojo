@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MP.SVNControl.MockData.DataBaseInterface
 {
@@ -7,7 +7,8 @@ namespace MP.SVNControl.MockData.DataBaseInterface
 	{
 		String IP { get; }
 		IList<IBancoDados> ListaBancoDados { get; }
-
 		IBancoDados AdicionarBancoDados(IBancoDados bancoDados);
+
+		IBancoDados Obter(String Database);
 	}
 }
