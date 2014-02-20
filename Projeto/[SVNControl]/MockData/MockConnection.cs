@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.Common;
 using MP.SVNControl.MockData.DataBaseInterface;
+using MP.SVNControl.Test;
 
 namespace MP.SVNControl.MockData
 {
@@ -23,9 +24,9 @@ namespace MP.SVNControl.MockData
 
 		public IBancoDados BancoDeDados { get; private set; }
 
-		public MockConnection(IRecurso recurso)
+		public MockConnection()
 		{
-			_recurso = recurso;
+			_recurso = Recurso.Instancia;
 		}
 
 		public String ConnectionString
