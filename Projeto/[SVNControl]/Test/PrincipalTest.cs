@@ -4,25 +4,32 @@ using MP.SVNControl.MockData.DataBaseInterface;
 
 namespace MP.SVNControl.Test
 {
-	public static class Test
+	public static class PrincipalTest
 	{
 		public static void Main(string[] args)
 		{
-			var recurso = new Recurso();
+			var recurso = Recurso.Instancia;
 			var servidor = recurso.AdicionarServidor(new Servidor("192.168.0.1"));
-			var database = servidor.AdicionarBancoDados(new PlenoSMS("PlenoSMS"));
+			var database = servidor.AdicionarBancoDados(new BancoDados("PlenoSMS"));
 			var tabela1 = database.AdicionarTabela(new Tabela<Cliente>());
 			var tabela2 = database.AdicionarTabela(new Tabela<Documento>());
 
 			tabela1.Adicionar(new Cliente());
+			tabela1.Adicionar(new Cliente());
+			tabela1.Adicionar(new Cliente());
+			tabela2.Adicionar(new Documento());
+			tabela2.Adicionar(new Documento());
+			tabela2.Adicionar(new Documento());
 		}
 	}
 
 
 	public class Recurso : IRecurso
 	{
+		private static IRecurso _instancia;
+		public static IRecurso Instancia { get { return (_instancia ?? (_instancia = new Recurso())); } }
 		public IList<IServidor> ListaServidor { get; private set; }
-		public Recurso()
+		private Recurso()
 		{
 			ListaServidor = new List<IServidor>();
 		}
@@ -45,7 +52,6 @@ namespace MP.SVNControl.Test
 			ListaBancoDados = new List<IBancoDados>();
 		}
 
-
 		public IBancoDados AdicionarBancoDados(IBancoDados bancoDados)
 		{
 			ListaBancoDados.Add(bancoDados);
@@ -53,12 +59,12 @@ namespace MP.SVNControl.Test
 		}
 	}
 
-	public class PlenoSMS : IBancoDados
+	public class BancoDados : IBancoDados
 	{
 		public String Nome { get; private set; }
 		public IList<ITabela> ListaTabela { get; private set; }
 
-		public PlenoSMS(String nome)
+		public BancoDados(String nome)
 		{
 			Nome = nome;
 			ListaTabela = new List<ITabela>();
