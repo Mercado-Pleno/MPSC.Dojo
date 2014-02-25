@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MockData\DataBaseInterface\IBancoDados.cs" />
@@ -46,6 +47,7 @@
     <Compile Include="MockData\MockCommand.cs" />
     <Compile Include="MockData\MockConnection.cs" />
     <Compile Include="MockData\MockDataParameter.cs" />
+    <Compile Include="MockData\MockDataReader.cs" />
     <Compile Include="MockData\MockParameterCollection.cs" />
     <Compile Include="Principal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
