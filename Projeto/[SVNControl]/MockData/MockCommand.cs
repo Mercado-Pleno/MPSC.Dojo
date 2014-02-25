@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.Common;
+using System;
 
 namespace MP.SVNControl.MockData
 {
@@ -11,10 +12,7 @@ namespace MP.SVNControl.MockData
 			Parameters = new MockParameterCollection();
 		}
 
-		public void Cancel()
-		{
-			throw new System.NotImplementedException();
-		}
+		public void Cancel() { }
 
 		public string CommandText { get; set; }
 
@@ -38,15 +36,17 @@ namespace MP.SVNControl.MockData
 				var vStoredProcedure = vBancoDeDados.Obter(CommandText);
 				return vStoredProcedure.Executar(Parameters as MockParameterCollection);
 			}
-			else
+			else if (CommandType == CommandType.Text)
 			{
 				return 0;
 			}
+			else
+				return 0;
 		}
 
 		public IDataReader ExecuteReader(CommandBehavior behavior)
 		{
-			throw new System.NotImplementedException();
+			return new MockDataReader(this, behavior);
 		}
 
 		public IDataReader ExecuteReader()
@@ -56,7 +56,10 @@ namespace MP.SVNControl.MockData
 
 		public object ExecuteScalar()
 		{
-			throw new System.NotImplementedException();
+			var vDataReader = ExecuteReader();
+			Object vResult = vDataReader.Read() ? vDataReader[0] : null;
+			vDataReader.Close();
+			return vResult;
 		}
 
 		public IDataParameterCollection Parameters { get; private set; }
