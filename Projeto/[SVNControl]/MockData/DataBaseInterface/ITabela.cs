@@ -22,6 +22,7 @@ namespace MP.SVNControl.MockData.DataBaseInterface
 		public Tabela() : this(typeof(T).Name) { }
 		public Tabela(String nome)
 		{
+			ListaDados = new List<T>();
 			Nome = nome;
 		}
 
