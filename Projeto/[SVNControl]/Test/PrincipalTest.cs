@@ -11,9 +11,12 @@ namespace MP.SVNControl.Test
 		{
 			var recurso = Recurso.Instancia;
 			var servidor = recurso.AdicionarServidor(new Servidor("192.168.0.1", "User", "Senha"));
-			var database = servidor.AdicionarBancoDados(new BancoDados("PlenoSMS"));
+			var database = servidor.AdicionarBancoDados(new BancoDados("PlenoSMS")) as BancoDados;
 			var tabela1 = database.AdicionarTabela(new Tabela<Cliente>());
 			var tabela2 = database.AdicionarTabela(new Tabela<Documento>());
+
+			var bruno = database.InsertInto<Cliente>().Values(e => e.Nome = "Bruno", e => e.Idade = 31);
+			var luani = database.InsertInto<Cliente>(c => c.Nome, c => c.Idade).Values("Luani", 29);
 
 			tabela1.Adicionar(new Cliente());
 			tabela1.Adicionar(new Cliente());
@@ -47,7 +50,7 @@ namespace MP.SVNControl.Test
 
 			vMockConnection.Close();
 			vMockConnection.Dispose();
-			
+
 		}
 	}
 
@@ -55,6 +58,7 @@ namespace MP.SVNControl.Test
 	{
 		public String Nome { get; set; }
 		public int Idade { get; set; }
+		public void FazerAlgo() { Console.WriteLine("oi"); }
 	}
 
 	public class Documento
