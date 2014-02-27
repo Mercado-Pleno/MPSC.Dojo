@@ -5,21 +5,21 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1310BE88-E9B8-436D-92DE-D594CACEA81E}</ProjectGuid>
+    <ProjectGuid>{AB71FC5F-B42B-43F0-9754-6048A6866025}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MP.SVNControl</RootNamespace>
-    <AssemblyName>MP.SVNControl</AssemblyName>
+    <RootNamespace>MP.InMemorySQL</RootNamespace>
+    <AssemblyName>MP.InMemorySQL</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Bin\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -28,27 +28,31 @@
     <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Bin\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Principal.cs" />
+    <Compile Include="MockData\DataBaseInterface\IBancoDados.cs" />
+    <Compile Include="MockData\DataBaseInterface\IRecurso.cs" />
+    <Compile Include="MockData\DataBaseInterface\IServidor.cs" />
+    <Compile Include="MockData\DataBaseInterface\IStoredProcedure.cs" />
+    <Compile Include="MockData\DataBaseInterface\ITabela.cs" />
+    <Compile Include="MockData\MockCommand.cs" />
+    <Compile Include="MockData\MockConnection.cs" />
+    <Compile Include="MockData\MockDataParameter.cs" />
+    <Compile Include="MockData\MockDataReader.cs" />
+    <Compile Include="MockData\MockParameterCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SVNParam.cs" />
+    <Compile Include="Test\PrincipalTest.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Remove.bat" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>REM copy /y "$(TargetPath)" "\\computadorxp\SVN\*.*"</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
