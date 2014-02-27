@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="BancoDeDados\VariasCoisasComObjetosDeBancoDeDados.cs" />
     <Compile Include="BancoDeDados\ComoPegarAsMensagensDePrintsDoSqlServer.cs" />
+    <Compile Include="ControleDeFluxo\DefinindoQuemPodeAlterarOsAtributosDoObjeto.cs" />
     <Compile Include="ControleDeFluxo\DiretivaDePreProcessamentoViaReflection.cs" />
     <Compile Include="DesignPattern\Strategy\Classes\MiniSimuladorDePatos.cs" />
     <Compile Include="DesignPattern\Strategy\Classes\Pato.cs" />
