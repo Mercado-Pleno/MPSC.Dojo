@@ -10,6 +10,8 @@ namespace MPSC.Library.Exemplos.ControleDeFluxo
 		{
 			var contexto1 = new Owner();
 			var contexto2 = new Owner();
+			var contexto3 = new Owner();
+			contexto1.outros.Add(contexto2);
 
 			var employee = new Employee(
 				contexto1,
@@ -21,6 +23,7 @@ namespace MPSC.Library.Exemplos.ControleDeFluxo
 			{
 				employee.RaiseSalary(contexto1, 200);
 				employee.RaiseSalary(contexto2, 200);
+				employee.RaiseSalary(contexto3, 200);
 			}
 			catch (Exception)
 			{
@@ -31,17 +34,20 @@ namespace MPSC.Library.Exemplos.ControleDeFluxo
 		}
 	}
 
-	class Owner : IOwner
+	public class Owner : IOwner
 	{
-
+		public IList<IOwner> outros = new List<IOwner>();
+		public String GetUniqueId() { return GetHashCode().ToString(); }
+		public IEnumerable<IOwner> Socios { get { return outros; } }
 	}
 
-	interface IOwner
+	public interface IOwner
 	{
-
+		String GetUniqueId();
+		IEnumerable<IOwner> Socios { get; }
 	}
 
-	class Base
+	public class Base
 	{
 		private readonly IOwner _owner;
 		public Base(IOwner owner)
@@ -56,7 +62,12 @@ namespace MPSC.Library.Exemplos.ControleDeFluxo
 			if (who == null)
 				throw new ArgumentNullException();
 
-			if (_owner.GetHashCode() != who.GetHashCode())
+			Boolean vPermitido = _owner.GetUniqueId() == who.GetUniqueId();
+			if (!vPermitido)
+				foreach (var item in _owner.Socios)
+					vPermitido = vPermitido || item.GetUniqueId() == who.GetUniqueId();
+
+			if (!vPermitido)
 			{
 				Console.WriteLine("Invalid Context {0}. Permission Denied!", who.GetHashCode());
 				throw new AccessViolationException();
@@ -64,7 +75,7 @@ namespace MPSC.Library.Exemplos.ControleDeFluxo
 		}
 	}
 
-	class Employee: Base
+	public class Employee : Base
 	{
 		public string Name { get; private set; }
 		public decimal Salary { get; private set; }
