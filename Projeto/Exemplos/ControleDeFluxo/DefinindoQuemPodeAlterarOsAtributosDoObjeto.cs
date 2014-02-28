@@ -28,7 +28,6 @@ namespace MPSC.Library.Exemplos.ControleDeFluxo
 			}
 
 			Console.WriteLine("{0} - {1}", employee.Name, employee.Salary);
-			Console.ReadLine();
 		}
 	}
 
