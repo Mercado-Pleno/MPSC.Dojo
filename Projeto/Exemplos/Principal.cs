@@ -45,7 +45,9 @@
 					new ItemMenu('2', "Saber Quem Instanciou", new SaberQuemInstanciou()),
 					new ItemMenu('3', "Teste De Construtores Estaticos", new TesteDeConstrutoresEstaticos()),
 					new ItemMenu('4', "Diretiva De Pré-Processamento Via Reflection", new DiretivaDePreProcessamentoViaReflection()),
-					new ItemMenu('5', "Definindo Quem Pode Alterar Os Atributos Do Objeto", new DefinindoQuemPodeAlterarOsAtributosDoObjeto())
+					new ItemMenu('5', "Definindo Quem Pode Alterar Os Atributos Do Objeto", new DefinindoQuemPodeAlterarOsAtributosDoObjeto()),
+					new ItemMenu('6', "Definindo Quem Pode Alterar Os Atributos Do Objeto Em Tempo Design 1", new DefinindoQuemPodeAlterarOsAtributosDoObjetoEmTempoDesign1()),
+					new ItemMenu('7', "Definindo Quem Pode Alterar Os Atributos Do Objeto Em Tempo Design 2", new DefinindoQuemPodeAlterarOsAtributosDoObjetoEmTempoDesign2())
 				),
 
 				new ItemMenu('3', "Reflection",
