@@ -9,6 +9,7 @@
 	using MPSC.Library.Exemplos.DesignPattern.Strategy.Classes;
 	using MPSC.Library.Exemplos.Medidas;
 	using MPSC.Library.Exemplos.Utilidades;
+    using MPSC.Library.Exemplos.Service;
 
 	public interface IExecutavel
 	{
@@ -69,7 +70,11 @@
 					new ItemMenu('2', "Observer - Estação de Monitoramento")
 				),
 
-				new ItemMenu(esc, "Sair")
+                new ItemMenu('7', "Métodos de extensão",
+                    new ItemMenu('1', "Extrair XML", new ExtensionMethods())
+                ),
+                
+                new ItemMenu(esc, "Sair")
 			);
 		}
 	}
