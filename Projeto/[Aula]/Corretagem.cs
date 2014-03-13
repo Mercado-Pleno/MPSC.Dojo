@@ -23,7 +23,7 @@ namespace MPSC.Library.Aula.Curso
 
     public class Carteira
     {
-        private Acionista acionista;
+        private Acionista acionista { get; set; }
         private IList<Operacao> operacoes { get; set; }
 
         public void AdicionarOperacao (Operacao operacao)
@@ -38,8 +38,8 @@ namespace MPSC.Library.Aula.Curso
     {
         public Acionista Acionista { get; set; }
         public List<Acao> ListaAcao { get; set; }
-        public void Efetivar();
-        public void Abortar();
+        public void Efetivar() { }
+        public void Abortar() { }
     }
 
     public class OrdemCompra : Ordem
