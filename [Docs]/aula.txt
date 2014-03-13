@@ -1,0 +1,86 @@
+public class Application
+{
+	public static EmissaoNotaFiscalService EmissaoNotaFiscalService
+	{
+		get
+		{
+			var emissaoNotaFiscal = new EmissaoNotaFiscalService();
+
+			emissaoNotaFiscal.EnviadorMensagem = new EnviadorEMail();
+
+			return emissaoNotaFiscal;
+		}
+	}
+
+}
+
+
+
+public class TelaEmitirNotaFiscal
+{	
+	public void BtnEmitir_Click()
+	{
+		Application.EmissaoNotaFiscalService.EmitirNotaFiscal(...);
+	}
+}
+
+public class EmissaoNotaFiscalService
+{
+	private IEnviadorMensagem _enviadorMensagem;
+	public IEnviadorMensagem EnviadorMensagem
+	{
+		get
+		{
+			return _enviadorMensagem;
+		}
+		set
+		{
+			 _enviadorMensagem = value;
+		}
+	}
+
+
+	public void EmitirNotaFiscal(...)
+	{
+		processarGravacaoNota(...);
+		gerarDANFE(...);
+		enviarEMailAosResponsaveis(...);
+	}
+
+	private void enviarEMailAosResponsaveis()
+	{
+
+		EnviadorEMail.Enviar(...);
+	}
+
+}
+
+public interface IEnviadorMensagem
+{
+	void Enviar();
+}
+
+
+public class EnviadorEMail : IEnviadorMensagem
+{
+	public void Enviar()
+	{
+		//SMTP ...
+	}
+}
+
+public class EnviadorWebEMail : IEnviadorMensagem
+{
+	public void Enviar()
+	{
+		//SMTP ...
+	}
+}
+
+public class EnviadorSMS : IEnviadorMensagem
+{
+	public void Enviar()
+	{
+		//SMS...
+	}
+}
