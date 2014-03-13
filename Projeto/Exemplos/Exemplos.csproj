@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="BancoDeDados\VariasCoisasComObjetosDeBancoDeDados.cs" />
     <Compile Include="BancoDeDados\ComoPegarAsMensagensDePrintsDoSqlServer.cs" />
+    <Compile Include="ControleDeFluxo\ControlandoSeOProgramaEstaSendoExecutado.cs" />
     <Compile Include="ControleDeFluxo\DefinindoQuemPodeAlterarOsAtributosDoObjetoEmTempoDesign2.cs" />
     <Compile Include="ControleDeFluxo\DefinindoQuemPodeAlterarOsAtributosDoObjetoEmTempoDesign1.cs" />
     <Compile Include="ControleDeFluxo\DefinindoQuemPodeAlterarOsAtributosDoObjeto.cs" />
