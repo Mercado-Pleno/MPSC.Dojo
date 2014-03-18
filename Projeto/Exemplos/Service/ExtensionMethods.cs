@@ -5,18 +5,18 @@ using System.Linq;
 
 namespace MPSC.Library.Exemplos.Service
 {
-    [Table]
+    //[Table]
     public class Cliente
     {
-        [Property]
+        //[Property]
         public String Nome { get; set; }
 
-        [Property(DataType = "DateTime")]
+        //[Property(DataType = "DateTime")]
         public DateTime Nascimento { get; set; }
     }
 
 
-    class CleinteDTO
+    class ClienteDTO
     {
         public String Nome { get; set; }
         public DateTime Nascimento { get; set; }
