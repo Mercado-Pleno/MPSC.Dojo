@@ -25,6 +25,17 @@
 		}
 	}
 
+	public class TransformManager
+	{
+		public ISerializador Serializador { get; set; }
+		public IDiscretizador Discretizador { get; set; }
+
+		public String Serializar(String nome, Object obj)
+		{
+			return Serializador.Serializar(nome, obj);
+		}
+	}
+
 	public interface ISerializador
 	{
 		String Serializar(String atributo, Object valor);
