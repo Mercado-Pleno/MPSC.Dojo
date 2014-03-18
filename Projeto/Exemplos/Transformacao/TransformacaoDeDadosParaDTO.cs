@@ -3,6 +3,18 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Diagnostics;
+	using System.Reflection;
+
+	public class Cliente
+	{
+		public String Nome { get; set; }
+		public String Idade { get; set; }
+		public String Sexo { get; set; }
+		public String Documento { get; set; }
+		public String NomeMae { get; set; }
+		public String NomePai { get; set; }
+	}
+
 
 	public class TransformacaoDeDadosParaDTO : IExecutavel
 	{
@@ -22,6 +34,11 @@
 			str = vTranformObject.Serializar("Nome", "Bruno");
 			Console.WriteLine(str);
 			Console.WriteLine(vTranformObject.Discretizar("Nome", str));
+
+			TransformManager vTransformManager = new TransformManager();
+			vTransformManager.Discretizador = new TransformJSON();
+			vTransformManager.Serializador = new TransformJSON();
+			Console.WriteLine(vTransformManager.Serializar("Cliente", new Cliente()));
 		}
 	}
 
@@ -32,7 +49,18 @@
 
 		public String Serializar(String nome, Object obj)
 		{
-			return Serializador.Serializar(nome, obj);
+			String vRetorno = String.Empty;
+			IEnumerable<KeyValuePair<String, Object>> atributos = GetAtributos(obj);
+			foreach (var item in atributos)
+				vRetorno += Serializador.Serializar(item.Key, item.Value);
+			return Serializador.Serializar(nome, vRetorno);
+		}
+
+		private IEnumerable<KeyValuePair<String, Object>> GetAtributos(object obj)
+		{
+			var properties = obj.GetType().GetProperties();
+			foreach (var item in properties)
+				yield return new KeyValuePair<String, Object>(item.Name, item.GetValue(obj, null));
 		}
 	}
 
