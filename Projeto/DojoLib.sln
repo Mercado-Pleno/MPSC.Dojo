@@ -39,7 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aula", "Aula", "{481A32C5-B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Curso", "[Aula]\Curso.csproj", "{11D9B5F9-3478-47CA-9445-ED102A18317E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionTests", "[TestesUnitarios]\SolutionTests\SolutionTests.csproj", "{345570C3-2354-4927-90C3-E4F38B247D31}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionTest", "[TestesUnitarios]\SolutionTests\SolutionTest.csproj", "{345570C3-2354-4927-90C3-E4F38B247D31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
