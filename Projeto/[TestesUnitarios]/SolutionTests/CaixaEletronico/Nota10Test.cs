@@ -1,7 +1,7 @@
 ﻿using CaixaEletronico;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestProject1
+namespace MPSC.Library.TestesUnitarios.SolutionTest
 {
     [TestClass()]
     public class Nota10Test
