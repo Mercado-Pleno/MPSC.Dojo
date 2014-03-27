@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MPSC.Library.Aula.Curso.DojoOnLine;
 
-namespace MPSC.Library.TestesUnitarios.SolutionTests.DojoOnLine
+namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 {
     [TestClass]
     public class EspiralTest
