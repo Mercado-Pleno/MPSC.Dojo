@@ -1,6 +1,6 @@
-﻿
-using System.Diagnostics;
-namespace ProjetoTest
+﻿using System.Diagnostics;
+
+namespace MPSC.Library.Aula.Curso.DojoOnLine
 {
     public enum Direcao
     {

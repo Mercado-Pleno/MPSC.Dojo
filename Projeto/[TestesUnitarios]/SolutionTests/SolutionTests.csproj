@@ -42,7 +42,6 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Espiral.cs" />
     <Compile Include="CaixaEletronico\Nota100Test.cs" />
     <Compile Include="CaixaEletronico\Nota10Test.cs" />
     <Compile Include="CaixaEletronico\Nota200Test.cs" />
@@ -51,11 +50,15 @@
     <Compile Include="CaixaEletronico\Nota50Test.cs" />
     <Compile Include="CaixaEletronico\Nota5Test.cs" />
     <Compile Include="CaixaEletronico\NotaTest.cs" />
+    <Compile Include="Curso\EspiralTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CaixaEletronico\SaqueTest.cs" />
-    <Compile Include="EspiralTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\[Aula]\Curso.csproj">
+      <Project>{11D9B5F9-3478-47CA-9445-ED102A18317E}</Project>
+      <Name>Curso</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\[CaixaEletronico]\CaixaEletronico\CaixaEletronico.csproj">
       <Project>{378955D6-7B4F-46FD-9AC0-FE50F6383518}</Project>
       <Name>CaixaEletronico</Name>
