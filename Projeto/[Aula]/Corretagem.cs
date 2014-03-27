@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace MPSC.Library.Aula.Curso
+namespace MPSC.Library.Aula.Curso.DojoOnLine
 {
     public class Corretagem
     {
@@ -26,7 +25,7 @@ namespace MPSC.Library.Aula.Curso
         private Acionista acionista { get; set; }
         private IList<Operacao> operacoes { get; set; }
 
-        public void AdicionarOperacao (Operacao operacao)
+        public void AdicionarOperacao(Operacao operacao)
         {
             // operacao.Acao.Cotacao.valor;
             operacoes.Add(operacao);

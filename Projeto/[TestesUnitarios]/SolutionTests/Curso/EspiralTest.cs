@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MPSC.Library.Aula.Curso.DojoOnLine;
 
-namespace ProjetoTest
+namespace MPSC.Library.TestesUnitarios.SolutionTests.DojoOnLine
 {
     [TestClass]
     public class EspiralTest
@@ -23,7 +24,6 @@ namespace ProjetoTest
             Assert.AreEqual(198, matriz.Cast<int>().Count(i => i != 0));
             Assert.AreEqual(198, matriz.Cast<int>().Max(i => i));
             Assert.AreEqual(198, matriz.Cast<int>().Distinct().Count());
-
         }
 
         [TestMethod]
