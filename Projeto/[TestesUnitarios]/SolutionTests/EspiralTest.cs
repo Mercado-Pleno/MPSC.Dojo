@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ProjetoTest
 {
     [TestClass]
-    public class UnitTest1
+    public class EspiralTest
     {
         [TestMethod]
         public void DeveMontarMatrizEspiral50Por5()
