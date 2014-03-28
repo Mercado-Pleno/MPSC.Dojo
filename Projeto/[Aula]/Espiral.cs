@@ -23,6 +23,11 @@ namespace MPSC.Library.Aula.Curso.DojoOnLine
     public class Espiral
     {
         private Direcao direcao = Direcao.Direita;
+        int linha = 0;
+        int coluna = 0;
+        int voltaLinha = 0;
+        int voltaColuna = 0;
+
 
         private void MudarDirecao()
         {
@@ -48,11 +53,6 @@ namespace MPSC.Library.Aula.Curso.DojoOnLine
             else if (direcao == Direcao.Acima)
                 linha--;
         }
-
-        int linha = 0;
-        int coluna = 0;
-        int voltaLinha = 0;
-        int voltaColuna = 0;
 
         public int[,] GerarMatrizEspiral(int quantidadeDeLinhas, int quantidadeDeColunas)
         {
@@ -82,8 +82,6 @@ namespace MPSC.Library.Aula.Curso.DojoOnLine
                         voltaColuna++;
                 }
             }
-
-
             return matriz;
         }
 
