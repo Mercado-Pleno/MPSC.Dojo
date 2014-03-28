@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{11D9B5F9-3478-47CA-9445-ED102A18317E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MPSC.Library.Aula.Curso</RootNamespace>
     <AssemblyName>MPSC.Library.Aula.Curso</AssemblyName>
