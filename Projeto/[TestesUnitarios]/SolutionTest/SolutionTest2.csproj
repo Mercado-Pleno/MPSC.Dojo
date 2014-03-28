@@ -104,10 +104,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Exemplos\Exemplos.csproj">
-      <Project>{EC3FFAC1-2161-4CBE-9A29-A020686E466E}</Project>
-      <Name>Exemplos</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\[Aula]\Curso.csproj">
       <Project>{11D9B5F9-3478-47CA-9445-ED102A18317E}</Project>
       <Name>Curso</Name>
