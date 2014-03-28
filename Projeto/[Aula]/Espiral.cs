@@ -2,7 +2,6 @@
 
 namespace MPSC.Library.Aula.Curso.DojoOnLine
 {
-
     public class Principal
     {
         static void Main(string[] args)
