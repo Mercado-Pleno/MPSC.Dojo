@@ -28,7 +28,7 @@ namespace CaixaEletronico
 			{
 				int valorRestante = valor;
 				Nota nota = MaiorNotaDisponivel();
-				while ((valorRestante >= menorNota.Valor) && (nota != null)) 
+				while ((valorRestante >= menorNota.Valor) && (nota != null))
 				{
 					int quantidade = (valorRestante / nota.Valor);
 					valorRestante -= (quantidade * nota.Valor);
@@ -46,12 +46,12 @@ namespace CaixaEletronico
 
 		private Nota ObterMaiorNotaMenorQueAtual(Nota nota)
 		{
-			return notasDisponiveis.Where(n => n.Valor < nota.Valor).Max();
+			return notasDisponiveis.Where(n => n.Valor < nota.Valor).Max(n => n.Valor);
 		}
 
 		public Nota MenorNotaDisponivel()
 		{
-			Nota menorNota = notasDisponiveis.Min();
+			Nota menorNota = notasDisponiveis.Min(n => n.Valor);
 
 			if (menorNota == null)
 				throw new ArgumentNullException("NotasDisponiveis", "As cédulas disponiveis para saque não foram inicializadas!");
@@ -61,7 +61,7 @@ namespace CaixaEletronico
 
 		public Nota MaiorNotaDisponivel()
 		{
-			Nota maiorNota = notasDisponiveis.Max();
+			Nota maiorNota = notasDisponiveis.Max(n => n.Valor);
 
 			if (maiorNota == null)
 				throw new ArgumentNullException("NotasDisponiveis", "As cédulas disponiveis para saque não foram inicializadas!");

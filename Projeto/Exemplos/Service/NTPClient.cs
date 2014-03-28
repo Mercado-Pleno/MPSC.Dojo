@@ -1,12 +1,12 @@
-﻿namespace MP.LBJC.Utils
-{
-	using System;
-	using System.IO;
-	using System.Net;
-	using System.Runtime.InteropServices;
-	using System.Text;
-	using MP.LBJC.ServicoWindows.Interface;
+﻿using System;
+using System.IO;
+using System.Net;
+using System.Runtime.InteropServices;
+using System.Text;
+using MP.LBJC.ServicoWindows.Interface;
 
+namespace MP.LBJC.Utils
+{
 	public class NTPClient : IProcessador
 	{
 		[DllImport("kernel32.dll")]

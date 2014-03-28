@@ -43,6 +43,9 @@
     <Reference Include="MP.LBJC.ServicoWindows">
       <HintPath>..\FrameWork\MP.LBJC.ServicoWindows.dll</HintPath>
     </Reference>
+    <Reference Include="MP.LBJC.System.Linq.Framework2_0">
+      <HintPath>..\FrameWork\MP.LBJC.System.Linq.Framework2_0.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
@@ -79,7 +82,6 @@
     <Compile Include="PrincipiosSOLID\3LiskovSubstitution\Imposto.cs" />
     <Compile Include="PrincipiosSOLID\3LiskovSubstitution\Produto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reflection\UsandoRecursosDoLinqNoFramework2_0.cs" />
     <Compile Include="Service\ExtensionMethods.cs" />
     <Compile Include="Service\NTPClient.cs" />
     <Compile Include="Transformacao\TransformacaoDeDadosParaDTO.cs" />
