@@ -9,59 +9,59 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 	public class EspiralTest
 	{
 		#region Matrizes de 1 Linha
-		private const int[,] matriz_1x1 = 
+		private static readonly int[,] matriz_1x1 = 
 		{
 			{1}
 		};
-		private static int[,] matriz_1x2 = 
+		private static readonly int[,] matriz_1x2 = 
 		{
 			{1, 2}
 		};
-		private static int[,] matriz_1x3 = 
+		private static readonly int[,] matriz_1x3 = 
 		{
 			{1, 2, 3}
 		};
-		private static int[,] matriz_1x4 = 
+		private static readonly int[,] matriz_1x4 = 
 		{
 			{1, 2, 3, 4}
 		};
-		private static int[,] matriz_1x5 = 
+		private static readonly int[,] matriz_1x5 = 
 		{
 			{1, 2, 3, 4, 5}
 		};
-		private static int[,] matriz_1x6 = 
+		private static readonly int[,] matriz_1x6 = 
 		{
 			{1, 2, 3, 4, 5, 6}
 		};
 		#endregion
 
 		#region Matrizes de 2 Linhas
-		private static int[,] matriz_2x1 = 
+		private static readonly int[,] matriz_2x1 = 
 		{
 			{1},
 			{2}
 		};
-		private static int[,] matriz_2x2 = 
+		private static readonly int[,] matriz_2x2 = 
 		{
 			{1, 2},
 			{4, 3}
 		};
-		private static int[,] matriz_2x3 = 
+		private static readonly int[,] matriz_2x3 = 
 		{
 			{1, 2, 3},
 			{6, 5, 4}
 		};
-		private static int[,] matriz_2x4 = 
+		private static readonly int[,] matriz_2x4 = 
 		{
 			{1, 2, 3, 4},
 			{8, 7, 6, 5}
 		};
-		private static int[,] matriz_2x5 = 
+		private static readonly int[,] matriz_2x5 = 
 		{
 			{01, 2, 3, 4, 5},
 			{10, 9, 8, 7, 6}
 		};
-		private static int[,] matriz_2x6 = 
+		private static readonly int[,] matriz_2x6 = 
 		{
 			{01, 02, 03, 4, 5, 6},
 			{12, 11, 10, 9, 8, 7}
@@ -69,37 +69,37 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		#endregion
 
 		#region Matrizes de 3 Linhas
-		private static int[,] matriz_3x1 = 
+		private static readonly int[,] matriz_3x1 = 
 		{
 			{1},
 			{2},
             {3},
 		};
-		private static int[,] matriz_3x2 = 
+		private static readonly int[,] matriz_3x2 = 
 		{
 			{1, 2},
 			{6, 3},
 			{5, 4},
 		};
-		private static int[,] matriz_3x3 = 
+		private static readonly int[,] matriz_3x3 = 
 		{
 			{1, 2, 3},
 			{8, 9, 4},
 			{7, 6, 5},
 		};
-		private static int[,] matriz_3x4 = 
+		private static readonly int[,] matriz_3x4 = 
 		{
 			{01, 02, 03, 04},
 			{10, 11, 12, 05},
 			{09, 08, 07, 06},
 		};
-		private static int[,] matriz_3x5 = 
+		private static readonly int[,] matriz_3x5 = 
 		{
 			{01, 02, 03, 04, 05},
 			{12, 13, 14, 15, 06},
 			{11, 10, 09, 08, 07},
 		};
-		private static int[,] matriz_3x6 = 
+		private static readonly int[,] matriz_3x6 = 
 		{
 			{01, 02, 03, 04, 05, 06},
 			{14, 15, 16, 17, 18, 07},
@@ -108,42 +108,42 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		#endregion
 
 		#region Matrizes de 4 Linhas
-		private static int[,] matriz_4x1 = 
+		private static readonly int[,] matriz_4x1 = 
 		{
 			{1},
 			{2},
             {3},
             {4},
 		};
-		private static int[,] matriz_4x2 = 
+		private static readonly int[,] matriz_4x2 = 
 		{
 			{1, 2},
 			{8, 3},
 			{7, 4},
 			{6, 5},
 		};
-		private static int[,] matriz_4x3 = 
+		private static readonly int[,] matriz_4x3 = 
 		{
 			{01, 02, 03},
 			{10, 11, 04},
 			{09, 12, 05},
 			{08, 07, 06},
 		};
-		private static int[,] matriz_4x4 = 
+		private static readonly int[,] matriz_4x4 = 
 		{
 			{01, 02, 03, 04},
 			{12, 13, 14, 05},
 			{11, 16, 15, 06},
 			{10, 09, 08, 07},
 		};
-		private static int[,] matriz_4x5 = 
+		private static readonly int[,] matriz_4x5 = 
 		{
 			{01, 02, 03, 04, 05},
 			{14, 15, 16, 17, 06},
 			{13, 20, 19, 18, 07},
 			{12, 11, 10, 09, 08},
 		};
-		private static int[,] matriz_4x6 = 
+		private static readonly int[,] matriz_4x6 = 
 		{
 			{01, 02, 03, 04, 05, 06},
 			{16, 17, 18, 19, 20, 07},
@@ -154,7 +154,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		#endregion
 
 		#region Matrizes de 5 Linhas
-		private static int[,] matriz_5x1 = 
+		private static readonly int[,] matriz_5x1 = 
 		{
 			{1},
 			{2},
@@ -163,7 +163,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
             {5},
 		};
 
-		private static int[,] matriz_5x2 = 
+		private static readonly int[,] matriz_5x2 = 
 		{
 			{01, 02},
 			{10, 03},
@@ -172,7 +172,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			{07, 06},
 		};
 
-		private static int[,] matriz_5x3 = 
+		private static readonly int[,] matriz_5x3 = 
 		{
 			{01, 02, 03},
 			{12, 13, 04},
@@ -181,7 +181,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
             {09, 08, 07},
 		};
 
-		private static int[,] matriz_5x4 = 
+		private static readonly int[,] matriz_5x4 = 
 		{
 			{01, 02, 03, 04},
 			{14, 15, 16, 05},
@@ -190,7 +190,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			{11, 10, 09, 08},
 		};
 
-		private static int[,] matriz_5x5 = 
+		private static readonly int[,] matriz_5x5 = 
 		{
 			{01, 02, 03, 04, 05},
 			{16, 17, 18, 19, 06},
@@ -199,7 +199,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			{13, 12, 11, 10, 09},
 		};
 
-		private static int[,] matriz_5x6 = 
+		private static readonly int[,] matriz_5x6 = 
 		{
 			{01, 02, 03, 04, 05, 06},
 			{18, 19, 20, 21, 22 ,07},
@@ -210,7 +210,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		#endregion
 
 		#region Matrizes de 6 Linhas
-		private static int[,] matriz_6x1 = 
+		private static readonly int[,] matriz_6x1 = 
 		{
 			{1},
 			{2},
@@ -220,7 +220,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
             {6},
 		};
 
-		private static int[,] matriz_6x2 = 
+		private static readonly int[,] matriz_6x2 = 
 		{
 			{01, 02},
 			{12, 03},
@@ -230,7 +230,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			{08, 07},
 		};
 
-		private static int[,] matriz_6x3 = 
+		private static readonly int[,] matriz_6x3 = 
 		{
 			{01, 02, 03},
 			{14, 15, 04},
@@ -240,7 +240,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
             {10, 09, 08},
 		};
 
-		private static int[,] matriz_6x4 = 
+		private static readonly int[,] matriz_6x4 = 
 		{
 			{01, 02, 03, 04},
 			{16, 17, 18, 05},
@@ -250,7 +250,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
     		{12, 11, 10, 09},
 		};
 
-		private static int[,] matriz_6x5 = 
+		private static readonly int[,] matriz_6x5 = 
 		{
 			{01, 02, 03, 04, 05},
 			{18, 19, 20, 21, 06},
@@ -260,7 +260,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			{14, 13, 12, 11, 10},
 		};
 
-		private static int[,] matriz_6x6 = 
+		private static readonly int[,] matriz_6x6 = 
 		{
 			{01, 02, 03, 04, 05, 06},
 			{20, 21, 22, 23, 24 ,07},
@@ -290,7 +290,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_1Por1()
+		public void DeveMontarMatrizEspiral_1x1()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(1, 1);
@@ -298,7 +298,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_1Por2()
+		public void DeveMontarMatrizEspiral_1x2()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(1, 2);
@@ -306,7 +306,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_1Por3()
+		public void DeveMontarMatrizEspiral_1x3()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(1, 3);
@@ -314,7 +314,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_1Por4()
+		public void DeveMontarMatrizEspiral_1x4()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(1, 4);
@@ -322,7 +322,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_1Por5()
+		public void DeveMontarMatrizEspiral_1x5()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(1, 5);
@@ -330,7 +330,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_1Por6()
+		public void DeveMontarMatrizEspiral_1x6()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(1, 6);
@@ -338,7 +338,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_2Por1()
+		public void DeveMontarMatrizEspiral_2x1()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(2, 1);
@@ -346,7 +346,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_2Por2()
+		public void DeveMontarMatrizEspiral_2x2()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(2, 2);
@@ -354,7 +354,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_2Por3()
+		public void DeveMontarMatrizEspiral_2x3()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(2, 3);
@@ -362,7 +362,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_2Por4()
+		public void DeveMontarMatrizEspiral_2x4()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(2, 4);
@@ -370,7 +370,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_2Por5()
+		public void DeveMontarMatrizEspiral_2x5()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(2, 5);
@@ -378,7 +378,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_2Por6()
+		public void DeveMontarMatrizEspiral_2x6()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(2, 6);
@@ -386,7 +386,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_3Por1()
+		public void DeveMontarMatrizEspiral_3x1()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(3, 1);
@@ -394,7 +394,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_3Por2()
+		public void DeveMontarMatrizEspiral_3x2()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(3, 2);
@@ -402,7 +402,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_3Por3()
+		public void DeveMontarMatrizEspiral_3x3()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(3, 3);
@@ -410,7 +410,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_3Por4()
+		public void DeveMontarMatrizEspiral_3x4()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(3, 4);
@@ -418,7 +418,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_3Por5()
+		public void DeveMontarMatrizEspiral_3x5()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(3, 5);
@@ -426,7 +426,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_3Por6()
+		public void DeveMontarMatrizEspiral_3x6()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(3, 6);
@@ -434,7 +434,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_4Por1()
+		public void DeveMontarMatrizEspiral_4x1()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(4, 1);
@@ -442,7 +442,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_4Por2()
+		public void DeveMontarMatrizEspiral_4x2()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(4, 2);
@@ -450,7 +450,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_4Por3()
+		public void DeveMontarMatrizEspiral_4x3()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(4, 3);
@@ -458,7 +458,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_4Por4()
+		public void DeveMontarMatrizEspiral_4x4()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(4, 4);
@@ -466,7 +466,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_4Por5()
+		public void DeveMontarMatrizEspiral_4x5()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(4, 5);
@@ -474,7 +474,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_4Por6()
+		public void DeveMontarMatrizEspiral_4x6()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(4, 6);
@@ -482,7 +482,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_5Por1()
+		public void DeveMontarMatrizEspiral_5x1()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(5, 1);
@@ -490,7 +490,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_5Por2()
+		public void DeveMontarMatrizEspiral_5x2()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(5, 2);
@@ -498,7 +498,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_5Por3()
+		public void DeveMontarMatrizEspiral_5x3()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(5, 3);
@@ -506,7 +506,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_5Por4()
+		public void DeveMontarMatrizEspiral_5x4()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(5, 4);
@@ -514,7 +514,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_5Por5()
+		public void DeveMontarMatrizEspiral_5x5()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(5, 5);
@@ -522,7 +522,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_5Por6()
+		public void DeveMontarMatrizEspiral_5x6()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(5, 6);
@@ -531,7 +531,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_6Por1()
+		public void DeveMontarMatrizEspiral_6x1()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(6, 1);
@@ -539,7 +539,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_6Por2()
+		public void DeveMontarMatrizEspiral_6x2()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(6, 2);
@@ -547,7 +547,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_6Por3()
+		public void DeveMontarMatrizEspiral_6x3()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(6, 3);
@@ -555,7 +555,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_6Por4()
+		public void DeveMontarMatrizEspiral_6x4()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(6, 4);
@@ -563,7 +563,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_6Por5()
+		public void DeveMontarMatrizEspiral_6x5()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(6, 5);
@@ -571,7 +571,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_6Por6()
+		public void DeveMontarMatrizEspiral_6x6()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(6, 6);
@@ -579,7 +579,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_50Por5()
+		public void DeveMontarMatrizEspiral_50x5()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(50, 5);
@@ -589,7 +589,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 		}
 
 		[TestMethod]
-		public void DeveMontarMatrizEspiral_2Por99()
+		public void DeveMontarMatrizEspiral_2x99()
 		{
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(2, 99);
