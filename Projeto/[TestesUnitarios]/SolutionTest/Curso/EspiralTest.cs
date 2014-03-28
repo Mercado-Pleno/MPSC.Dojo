@@ -584,7 +584,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(50, 5);
 			Assert.AreEqual(250, matriz.Cast<int>().Count(i => i > 0));
-			Assert.AreEqual(250, matriz.Cast<int>().Max(i => i));
+			Assert.AreEqual(250, matriz.Cast<int>().Max());
 			Assert.AreEqual(250, matriz.Cast<int>().Distinct().Count());
 		}
 
@@ -594,7 +594,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			var espiral = new Espiral();
 			var matriz = espiral.GerarMatrizEspiral(2, 99);
 			Assert.AreEqual(198, matriz.Cast<int>().Count(i => i > 0));
-			Assert.AreEqual(198, matriz.Cast<int>().Max(i => i));
+			Assert.AreEqual(198, matriz.Cast<int>().Max());
 			Assert.AreEqual(198, matriz.Cast<int>().Distinct().Count());
 		}
 	}
