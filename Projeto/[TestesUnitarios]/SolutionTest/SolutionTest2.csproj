@@ -8,8 +8,8 @@
     <ProjectGuid>{AE646733-C11C-484B-B793-E7E9C5ED923C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MPSC.Library.TestesUnitarios.SolutionTest</RootNamespace>
-    <AssemblyName>MPSC.Library.TestesUnitarios.SolutionTest2</AssemblyName>
+    <RootNamespace>MP.Library.TestesUnitarios.SolutionTest</RootNamespace>
+    <AssemblyName>MP.Library.TestesUnitarios.SolutionTest2</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>

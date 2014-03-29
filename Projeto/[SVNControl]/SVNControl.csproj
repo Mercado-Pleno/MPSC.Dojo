@@ -8,8 +8,8 @@
     <ProjectGuid>{1310BE88-E9B8-436D-92DE-D594CACEA81E}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MP.SVNControl</RootNamespace>
-    <AssemblyName>MP.SVNControl</AssemblyName>
+    <RootNamespace>MP.Library.SVNControl</RootNamespace>
+    <AssemblyName>MP.Library.SVNControl</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>

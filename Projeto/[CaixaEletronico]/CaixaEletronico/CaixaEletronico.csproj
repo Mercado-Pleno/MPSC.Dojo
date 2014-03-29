@@ -8,8 +8,8 @@
     <ProjectGuid>{378955D6-7B4F-46FD-9AC0-FE50F6383518}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CaixaEletronico</RootNamespace>
-    <AssemblyName>CaixaEletronico</AssemblyName>
+    <RootNamespace>MP.Library.CaixaEletronico</RootNamespace>
+    <AssemblyName>MP.Library.CaixaEletronico</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

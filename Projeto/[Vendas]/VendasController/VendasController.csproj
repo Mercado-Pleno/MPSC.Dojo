@@ -8,8 +8,8 @@
     <ProjectGuid>{59B29EA4-6134-4E52-BE2A-C89B3528B080}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VendasController</RootNamespace>
-    <AssemblyName>VendasController</AssemblyName>
+    <RootNamespace>MP.Library.VendasController</RootNamespace>
+    <AssemblyName>MP.Library.VendasController</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -50,6 +50,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

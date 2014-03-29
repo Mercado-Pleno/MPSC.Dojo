@@ -8,8 +8,8 @@
     <ProjectGuid>{4E944FFB-9CEA-4716-948F-9F6D6F271151}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AutoCompletar</RootNamespace>
-    <AssemblyName>AutoCompletar</AssemblyName>
+    <RootNamespace>MP.Library.AutoCompletar</RootNamespace>
+    <AssemblyName>MP.Library.AutoCompletar</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

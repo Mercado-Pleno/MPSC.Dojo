@@ -8,8 +8,8 @@
     <ProjectGuid>{773A3340-447A-4EF7-83FA-DB3FDD1EB87C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VendasModel</RootNamespace>
-    <AssemblyName>VendasModel</AssemblyName>
+    <RootNamespace>MP.Library.VendasModel</RootNamespace>
+    <AssemblyName>MP.Library.VendasModel</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
