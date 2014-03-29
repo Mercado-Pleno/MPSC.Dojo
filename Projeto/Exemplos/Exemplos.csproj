@@ -82,6 +82,7 @@
     <Compile Include="PrincipiosSOLID\3LiskovSubstitution\Imposto.cs" />
     <Compile Include="PrincipiosSOLID\3LiskovSubstitution\Produto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestoesDojo\MatrizEspiral.cs" />
     <Compile Include="Service\ExtensionMethods.cs" />
     <Compile Include="Service\NTPClient.cs" />
     <Compile Include="Transformacao\TransformacaoDeDadosParaDTO.cs" />
@@ -99,6 +100,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="PrincipiosSOLID\2OpenClosed\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\[Aula]\Curso.csproj">
+      <Project>{11D9B5F9-3478-47CA-9445-ED102A18317E}</Project>
+      <Name>Curso</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
