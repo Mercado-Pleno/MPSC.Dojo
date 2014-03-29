@@ -37,11 +37,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
-      <Visible>False</Visible>
-    </CodeAnalysisDependentAssemblyPaths>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="CaixaEletronico\Nota100Test.cs" />
     <Compile Include="CaixaEletronico\Nota10Test.cs" />
     <Compile Include="CaixaEletronico\Nota200Test.cs" />
@@ -50,9 +45,9 @@
     <Compile Include="CaixaEletronico\Nota50Test.cs" />
     <Compile Include="CaixaEletronico\Nota5Test.cs" />
     <Compile Include="CaixaEletronico\NotaTest.cs" />
+    <Compile Include="CaixaEletronico\SaqueTest.cs" />
     <Compile Include="Curso\EspiralTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CaixaEletronico\SaqueTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\[Aula]\Curso.csproj">
@@ -65,11 +60,4 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
