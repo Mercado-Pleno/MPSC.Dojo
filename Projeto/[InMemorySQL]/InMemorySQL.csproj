@@ -8,8 +8,8 @@
     <ProjectGuid>{AB71FC5F-B42B-43F0-9754-6048A6866025}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MP.InMemorySQL</RootNamespace>
-    <AssemblyName>MP.InMemorySQL</AssemblyName>
+    <RootNamespace>MP.Library.InMemorySQL</RootNamespace>
+    <AssemblyName>MP.Library.InMemorySQL</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

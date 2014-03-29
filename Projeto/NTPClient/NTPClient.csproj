@@ -8,8 +8,8 @@
     <ProjectGuid>{240043CD-0CA6-447E-8BAA-8B421E3DF664}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NTPClient</RootNamespace>
-    <AssemblyName>NTPClient</AssemblyName>
+    <RootNamespace>MP.Library.NTPClient</RootNamespace>
+    <AssemblyName>MP.Library.NTPClient</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
