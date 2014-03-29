@@ -2,15 +2,6 @@
 
 namespace MPSC.Library.Aula.Curso.DojoOnLine
 {
-	public class Principal
-	{
-		static void Main(string[] args)
-		{
-			Espiral espiral = new Espiral();
-			var matriz = espiral.GerarMatrizEspiral(5, 6);
-		}
-	}
-
 	public class Espiral
 	{
 		public int[,] GerarMatrizEspiral(int quantidadeDeLinhas, int quantidadeDeColunas)
@@ -34,7 +25,21 @@ namespace MPSC.Library.Aula.Curso.DojoOnLine
 			return matriz;
 		}
 
-		class Parametro
+		public void Print(int[,] matriz)
+		{
+			var linhas = matriz.GetUpperBound(0);
+			var colunas = matriz.GetUpperBound(1);
+
+			Console.Clear();
+			for (int linha = 0; linha <= linhas; linha++)
+			{
+				for (int coluna = 0; coluna <= colunas; coluna++)
+					Console.Write(matriz[linha, coluna].ToString().PadLeft(4));
+				Console.WriteLine();
+			}
+		}
+
+		private class Parametro
 		{
 			private int direcao = 1;
 			public int inicio = 0;
@@ -64,21 +69,6 @@ namespace MPSC.Library.Aula.Curso.DojoOnLine
 			public Boolean OK()
 			{
 				return (posicao < termino) && ((direcao > 0) || (posicao >= inicio));
-			}
-		}
-
-		public void Print(int[,] matriz)
-		{
-			var linhas = matriz.GetUpperBound(0);
-			var colunas = matriz.GetUpperBound(1);
-
-			for (int linha = 0; linha <= linhas; linha++)
-			{
-				for (int coluna = 0; coluna <= colunas; coluna++)
-				{
-					Console.Write(matriz[linha, coluna].ToString().PadLeft(3));
-				}
-				Console.WriteLine();
 			}
 		}
 	}
