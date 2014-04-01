@@ -47,4 +47,28 @@ namespace MP.Library.Aula.Curso
 		public Numero5() : base(5, "V") { }
 	}
 
+	public class Numero6 : NumeroRomano
+	{
+		public Numero6() : base(new Numero5(), new Numero1()) { }
+	}
+
+	public class Numero7 : NumeroRomano
+	{
+		public Numero7() : base(new Numero5(), new Numero2()) { }
+	}
+
+	public class Numero8 : NumeroRomano
+	{
+		public Numero8() : base(new Numero5(), new Numero3()) { }
+	}
+
+	public class Numero9 : NumeroRomano
+	{
+		public Numero9() : base(new Numero1(), new Numero10()) { }
+	}
+
+	public class Numero10 : NumeroRomano
+	{
+		public Numero10() : base(10, "X") { }
+	}
 }
