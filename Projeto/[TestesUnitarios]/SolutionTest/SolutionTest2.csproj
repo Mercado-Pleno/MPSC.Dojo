@@ -65,6 +65,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\FrameWork\MP.LBJC.System.Linq.Framework2_0.dll</HintPath>
     </Reference>
+    <Reference Include="nunit.framework, Version=2.5.8.10295, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +82,7 @@
     <Compile Include="CaixaEletronico\NotaTest.cs" />
     <Compile Include="CaixaEletronico\SaqueTest.cs" />
     <Compile Include="Curso\EspiralTest.cs" />
+    <Compile Include="Curso\NumeroRomanoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
