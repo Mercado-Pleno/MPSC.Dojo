@@ -2,10 +2,12 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MPSC.Library.Aula.Curso.DojoOnLine;
+using NUnit.Framework;
+using Assert = NUnit.Framework.Assert;
 
 namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 {
-	[TestClass]
+	[TestClass, TestFixture]
 	public class EspiralTest
 	{
 		#region Matrizes de 1 Linha
@@ -289,7 +291,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			return retorno;
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_1x1()
 		{
 			var espiral = new Espiral();
@@ -297,7 +299,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_1x1, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_1x2()
 		{
 			var espiral = new Espiral();
@@ -305,7 +307,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_1x2, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_1x3()
 		{
 			var espiral = new Espiral();
@@ -313,7 +315,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_1x3, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_1x4()
 		{
 			var espiral = new Espiral();
@@ -321,7 +323,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_1x4, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_1x5()
 		{
 			var espiral = new Espiral();
@@ -329,7 +331,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_1x5, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_1x6()
 		{
 			var espiral = new Espiral();
@@ -337,7 +339,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_1x6, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_2x1()
 		{
 			var espiral = new Espiral();
@@ -345,7 +347,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_2x1, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_2x2()
 		{
 			var espiral = new Espiral();
@@ -353,7 +355,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_2x2, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_2x3()
 		{
 			var espiral = new Espiral();
@@ -361,7 +363,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_2x3, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_2x4()
 		{
 			var espiral = new Espiral();
@@ -369,7 +371,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_2x4, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_2x5()
 		{
 			var espiral = new Espiral();
@@ -377,7 +379,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_2x5, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_2x6()
 		{
 			var espiral = new Espiral();
@@ -385,7 +387,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_2x6, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_3x1()
 		{
 			var espiral = new Espiral();
@@ -393,7 +395,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_3x1, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_3x2()
 		{
 			var espiral = new Espiral();
@@ -401,7 +403,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_3x2, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_3x3()
 		{
 			var espiral = new Espiral();
@@ -409,7 +411,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_3x3, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_3x4()
 		{
 			var espiral = new Espiral();
@@ -417,7 +419,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_3x4, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_3x5()
 		{
 			var espiral = new Espiral();
@@ -425,7 +427,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_3x5, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_3x6()
 		{
 			var espiral = new Espiral();
@@ -433,7 +435,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_3x6, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_4x1()
 		{
 			var espiral = new Espiral();
@@ -441,7 +443,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_4x1, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_4x2()
 		{
 			var espiral = new Espiral();
@@ -449,7 +451,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_4x2, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_4x3()
 		{
 			var espiral = new Espiral();
@@ -457,7 +459,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_4x3, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_4x4()
 		{
 			var espiral = new Espiral();
@@ -465,7 +467,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_4x4, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_4x5()
 		{
 			var espiral = new Espiral();
@@ -473,7 +475,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_4x5, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_4x6()
 		{
 			var espiral = new Espiral();
@@ -481,7 +483,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_4x6, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_5x1()
 		{
 			var espiral = new Espiral();
@@ -489,7 +491,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_5x1, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_5x2()
 		{
 			var espiral = new Espiral();
@@ -497,7 +499,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_5x2, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_5x3()
 		{
 			var espiral = new Espiral();
@@ -505,7 +507,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_5x3, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_5x4()
 		{
 			var espiral = new Espiral();
@@ -513,7 +515,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_5x4, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_5x5()
 		{
 			var espiral = new Espiral();
@@ -521,7 +523,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_5x5, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_5x6()
 		{
 			var espiral = new Espiral();
@@ -530,7 +532,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_6x1()
 		{
 			var espiral = new Espiral();
@@ -538,7 +540,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_6x1, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_6x2()
 		{
 			var espiral = new Espiral();
@@ -546,7 +548,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_6x2, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_6x3()
 		{
 			var espiral = new Espiral();
@@ -554,7 +556,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_6x3, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_6x4()
 		{
 			var espiral = new Espiral();
@@ -562,7 +564,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_6x4, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_6x5()
 		{
 			var espiral = new Espiral();
@@ -570,7 +572,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_6x5, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_6x6()
 		{
 			var espiral = new Espiral();
@@ -578,7 +580,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.IsTrue(CompararMatrizes(matriz_6x6, matriz), "Matrizes com tamanhos incompatíveis.");
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_50x5()
 		{
 			var espiral = new Espiral();
@@ -588,7 +590,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest.DojoOnLine
 			Assert.AreEqual(250, matriz.Cast<int>().Distinct().Count());
 		}
 
-		[TestMethod]
+		[TestMethod, Test]
 		public void DeveMontarMatrizEspiral_2x99()
 		{
 			var espiral = new Espiral();
