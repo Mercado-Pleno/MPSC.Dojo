@@ -13,8 +13,8 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 		{
 			try
 			{
-				var IoC = new IoC();
-				IoC.Map<IPessoa, Pessoa>()
+				var vIoC = new IoC();
+				vIoC.Map<IPessoa, Pessoa>()
 					.Map<IAnimal, Animal>()
 					.Map<IPessoa, Pessoa>();
 
@@ -35,8 +35,8 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 		{
 			try
 			{
-				var IoC = new IoC();
-				IoC.Map<IPessoa, Pessoa>()
+				var vIoC = new IoC();
+				vIoC.Map<IPessoa, Pessoa>()
 					.Map<IAnimal, Animal>()
 					.Map<IVeiculo, Pessoa>();
 
@@ -55,11 +55,11 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 		[TestMethod, Test]
 		public void Se_Solicitar_Uma_Clase_Que_Implemente_IPessoa_Deve_Retornar_Uma_Instancia_De_Pessoa()
 		{
-			var IoC = new IoC();
-			IoC.Map<IPessoa, Pessoa>()
+			var vIoC = new IoC();
+			vIoC.Map<IPessoa, Pessoa>()
 				.Map<IAnimal, Animal>();
 
-			var vObj = IoC.New<IPessoa>();
+			var vObj = vIoC.New<IPessoa>();
 
 			AssegureQue.NaoEhNulo(vObj);
 			AssegureQue.EhDoTipo<IPessoa>(vObj);
@@ -69,8 +69,8 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 		[TestMethod, Test]
 		public void Se_Solicitar_Uma_Clase_Que_Implemente_IAnimal_Deve_Retornar_Uma_Instancia_De_Animal()
 		{
-			var vIoC = CID.IoC
-				.Map<IPessoa, Pessoa>()
+			var vIoC = new IoC();
+			vIoC.Map<IPessoa, Pessoa>()
 				.Map<IAnimal, Animal>();
 
 			var vObj = vIoC.New<IAnimal>();
@@ -83,11 +83,11 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 		[TestMethod, Test]
 		public void Se_Solicitar_Uma_Clase_Que_Implemente_IAnimal_Com_Parametro_Deve_Retornar_Uma_Instancia_De_Animal_Com_Parametro()
 		{
-			var IoC = new IoC();
-			IoC.Map<IPessoa, Pessoa>()
+			var vIoC = new IoC();
+			vIoC.Map<IPessoa, Pessoa>()
 				.Map<IAnimal, Animal>();
 
-			var vObj = CID.IoC.New<IAnimal>("Cachorro");
+			var vObj = vIoC.New<IAnimal>("Cachorro");
 
 			AssegureQue.NaoEhNulo(vObj);
 			AssegureQue.EhDoTipo<IAnimal>(vObj);
