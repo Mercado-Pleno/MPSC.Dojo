@@ -38,7 +38,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 				var IoC = new IoC();
 				IoC.Map<IPessoa, Pessoa>()
 					.Map<IAnimal, Animal>()
-					.Map<IVeiculo, Carro>();
+					.Map<IVeiculo, Pessoa>();
 
 				AssegureQue.EsteMetodoNaoDeveraSerExecutado();
 			}
