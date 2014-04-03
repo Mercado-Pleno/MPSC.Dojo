@@ -118,9 +118,6 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 		{
 			throw new ExecucaoDeCodigoProibidoException();
 		}
-
-
-
 	}
 
 	public interface IVeiculo { }
