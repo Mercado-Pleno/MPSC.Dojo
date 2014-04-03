@@ -2,6 +2,9 @@
 {
 	using System;
 
+	/// <summary>
+	/// Container de Inversão de Dependência
+	/// </summary>
 	public class CID : IoC
 	{
 		private static readonly Object _lock = new Object();
