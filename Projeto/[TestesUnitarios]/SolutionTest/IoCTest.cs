@@ -84,8 +84,8 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 		public void Se_Solicitar_Uma_Clase_Que_Implemente_IAnimal_Com_Parametro_Deve_Retornar_Uma_Instancia_De_Animal_Com_Parametro()
 		{
 			var IoC = new IoC();
-			IoC.Map<IPessoa, Pessoa>(false)
-				.Map<IAnimal, Animal>(false);
+			IoC.Map<IPessoa, Pessoa>()
+				.Map<IAnimal, Animal>();
 
 			var vObj = CID.IoC.New<IAnimal>("Cachorro");
 
@@ -120,23 +120,5 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 		}
 	}
 
-	public interface IVeiculo { }
-	public interface ICarro { }
-	public interface IPessoa { }
-	public interface IAnimal : IPessoa { /* String Nome { get; set; } */ }
 
-	public class Veiculo : IVeiculo { }
-	public class Carro : ICarro { }
-	public class Pessoa : IPessoa { }
-	public class Animal : IAnimal
-	{
-		public String Nome { get; set; }
-		public Animal() { }
-		public Animal(int a, int b) { }
-		public Animal(String nome)
-		{
-			Nome = nome;
-		}
-	
-	}
 }
