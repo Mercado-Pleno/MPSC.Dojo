@@ -21,14 +21,19 @@
 			if (dic.ContainsKey(Interface))
 				throw new ArgumentException(String.Format("A Interface {0} já está mapeada para a classe {1}", Interface.Name, Get(Interface).Type.Name));
 
-			if (!Classe.GetInterfaces().Any(i => i == Interface) && !Classe.IsSubclassOf(Interface) && (Classe == Interface && !RetornaSemMapeamento))
-				throw new ArgumentException(String.Format("A Classe {0} não {1} {2}", Classe.Name, Interface.IsInterface ? "implementa a interface" : "é uma SubClasse de", Interface.Name));
-
 			if (Classe.IsInterface)
 				throw new ArgumentException(String.Format("O Parâmetro {0} deve ser uma classe concreta", Classe.Name));
 
 			if (Classe.IsAbstract)
 				throw new ArgumentException(String.Format("A Classe {0} não pode ser abstrata", Classe.Name));
+
+			if (Classe == Interface)
+			{
+				if (!RetornaSemMapeamento)
+					throw new ArgumentException(String.Format("A classe {0} não pode ser do mesmo tipo da interface", Classe.Name));
+			}
+			else if (!Classe.GetInterfaces().Any(i => i == Interface) && !Classe.IsSubclassOf(Interface))
+				throw new ArgumentException(String.Format("A Classe {0} não {1} {2}", Classe.Name, Interface.IsInterface ? "implementa a interface" : "é uma SubClasse de", Interface.Name));
 
 			if (!Classe.GetConstructors().Any(c => c.GetParameters().Length == parametrosDefault.Length))
 				throw new ArgumentException(String.Format("Você Precisa definir Parâmetros Default para o construtor da classe {0}", Classe.Name));
