@@ -83,9 +83,14 @@
     <Compile Include="CaixaEletronico\SaqueTest.cs" />
     <Compile Include="Curso\EspiralTest.cs" />
     <Compile Include="Curso\NumeroRomanoTest.cs" />
+    <Compile Include="IoCTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ServiceBus\ServiceBus.csproj">
+      <Project>{4EE3C004-4028-4201-A540-D2E3E2E0D98E}</Project>
+      <Name>ServiceBus</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\[Aula]\Curso.csproj">
       <Project>{11D9B5F9-3478-47CA-9445-ED102A18317E}</Project>
       <Name>Curso</Name>
