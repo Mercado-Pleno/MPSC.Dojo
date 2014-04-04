@@ -1,14 +1,13 @@
 ﻿using System;
 using LBJC;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NUnit.Framework;
 
 namespace MP.Library.TestesUnitarios.SolutionTest
 {
-	[TestClass, TestFixture]
+	[TestClass]
 	public class IoCTest
 	{
-		[TestMethod, Test]
+		[TestMethod]
 		public void Se_Tentar_Mapear_Uma_Classe_Para_Uma_Interface_Ja_Mapeada_Deve_Retornar_Uma_Excecao()
 		{
 			try
@@ -30,7 +29,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 			}
 		}
 
-		[TestMethod, Test]
+		[TestMethod]
 		public void Se_Tentar_Mapear_Uma_Classe_Que_Nao_Implementa_A_Interface_Deve_Retornar_Uma_Excecao()
 		{
 			try
@@ -52,7 +51,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 			}
 		}
 
-		[TestMethod, Test]
+		[TestMethod]
 		public void Se_Solicitar_Uma_Clase_Que_Implemente_IPessoa_Deve_Retornar_Uma_Instancia_De_Pessoa()
 		{
 			var vIoC = new IoC();
@@ -66,7 +65,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 			AssegureQue.EhDoTipo<Pessoa>(vObj);
 		}
 
-		[TestMethod, Test]
+		[TestMethod]
 		public void Se_Solicitar_Uma_Clase_Que_Implemente_IAnimal_Deve_Retornar_Uma_Instancia_De_Animal()
 		{
 			var vIoC = new IoC();
@@ -80,7 +79,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 			AssegureQue.EhDoTipo<Animal>(vObj);
 		}
 
-		[TestMethod, Test]
+		[TestMethod]
 		public void Se_Solicitar_Uma_Clase_Que_Implemente_IAnimal_Com_Parametro_Deve_Retornar_Uma_Instancia_De_Animal_Com_Parametro()
 		{
 			var vIoC = new IoC();
@@ -94,7 +93,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 			AssegureQue.EhDoTipo<Animal>(vObj);
 		}
 
-		[TestMethod, Test]
+		[TestMethod]
 		public void Se_Tentar_Instanciar_Uma_Classe_Que_Nao_Esteja_Mapeada_e_Se_Ignora_o_Erro_Deve_Retornar_Uma_Instancia()
 		{
 			var vIoC = new IoC(true);
@@ -103,7 +102,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 			AssegureQue.NaoEhNulo(agora);
 		}
 
-		[TestMethod, Test]
+		[TestMethod]
 		public void Se_Tentar_Instanciar_Uma_Classe_Que_Nao_Esteja_Mapeada_e_Se_Nao_Ignora_o_Erro_Deve_Retornar_Uma_Exception()
 		{
 			try
