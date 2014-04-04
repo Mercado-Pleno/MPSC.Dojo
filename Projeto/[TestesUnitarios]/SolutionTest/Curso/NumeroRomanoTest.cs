@@ -1,14 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MP.Library.Aula.Curso;
-using NUnit.Framework;
-using Assert = NUnit.Framework.Assert;
 
 namespace MP.Library.TestesUnitarios.SolutionTest.Curso
 {
-	[TestClass, TestFixture]
+	[TestClass]
 	public class NumeroRomanoTest
 	{
-		[TestMethod, Test]
+		[TestMethod]
 		public void Se_Instanciar_O_Numero_1_Deve_Retornar_I_eo_Valor_Deve_Ser_1()
 		{
 			var numeroRomano = new Numero1();
@@ -16,7 +14,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest.Curso
 			Assert.AreEqual("I", numeroRomano.Caracter, "Caractere Inválido");
 		}
 
-		[TestMethod, Test]
+		[TestMethod]
 		public void Se_Instanciar_O_Numero_2_Deve_Retornar_II_eo_Valor_Deve_Ser_2()
 		{
 			var numeroRomano = new Numero2();
@@ -24,7 +22,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest.Curso
 			Assert.AreEqual("II", numeroRomano.Caracter, "Caractere Inválido");
 		}
 
-		[TestMethod, Test]
+		[TestMethod]
 		public void Se_Instanciar_O_Numero_3_Deve_Retornar_III_eo_Valor_Deve_Ser_3()
 		{
 			var numeroRomano = new Numero3();
@@ -32,7 +30,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest.Curso
 			Assert.AreEqual("III", numeroRomano.Caracter, "Caractere Inválido");
 		}
 
-		[TestMethod, Test]
+		[TestMethod]
 		public void Se_Instanciar_O_Numero_4_Deve_Retornar_IV_eo_Valor_Deve_Ser_4()
 		{
 			var numeroRomano = new Numero4();
@@ -40,7 +38,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest.Curso
 			Assert.AreEqual("IV", numeroRomano.Caracter, "Caractere Inválido");
 		}
 
-		[TestMethod, Test]
+		[TestMethod]
 		public void Se_Instanciar_O_Numero_5_Deve_Retornar_V_eo_Valor_Deve_Ser_5()
 		{
 			var numeroRomano = new Numero5();
@@ -48,7 +46,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest.Curso
 			Assert.AreEqual("V", numeroRomano.Caracter, "Caractere Inválido");
 		}
 
-		[TestMethod, Test]
+		[TestMethod]
 		public void Se_Instanciar_O_Numero_6_Deve_Retornar_VI_eo_Valor_Deve_Ser_6()
 		{
 			var numeroRomano = new Numero6();
@@ -56,7 +54,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest.Curso
 			Assert.AreEqual("VI", numeroRomano.Caracter, "Caractere Inválido");
 		}
 
-		[TestMethod, Test]
+		[TestMethod]
 		public void Se_Instanciar_O_Numero_7_Deve_Retornar_VII_eo_Valor_Deve_Ser_7()
 		{
 			var numeroRomano = new Numero7();
@@ -64,7 +62,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest.Curso
 			Assert.AreEqual("VII", numeroRomano.Caracter, "Caractere Inválido");
 		}
 
-		[TestMethod, Test]
+		[TestMethod]
 		public void Se_Instanciar_O_Numero_8_Deve_Retornar_VIII_eo_Valor_Deve_Ser_8()
 		{
 			var numeroRomano = new Numero8();
@@ -72,7 +70,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest.Curso
 			Assert.AreEqual("VIII", numeroRomano.Caracter, "Caractere Inválido");
 		}
 
-		[TestMethod, Test]
+		[TestMethod]
 		public void Se_Instanciar_O_Numero_9_Deve_Retornar_IX_eo_Valor_Deve_Ser_9()
 		{
 			var numeroRomano = new Numero9();
@@ -80,7 +78,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest.Curso
 			Assert.AreEqual("IX", numeroRomano.Caracter, "Caractere Inválido");
 		}
 
-		[TestMethod, Test]
+		[TestMethod]
 		public void Se_Instanciar_O_Numero_10_Deve_Retornar_X_eo_Valor_Deve_Ser_10()
 		{
 			var numeroRomano = new Numero10();
