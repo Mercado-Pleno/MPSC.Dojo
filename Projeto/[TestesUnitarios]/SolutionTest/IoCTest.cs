@@ -111,7 +111,6 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 				var vIoC = new IoC(false);
 				var agora = vIoC.New<DateTime>(1);
 
-				AssegureQue.NaoEhNulo(agora);
 				AssegureQue.EsteMetodoNaoSeraExecutado();
 			}
 			catch (AssegureQue.ExecucaoDeCodigoProibidoException e)
