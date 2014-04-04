@@ -54,7 +54,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LBJC\CID.cs" />
     <Compile Include="LBJC\IoC.cs" />
     <Compile Include="LBJC\IIoC.cs" />
     <Compile Include="Principal.cs" />
