@@ -18,7 +18,7 @@
 				throw new ArgumentNullException("Classe");
 
 			if (dic.ContainsKey(Interface))
-				throw new ArgumentException(String.Format("A Interface {0} já está mapeada para a classe {1}", Interface.Name, Get(Interface, false, null).Type.Name));
+				throw new ArgumentException(String.Format("A Interface {0} já está mapeada para a classe {1}", Interface.Name, Get(Interface, false)));
 
 			if (Classe.IsInterface)
 				throw new ArgumentException(String.Format("O Parâmetro {0} deve ser uma classe concreta", Classe.Name));
@@ -42,7 +42,7 @@
 			return this;
 		}
 
-		protected virtual Mapa Get(Type type, Boolean disparaErroSeMapeamentoNaoExistir, Object[] parametros)
+		protected virtual Mapa Get(Type type, Boolean disparaErroSeMapeamentoNaoExistir, params Object[] parametros)
 		{
 			if (!dic.ContainsKey(type))
 			{
@@ -115,7 +115,7 @@
 
 		public virtual Type Get<T>()
 		{
-			return Get(typeof(T), _disparaErroSeMapeamentoNaoExistir, null).Type;
+			return Get(typeof(T), _disparaErroSeMapeamentoNaoExistir).Type;
 		}
 
 		public virtual T New<T>(params Object[] parametros)
