@@ -41,8 +41,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Curso", "[Aula]\Curso.cspro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionTest", "[TestesUnitarios]\SolutionTest\SolutionTest.csproj", "{345570C3-2354-4927-90C3-E4F38B247D31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionTest2", "[TestesUnitarios]\SolutionTest\SolutionTest2.csproj", "{AE646733-C11C-484B-B793-E7E9C5ED923C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -185,23 +183,12 @@ Global
 		{345570C3-2354-4927-90C3-E4F38B247D31}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{345570C3-2354-4927-90C3-E4F38B247D31}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{345570C3-2354-4927-90C3-E4F38B247D31}.Release|x86.ActiveCfg = Release|Any CPU
-		{AE646733-C11C-484B-B793-E7E9C5ED923C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE646733-C11C-484B-B793-E7E9C5ED923C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE646733-C11C-484B-B793-E7E9C5ED923C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{AE646733-C11C-484B-B793-E7E9C5ED923C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{AE646733-C11C-484B-B793-E7E9C5ED923C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{AE646733-C11C-484B-B793-E7E9C5ED923C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE646733-C11C-484B-B793-E7E9C5ED923C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE646733-C11C-484B-B793-E7E9C5ED923C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{AE646733-C11C-484B-B793-E7E9C5ED923C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{AE646733-C11C-484B-B793-E7E9C5ED923C}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{345570C3-2354-4927-90C3-E4F38B247D31} = {6784F855-478F-4860-9046-5E40C833C763}
-		{AE646733-C11C-484B-B793-E7E9C5ED923C} = {6784F855-478F-4860-9046-5E40C833C763}
 		{378955D6-7B4F-46FD-9AC0-FE50F6383518} = {4928335C-2A8E-4007-96D0-378B9B798F16}
 		{CD176A12-B57F-4E2B-A777-6E6718B351E1} = {4928335C-2A8E-4007-96D0-378B9B798F16}
 		{0585196C-2171-493F-9654-14E1B8E97D94} = {A7650E02-89E1-41A8-8691-75F682A2A04A}
