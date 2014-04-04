@@ -98,7 +98,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 		public void Se_Tentar_Instanciar_Uma_Classe_Que_Nao_Esteja_Mapeada_e_Se_Ignora_o_Erro_Deve_Retornar_Uma_Instancia()
 		{
 			var vIoC = new IoC(true);
-			var agora = vIoC.New<DateTime>(1);
+			var agora = vIoC.New<DateTime>(DateTime.Now.Ticks);
 
 			AssegureQue.NaoEhNulo(agora);
 		}
