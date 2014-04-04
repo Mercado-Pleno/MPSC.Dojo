@@ -18,7 +18,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 					.Map<IAnimal, Animal>()
 					.Map<IPessoa, Pessoa>();
 
-				AssegureQue.EsteMetodoNaoDeveraSerExecutado();
+				AssegureQue.EsteMetodoNaoSeraExecutado();
 			}
 			catch (AssegureQue.ExecucaoDeCodigoProibidoException e)
 			{
@@ -40,7 +40,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 					.Map<IAnimal, Animal>()
 					.Map<IVeiculo, Pessoa>();
 
-				AssegureQue.EsteMetodoNaoDeveraSerExecutado();
+				AssegureQue.EsteMetodoNaoSeraExecutado();
 			}
 			catch (AssegureQue.ExecucaoDeCodigoProibidoException e)
 			{
@@ -93,6 +93,36 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 			AssegureQue.EhDoTipo<IAnimal>(vObj);
 			AssegureQue.EhDoTipo<Animal>(vObj);
 		}
+
+		[TestMethod, Test]
+		public void Se_Tentar_Instanciar_Uma_Classe_Que_Nao_Esteja_Mapeada_e_Se_Ignora_o_Erro_Deve_Retornar_Uma_Instancia()
+		{
+			var vIoC = new IoC(true);
+			var agora = vIoC.New<DateTime>(1);
+
+			AssegureQue.NaoEhNulo(agora);
+		}
+
+		[TestMethod, Test]
+		public void Se_Tentar_Instanciar_Uma_Classe_Que_Nao_Esteja_Mapeada_e_Se_Nao_Ignora_o_Erro_Deve_Retornar_Uma_Exception()
+		{
+			try
+			{
+				var vIoC = new IoC(false);
+				var agora = vIoC.New<DateTime>(1);
+
+				AssegureQue.NaoEhNulo(agora);
+				AssegureQue.EsteMetodoNaoSeraExecutado();
+			}
+			catch (AssegureQue.ExecucaoDeCodigoProibidoException e)
+			{
+				throw new Exception("Teste Falhou!", e);
+			}
+			catch (Exception)
+			{
+
+			}
+		}
 	}
 
 
@@ -100,7 +130,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 	{
 		public class ExecucaoDeCodigoProibidoException : Exception { }
 
-		public class TypeAccessException : TypeLoadException { }		
+		public class TypeAccessException : TypeLoadException { }
 
 		public static void NaoEhNulo(Object obj)
 		{
@@ -114,7 +144,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 				throw new TypeAccessException();
 		}
 
-		public static void EsteMetodoNaoDeveraSerExecutado()
+		public static void EsteMetodoNaoSeraExecutado()
 		{
 			throw new ExecucaoDeCodigoProibidoException();
 		}

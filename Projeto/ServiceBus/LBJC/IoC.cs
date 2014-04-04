@@ -8,9 +8,8 @@
 	{
 		protected readonly Dictionary<String, Object> singleton = new Dictionary<String, Object>();
 		protected readonly Dictionary<Type, Mapa> dic = new Dictionary<Type, Mapa>();
-		public Boolean RetornaSemMapeamento { get; set; }
 
-		protected virtual BaseIoC Add(Type Interface, Type Classe, params Object[] parametrosDefault)
+		protected virtual BaseIoC Add(Type Interface, Type Classe, Boolean disparaErroSeInterfaceIgualClasse, params Object[] parametrosDefault)
 		{
 			if (Interface == null)
 				throw new ArgumentNullException("Interface");
@@ -19,7 +18,7 @@
 				throw new ArgumentNullException("Classe");
 
 			if (dic.ContainsKey(Interface))
-				throw new ArgumentException(String.Format("A Interface {0} já está mapeada para a classe {1}", Interface.Name, Get(Interface).Type.Name));
+				throw new ArgumentException(String.Format("A Interface {0} já está mapeada para a classe {1}", Interface.Name, Get(Interface, false, null).Type.Name));
 
 			if (Classe.IsInterface)
 				throw new ArgumentException(String.Format("O Parâmetro {0} deve ser uma classe concreta", Classe.Name));
@@ -29,7 +28,7 @@
 
 			if (Classe == Interface)
 			{
-				if (!RetornaSemMapeamento)
+				if (disparaErroSeInterfaceIgualClasse)
 					throw new ArgumentException(String.Format("A classe {0} não pode ser do mesmo tipo da interface", Classe.Name));
 			}
 			else if (Classe.GetInterfaces().None(i => i == Interface) && !Classe.IsSubclassOf(Interface))
@@ -43,28 +42,28 @@
 			return this;
 		}
 
-		protected virtual Mapa Get(Type type)
+		protected virtual Mapa Get(Type type, Boolean disparaErroSeMapeamentoNaoExistir, Object[] parametros)
 		{
 			if (!dic.ContainsKey(type))
 			{
-				if (RetornaSemMapeamento)
-					Add(type, type);
-				else
+				if (disparaErroSeMapeamentoNaoExistir)
 					throw new ArgumentException("Esta Interface não está mapeada para uma classe");
+				else
+					Add(type, type, disparaErroSeMapeamentoNaoExistir, parametros);
 			}
 			return dic[type];
 		}
 
-		protected virtual Object New(Type type, params Object[] parametros)
+		protected virtual Object New(Type type, Boolean disparaErroSeMapeamentoNaoExistir, params Object[] parametros)
 		{
-			var vMapa = Get(type);
+			var vMapa = Get(type, disparaErroSeMapeamentoNaoExistir, parametros);
 			var vParametros = (parametros.Length > 0) ? parametros : vMapa.ParametrosDefault;
-			return vMapa.Singleton ? SingletonImpl(null, vMapa.Type, vParametros) : NewImpl(vMapa.Type, vParametros);
+			return NewImpl(vMapa.Type, vParametros);
 		}
 
-		protected virtual Object Singleton(String sessionKey, Type type, params Object[] parametros)
+		protected virtual Object Singleton(String sessionKey, Type type, Boolean disparaErroSeMapeamentoNaoExistir, params Object[] parametros)
 		{
-			var vTipoComParametrosDefault = Get(type);
+			var vTipoComParametrosDefault = Get(type, disparaErroSeMapeamentoNaoExistir, parametros);
 			var vParametros = (parametros.Length > 0) ? parametros : vTipoComParametrosDefault.ParametrosDefault;
 			return SingletonImpl(sessionKey, vTipoComParametrosDefault.Type, vParametros);
 		}
@@ -93,13 +92,11 @@
 		protected class Mapa
 		{
 			protected internal Type Type { get; private set; }
-			protected internal Boolean Singleton { get; private set; }
 			protected internal Object[] ParametrosDefault { get; private set; }
 
 			protected internal Mapa(Type type, params object[] parametrosDefault)
 			{
 				Type = type;
-				Singleton = false;
 				ParametrosDefault = parametrosDefault;
 			}
 		}
@@ -107,26 +104,56 @@
 
 	public class IoC : BaseIoC, IIoC
 	{
+		private Boolean _disparaErroSeMapeamentoNaoExistir;
+		public IoC() : this(false) { }
+		public IoC(Boolean ignoraErroSeMapeamentoNaoExistir) { _disparaErroSeMapeamentoNaoExistir = !ignoraErroSeMapeamentoNaoExistir; }
+
 		public virtual IIoC Map<Interface, Classe>(params Object[] parametrosDefault)
-			where Interface : class
-			where Classe : class
 		{
-			return Add(typeof(Interface), typeof(Classe), parametrosDefault) as IIoC;
+			return Add(typeof(Interface), typeof(Classe), _disparaErroSeMapeamentoNaoExistir, parametrosDefault) as IIoC;
 		}
 
-		public virtual Type Get<T>() where T : class
+		public virtual Type Get<T>()
 		{
-			return Get(typeof(T)).Type;
+			return Get(typeof(T), _disparaErroSeMapeamentoNaoExistir, null).Type;
 		}
 
-		public virtual T New<T>(params Object[] parametros) where T : class
+		public virtual T New<T>(params Object[] parametros)
 		{
-			return New(typeof(T), parametros) as T;
+			return (T)New(typeof(T), _disparaErroSeMapeamentoNaoExistir, parametros);
 		}
 
-		public virtual T Singleton<T>(String sessionKey) where T : class
+		public virtual T Singleton<T>(String sessionKey, params Object[] parametros)
 		{
-			return SingletonImpl(sessionKey, typeof(T)) as T;
+			return (T)SingletonImpl(sessionKey, typeof(T), _disparaErroSeMapeamentoNaoExistir, parametros);
 		}
+
+		#region // Membros Estáticos
+		private static readonly Object _lock = new Object();
+		private static IIoC instancia;
+
+		public static IIoC getIoC(Boolean ignoraErroSeMapeamentoNaoExistir)
+		{
+			return (instancia ?? setIoC(new IoC(ignoraErroSeMapeamentoNaoExistir)));
+		}
+
+		private static IIoC setIoC(IIoC value)
+		{
+			if (PodeAlterar(instancia, value))
+			{
+				lock (_lock)
+				{
+					if (PodeAlterar(instancia, value))
+						instancia = value;
+				}
+			}
+			return instancia ?? value;
+		}
+
+		private static Boolean PodeAlterar(Object obj1, Object obj2)
+		{
+			return (obj1 == null) || ((obj2 != null) && (obj1 != obj2));
+		}
+		#endregion // Membros Estáticos
 	}
 }
