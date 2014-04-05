@@ -22,7 +22,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 		}
 
 		[TestMethod]
-		public void Se_Solicitar_Uma_Clase_Que_Implemente_IAnimal_Deve_Retornar_Uma_Instancia_De_Animal()
+		public void Se_Solicitar_Uma_Clase_Que_Implemente_IAnimal_Sem_Parametro_No_Mapeamento_E_Sem_Parametro_No_New_Deve_Retornar_Uma_Instancia_De_Animal_Com_Nome_Nulo()
 		{
 			var vIoC = new IoC(false);
 			vIoC.Map<IPessoa, Pessoa>()
@@ -33,10 +33,41 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 			Assert.IsNotNull(vObj);
 			Assert.IsInstanceOfType(vObj, typeof(IAnimal));
 			Assert.IsInstanceOfType(vObj, typeof(Animal));
+			Assert.AreEqual(null, vObj.Nome);
 		}
 
 		[TestMethod]
-		public void Se_Solicitar_Uma_Classe_Que_Implemente_IAnimal_Com_Parametro_Deve_Retornar_Uma_Instancia_De_Animal_Com_Parametro()
+		public void Se_Solicitar_Uma_Clase_Que_Implemente_IAnimal_Com_Parametro_No_Mapeamento_E_Sem_Parametro_No_New_Deve_Retornar_Uma_Instancia_De_Animal_Com_Nome_Animal()
+		{
+			var vIoC = new IoC(false);
+			vIoC.Map<IPessoa, Pessoa>()
+				.Map<IAnimal, Animal>("Animal");
+
+			var vObj = vIoC.New<IAnimal>();
+
+			Assert.IsNotNull(vObj);
+			Assert.IsInstanceOfType(vObj, typeof(IAnimal));
+			Assert.IsInstanceOfType(vObj, typeof(Animal));
+			Assert.AreEqual("Animal", vObj.Nome);
+		}
+
+		[TestMethod]
+		public void Se_Solicitar_Uma_Clase_Que_Implemente_IAnimal_Com_Parametro_No_Mapeamento_E_Com_Parametro_No_New_Deve_Retornar_Uma_Instancia_De_Animal_Com_Nome_Cachorro()
+		{
+			var vIoC = new IoC(false);
+			vIoC.Map<IPessoa, Pessoa>()
+				.Map<IAnimal, Animal>("Animal");
+
+			var vObj = vIoC.New<IAnimal>("Cachorro");
+
+			Assert.IsNotNull(vObj);
+			Assert.IsInstanceOfType(vObj, typeof(IAnimal));
+			Assert.IsInstanceOfType(vObj, typeof(Animal));
+			Assert.AreEqual("Cachorro", vObj.Nome);
+		}
+
+		[TestMethod]
+		public void Se_Solicitar_Uma_Clase_Que_Implemente_IAnimal_Sem_Parametro_No_Mapeamento_E_Com_Parametro_No_New_Deve_Retornar_Uma_Instancia_De_Animal_Com_Nome_Cachorro()
 		{
 			var vIoC = new IoC(false);
 			vIoC.Map<IPessoa, Pessoa>()
@@ -47,6 +78,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 			Assert.IsNotNull(vObj);
 			Assert.IsInstanceOfType(vObj, typeof(IAnimal));
 			Assert.IsInstanceOfType(vObj, typeof(Animal));
+			Assert.AreEqual("Cachorro", vObj.Nome);
 		}
 
 		[TestMethod]
@@ -73,6 +105,18 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 		}
 
 		[TestMethod, ExpectedException(typeof(ArgumentException), "Precisava disparar Exceção, mas NÃO disparou!")]
+		public void Se_Tentar_Instanciar_Uma_Classe_Que_Nao_Esteja_Mapeada_e_Se_o_Parametro_De_Ignora_o_Erro_For_Omitido_Deve_Retornar_Uma_Exception()
+		{
+			var vAgora = DateTime.Now;
+			var vIoC = new IoC();
+			var vObj = vIoC.New<DateTime>(vAgora.Ticks);
+
+			Assert.IsNotNull(vObj);
+			Assert.AreEqual(vAgora, vObj);
+			Assert.Fail("Precisava disparar Exceção, mas NÃO disparou!");
+		}
+
+		[TestMethod, ExpectedException(typeof(ArgumentException), "Precisava disparar Exceção, mas NÃO disparou!")]
 		public void Se_Tentar_Mapear_Uma_Classe_Para_Uma_Interface_Ja_Mapeada_Deve_Retornar_Uma_Excecao()
 		{
 			var vIoC = new IoC(false);
@@ -87,7 +131,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 		public void Se_Tentar_Mapear_Uma_Classe_Que_Nao_Implementa_A_Interface_Deve_Retornar_Uma_Excecao()
 		{
 			var vIoC = new IoC(false);
-			vIoC.Map<IVeiculo, Pessoa>();
+			vIoC.Map<IVeiculo, Veiculo>();
 
 			Assert.Fail("Precisava disparar Exceção, mas NÃO disparou!");
 		}
