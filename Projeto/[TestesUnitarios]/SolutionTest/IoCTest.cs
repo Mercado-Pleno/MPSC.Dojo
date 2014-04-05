@@ -8,145 +8,88 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 	public class IoCTest
 	{
 		[TestMethod]
-		public void Se_Tentar_Mapear_Uma_Classe_Para_Uma_Interface_Ja_Mapeada_Deve_Retornar_Uma_Excecao()
-		{
-			try
-			{
-				var vIoC = new IoC();
-				vIoC.Map<IPessoa, Pessoa>()
-					.Map<IAnimal, Animal>()
-					.Map<IPessoa, Pessoa>();
-
-				AssegureQue.EsteMetodoNaoSeraExecutado();
-			}
-			catch (AssegureQue.ExecucaoDeCodigoProibidoException e)
-			{
-				throw new Exception("Teste Falhou!", e);
-			}
-			catch (Exception)
-			{
-
-			}
-		}
-
-		[TestMethod]
-		public void Se_Tentar_Mapear_Uma_Classe_Que_Nao_Implementa_A_Interface_Deve_Retornar_Uma_Excecao()
-		{
-			try
-			{
-				var vIoC = new IoC();
-				vIoC.Map<IPessoa, Pessoa>()
-					.Map<IAnimal, Animal>()
-					.Map<IVeiculo, Pessoa>();
-
-				AssegureQue.EsteMetodoNaoSeraExecutado();
-			}
-			catch (AssegureQue.ExecucaoDeCodigoProibidoException e)
-			{
-				throw new Exception("Teste Falhou!", e);
-			}
-			catch (Exception)
-			{
-
-			}
-		}
-
-		[TestMethod]
 		public void Se_Solicitar_Uma_Clase_Que_Implemente_IPessoa_Deve_Retornar_Uma_Instancia_De_Pessoa()
 		{
-			var vIoC = new IoC();
+			var vIoC = new IoC(false);
 			vIoC.Map<IPessoa, Pessoa>()
 				.Map<IAnimal, Animal>();
 
 			var vObj = vIoC.New<IPessoa>();
 
-			AssegureQue.NaoEhNulo(vObj);
-			AssegureQue.EhDoTipo<IPessoa>(vObj);
-			AssegureQue.EhDoTipo<Pessoa>(vObj);
+			Assert.IsNotNull(vObj);
+			Assert.IsInstanceOfType(vObj, typeof(IPessoa));
+			Assert.IsInstanceOfType(vObj, typeof(Pessoa));
 		}
 
 		[TestMethod]
 		public void Se_Solicitar_Uma_Clase_Que_Implemente_IAnimal_Deve_Retornar_Uma_Instancia_De_Animal()
 		{
-			var vIoC = new IoC();
+			var vIoC = new IoC(false);
 			vIoC.Map<IPessoa, Pessoa>()
 				.Map<IAnimal, Animal>();
 
 			var vObj = vIoC.New<IAnimal>();
 
-			AssegureQue.NaoEhNulo(vObj);
-			AssegureQue.EhDoTipo<IAnimal>(vObj);
-			AssegureQue.EhDoTipo<Animal>(vObj);
+			Assert.IsNotNull(vObj);
+			Assert.IsInstanceOfType(vObj, typeof(IAnimal));
+			Assert.IsInstanceOfType(vObj, typeof(Animal));
 		}
 
 		[TestMethod]
-		public void Se_Solicitar_Uma_Clase_Que_Implemente_IAnimal_Com_Parametro_Deve_Retornar_Uma_Instancia_De_Animal_Com_Parametro()
+		public void Se_Solicitar_Uma_Classe_Que_Implemente_IAnimal_Com_Parametro_Deve_Retornar_Uma_Instancia_De_Animal_Com_Parametro()
 		{
-			var vIoC = new IoC();
+			var vIoC = new IoC(false);
 			vIoC.Map<IPessoa, Pessoa>()
 				.Map<IAnimal, Animal>();
 
 			var vObj = vIoC.New<IAnimal>("Cachorro");
 
-			AssegureQue.NaoEhNulo(vObj);
-			AssegureQue.EhDoTipo<IAnimal>(vObj);
-			AssegureQue.EhDoTipo<Animal>(vObj);
+			Assert.IsNotNull(vObj);
+			Assert.IsInstanceOfType(vObj, typeof(IAnimal));
+			Assert.IsInstanceOfType(vObj, typeof(Animal));
 		}
 
 		[TestMethod]
 		public void Se_Tentar_Instanciar_Uma_Classe_Que_Nao_Esteja_Mapeada_e_Se_Ignora_o_Erro_Deve_Retornar_Uma_Instancia()
 		{
+			var vAgora = DateTime.Now;
 			var vIoC = new IoC(true);
-			var agora = vIoC.New<DateTime>(DateTime.Now.Ticks);
+			var vObj = vIoC.New<DateTime>(vAgora.Ticks);
 
-			AssegureQue.NaoEhNulo(agora);
+			Assert.IsNotNull(vObj);
+			Assert.AreEqual(vAgora, vObj);
 		}
 
-		[TestMethod]
+		[TestMethod, ExpectedException(typeof(ArgumentException), "Precisava disparar Exceção, mas NÃO disparou!")]
 		public void Se_Tentar_Instanciar_Uma_Classe_Que_Nao_Esteja_Mapeada_e_Se_Nao_Ignora_o_Erro_Deve_Retornar_Uma_Exception()
 		{
-			try
-			{
-				var vIoC = new IoC(false);
-				var agora = vIoC.New<DateTime>(1);
+			var vAgora = DateTime.Now;
+			var vIoC = new IoC(false);
+			var vObj = vIoC.New<DateTime>(vAgora.Ticks);
 
-				AssegureQue.EsteMetodoNaoSeraExecutado();
-			}
-			catch (AssegureQue.ExecucaoDeCodigoProibidoException e)
-			{
-				throw new Exception("Teste Falhou!", e);
-			}
-			catch (Exception)
-			{
+			Assert.IsNotNull(vObj);
+			Assert.AreEqual(vAgora, vObj);
+			Assert.Fail("Precisava disparar Exceção, mas NÃO disparou!");
+		}
 
-			}
+		[TestMethod, ExpectedException(typeof(ArgumentException), "Precisava disparar Exceção, mas NÃO disparou!")]
+		public void Se_Tentar_Mapear_Uma_Classe_Para_Uma_Interface_Ja_Mapeada_Deve_Retornar_Uma_Excecao()
+		{
+			var vIoC = new IoC(false);
+			vIoC.Map<IPessoa, Pessoa>()
+				.Map<IAnimal, Animal>()
+				.Map<IPessoa, Pessoa>();
+
+			Assert.Fail("Precisava disparar Exceção, mas NÃO disparou!");
+		}
+
+		[TestMethod, ExpectedException(typeof(ArgumentException), "Precisava disparar Exceção, mas NÃO disparou!")]
+		public void Se_Tentar_Mapear_Uma_Classe_Que_Nao_Implementa_A_Interface_Deve_Retornar_Uma_Excecao()
+		{
+			var vIoC = new IoC(false);
+			vIoC.Map<IVeiculo, Pessoa>();
+
+			Assert.Fail("Precisava disparar Exceção, mas NÃO disparou!");
 		}
 	}
-
-
-	public class AssegureQue
-	{
-		public class ExecucaoDeCodigoProibidoException : Exception { }
-
-		public class TypeAccessException : TypeLoadException { }
-
-		public static void NaoEhNulo(Object obj)
-		{
-			if (obj == null)
-				throw new NullReferenceException("obj");
-		}
-
-		public static void EhDoTipo<T1>(Object obj)
-		{
-			if (!(obj is T1))
-				throw new TypeAccessException();
-		}
-
-		public static void EsteMetodoNaoSeraExecutado()
-		{
-			throw new ExecucaoDeCodigoProibidoException();
-		}
-	}
-
-
 }
