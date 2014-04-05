@@ -58,8 +58,5 @@
     <Compile Include="LBJC\IIoC.cs" />
     <Compile Include="Principal.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
