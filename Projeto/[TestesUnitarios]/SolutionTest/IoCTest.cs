@@ -150,10 +150,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 
 	#region // Definição das classes para Testar o IoC
 
-	class MeuIoC : IoC
-	{
-		public MeuIoC(Boolean ignoraErroSeMapeamentoNaoExistir) : base(ignoraErroSeMapeamentoNaoExistir) { }
-	}
+	class MeuIoC : IoC { public MeuIoC(Boolean ignoraErroSeMapeamentoNaoExistir) : base(ignoraErroSeMapeamentoNaoExistir) { } }
 
 	interface IAnimal { String Nome { get; } }
 	interface IPessoa { }
