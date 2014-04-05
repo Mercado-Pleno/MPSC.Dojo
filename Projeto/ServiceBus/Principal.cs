@@ -9,13 +9,13 @@
 		}
 	}
 
-	public interface IAnimal { }
+	public interface IAnimal { String Nome { get; } }
 	public interface IPessoa { }
 	public interface IVeiculo { }
 
 	public class Animal : IAnimal
 	{
-		public String Nome { get; set; }
+		public String Nome { get; private set; }
 		public Animal() { }
 		public Animal(String nome) { Nome = nome; }
 	}
