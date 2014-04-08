@@ -37,7 +37,27 @@
 			if (Classe.GetConstructors().None(c => c.GetParameters().Length == parametrosDefault.Length))
 				throw new EntryPointNotFoundException(String.Format("Você Precisa definir um Construtor sem Parâmetros ou Parâmetros Default para o Construtor da Classe {0}", Classe.Name));
 
-			dic.Add(Interface, new Mapa(Classe, parametrosDefault));
+			dic.Add(Interface, new Mapa(Classe, null, parametrosDefault));
+
+			return this;
+		}
+
+		protected virtual BaseIoC Add(Type Interface, Object instanciaDeUmaClasseQueImplementaInterface)
+		{
+			if (Interface == null)
+				throw new ArgumentNullException("Interface");
+
+			if (instanciaDeUmaClasseQueImplementaInterface == null)
+				throw new ArgumentNullException("objetoOfInterface");
+
+			if (dic.ContainsKey(Interface))
+				throw new KeyNotFoundException(String.Format("A Interface {0} já está mapeada para a Classe {1}", Interface.Name, Get(Interface, false)));
+
+			var Classe = instanciaDeUmaClasseQueImplementaInterface.GetType();
+			if ((Classe != Interface) && Classe.GetInterfaces().None(i => i == Interface) && !Classe.IsSubclassOf(Interface))
+				throw new InvalidCastException(String.Format("A Classe {0} não {1} {2}", Classe.Name, Interface.IsInterface ? "implementa a Interface" : "é uma SubClasse de", Interface.Name));
+
+			dic.Add(Interface, new Mapa(Classe, instanciaDeUmaClasseQueImplementaInterface));
 
 			return this;
 		}
@@ -58,7 +78,7 @@
 		{
 			var vMapa = Get(type, disparaErroSeMapeamentoNaoExistir, parametros);
 			var vParametros = (parametros.Length > 0) ? parametros : vMapa.ParametrosDefault;
-			return NewImpl(vMapa.Type, vParametros);
+			return vMapa.Instancia ?? NewImpl(vMapa.Type, vParametros);
 		}
 
 		protected virtual Object Singleton(String sessionKey, Type type, Boolean disparaErroSeMapeamentoNaoExistir, params Object[] parametros)
@@ -92,11 +112,13 @@
 		protected class Mapa
 		{
 			protected internal Type Type { get; private set; }
+			protected internal Object Instancia { get; private set; }
 			protected internal Object[] ParametrosDefault { get; private set; }
 
-			protected internal Mapa(Type type, params object[] parametrosDefault)
+			protected internal Mapa(Type type, Object instancia, params object[] parametrosDefault)
 			{
 				Type = type;
+				Instancia = instancia;
 				ParametrosDefault = parametrosDefault;
 			}
 		}
@@ -111,6 +133,11 @@
 		public virtual IIoC Map<Interface, Classe>(params Object[] parametrosDefault)
 		{
 			return Add(typeof(Interface), typeof(Classe), _disparaErroSeMapeamentoNaoExistir, parametrosDefault) as IIoC;
+		}
+
+		public virtual IIoC Map<Interface>(Object instancia)
+		{
+			return Add(typeof(Interface), instancia) as IIoC;
 		}
 
 		public virtual Type Get<T>()
@@ -130,24 +157,24 @@
 
 		#region // Membros Estáticos
 		private static readonly Object _lock = new Object();
-		private static IIoC instancia;
+		private static IIoC _instancia;
 
 		public static IIoC getIoC(Boolean ignoraErroSeMapeamentoNaoExistir)
 		{
-			return (instancia ?? setIoC(new IoC(ignoraErroSeMapeamentoNaoExistir)));
+			return (_instancia ?? setIoC(new IoC(ignoraErroSeMapeamentoNaoExistir)));
 		}
 
 		private static IIoC setIoC(IIoC value)
 		{
-			if (PodeAlterar(instancia, value))
+			if (PodeAlterar(_instancia, value))
 			{
 				lock (_lock)
 				{
-					if (PodeAlterar(instancia, value))
-						instancia = value;
+					if (PodeAlterar(_instancia, value))
+						_instancia = value;
 				}
 			}
-			return instancia ?? value;
+			return _instancia ?? value;
 		}
 
 		private static Boolean PodeAlterar(Object obj1, Object obj2)
