@@ -77,36 +77,29 @@
 		protected virtual Object New(Type type, Boolean disparaErroSeMapeamentoNaoExistir, params Object[] parametros)
 		{
 			var vMapa = Get(type, disparaErroSeMapeamentoNaoExistir, parametros);
-			var vParametros = (parametros.Length > 0) ? parametros : vMapa.ParametrosDefault;
-			return vMapa.Instancia ?? NewImpl(vMapa.Type, vParametros);
+			return vMapa.Instancia ?? vMapa.New(parametros);
 		}
 
 		protected virtual Object Singleton(String sessionKey, Type type, Boolean disparaErroSeMapeamentoNaoExistir, params Object[] parametros)
 		{
-			var vTipoComParametrosDefault = Get(type, disparaErroSeMapeamentoNaoExistir, parametros);
-			var vParametros = (parametros.Length > 0) ? parametros : vTipoComParametrosDefault.ParametrosDefault;
-			return SingletonImpl(sessionKey, vTipoComParametrosDefault.Type, vParametros);
+			var vMapa = Get(type, disparaErroSeMapeamentoNaoExistir, parametros);
+			return SingletonImpl(sessionKey, vMapa, parametros);
 		}
 
-		protected virtual Object SingletonImpl(String sessionKey, Type type, params Object[] parametros)
+		protected virtual Object SingletonImpl(String sessionKey, Mapa mapa, params Object[] parametros)
 		{
-			var key = type.FullName + "_" + (sessionKey ?? "Master");
+			var key = mapa.Type.FullName + "_" + (sessionKey ?? "Master");
 
 			if (!singleton.ContainsKey(key))
 			{
 				lock (singleton)
 				{
 					if (!singleton.ContainsKey(key))
-						singleton.Add(key, NewImpl(type, parametros));
+						singleton.Add(key, mapa.New(parametros));
 				}
 			}
 
 			return singleton[key];
-		}
-
-		protected virtual Object NewImpl(Type type, Object[] parametros)
-		{
-			return Activator.CreateInstance(type, parametros);
 		}
 
 		protected class Mapa
@@ -120,6 +113,12 @@
 				Type = type;
 				Instancia = instancia;
 				ParametrosDefault = parametrosDefault;
+			}
+
+			protected internal Object New(Object[] parametros)
+			{
+				var vParametros = (parametros.Length > 0) ? parametros : ParametrosDefault;
+				return Activator.CreateInstance(Type, vParametros);
 			}
 		}
 	}
@@ -152,7 +151,7 @@
 
 		public virtual T Singleton<T>(String sessionKey, params Object[] parametros)
 		{
-			return (T)SingletonImpl(sessionKey, typeof(T), _disparaErroSeMapeamentoNaoExistir, parametros);
+			return (T)Singleton(sessionKey, typeof(T), _disparaErroSeMapeamentoNaoExistir, parametros);
 		}
 
 		#region // Membros Estáticos
