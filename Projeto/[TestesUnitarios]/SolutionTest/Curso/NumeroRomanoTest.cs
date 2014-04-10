@@ -85,5 +85,25 @@ namespace MP.Library.TestesUnitarios.SolutionTest.Curso
 			Assert.AreEqual(10, numeroRomano.Valor, "Valor Inválido");
 			Assert.AreEqual("X", numeroRomano.Caracter, "Caractere Inválido");
 		}
+
+
+		[TestMethod]
+		public void Se_Instanciar_O_Numero_20_Deve_Retornar_XX_eo_Valor_Deve_Ser_20()
+		{
+			var numeroRomano = new Numero20();
+			Assert.AreEqual(20, numeroRomano.Valor, "Valor Inválido");
+			Assert.AreEqual("XX", numeroRomano.Caracter, "Caractere Inválido");
+		}
+
+		[TestMethod]
+		public void Se_Instanciar_O_Numero_19_Deve_Retornar_XIX_eo_Valor_Deve_Ser_19()
+		{
+			var numeroRomano = new Numero19();
+			Assert.AreEqual(19, numeroRomano.Valor, "Valor Inválido");
+			Assert.AreEqual("XIX", numeroRomano.Caracter, "Caractere Inválido");
+		}
+
+
+
 	}
 }

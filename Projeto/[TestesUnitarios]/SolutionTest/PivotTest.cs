@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -10,17 +11,17 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 		private Pivot<InformacaoVendaDTO> GetPivotModelo1()
 		{
 			return new Pivot<InformacaoVendaDTO>()
-				.AddColumn(d => d.Produto)
-				.AddGroup(d => d.Regiao)
-				.Calcular(d => d.QuantidadeVendida);
+				.AdicionarColunaFixa(d => d.NomeDoProduto)
+				.AdicionarGrupo(d => d.Regiao)
+				.Somar(d => d.QuantidadeVendida);
 		}
 
 		private Pivot<InformacaoVendaDTO> GetPivotModelo2()
 		{
 			return new Pivot<InformacaoVendaDTO>()
-				.AddColumn(d => d.Produto)
-				.AddGroup(d => d.Data.ToString("dd/MM/yyyy"))
-				.Calcular(d => d.QuantidadeVendida);
+				.AdicionarColunaFixa(d => d.NomeDoProduto)
+				.AdicionarGrupo(d => d.DataDaVenda.ToString("dd/MM/yyyy"))
+				.Somar(d => d.QuantidadeVendida);
 		}
 
 		[TestMethod]
@@ -88,8 +89,9 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 		[TestMethod]
 		public void Deve_Usar_O_Pivot_Modelo2_Com_DataSource6()
 		{
+			var dadosOriginais = Dados.GetDataSource6().ToList();
 			var vPivot = GetPivotModelo2();
-			var vDados = vPivot.TransformarDataSource(Dados.GetDataSource6());
+			var vDados = vPivot.TransformarDataSource(dadosOriginais);
 			Assert.IsNotNull(vDados);
 		}
 	}
@@ -155,16 +157,16 @@ namespace MP.Library.TestesUnitarios.SolutionTest
 
 	public class InformacaoVendaDTO
 	{
-		public String Produto { get; set; }
+		public String NomeDoProduto { get; set; }
 		public int QuantidadeVendida { get; set; }
-		public DateTime Data { get; set; }
+		public DateTime DataDaVenda { get; set; }
 		public String Regiao { get; set; }
 
 		public InformacaoVendaDTO(String produto, int quantidadeVendida, DateTime data, String regiao)
 		{
-			Produto = produto;
+			NomeDoProduto = produto;
 			QuantidadeVendida = quantidadeVendida;
-			Data = data;
+			DataDaVenda = data;
 			Regiao = regiao;
 		}
 	}

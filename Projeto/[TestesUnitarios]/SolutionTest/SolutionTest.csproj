@@ -52,8 +52,6 @@
     <Compile Include="Curso\EspiralTest.cs" />
     <Compile Include="Curso\NumeroRomanoTest.cs" />
     <Compile Include="IoCTest.cs" />
-    <Compile Include="Pivot.cs" />
-    <Compile Include="PivotTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
