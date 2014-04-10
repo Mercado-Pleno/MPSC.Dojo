@@ -103,6 +103,14 @@ namespace MP.Library.TestesUnitarios.SolutionTest.Curso
 			Assert.AreEqual("XIX", numeroRomano.Caracter, "Caractere Inválido");
 		}
 
+		[TestMethod]
+		public void Se_Instanciar_O_Numero_49_Deve_Retornar_XLIX_eo_Valor_Deve_Ser_49()
+		{
+			var numeroRomano = new Numero49();
+			Assert.AreEqual(49, numeroRomano.Valor, "Valor Inválido");
+			Assert.AreEqual("XLIX", numeroRomano.Caracter, "Caractere Inválido");
+		}
+
 
 
 	}
