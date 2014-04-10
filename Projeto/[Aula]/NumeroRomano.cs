@@ -82,4 +82,20 @@ namespace MP.Library.Aula.Curso
 		public Numero19() : base(new Numero10(), new Numero9()) { }
 	}
 
+	public class Numero50 : NumeroRomano
+	{
+		public Numero50() : base(50, "L") { }
+	}
+
+	public class Numero40 : NumeroRomano
+	{
+		public Numero40() : base(new Numero10(), new Numero50()) { }
+	}
+
+
+	public class Numero49 : NumeroRomano
+	{
+		public Numero49() : base(new Numero40(), new Numero9()) { }
+	}
+
 }
