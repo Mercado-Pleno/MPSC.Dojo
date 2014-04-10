@@ -85,6 +85,7 @@
     <Compile Include="QuestoesDojo\MatrizEspiral.cs" />
     <Compile Include="Service\ExtensionMethods.cs" />
     <Compile Include="Service\NTPClient.cs" />
+    <Compile Include="Transformacao\Pivot.cs" />
     <Compile Include="Transformacao\TransformacaoDeDadosParaDTO.cs" />
     <Compile Include="Medidas\DuracaoIntervaloTempoAltaPrecisao.cs" />
     <Compile Include="ControleDeFluxo\MaquinaDeEstado.cs" />

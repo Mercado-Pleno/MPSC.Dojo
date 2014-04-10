@@ -71,4 +71,15 @@ namespace MP.Library.Aula.Curso
 	{
 		public Numero10() : base(10, "X") { }
 	}
+
+	public class Numero20 : NumeroRomano
+	{
+		public Numero20() : base(new Numero10(), new Numero10()) { }
+	}
+
+	public class Numero19 : NumeroRomano
+	{
+		public Numero19() : base(new Numero10(), new Numero9()) { }
+	}
+
 }
