@@ -34,7 +34,7 @@
 		public ListaDados DataSource { get { return AlgumaCoisaComRelatoriosUsandoLinq.PreencherDataSource(); } }
 	}
 
-	public class ListaDados : List<Dados>, IList<Dados>, IEnumerable<Dados> { }
+	public class ListaDados : List<Dados> { }
 
 	public class Dados
 	{
