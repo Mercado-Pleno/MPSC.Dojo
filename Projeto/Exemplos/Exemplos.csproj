@@ -86,6 +86,14 @@
     <Compile Include="Service\ExtensionMethods.cs" />
     <Compile Include="Service\NTPClient.cs" />
     <Compile Include="Transformacao\Pivot.cs" />
+    <Compile Include="Transformacao\Serializacao\IDiscretizador.cs" />
+    <Compile Include="Transformacao\Serializacao\ISerializador.cs" />
+    <Compile Include="Transformacao\Serializacao\TranformObject.cs" />
+    <Compile Include="Transformacao\Serializacao\TransformCleanJSON.cs" />
+    <Compile Include="Transformacao\Serializacao\TransformCNP.cs" />
+    <Compile Include="Transformacao\Serializacao\TransformJSON.cs" />
+    <Compile Include="Transformacao\Serializacao\TransformManager.cs" />
+    <Compile Include="Transformacao\Serializacao\TransformXML.cs" />
     <Compile Include="Transformacao\TransformacaoDeDadosParaDTO.cs" />
     <Compile Include="Medidas\DuracaoIntervaloTempoAltaPrecisao.cs" />
     <Compile Include="ControleDeFluxo\MaquinaDeEstado.cs" />
