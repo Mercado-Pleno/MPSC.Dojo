@@ -25,7 +25,7 @@ namespace MP.LBJC.Tests
 		[Test]
 		public void GetMensagemENomeBase()
 		{
-			var g = numeros.GroupBY(n => n % 2, n => n > 0);
+			var g = numeros.GroupBY(n => n % 2, n => n > 5);
 			Assert.AreEqual(4, g.Count);
 		}
     }
