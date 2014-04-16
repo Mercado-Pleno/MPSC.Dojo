@@ -54,6 +54,7 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Annotations\Texto.cs" />
     <Compile Include="BancoDeDados\VariasCoisasComObjetosDeBancoDeDados.cs" />
     <Compile Include="BancoDeDados\ComoPegarAsMensagensDePrintsDoSqlServer.cs" />
     <Compile Include="ControleDeFluxo\ControlandoSeOProgramaEstaSendoExecutado.cs" />
