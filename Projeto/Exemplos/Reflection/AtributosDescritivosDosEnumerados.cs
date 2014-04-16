@@ -24,6 +24,8 @@
 				var obj = atributos[0];
 				if (obj is XmlEnumAttribute)
 					retorno = (obj as XmlEnumAttribute).Name;
+				else if (obj is DisplayNameAttribute)
+					retorno = (obj as DisplayNameAttribute).DisplayName;
 				else if (obj is DescriptionAttribute)
 					retorno = (obj as DescriptionAttribute).Description;
 			}
