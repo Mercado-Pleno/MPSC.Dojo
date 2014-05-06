@@ -36,11 +36,15 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml">
+      <HintPath>..\..\Lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="MP.LBJC.IoC">
       <HintPath>..\..\FrameWork\MP.LBJC.IoC.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CaixaEletronico\Nota100Test.cs" />
@@ -55,6 +59,7 @@
     <Compile Include="Curso\EspiralTest.cs" />
     <Compile Include="Curso\NumeroRomanoTest.cs" />
     <Compile Include="IoC\InjetorDeDependenciaTest.cs" />
+    <Compile Include="Office\ExcelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\[Aula]\Curso.csproj">
