@@ -2,18 +2,17 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Assert = NUnit.Framework.Assert;
+
 
 namespace MP.LBJC.Tests
 {
-	[TestFixture, TestClass]
-	public class SerializadorTest
+	[TestFixture]
+	public class LinqTest
 	{
 		private int[] numeros = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 		private List<Venda> vendas;
 
-		[TestFixtureSetUp, TestInitialize]
+		[TestFixtureSetUp]
 		public void SetUp()
 		{
 			vendas = new List<Venda>();
@@ -25,35 +24,35 @@ namespace MP.LBJC.Tests
 			vendas.Add(new Venda("Fev", "Monitor", 1));
 		}
 
-		[Test, TestMethod]
+		[Test]
 		public void Agrupar_ParImpar_MenorMaior()
 		{
 			var g = numeros.GroupBY(n => n % 2, n => n >= 5);
 			Assert.AreEqual(4, g.Count);
 		}
 
-        [Test, TestMethod]
+        [Test]
 		public void Agrupar_ParImpar()
 		{
 			var g = numeros.GroupBY(n => n % 2);
 			Assert.AreEqual(2, g.Count);
 		}
 
-        [Test, TestMethod]
+        [Test]
 		public void Agrupar_MenorMaior()
 		{
 			var g = numeros.GroupBY(n => n >= 5);
 			Assert.AreEqual(2, g.Count);
 		}
 
-        [Test, TestMethod]
+        [Test]
 		public void Agrupar_Mes()
 		{
 			var g = vendas.GroupBY(v => v.Mes);
 			Assert.AreEqual(2, g.Count);
 		}
 
-        [Test, TestMethod]
+        [Test]
 		public void Agrupar_Produto()
 		{
 			var g = vendas.GroupBY(v => v.Produto);
