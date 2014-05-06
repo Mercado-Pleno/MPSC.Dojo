@@ -10,6 +10,7 @@ namespace MP.LBJC.Tests
 	{
 		private int[] numeros = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 		private List<Venda> vendas;
+
 		[TestFixtureSetUp]
 		public void SetUp()
 		{
