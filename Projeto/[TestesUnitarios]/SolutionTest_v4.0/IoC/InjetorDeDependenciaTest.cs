@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MP.Library.TestesUnitarios.SolutionTest
 {
 	[TestClass]
-	public class IoCTest
+    public class InjetorDeDependenciaTest
 	{
 		[TestMethod]
 		public void Se_Solicitar_Uma_Classe_Que_Implemente_IPessoa_Deve_Retornar_Uma_Instancia_De_Pessoa()
