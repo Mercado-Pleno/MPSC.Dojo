@@ -54,8 +54,7 @@
     <Compile Include="CaixaEletronico\SaqueTest.cs" />
     <Compile Include="Curso\EspiralTest.cs" />
     <Compile Include="Curso\NumeroRomanoTest.cs" />
-    <Compile Include="IoCTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IoC\InjetorDeDependenciaTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\[Aula]\Curso.csproj">
@@ -66,6 +65,9 @@
       <Project>{378955D6-7B4F-46FD-9AC0-FE50F6383518}</Project>
       <Name>CaixaEletronico</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
