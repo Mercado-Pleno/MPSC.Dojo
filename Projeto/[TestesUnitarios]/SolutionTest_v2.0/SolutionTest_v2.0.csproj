@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MP.Library.TestesUnitarios.SolutionTest_v2</RootNamespace>
-    <AssemblyName>MP.Library.TestesUnitarios.SolutionTest_v2.0</AssemblyName>
+    <AssemblyName>MP.Library.TestesUnitarios.SolutionTest_v2</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
