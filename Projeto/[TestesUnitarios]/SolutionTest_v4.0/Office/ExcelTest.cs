@@ -20,46 +20,64 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
         public void TestMethod1()
         {
             var fullFileName = @"D:\Relatório.xlsx";
-            var workbook = new Workbook(new FileVersion { ApplicationName = "app" });
 
             var spreadsheetDocument = SpreadsheetDocument.Create(fullFileName, SpreadsheetDocumentType.Workbook);
+
             var workbookPart = spreadsheetDocument.AddWorkbookPart();
-            var stylesheet = GenerateStylesheet();
-            
-            var sheetData = new SheetData();
-            var worksheet = new Worksheet();
-            var worksheetPart = workbookPart.AddNewPart<WorksheetPart>(); ;
-            var workbookStylesPart = workbookPart.AddNewPart<WorkbookStylesPart>(); ;
+            workbookPart.Workbook = new Workbook(new FileVersion { ApplicationName = "app" });
+
+            var workbookStylesPart = workbookPart.AddNewPart<WorkbookStylesPart>();
+            workbookStylesPart.Stylesheet = GenerateStylesheet();
+
             var sheets = new Sheets();
-            var sheet = new Sheet();
+            workbookPart.Workbook.Append(sheets);
+
+            var worksheetPart1 = workbookPart.AddNewPart<WorksheetPart>();
+            sheets.Append(new Sheet() { Name = "Plan1", SheetId = 1, Id = workbookPart.GetIdOfPart(worksheetPart1) });
+            var sheetData1 = new SheetData();
+            worksheetPart1.Worksheet = new Worksheet(sheetData1);
+            worksheetPart1.Worksheet.Save();
+
+            var newRow1 = new Row { RowIndex = 1 };
+            Cell cell1 = CreateCell("A1", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"), null);
+            newRow1.AppendChild(cell1);
+            sheetData1.Append(newRow1);
 
 
-            workbookPart.Workbook = workbook;
-            worksheetPart.Worksheet = worksheet;
-            workbookStylesPart.Stylesheet = stylesheet;
-            workbook.Append(sheets);
-            sheets.Append(sheet);
-            worksheet.Append(sheetData);
-            sheet.Name = "Plan1";
-            sheet.SheetId = 1;
-            sheet.Id = workbookPart.GetIdOfPart(worksheetPart);
 
-            worksheet.Save();
-            workbook.Save();
+            var worksheetPart2 = workbookPart.AddNewPart<WorksheetPart>();
+            sheets.Append(new Sheet() { Name = "Plan2", SheetId = 2, Id = workbookPart.GetIdOfPart(worksheetPart2) });
+            var sheetData2 = new SheetData();
+            worksheetPart2.Worksheet = new Worksheet(sheetData2);
+            worksheetPart2.Worksheet.Save();
 
-            var newRow = new Row { RowIndex = 1 };
-            Cell cell = CreateCell("A1", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"), null);
-            newRow.AppendChild(cell);
-            sheetData.Append(newRow);
-            
-            worksheet.Save();
-            
+            var newRow2 = new Row { RowIndex = 2 };
+            Cell cell2 = CreateCell("B2", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"), null);
+            newRow2.AppendChild(cell2);
+            sheetData2.Append(newRow2);
+
+            worksheetPart2.Worksheet.Save();
+
+
+            var worksheetPart3 = workbookPart.AddNewPart<WorksheetPart>();
+            sheets.Append(new Sheet() { Name = "Plan3", SheetId = 3, Id = workbookPart.GetIdOfPart(worksheetPart3) });
+            var sheetData3 = new SheetData();
+            worksheetPart3.Worksheet = new Worksheet(sheetData3);
+            worksheetPart3.Worksheet.Save();
+
+            var newRow3 = new Row { RowIndex = 3 };
+            Cell cell3 = CreateCell("C3", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"), null);
+            newRow3.AppendChild(cell3);
+            sheetData3.Append(newRow3);
+
+            worksheetPart2.Worksheet.Save();
+
+
+            workbookPart.Workbook.Save();
             spreadsheetDocument.Close();
             spreadsheetDocument.Dispose();
             spreadsheetDocument = null;
-
         }
-
 
         private Stylesheet GenerateStylesheet()
         {
