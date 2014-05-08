@@ -4,6 +4,7 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
 {
@@ -20,50 +21,73 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
         [TestMethod]
         public void TestMethod1()
         {
-            var fullFileName = @"D:\Relatório.xlsx";
+            var planilhaDoExcel = new PlanilhaDoExcel(@"D:\Relatório.xlsx");
 
-            var spreadsheetDocument = SpreadsheetDocument.Create(fullFileName, SpreadsheetDocumentType.Workbook);
-            var workbookPart = spreadsheetDocument.AddWorkbookPart();
+            planilhaDoExcel.AdicionarPlanilha("Plan1");
+            planilhaDoExcel.AdicionarDados("Plan1", "A1");
+            planilhaDoExcel.AdicionarDados("Plan1", "D1");
 
-            workbookPart.Workbook = new Workbook(new FileVersion { ApplicationName = "app" }, new Sheets());
-            workbookPart.AddNewPart<WorkbookStylesPart>().Stylesheet = GenerateStylesheet();
+            planilhaDoExcel.AdicionarPlanilha("Plan2");
+            planilhaDoExcel.AdicionarDados("Plan2", "B1");
+            planilhaDoExcel.AdicionarDados("Plan2", "E1");
 
-            var dataPlan1 = AdicionarPlanilha(workbookPart, "Plan1");
-            var dataPlan2 = AdicionarPlanilha(workbookPart, "Plan2");
-            var dataPlan3 = AdicionarPlanilha(workbookPart, "Plan3");
-            AdicionarDados(dataPlan1, "A1");
-            AdicionarDados(dataPlan2, "B1");
-            AdicionarDados(dataPlan3, "C1");
-            AdicionarDados(dataPlan1, "D1");
-            AdicionarDados(dataPlan2, "E1");
-            AdicionarDados(dataPlan3, "F1");
+            planilhaDoExcel.AdicionarPlanilha("Plan3");
+            planilhaDoExcel.AdicionarDados("Plan3", "C1");
+            planilhaDoExcel.AdicionarDados("Plan3", "F1");
 
+            planilhaDoExcel.AdicionarDados("Plan4", "G1");
+            planilhaDoExcel.AdicionarDados("Plan5", "H1");
 
-            workbookPart.Workbook.Save();
-            spreadsheetDocument.Close();
-            spreadsheetDocument.Dispose();
-            spreadsheetDocument = null;
+            planilhaDoExcel.Gravar();
+        }
+    }
+
+    public class PlanilhaDoExcel
+    {
+        private readonly SpreadsheetDocument _spreadsheetDocument;
+        private readonly WorkbookPart _workbookPart;
+        private readonly Dictionary<String, SheetData> _dicionario;
+
+        public PlanilhaDoExcel(String fullFileName)
+        {
+            _dicionario = new Dictionary<string, SheetData>();
+            _spreadsheetDocument = SpreadsheetDocument.Create(fullFileName, SpreadsheetDocumentType.Workbook);
+            _workbookPart = _spreadsheetDocument.AddWorkbookPart();
+            _workbookPart.Workbook = new Workbook(new FileVersion { ApplicationName = "PlanilhaDoExcel" }, new Sheets());
+            _workbookPart.AddNewPart<WorkbookStylesPart>().Stylesheet = GenerateStylesheet();
         }
 
-        private SheetData AdicionarPlanilha(WorkbookPart workbookPart, String nomeDaPlanilha)
+        public SheetData AdicionarPlanilha(String nomeDaPlanilha)
         {
-            var sheetData = new SheetData();
-            var worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
-            var sheet = new Sheet() { Name = nomeDaPlanilha, SheetId = (uint)workbookPart.GetPartsCountOfType<WorksheetPart>(), Id = workbookPart.GetIdOfPart(worksheetPart) };
-            workbookPart.Workbook.Sheets.Append(sheet);
-            worksheetPart.Worksheet = new Worksheet(sheetData);
-            worksheetPart.Worksheet.Save();
-
+            var planilhaExistente = _dicionario.ContainsKey(nomeDaPlanilha);
+            var sheetData = planilhaExistente ? _dicionario[nomeDaPlanilha] : new SheetData();
+            if (!planilhaExistente)
+            {
+                var worksheetPart = _workbookPart.AddNewPart<WorksheetPart>();
+                _workbookPart.Workbook.Sheets.Append(new Sheet() { Name = nomeDaPlanilha, SheetId = (uint)_workbookPart.GetPartsCountOfType<WorksheetPart>(), Id = _workbookPart.GetIdOfPart(worksheetPart) });
+                worksheetPart.Worksheet = new Worksheet(sheetData);
+                worksheetPart.Worksheet.Save();
+                _dicionario.Add(nomeDaPlanilha, sheetData);
+            }
             return sheetData;
         }
 
-        private void AdicionarDados(SheetData sheetData, String celula)
+        public void AdicionarDados(String nomeDaPlanilha, String celula)
         {
+            var planilhaExistente = _dicionario.ContainsKey(nomeDaPlanilha);
+            var sheetData = planilhaExistente ? _dicionario[nomeDaPlanilha] : AdicionarPlanilha(nomeDaPlanilha);
+
             var newRow = new Row { RowIndex = 1 };
             Cell cell = CreateCell(celula, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"), null);
             newRow.AppendChild(cell);
             sheetData.Append(newRow);
-            sheetData.Ancestors<Worksheet>().FirstOrDefault().Save();
+        }
+
+        public void Gravar()
+        {
+            _workbookPart.Workbook.Save();
+            _spreadsheetDocument.Close();
+            _spreadsheetDocument.Dispose();
         }
 
         private Stylesheet GenerateStylesheet()
