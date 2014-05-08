@@ -22,11 +22,10 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
         {
             var fullFileName = @"D:\Relatório.xlsx";
 
-            var sheets = new Sheets();
             var spreadsheetDocument = SpreadsheetDocument.Create(fullFileName, SpreadsheetDocumentType.Workbook);
             var workbookPart = spreadsheetDocument.AddWorkbookPart();
 
-            workbookPart.Workbook = new Workbook(new FileVersion { ApplicationName = "app" }, sheets);
+            workbookPart.Workbook = new Workbook(new FileVersion { ApplicationName = "app" }, new Sheets());
             workbookPart.AddNewPart<WorkbookStylesPart>().Stylesheet = GenerateStylesheet();
 
             var dataPlan1 = AdicionarPlanilha(workbookPart, "Plan1");
