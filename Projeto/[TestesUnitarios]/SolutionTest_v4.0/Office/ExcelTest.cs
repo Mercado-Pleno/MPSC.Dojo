@@ -3,6 +3,7 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Linq;
 
 namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
 {
@@ -21,62 +22,49 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
         {
             var fullFileName = @"D:\Relatório.xlsx";
 
-            var spreadsheetDocument = SpreadsheetDocument.Create(fullFileName, SpreadsheetDocumentType.Workbook);
-
-            var workbookPart = spreadsheetDocument.AddWorkbookPart();
-            workbookPart.Workbook = new Workbook(new FileVersion { ApplicationName = "app" });
-
-            var workbookStylesPart = workbookPart.AddNewPart<WorkbookStylesPart>();
-            workbookStylesPart.Stylesheet = GenerateStylesheet();
-
             var sheets = new Sheets();
-            workbookPart.Workbook.Append(sheets);
+            var spreadsheetDocument = SpreadsheetDocument.Create(fullFileName, SpreadsheetDocumentType.Workbook);
+            var workbookPart = spreadsheetDocument.AddWorkbookPart();
 
-            var worksheetPart1 = workbookPart.AddNewPart<WorksheetPart>();
-            sheets.Append(new Sheet() { Name = "Plan1", SheetId = 1, Id = workbookPart.GetIdOfPart(worksheetPart1) });
-            var sheetData1 = new SheetData();
-            worksheetPart1.Worksheet = new Worksheet(sheetData1);
-            worksheetPart1.Worksheet.Save();
+            workbookPart.Workbook = new Workbook(new FileVersion { ApplicationName = "app" }, sheets);
+            workbookPart.AddNewPart<WorkbookStylesPart>().Stylesheet = GenerateStylesheet();
 
-            var newRow1 = new Row { RowIndex = 1 };
-            Cell cell1 = CreateCell("A1", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"), null);
-            newRow1.AppendChild(cell1);
-            sheetData1.Append(newRow1);
-
-
-
-            var worksheetPart2 = workbookPart.AddNewPart<WorksheetPart>();
-            sheets.Append(new Sheet() { Name = "Plan2", SheetId = 2, Id = workbookPart.GetIdOfPart(worksheetPart2) });
-            var sheetData2 = new SheetData();
-            worksheetPart2.Worksheet = new Worksheet(sheetData2);
-            worksheetPart2.Worksheet.Save();
-
-            var newRow2 = new Row { RowIndex = 2 };
-            Cell cell2 = CreateCell("B2", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"), null);
-            newRow2.AppendChild(cell2);
-            sheetData2.Append(newRow2);
-
-            worksheetPart2.Worksheet.Save();
-
-
-            var worksheetPart3 = workbookPart.AddNewPart<WorksheetPart>();
-            sheets.Append(new Sheet() { Name = "Plan3", SheetId = 3, Id = workbookPart.GetIdOfPart(worksheetPart3) });
-            var sheetData3 = new SheetData();
-            worksheetPart3.Worksheet = new Worksheet(sheetData3);
-            worksheetPart3.Worksheet.Save();
-
-            var newRow3 = new Row { RowIndex = 3 };
-            Cell cell3 = CreateCell("C3", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"), null);
-            newRow3.AppendChild(cell3);
-            sheetData3.Append(newRow3);
-
-            worksheetPart2.Worksheet.Save();
+            var dataPlan1 = AdicionarPlanilha(workbookPart, "Plan1");
+            var dataPlan2 = AdicionarPlanilha(workbookPart, "Plan2");
+            var dataPlan3 = AdicionarPlanilha(workbookPart, "Plan3");
+            AdicionarDados(dataPlan1, "A1");
+            AdicionarDados(dataPlan2, "B1");
+            AdicionarDados(dataPlan3, "C1");
+            AdicionarDados(dataPlan1, "D1");
+            AdicionarDados(dataPlan2, "E1");
+            AdicionarDados(dataPlan3, "F1");
 
 
             workbookPart.Workbook.Save();
             spreadsheetDocument.Close();
             spreadsheetDocument.Dispose();
             spreadsheetDocument = null;
+        }
+
+        private SheetData AdicionarPlanilha(WorkbookPart workbookPart, String nomeDaPlanilha)
+        {
+            var sheetData = new SheetData();
+            var worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+            var sheet = new Sheet() { Name = nomeDaPlanilha, SheetId = (uint)workbookPart.GetPartsCountOfType<WorksheetPart>(), Id = workbookPart.GetIdOfPart(worksheetPart) };
+            workbookPart.Workbook.Sheets.Append(sheet);
+            worksheetPart.Worksheet = new Worksheet(sheetData);
+            worksheetPart.Worksheet.Save();
+
+            return sheetData;
+        }
+
+        private void AdicionarDados(SheetData sheetData, String celula)
+        {
+            var newRow = new Row { RowIndex = 1 };
+            Cell cell = CreateCell(celula, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"), null);
+            newRow.AppendChild(cell);
+            sheetData.Append(newRow);
+            sheetData.Ancestors<Worksheet>().FirstOrDefault().Save();
         }
 
         private Stylesheet GenerateStylesheet()
