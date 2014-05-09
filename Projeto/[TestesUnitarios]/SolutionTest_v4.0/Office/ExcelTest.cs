@@ -23,20 +23,17 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
         {
             var planilhaDoExcel = new PlanilhaDoExcel(@"D:\Relatório.xlsx");
 
-            planilhaDoExcel.AdicionarPlanilha("Plan1");
-            planilhaDoExcel.AdicionarDados("Plan1", "A1");
-            planilhaDoExcel.AdicionarDados("Plan1", "D1");
+            planilhaDoExcel.AdicionarDados("Plan1", "A1", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
+            planilhaDoExcel.AdicionarDados("Plan1", "D1", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
 
-            planilhaDoExcel.AdicionarPlanilha("Plan2");
-            planilhaDoExcel.AdicionarDados("Plan2", "B1");
-            planilhaDoExcel.AdicionarDados("Plan2", "E1");
+            planilhaDoExcel.AdicionarDados("Plan2", "B1", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
+            planilhaDoExcel.AdicionarDados("Plan2", "E1", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
 
-            planilhaDoExcel.AdicionarPlanilha("Plan3");
-            planilhaDoExcel.AdicionarDados("Plan3", "C1");
-            planilhaDoExcel.AdicionarDados("Plan3", "F1");
+            planilhaDoExcel.AdicionarDados("Plan3", "C1", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
+            planilhaDoExcel.AdicionarDados("Plan3", "F1", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
 
-            planilhaDoExcel.AdicionarDados("Plan4", "G1");
-            planilhaDoExcel.AdicionarDados("Plan5", "H1");
+            planilhaDoExcel.AdicionarDados("Plan4", "G1", DateTime.Now.ToString("dd/MM/yyyy"));
+            planilhaDoExcel.AdicionarDados("Plan4", "H1", DateTime.Now.ToString("HH:mm:ss.fff"));
 
             planilhaDoExcel.Gravar();
         }
@@ -59,27 +56,26 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
 
         public SheetData AdicionarPlanilha(String nomeDaPlanilha)
         {
-            var planilhaExistente = _dicionario.ContainsKey(nomeDaPlanilha);
-            var sheetData = planilhaExistente ? _dicionario[nomeDaPlanilha] : new SheetData();
+            var planilhaExistente = _dicionario.ContainsKey(nomeDaPlanilha.ToUpper());
+            var sheetData = planilhaExistente ? _dicionario[nomeDaPlanilha.ToUpper()] : new SheetData();
             if (!planilhaExistente)
             {
                 var worksheetPart = _workbookPart.AddNewPart<WorksheetPart>();
                 _workbookPart.Workbook.Sheets.Append(new Sheet() { Name = nomeDaPlanilha, SheetId = (uint)_workbookPart.GetPartsCountOfType<WorksheetPart>(), Id = _workbookPart.GetIdOfPart(worksheetPart) });
                 worksheetPart.Worksheet = new Worksheet(sheetData);
                 worksheetPart.Worksheet.Save();
-                _dicionario.Add(nomeDaPlanilha, sheetData);
+                _dicionario.Add(nomeDaPlanilha.ToUpper(), sheetData);
             }
             return sheetData;
         }
 
-        public void AdicionarDados(String nomeDaPlanilha, String celula)
+        public void AdicionarDados(String nomeDaPlanilha, String celula, String conteudo)
         {
-            var planilhaExistente = _dicionario.ContainsKey(nomeDaPlanilha);
-            var sheetData = planilhaExistente ? _dicionario[nomeDaPlanilha] : AdicionarPlanilha(nomeDaPlanilha);
+            var planilhaExistente = _dicionario.ContainsKey(nomeDaPlanilha.ToUpper());
+            var sheetData = planilhaExistente ? _dicionario[nomeDaPlanilha.ToUpper()] : AdicionarPlanilha(nomeDaPlanilha);
 
             var newRow = new Row { RowIndex = 1 };
-            Cell cell = CreateCell(celula, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"), null);
-            newRow.AppendChild(cell);
+            newRow.AppendChild(CreateCell(celula, conteudo, null));
             sheetData.Append(newRow);
         }
 
@@ -197,22 +193,12 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
 
         private Cell CreateCell(string cellReference, string cellStringValue, uint? styleIndex)
         {
-            var cell = new Cell();
-            cell.DataType = CellValues.InlineString;
-
-            var t = new Text();
-            t.Text = cellStringValue;
-
-            if (styleIndex.HasValue)
-                cell.StyleIndex = styleIndex;
-
-            var inlineString = new InlineString();
-            inlineString.AppendChild(t);
-
-            cell.AppendChild(inlineString);
-
-            cell.CellReference = cellReference;
-
+            var cell = new Cell(new InlineString(new Text(cellStringValue)))
+            {
+                DataType = CellValues.InlineString,
+                CellReference = cellReference,
+                StyleIndex = styleIndex
+            };
             return cell;
         }
     }
