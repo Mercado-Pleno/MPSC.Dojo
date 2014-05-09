@@ -1,8 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
-using System;
-
 
 namespace MP.LBJC.Tests
 {
@@ -27,35 +26,35 @@ namespace MP.LBJC.Tests
 		[Test]
 		public void Agrupar_ParImpar_MenorMaior()
 		{
-			var g = numeros.GroupBY(n => n % 2, n => n >= 5);
+			var g = numeros.GroupBy(n => n % 2, n => n >= 5);
 			Assert.AreEqual(4, g.Count);
 		}
 
         [Test]
 		public void Agrupar_ParImpar()
 		{
-			var g = numeros.GroupBY(n => n % 2);
+			var g = numeros.GroupBy(n => n % 2);
 			Assert.AreEqual(2, g.Count);
 		}
 
         [Test]
 		public void Agrupar_MenorMaior()
 		{
-			var g = numeros.GroupBY(n => n >= 5);
+			var g = numeros.GroupBy(n => n >= 5);
 			Assert.AreEqual(2, g.Count);
 		}
 
         [Test]
 		public void Agrupar_Mes()
 		{
-			var g = vendas.GroupBY(v => v.Mes);
+			var g = vendas.GroupBy(v => v.Mes);
 			Assert.AreEqual(2, g.Count);
 		}
 
         [Test]
 		public void Agrupar_Produto()
 		{
-			var g = vendas.GroupBY(v => v.Produto);
+			var g = vendas.GroupBy(v => v.Produto);
 			Assert.AreEqual(3, g.Count);
 		}
 	}
