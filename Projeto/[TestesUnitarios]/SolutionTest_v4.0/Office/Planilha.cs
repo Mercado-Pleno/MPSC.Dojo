@@ -17,7 +17,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
 		Header = 999
 	}
 
-	public class Planilha
+	public class GeradorDePlanilha
 	{
 		private readonly SpreadsheetDocument _spreadsheetDocument;
 		private readonly WorkbookPart _workbookPart;
@@ -25,7 +25,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
 		private readonly Dictionary<Style, UInt32Value> _styles;
 		private List<PropertyInfo> _propertyInfos;
 
-		public Planilha(String fullFileName)
+		public GeradorDePlanilha(String fullFileName)
 		{
 			_planilhas = new Dictionary<string, SheetData>();
 			_styles = new Dictionary<Style, UInt32Value>();

@@ -16,7 +16,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
 		[TestMethod]
 		public void TestMethod1()
 		{
-			var planilhaDoExcel = new Planilha(@"D:\Relatório.xlsx");
+			var planilhaDoExcel = new GeradorDePlanilha(@"D:\Relatório.xlsx");
 
 			planilhaDoExcel.Escrever("Plan1", Celula.From(1, 1), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
 			planilhaDoExcel.Escrever("Plan1", Celula.From(1, 2), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
