@@ -60,6 +60,7 @@
     <Compile Include="Curso\NumeroRomanoTest.cs" />
     <Compile Include="IoC\InjetorDeDependenciaTest.cs" />
     <Compile Include="Office\ExcelTest.cs" />
+    <Compile Include="Office\Planilha.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\[Aula]\Curso.csproj">
