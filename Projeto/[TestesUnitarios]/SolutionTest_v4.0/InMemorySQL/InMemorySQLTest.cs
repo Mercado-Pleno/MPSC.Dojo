@@ -9,12 +9,12 @@ namespace MP.SVNControl.Test
 	[TestClass]
 	public class InMemorySQLTest
 	{
-		private IBancoDados database;
-		private ITabela<Cliente> tabelaCliente;
-		private ITabela<Documento> tabelaDocumento;
+		private static IBancoDados database;
+		private static ITabela<Cliente> tabelaCliente;
+		private static ITabela<Documento> tabelaDocumento;
 
 		[ClassInitialize()]
-		public void InMemorySQLTestInitialize()
+		public static void InMemorySQLTestInitialize(TestContext testContext)
 		{
 			var recurso = Recurso.Instancia;
 			var servidor = recurso.AdicionarServidor(new Servidor("192.168.0.1", "User", "Senha"));
@@ -32,12 +32,16 @@ namespace MP.SVNControl.Test
 		public void VerificarSeConsegueIncluirSemParametrosNoInsertInto()
 		{
 			var bruno = database.InsertInto<Cliente>().Values(e => e.Nome = "Bruno", e => e.Idade = 31);
+			Assert.IsNotNull(bruno);
+			Assert.IsTrue(database.Tabela<Cliente>().ListaDados.Count > 0);
 		}
 
 		[TestMethod]
 		public void VerificarSeConsegueIncluirComParametrosNoInsertIntoNaOrdem()
 		{
 			var luani = database.InsertInto<Cliente>(c => c.Nome, c => c.Idade).Values("Luani", 29);
+			Assert.IsNotNull(luani);
+			Assert.IsTrue(database.Tabela<Cliente>().ListaDados.Count > 0);
 		}
 
 		[TestMethod]

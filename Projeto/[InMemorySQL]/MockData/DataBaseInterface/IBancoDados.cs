@@ -11,8 +11,9 @@ namespace MP.SVNControl.MockData.DataBaseInterface
 	public interface IBancoDados
 	{
 		String Nome { get; }
-		IList<ITabela> ListaTabela { get; }
+		//IList<ITabela> ListaTabela { get; }
 		ITabela<T> AdicionarTabela<T>(ITabela<T> tabela);
+		ITabela<T> Tabela<T>();
 
 		IList<IStoredProcedure> ListaStoredProcedure { get; }
 		IStoredProcedure Obter(String nomeStoredProcedure);
@@ -51,7 +52,7 @@ namespace MP.SVNControl.MockData.DataBaseInterface
 			return ListaTabela.First(sp => sp.Nome.Equals(nomeDaTabela));
 		}
 
-		public ITabela<T> Obter<T>()
+		public ITabela<T> Tabela<T>()
 		{
 			return ObterTabela(typeof(T).Name) as ITabela<T>;
 		}
@@ -63,14 +64,14 @@ namespace MP.SVNControl.MockData.DataBaseInterface
 
 		public IInsertInto<Tabela> InsertInto<Tabela>() where Tabela : class, new()
 		{
-			var vTabela = Obter<Tabela>();
+			var vTabela = Tabela<Tabela>();
 			var vLinha = vTabela.Adicionar(new Tabela());
 			return new Insert<Tabela>(vLinha);
 		}
 
 		public IInsertInto<T> InsertInto<T>(params Expression<Func<T, Object>>[] lambdas) where T : class, new()
 		{
-			var vTabela = Obter<T>();
+			var vTabela = Tabela<T>();
 			T linha = vTabela.Adicionar(new T());
 
 			List<PropertyInfo> lista = new List<PropertyInfo>();
