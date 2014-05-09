@@ -41,12 +41,12 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
 			AdicionarLinhas<T>(nomeDaPlanilha, lista);
 		}
 
-		public void AdicionarDados(String nomeDaPlanilha, Celula celula, String conteudo)
+		public void Escrever(String nomeDaPlanilha, Celula celula, String conteudo)
 		{
-			AdicionarDados(nomeDaPlanilha, celula, conteudo, null);
+			Escrever(nomeDaPlanilha, celula, conteudo, null);
 		}
 
-		public void AdicionarDados(String nomeDaPlanilha, Celula celula, String conteudo, uint? styleIndex)
+		public void Escrever(String nomeDaPlanilha, Celula celula, String conteudo, uint? styleIndex)
 		{
 			var planilhaExistente = _planilhas.ContainsKey(nomeDaPlanilha.ToUpper());
 			var sheetData = planilhaExistente ? _planilhas[nomeDaPlanilha.ToUpper()] : AdicionarPlanilha(nomeDaPlanilha);
