@@ -356,10 +356,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
 		}
 
 		#endregion // "Styles"
-
 	}
-
-
 
 	public class Celula
 	{
@@ -416,42 +413,15 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
 	[AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
 	public class SheetColumnAttribute : Attribute
 	{
-
-		private string description { get; set; }
-		public string Description
-		{
-			get { return description; }
-			set { description = value; }
-		}
-
-		private short order { get; set; }
-		public short Order
-		{
-			get { return order; }
-			set { order = value; }
-		}
-
-		private string Format { get; set; }
+		public string Description { get; set; }
+		public short Order { get; set; }
+		public string Format { get; set; }
+		public string NumberFormat { get; set; }
+		public DataTypeEnum DataType { get; set; }
 		public string DataFormat
 		{
 			get { return Format ?? (Format = "{0:yyyy/MM/dd}"); }
 			set { Format = value; }
-		}
-
-
-		private string numberFormat { get; set; }
-		public string NumberFormat
-		{
-			get { return numberFormat; }
-			set { numberFormat = value; }
-		}
-
-
-		private DataTypeEnum dataType { get; set; }
-		public DataTypeEnum DataType
-		{
-			get { return dataType; }
-			set { dataType = value; }
 		}
 
 		public SheetColumnAttribute()
@@ -460,15 +430,16 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
 		}
 
 		public SheetColumnAttribute(string descricao)
+			: this()
 		{
 			Description = descricao;
 		}
 
 		public SheetColumnAttribute(short order)
+			: this()
 		{
 			Order = order;
 		}
-
 
 		public SheetColumnAttribute(string description, short order)
 			: this()
