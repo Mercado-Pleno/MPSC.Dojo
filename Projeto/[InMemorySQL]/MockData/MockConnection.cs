@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Data.Common;
 using MP.SVNControl.MockData.DataBaseInterface;
-using MP.SVNControl.Test;
 
 namespace MP.SVNControl.MockData
 {

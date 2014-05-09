@@ -16,6 +16,9 @@ namespace MP.SVNControl.MockData.DataBaseInterface
 
 		IList<IStoredProcedure> ListaStoredProcedure { get; }
 		IStoredProcedure Obter(String nomeStoredProcedure);
+
+		IInsertInto<Tabela> InsertInto<Tabela>() where Tabela : class, new();
+		IInsertInto<T> InsertInto<T>(params Expression<Func<T, Object>>[] lambdas) where T : class, new();
 	}
 
 	public interface IInsertInto<T> where T : class, new()
