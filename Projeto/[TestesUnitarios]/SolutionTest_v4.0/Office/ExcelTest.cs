@@ -23,17 +23,17 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
         {
             var planilhaDoExcel = new PlanilhaDoExcel(@"D:\Relatório.xlsx");
 
-            planilhaDoExcel.AdicionarDados("Plan1", "A1", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
-            planilhaDoExcel.AdicionarDados("Plan1", "D1", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
+            planilhaDoExcel.AdicionarDados("Plan1", Celula.From(1, 1), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
+            planilhaDoExcel.AdicionarDados("Plan1", Celula.From(1, 1), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
 
-            planilhaDoExcel.AdicionarDados("Plan2", "B1", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
-            planilhaDoExcel.AdicionarDados("Plan2", "E1", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
+            planilhaDoExcel.AdicionarDados("Plan2", Celula.From(1, 1), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
+            planilhaDoExcel.AdicionarDados("Plan2", Celula.From(1, 1), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
 
-            planilhaDoExcel.AdicionarDados("Plan3", "C1", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
-            planilhaDoExcel.AdicionarDados("Plan3", "F1", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
+            planilhaDoExcel.AdicionarDados("Plan3", Celula.From(1, 1), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
+            planilhaDoExcel.AdicionarDados("Plan3", Celula.From(1, 1), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
 
-            planilhaDoExcel.AdicionarDados("Plan4", "G1", DateTime.Now.ToString("dd/MM/yyyy"));
-            planilhaDoExcel.AdicionarDados("Plan4", "H1", DateTime.Now.ToString("HH:mm:ss.fff"));
+            planilhaDoExcel.AdicionarDados("Plan4", Celula.From("A5"), DateTime.Now.ToString("dd/MM/yyyy"));
+            planilhaDoExcel.AdicionarDados("Plan4", Celula.From("C9"), DateTime.Now.ToString("HH:mm:ss.fff"));
 
             planilhaDoExcel.Gravar();
         }
@@ -69,15 +69,16 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
             return sheetData;
         }
 
-        public void AdicionarDados(String nomeDaPlanilha, String celula, String conteudo)
+        public void AdicionarDados(String nomeDaPlanilha, Celula celula, String conteudo)
         {
             var planilhaExistente = _dicionario.ContainsKey(nomeDaPlanilha.ToUpper());
             var sheetData = planilhaExistente ? _dicionario[nomeDaPlanilha.ToUpper()] : AdicionarPlanilha(nomeDaPlanilha);
 
-            var newRow = new Row { RowIndex = 1 };
-            newRow.AppendChild(CreateCell(celula, conteudo, null));
+            var newRow = new Row { RowIndex = celula.Linha };
+            newRow.AppendChild(CreateCell(celula.Referencia, conteudo, null));
             sheetData.Append(newRow);
         }
+
 
         public void Gravar()
         {
@@ -202,4 +203,47 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
             return cell;
         }
     }
+
+    public class Celula
+    {
+        public uint Linha { get; private set; }
+        public String Coluna { get; private set; }
+        public String Referencia { get { return Coluna + Linha.ToString(); } }
+
+        public Celula(String coluna, uint linha)
+        {
+            Linha = linha;
+            Coluna = coluna;
+        }
+
+        public static Celula From(uint coluna, uint linha)
+        {
+            return new Celula(GetExcelColumnName(coluna), linha);
+        }
+
+        public static Celula From(String referencia)
+        {
+            return new Celula(GetColuna(referencia), GetLinha(referencia));
+        }
+
+        private static String GetExcelColumnName(uint columnIndex)
+        {
+            if (columnIndex < 26)
+                return ((char)('A' + columnIndex)).ToString();
+
+            return string.Format("{0}{1}", (char)('A' + (columnIndex / 26) - 1), (char)('A' + (columnIndex % 26)));
+        }
+
+        private static String GetColuna(String referencia)
+        {
+            return referencia.Substring(0, referencia.IndexOfAny("1234567890".ToCharArray()) - 1);
+        }
+
+        private static uint GetLinha(String referencia)
+        {
+            return Convert.ToUInt32(referencia.Substring(referencia.IndexOfAny("1234567890".ToCharArray())));
+        }
+
+    }
+
 }
