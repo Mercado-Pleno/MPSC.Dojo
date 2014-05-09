@@ -24,16 +24,16 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
             var planilhaDoExcel = new PlanilhaDoExcel(@"D:\Relatório.xlsx");
 
             planilhaDoExcel.AdicionarDados("Plan1", Celula.From(1, 1), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
-            planilhaDoExcel.AdicionarDados("Plan1", Celula.From(1, 1), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
+            planilhaDoExcel.AdicionarDados("Plan1", Celula.From(1, 2), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
 
-            planilhaDoExcel.AdicionarDados("Plan2", Celula.From(1, 1), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
-            planilhaDoExcel.AdicionarDados("Plan2", Celula.From(1, 1), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
+            planilhaDoExcel.AdicionarDados("Plan1", Celula.From(2, 1), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
+            planilhaDoExcel.AdicionarDados("Plan1", Celula.From(2, 2), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
 
-            planilhaDoExcel.AdicionarDados("Plan3", Celula.From(1, 1), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
-            planilhaDoExcel.AdicionarDados("Plan3", Celula.From(1, 1), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
+            planilhaDoExcel.AdicionarDados("Plan1", Celula.From(1, 3), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
+            planilhaDoExcel.AdicionarDados("Plan1", Celula.From(3, 1), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff"));
 
-            planilhaDoExcel.AdicionarDados("Plan4", Celula.From("A5"), DateTime.Now.ToString("dd/MM/yyyy"));
-            planilhaDoExcel.AdicionarDados("Plan4", Celula.From("C9"), DateTime.Now.ToString("HH:mm:ss.fff"));
+            planilhaDoExcel.AdicionarDados("Plan1", Celula.From("D1"), DateTime.Now.ToString("dd/MM/yyyy"));
+            planilhaDoExcel.AdicionarDados("Plan1", Celula.From("D1"), DateTime.Now.ToString("HH:mm:ss.fff"));
 
             planilhaDoExcel.Gravar();
         }
@@ -74,9 +74,13 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
             var planilhaExistente = _dicionario.ContainsKey(nomeDaPlanilha.ToUpper());
             var sheetData = planilhaExistente ? _dicionario[nomeDaPlanilha.ToUpper()] : AdicionarPlanilha(nomeDaPlanilha);
 
-            var newRow = new Row { RowIndex = celula.Linha };
-            newRow.AppendChild(CreateCell(celula.Referencia, conteudo, null));
-            sheetData.Append(newRow);
+            var row = sheetData.ChildElements.Cast<Row>().FirstOrDefault(r => r.RowIndex == celula.Linha);
+            if (row == null)
+            {
+                row = new Row { RowIndex = celula.Linha };
+                sheetData.Append(row);
+            }
+            row.AppendChild(CreateCell(celula.Referencia, conteudo, null));
         }
 
 
@@ -218,7 +222,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
 
         public static Celula From(uint coluna, uint linha)
         {
-            return new Celula(GetExcelColumnName(coluna), linha);
+            return new Celula(GetExcelColumnName(coluna - 1), linha);
         }
 
         public static Celula From(String referencia)
@@ -236,7 +240,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
 
         private static String GetColuna(String referencia)
         {
-            return referencia.Substring(0, referencia.IndexOfAny("1234567890".ToCharArray()) - 1);
+            return referencia.Substring(0, referencia.IndexOfAny("1234567890".ToCharArray()));
         }
 
         private static uint GetLinha(String referencia)
