@@ -23,10 +23,8 @@ namespace MP.SVNControl.Test
 			tabelaDocumento = database.AdicionarTabela(new Tabela<Documento>());
 		}
 
-		[TestInitialize()]
-		public void MyTestInitialize()
-		{
-		}
+		//[TestInitialize()]
+		public void MyTestInitialize() { }
 
 		[TestMethod]
 		public void VerificarSeConsegueIncluirSemParametrosNoInsertInto()
