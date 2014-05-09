@@ -71,7 +71,7 @@ namespace MP.SVNControl.Test
 			tabelaDocumento.Adicionar(new Documento() { Numero = "DocSolange" });
 		}
 
-		[TestMethod]
+		//[TestMethod]
 		public void OutrosTestes()
 		{
 			var vMockConnection = new MockConnection();
