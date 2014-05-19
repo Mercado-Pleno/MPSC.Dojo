@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.XML" />
@@ -86,6 +87,9 @@
     <Compile Include="QuestoesDojo\MatrizEspiral.cs" />
     <Compile Include="Service\ExtensionMethods.cs" />
     <Compile Include="Service\NTPClient.cs" />
+    <Compile Include="Service\WakeOnLan.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transformacao\Pivot.cs" />
     <Compile Include="Transformacao\Serializacao\IDiscretizador.cs" />
     <Compile Include="Transformacao\Serializacao\ISerializador.cs" />
