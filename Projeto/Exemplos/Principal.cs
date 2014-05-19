@@ -3,6 +3,7 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using MP.LBJC.Utils;
 	using MPSC.Library.Exemplos.BancoDeDados;
 	using MPSC.Library.Exemplos.ControleDeFluxo;
 	using MPSC.Library.Exemplos.ControleDeFluxo.Reflection;
@@ -66,7 +67,8 @@
 					new ItemMenu('1', "Separar Lista EMails E Remover Duplicados", new SeparaListaEMailsERemoveDuplicados()),
 					new ItemMenu('2', "Criptografia Com Operador XOR", new CriptografiaComOperadorXOR()),
 					new ItemMenu('3', "Alguma Coisa Com Relatorios usando Linq", new AlgumaCoisaComRelatoriosUsandoLinq()),
-					new ItemMenu('4', "Transformacao De Dados Para DTO", new TransformacaoDeDadosParaDTO())
+					new ItemMenu('4', "Transformacao De Dados Para DTO", new TransformacaoDeDadosParaDTO()),
+					new ItemMenu('5', "Wake Up On LAN", new ProgramWakeOnLan())
 				),
 
 				new ItemMenu('6', "Design Pattern",
