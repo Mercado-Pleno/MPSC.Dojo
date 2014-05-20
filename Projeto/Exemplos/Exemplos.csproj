@@ -87,7 +87,7 @@
     <Compile Include="QuestoesDojo\MatrizEspiral.cs" />
     <Compile Include="Service\ExtensionMethods.cs" />
     <Compile Include="Service\NTPClient.cs" />
-    <Compile Include="Service\WakeOnLan.cs">
+    <Compile Include="Service\WakeUpOnLAN.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transformacao\Pivot.cs" />

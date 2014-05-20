@@ -3,8 +3,7 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using MP.LBJC.Utils;
-	using MPSC.Library.Exemplos.BancoDeDados;
+    using MPSC.Library.Exemplos.BancoDeDados;
 	using MPSC.Library.Exemplos.ControleDeFluxo;
 	using MPSC.Library.Exemplos.ControleDeFluxo.Reflection;
 	using MPSC.Library.Exemplos.DesignPattern.Strategy.Classes;

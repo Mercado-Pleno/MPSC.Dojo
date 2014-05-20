@@ -1,79 +1,77 @@
-﻿using System;
-using System.Drawing;
-using System.Net;
-using System.Net.Sockets;
-using System.Windows.Forms;
-using MPSC.Library.Exemplos;
-
-namespace MP.LBJC.Utils
+﻿namespace MPSC.Library.Exemplos.Service
 {
+    using System;
+    using System.Drawing;
+    using System.Net;
+    using System.Net.Sockets;
+    using System.Windows.Forms;
+    using MPSC.Library.Exemplos;
+
     public class ProgramWakeOnLan : IExecutavel
     {
         [STAThread]
         public void Executar()
         {
-            Application.Run(new FormWakeOnLan());
+            Application.Run(new FormWakeUpOnLAN());
         }
     }
 
-    public class FormWakeOnLan : Form
+    public class FormWakeUpOnLAN : Form
     {
-        private Button btnWakeUp;
-        private TextBox txtMac;
-        private Label lbMAC;
-
-        public FormWakeOnLan()
+        public FormWakeUpOnLAN()
         {
             InitializeComponent();
-            txtMac.Text = "00-1C-C0-C0-F4-29";
         }
 
         private void btnWakeUp_Click(object sender, EventArgs e)
         {
-            WakeOnLan.WakeUp(txtMac.Text);
+            WakeUpOnLAN.WakeUp(txtMAC.Text);
         }
 
         private void InitializeComponent()
         {
+            lblMAC = new Label();
+            txtMAC = new TextBox();
             btnWakeUp = new Button();
-            txtMac = new TextBox();
-            lbMAC = new Label();
             SuspendLayout();
 
-            btnWakeUp.Location = new Point(195, 120);
-            btnWakeUp.Name = "button1";
-            btnWakeUp.Size = new Size(75, 23);
-            btnWakeUp.TabIndex = 0;
-            btnWakeUp.Text = "On";
-            btnWakeUp.UseVisualStyleBackColor = true;
-            btnWakeUp.Click += new EventHandler(this.btnWakeUp_Click);
+            lblMAC.Location = new Point(10, 12);
+            lblMAC.Size = new Size(30, 15);
+            lblMAC.TabIndex = 0;
+            lblMAC.Name = "lblMAC";
+            lblMAC.Text = "MAC";
 
-            txtMac.Location = new Point(12, 24);
-            txtMac.Name = "txtMac";
-            txtMac.Size = new Size(100, 20);
-            txtMac.TabIndex = 2;
+            txtMAC.Location = new Point(40, 10);
+            txtMAC.Size = new Size(120, 19);
+            txtMAC.TabIndex = 1;
+            txtMAC.Name = "txtMAC";
+            txtMAC.Text = "00-1C-C0-C0-F4-29";
 
-            lbMAC.AutoSize = true;
-            lbMAC.Location = new Point(13, 8);
-            lbMAC.Name = "lbMAC";
-            lbMAC.Size = new Size(30, 13);
-            lbMAC.TabIndex = 4;
-            lbMAC.Text = "MAC";
+            btnWakeUp.Location = new Point(170, 8);
+            btnWakeUp.Size = new Size(70, 23);
+            btnWakeUp.TabIndex = 2;
+            btnWakeUp.Name = "btnWakeUp";
+            btnWakeUp.Text = "Wake Up!";
+            btnWakeUp.Click += new EventHandler(btnWakeUp_Click);
 
-            AutoScaleDimensions = new SizeF(6F, 13F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(282, 155);
-            Controls.Add(lbMAC);
-            Controls.Add(txtMac);
+            Name = "FormWakeUpOnLAN";
+            Text = "Wake Up On Lan";
+            MaximizeBox = false;
+            MinimizeBox = false;
+            FormBorderStyle = FormBorderStyle.Fixed3D;
+            ClientSize = new Size(250, 40);
+            Controls.Add(lblMAC);
+            Controls.Add(txtMAC);
             Controls.Add(btnWakeUp);
-            Name = "FormWakeOnLan";
-            Text = "Wake On Lan";
             ResumeLayout(false);
             PerformLayout();
         }
+        private Button btnWakeUp;
+        private TextBox txtMAC;
+        private Label lblMAC;
     }
 
-    public static class WakeOnLan
+    public static class WakeUpOnLAN
     {
         public static Int32 WakeUp(String macAddress)
         {
@@ -124,9 +122,8 @@ namespace MP.LBJC.Utils
         public static readonly IPAddress ClassB = IPAddress.Parse("255.255.0.0");
         public static readonly IPAddress ClassC = IPAddress.Parse("255.255.255.0");
 
-        public static IPAddress CreateByHostBitLength(int hostpartLength)
+        public static IPAddress CreateByHostBitLength(int hostPartLength)
         {
-            int hostPartLength = hostpartLength;
             int netPartLength = 32 - hostPartLength;
 
             if (netPartLength < 2)
@@ -153,17 +150,12 @@ namespace MP.LBJC.Utils
 
         public static IPAddress CreateByNetBitLength(int netpartLength)
         {
-            int hostPartLength = 32 - netpartLength;
-            return CreateByHostBitLength(hostPartLength);
+            return CreateByHostBitLength(32 - netpartLength);
         }
 
         public static IPAddress CreateByHostNumber(int numberOfHosts)
         {
-            int maxNumber = numberOfHosts + 1;
-
-            string b = Convert.ToString(maxNumber, 2);
-
-            return CreateByHostBitLength(b.Length);
+            return CreateByHostBitLength(Convert.ToString(numberOfHosts + 1, 2).Length);
         }
     }
 
