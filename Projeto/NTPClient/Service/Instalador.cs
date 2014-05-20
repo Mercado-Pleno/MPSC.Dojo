@@ -4,7 +4,7 @@
 	using System.ComponentModel;
 	using System.Reflection;
 	using System.ServiceProcess;
-	using MP.LBJC.Utils;
+    using MPSC.Library.Exemplos.Service;
 
 	[RunInstaller(true)]
 	public class Instalador : InstaladorDeServico

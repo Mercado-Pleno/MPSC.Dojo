@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using MP.LBJC.ServicoWindows.Interface;
 
-namespace MP.LBJC.Utils
+namespace MPSC.Library.Exemplos.Service
 {
 	public class NTPClient : IProcessador
 	{
