@@ -1,0 +1,8 @@
+D:\Projeto\MercadoPleno\MPSC.Dojo\Projeto\[CiaDoDireito]\CiaDoDireito.View\obj\x86\Debug\CiaDoDireito.View.csprojResolveAssemblyReference.cache
+D:\Projeto\MercadoPleno\MPSC.Dojo\Projeto\[CiaDoDireito]\CiaDoDireito.View\obj\x86\Debug\DireitoECia.frmAdvogado.resources
+D:\Projeto\MercadoPleno\MPSC.Dojo\Projeto\[CiaDoDireito]\CiaDoDireito.View\obj\x86\Debug\CiaDoDireito.View.csproj.GenerateResource.Cache
+D:\Projeto\MercadoPleno\MPSC.Dojo\Projeto\[CiaDoDireito]\Bin\CiaDoDireito.View.exe
+D:\Projeto\MercadoPleno\MPSC.Dojo\Projeto\[CiaDoDireito]\Bin\CiaDoDireito.View.pdb
+D:\Projeto\MercadoPleno\MPSC.Dojo\Projeto\[CiaDoDireito]\CiaDoDireito.View\obj\x86\Debug\CiaDoDireito.View.Properties.Resources.resources
+D:\Projeto\MercadoPleno\MPSC.Dojo\Projeto\[CiaDoDireito]\CiaDoDireito.View\obj\x86\Debug\CiaDoDireito.View.exe
+D:\Projeto\MercadoPleno\MPSC.Dojo\Projeto\[CiaDoDireito]\CiaDoDireito.View\obj\x86\Debug\CiaDoDireito.View.pdb
