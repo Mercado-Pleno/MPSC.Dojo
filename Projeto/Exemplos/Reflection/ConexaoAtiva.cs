@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Domain.Service.Util
 {
-	public static class Clone
+	public static class CloneUtil
 	{
 		private static Cliente CriarCliente()
 		{
