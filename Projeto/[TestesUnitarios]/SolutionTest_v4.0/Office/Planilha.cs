@@ -77,7 +77,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
 			var sheetData = planilhaExistente ? _planilhas[nomeDaPlanilha.ToUpper()] : new SheetData();
 			if (!planilhaExistente)
 			{
-				var worksheetPart = _workbookPart.AddNewPart<WorksheetPart>();
+				WorksheetPart worksheetPart = _workbookPart.AddNewPart<WorksheetPart>();
 				_workbookPart.Workbook.Sheets.Append(new Sheet() { Name = nomeDaPlanilha, SheetId = (uint)_workbookPart.GetPartsCountOfType<WorksheetPart>(), Id = _workbookPart.GetIdOfPart(worksheetPart) });
 				worksheetPart.Worksheet = new Worksheet(sheetData);
 				worksheetPart.Worksheet.Save();
