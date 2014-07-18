@@ -1,27 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace LBJC.NavegadorDeDados
 {
 	public partial class Form1 : Form
 	{
+		private IQueryResult ActiveTab { get { return (tabQueryResult.TabPages.Count > 0) ? tabQueryResult.TabPages[tabQueryResult.TabIndex] as IQueryResult : NullQueryResult.Instance; } }
+
 		public Form1()
 		{
 			InitializeComponent();
 		}
 
-		private QueryResult ActiveTab { get { return tabQueryResult.TabPages[tabQueryResult.TabIndex] as QueryResult; } }
-
 		private void btNovoDocumento_Click(object sender, EventArgs e)
 		{
-			var queryResult = new QueryResult();
-			tabQueryResult.Controls.Add(queryResult);
+			tabQueryResult.Controls.Add(new QueryResult());
 		}
 
 		private void btExecutar_Click(object sender, EventArgs e)

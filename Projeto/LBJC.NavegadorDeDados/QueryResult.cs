@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace LBJC.NavegadorDeDados
 {
-	public partial class QueryResult : TabPage
+	public partial class QueryResult : TabPage, IQueryResult
 	{
 		private static Int32 _quantidade = 1;
 
@@ -14,7 +13,7 @@ namespace LBJC.NavegadorDeDados
 		private ClasseDinamica _classeDinamica = null;
 
 		private Conexao Conexao { get { return (_conexao ?? (_conexao = new Conexao())); } }
-		private ClasseDinamica ClasseDinamica { get { return (_classeDinamica ?? (_classeDinamica = new ClasseDinamica(_dataReader))); } }
+		private ClasseDinamica ClasseDinamica { get { return (_classeDinamica ?? (_classeDinamica = new ClasseDinamica())); } }
 
 		private String QueryAtiva { get { return ((txtQuery.SelectedText.Length > 1) ? txtQuery.SelectedText : txtQuery.Text); } }
 
@@ -22,18 +21,6 @@ namespace LBJC.NavegadorDeDados
 		{
 			InitializeComponent();
 			this.Text = "Query" + _quantidade++;
-			this.txtQuery.Text = "Select * From Pessoa Order By NomePessoa";
-		}
-
-		public void Executar()
-		{
-			if (!String.IsNullOrWhiteSpace(QueryAtiva))
-			{
-				_dataReader = Conexao.Executar(QueryAtiva);
-				ClasseDinamica.Reset(_dataReader);
-				dgResult.DataSource = null;
-				Binding();
-			}
 		}
 
 		private void txtQuery_KeyUp(object sender, KeyEventArgs e)
@@ -53,10 +40,36 @@ namespace LBJC.NavegadorDeDados
 			}
 		}
 
-		private void Binding()
+		public void Executar()
+		{
+			if (!String.IsNullOrWhiteSpace(QueryAtiva))
+			{
+				var dataReader = Conexao.Executar(QueryAtiva);
+				ClasseDinamica.Reset(dataReader);
+				dgResult.DataSource = null;
+				Binding();
+			}
+		}
+
+		public void Binding()
 		{
 			var result = ClasseDinamica.Transformar();
 			dgResult.DataSource = (dgResult.DataSource as IEnumerable<Object> ?? new List<Object>()).Union(result).ToList();
 		}
+	}
+
+	public interface IQueryResult
+	{
+		void Executar();
+		void Binding();
+	}
+
+	public class NullQueryResult : IQueryResult
+	{
+		public void Executar() { }
+		public void Binding() { }
+
+		private static IQueryResult _instance;
+		public static IQueryResult Instance { get { return _instance ?? (_instance = new NullQueryResult()); } }
 	}
 }
