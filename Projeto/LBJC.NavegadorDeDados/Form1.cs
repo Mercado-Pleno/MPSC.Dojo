@@ -15,5 +15,18 @@ namespace LBJC.NavegadorDeDados
 		{
 			InitializeComponent();
 		}
+
+		private QueryResult ActiveTab { get { return tabQueryResult.TabPages[tabQueryResult.TabIndex] as QueryResult; } }
+
+		private void btNovoDocumento_Click(object sender, EventArgs e)
+		{
+			var queryResult = new QueryResult();
+			tabQueryResult.Controls.Add(queryResult);
+		}
+
+		private void btExecutar_Click(object sender, EventArgs e)
+		{
+			ActiveTab.Executar();
+		}
 	}
 }
