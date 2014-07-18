@@ -25,12 +25,41 @@ namespace LBJC.NavegadorDeDados
 
 		private void txtQuery_KeyDown(object sender, KeyEventArgs e)
 		{
-			if ((e.Modifiers == Keys.Control) && (e.KeyCode == Keys.A))
+			if ((e.KeyValue == 190) || (e.KeyValue == 194))
+				AutoCompletar();
+			else if ((e.Modifiers == Keys.Control) && (e.KeyCode == Keys.A))
 				txtQuery.SelectAll();
 			else if (e.KeyCode == Keys.F5)
 				Executar();
 			else if ((e.Modifiers == Keys.Control) && (e.KeyCode == Keys.Y))
 				Executar();
+		}
+
+		private void AutoCompletar()
+		{
+			var query = txtQuery.Text.ToUpper();
+			var i = txtQuery.SelectionStart;
+			while (!" \n\r\t".Contains(query[i - 1]))
+				i--;
+			var token = query.Substring(i, txtQuery.SelectionStart - i);
+
+			i = query.IndexOf(" " + token + " ");
+			while (!" \n\r\t".Contains(query[i - 1]))
+				i--;
+			token = query.Substring(i, query.IndexOf(" " + token + " ") - i);
+
+			query = "Select * From " + token + " Where 0=1";
+
+			var dataReader = Conexao.Executar(query);
+			var props = "";
+			var colunas = dataReader.FieldCount;
+			for (i = 0; i < colunas; i++)
+			{
+				var prop = dataReader.GetName(i) + "\r\n";
+				props += prop;
+			}
+
+			MessageBox.Show(props);
 		}
 
 		private void txtQuery_KeyUp(object sender, KeyEventArgs e)
@@ -50,11 +79,22 @@ namespace LBJC.NavegadorDeDados
 
 		public void Executar()
 		{
-			if (!String.IsNullOrWhiteSpace(QueryAtiva))
+			var query = QueryAtiva;
+			if (!String.IsNullOrWhiteSpace(query))
 			{
 				try
 				{
-					var dataReader = Conexao.Executar(QueryAtiva);
+					var comentarios = txtQuery.Text.Substring(txtQuery.Text.IndexOf("/*") + 2);
+					comentarios = comentarios.Substring(0, comentarios.IndexOf("*/"));
+					var variaveis = comentarios.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+					foreach (String variavel in variaveis)
+					{
+						var param = variavel.Substring(0, variavel.IndexOf("=") + 1).Replace("=", "").Trim();
+						var valor = variavel.Substring(variavel.IndexOf("=") + 1).Trim();
+						query = query.Replace(param, valor);
+					}
+
+					var dataReader = Conexao.Executar(query);
 					ClasseDinamica.Reset(dataReader);
 					dgResult.DataSource = null;
 					Binding();
