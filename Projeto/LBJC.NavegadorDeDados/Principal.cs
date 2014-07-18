@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace LBJC.NavegadorDeDados
 {
-	public static class Program
+	public static class Principal
 	{
 		[STAThread]
 		public static void Main()
