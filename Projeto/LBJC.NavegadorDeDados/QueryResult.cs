@@ -25,7 +25,7 @@ namespace LBJC.NavegadorDeDados
 
 		private void txtQuery_KeyUp(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.F5)
+			if ((e.KeyCode == Keys.F5) || ((e.KeyCode == Keys.Y) && (e.Modifiers == Keys.Control)) )
 				Executar();
 		}
 
