@@ -65,6 +65,7 @@
 			this.txtQuery.Name = "txtQuery";
 			this.txtQuery.Size = new System.Drawing.Size(795, 340);
 			this.txtQuery.TabIndex = 0;
+			this.txtQuery.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtQuery_KeyUp);
 			// 
 			// dgResult
 			// 
