@@ -7,16 +7,14 @@ using Microsoft.CSharp;
 
 namespace LBJC.NavegadorDeDados
 {
-	public class ClasseDinamica
+	public class ClasseDinamica : IDisposable
 	{
 		private Type _tipo = null;
 		private IDataReader _dataReader = null;
 
-
-		public ClasseDinamica(IDataReader dataReader) { Reset(dataReader); }
-
 		public void Reset(IDataReader dataReader)
 		{
+			Dispose();
 			if (dataReader != null)
 			{
 				_dataReader = dataReader;
@@ -24,7 +22,7 @@ namespace LBJC.NavegadorDeDados
 				var colunas = dataReader.FieldCount;
 				for (int i = 0; i < colunas; i++)
 				{
-					var prop = String.Format("public {0} {1} {{ get; set; }}\r\n", dataReader.GetFieldType(i).Name, dataReader.GetName(i));
+					var prop = String.Format("\t\tpublic {0}{1} {2} {{ get; set; }}\n", dataReader.GetFieldType(i).Name, dataReader.GetFieldType(i).IsValueType ? "?" : "", dataReader.GetName(i));
 					props += prop;
 				}
 				_tipo = CriarClasseVirtual("DadosDinamicos", props);
@@ -34,7 +32,7 @@ namespace LBJC.NavegadorDeDados
 		public IEnumerable<Object> Transformar()
 		{
 			var page = 0;
-			while (_dataReader.Read() && page++ < 100)
+			while ((_dataReader != null) && !_dataReader.IsClosed && _dataReader.Read() && page++ < 100)
 				yield return CreateAnonymousObject(_dataReader);
 		}
 
@@ -52,7 +50,6 @@ namespace LBJC.NavegadorDeDados
 			return obj;
 		}
 
-
 		private Type CriarClasseVirtual(String nomeClasse, String codigo)
 		{
 #pragma warning disable 0618
@@ -63,16 +60,27 @@ namespace LBJC.NavegadorDeDados
 			vCompilerParameters.GenerateInMemory = true;
 			vCompilerParameters.GenerateExecutable = false;
 			vCompilerParameters.IncludeDebugInformation = true;
-			var classe = @"using System; namespace LBJC.Virtual {{ public class {0} {{ {1} }} }}";
+			var classe = String.Format("using System;\nnamespace LBJC.Virtual\n{{\n\tpublic class {0}\n\t{{\n{1}\t}}\n}}", nomeClasse, codigo);
 			try
 			{
-				CompilerResults vResults = vCodeCompiler.CompileAssemblyFromSource(vCompilerParameters, String.Format(classe, nomeClasse, codigo));
+				CompilerResults vResults = vCodeCompiler.CompileAssemblyFromSource(vCompilerParameters, classe);
 				vType = vResults.CompiledAssembly.GetType("LBJC.Virtual." + nomeClasse, true);
 			}
 			catch (Exception) { }
 
 #pragma warning restore 0618
 			return vType;
+		}
+
+		public void Dispose()
+		{
+			if (_dataReader != null)
+			{
+				_dataReader.Close();
+				_dataReader.Dispose();
+				_dataReader = null;
+				_tipo = null;
+			}
 		}
 	}
 }
