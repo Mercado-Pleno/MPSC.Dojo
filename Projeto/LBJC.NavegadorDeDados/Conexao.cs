@@ -23,7 +23,7 @@ namespace LBJC.NavegadorDeDados
 			IDbCommand iDbCommand = iDbConnection.CreateCommand();
 			iDbCommand.CommandText = query;
 			iDbCommand.CommandType = CommandType.Text;
-			iDbCommand.CommandTimeout = 600;
+			iDbCommand.CommandTimeout = 30;
 			return iDbCommand;
 		}
 
@@ -47,7 +47,7 @@ namespace LBJC.NavegadorDeDados
 			var dataBase = "eSim";
 			var usuario = "UsrBen";
 			var senha = "@poiuy";
-			var strTemplate = (oleDB ? "Provider=IBMDA400;Data Source={0};Default Collection={1};User ID={2};Password={3}" : "Server={0};Database={1};User ID={2};Password={3}");
+			var strTemplate = (oleDB ? "Provider=IBMDA400;Data Source={0};Default Collection={1};User ID={2};Password={3}" : "DataSource={0};UserID={2};Password={3};DataCompression=True;SortSequence=SharedWeight;SortLanguageId=PTG;DefaultCollection={1};");
 			return String.Format(strTemplate, server, dataBase, usuario, senha);
 		}
 	}

@@ -23,10 +23,18 @@ namespace LBJC.NavegadorDeDados
 			this.Text = "Query" + _quantidade++;
 		}
 
+		private void txtQuery_KeyDown(object sender, KeyEventArgs e)
+		{
+			if ((e.Modifiers == Keys.Control) && (e.KeyCode == Keys.A))
+				txtQuery.SelectAll();
+			else if (e.KeyCode == Keys.F5)
+				Executar();
+			else if ((e.Modifiers == Keys.Control) && (e.KeyCode == Keys.Y))
+				Executar();
+		}
+
 		private void txtQuery_KeyUp(object sender, KeyEventArgs e)
 		{
-			if ((e.KeyCode == Keys.F5) || ((e.KeyCode == Keys.Y) && (e.Modifiers == Keys.Control)) )
-				Executar();
 		}
 
 		private void dgResult_Scroll(object sender, ScrollEventArgs e)
@@ -44,10 +52,17 @@ namespace LBJC.NavegadorDeDados
 		{
 			if (!String.IsNullOrWhiteSpace(QueryAtiva))
 			{
-				var dataReader = Conexao.Executar(QueryAtiva);
-				ClasseDinamica.Reset(dataReader);
-				dgResult.DataSource = null;
-				Binding();
+				try
+				{
+					var dataReader = Conexao.Executar(QueryAtiva);
+					ClasseDinamica.Reset(dataReader);
+					dgResult.DataSource = null;
+					Binding();
+				}
+				catch (Exception vException)
+				{
+					MessageBox.Show("Houve um problema ao executar a query. Detalhes:\n" + vException.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				}
 			}
 		}
 

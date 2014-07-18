@@ -22,7 +22,7 @@ namespace LBJC.NavegadorDeDados
 				var colunas = dataReader.FieldCount;
 				for (int i = 0; i < colunas; i++)
 				{
-					var prop = String.Format("\t\tpublic {0}{1} {2} {{ get; set; }}\n", dataReader.GetFieldType(i).Name, dataReader.GetFieldType(i).IsValueType ? "?" : "", dataReader.GetName(i));
+					var prop = String.Format("\t\tpublic {0}{1} {2} {{ get; set; }}\r\n", dataReader.GetFieldType(i).Name, dataReader.GetFieldType(i).IsValueType ? "?" : "", dataReader.GetName(i));
 					props += prop;
 				}
 				_tipo = CriarClasseVirtual("DadosDinamicos", props);
