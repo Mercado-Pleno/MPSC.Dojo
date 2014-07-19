@@ -37,29 +37,44 @@ namespace LBJC.NavegadorDeDados
 
 		private void AutoCompletar()
 		{
-			var query = txtQuery.Text.ToUpper();
+			try
+			{
+				AutoCompletarImpl();
+			}
+			catch (Exception) { }
+		}
+
+		private void AutoCompletarImpl()
+		{
+			var tokenKeys = "\r\n\t() ";
+			var query = txtQuery.Text.ToUpper().Insert(txtQuery.SelectionStart, ".");
+			var tokens = query.Split(tokenKeys.ToCharArray(), StringSplitOptions.RemoveEmptyEntries).ToList();
+
 			var i = txtQuery.SelectionStart;
-			while (!" \n\r\t".Contains(query[i - 1]))
-				i--;
+			while (!tokenKeys.Contains(query[--i - 1])) ;
 			var token = query.Substring(i, txtQuery.SelectionStart - i);
-
-			i = query.IndexOf(" " + token + " ");
-			while (!" \n\r\t".Contains(query[i - 1]))
-				i--;
-			token = query.Substring(i, query.IndexOf(" " + token + " ") - i);
-
+			var index = tokens.LastIndexOf(token);
+			if (tokens.Count > 1)
+			{
+				if (tokens[index - 1].Equals("AS"))
+					token = tokens[index - 2];
+				else if (tokens[index - 1].Equals("FROM") || tokens[index - 1].Equals("JOIN"))
+					token = tokens[index];
+				else
+					token = tokens[index - 1];
+			}
 			query = "Select * From " + token + " Where 0=1";
 
 			var dataReader = Conexao.Executar(query);
-			var props = "";
+			var properties = "";
 			var colunas = dataReader.FieldCount;
 			for (i = 0; i < colunas; i++)
-			{
-				var prop = dataReader.GetName(i) + "\r\n";
-				props += prop;
-			}
+				properties += dataReader.GetName(i) + "\r\n";
 
-			MessageBox.Show(props);
+			var start = txtQuery.SelectionStart + 1;
+			var retorno = ListCampos.Exibir(properties.Split(tokenKeys.ToCharArray(), StringSplitOptions.RemoveEmptyEntries).ToList().OrderBy(a => a).ToList());
+			txtQuery.Text = txtQuery.Text.Insert(start, retorno);
+			txtQuery.SelectionStart = start + retorno.Length;
 		}
 
 		private void txtQuery_KeyUp(object sender, KeyEventArgs e)
@@ -84,7 +99,8 @@ namespace LBJC.NavegadorDeDados
 			{
 				try
 				{
-					var comentarios = txtQuery.Text.Substring(txtQuery.Text.IndexOf("/*") + 2);
+					var tempQuery = txtQuery.Text + "/**/";
+					var comentarios = tempQuery.Substring(tempQuery.IndexOf("/*") + 2);
 					comentarios = comentarios.Substring(0, comentarios.IndexOf("*/"));
 					var variaveis = comentarios.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 					foreach (String variavel in variaveis)

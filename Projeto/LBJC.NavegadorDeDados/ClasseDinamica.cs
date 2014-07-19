@@ -18,14 +18,15 @@ namespace LBJC.NavegadorDeDados
 			if (dataReader != null)
 			{
 				_dataReader = dataReader;
-				var props = String.Empty;
+				var properties = String.Empty;
 				var colunas = dataReader.FieldCount;
 				for (int i = 0; i < colunas; i++)
 				{
-					var prop = String.Format("\t\tpublic {0}{1} {2} {{ get; set; }}\r\n", dataReader.GetFieldType(i).Name, dataReader.GetFieldType(i).IsValueType ? "?" : "", dataReader.GetName(i));
-					props += prop;
+					var propertyName = dataReader.GetName(i);
+					if (!properties.Contains(" " + propertyName + " "))
+						properties += String.Format("\t\tpublic {0}{1} {2} {{ get; set; }}\r\n", dataReader.GetFieldType(i).Name, dataReader.GetFieldType(i).IsValueType ? "?" : "", propertyName);
 				}
-				_tipo = CriarClasseVirtual("DadosDinamicos", props);
+				_tipo = CriarClasseVirtual("DadosDinamicos", properties);
 			}
 		}
 
