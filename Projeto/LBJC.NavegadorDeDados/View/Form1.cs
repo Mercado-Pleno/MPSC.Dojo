@@ -46,7 +46,7 @@ namespace LBJC.NavegadorDeDados
 
 		private void btFechar_Click(object sender, EventArgs e)
 		{
-			ActiveTab.Dispose();
+			ActiveTab.Fechar();
 		}
 	}
 }
