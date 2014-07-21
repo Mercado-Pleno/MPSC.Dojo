@@ -43,7 +43,9 @@ namespace LBJC.NavegadorDeDados
 				var apelido = Extensions.ObterApelidoAntesDoPonto(txtQuery.Text, txtQuery.SelectionStart);
 				var tabela = Extensions.ObterNomeTabelaPorApelido(txtQuery.Text, txtQuery.SelectionStart, apelido);
 				var campos = Extensions.ListarColunasDasTabelas(Conexao, tabela);
-				ListCampos.Exibir(campos, this, new Point(100, 100), OnSelecionarAutoCompletar);
+				ListCampos.Exibir(campos, this, txtQuery.CurrentCharacterPosition(), OnSelecionarAutoCompletar);
+
+				
 			}
 			catch (Exception) { }
 		}

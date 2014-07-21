@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace LBJC.NavegadorDeDados
 {
@@ -67,6 +69,16 @@ namespace LBJC.NavegadorDeDados
 				selectedQuery = selectedQuery.Replace(param, valor);
 			}
 			return selectedQuery;
+		}
+
+		public static Point CurrentCharacterPosition(this TextBox textBox)
+		{
+			var f = textBox.Font;
+			int s = textBox.SelectionStart;
+			int y = textBox.GetLineFromCharIndex(s) ;
+			int x = s - textBox.GetFirstCharIndexFromLine(y);
+
+			return new Point(x * 9, (y+ 1) * f.Height);
 		}
 	}
 }
