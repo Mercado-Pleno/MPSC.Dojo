@@ -3,11 +3,11 @@ using System.Windows.Forms;
 
 namespace LBJC.NavegadorDeDados
 {
-	public partial class Form1 : Form
+	public partial class Navegador : Form
 	{
 		private IQueryResult ActiveTab { get { return (tabQueryResult.TabPages.Count > 0) ? tabQueryResult.TabPages[tabQueryResult.SelectedIndex] as IQueryResult : NullQueryResult.Instance; } }
 
-		public Form1()
+		public Navegador()
 		{
 			InitializeComponent();
 		}

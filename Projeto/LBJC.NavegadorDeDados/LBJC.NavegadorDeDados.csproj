@@ -49,14 +49,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dados\BancoDeDados.cs" />
     <Compile Include="Infra\ClasseDinamica.cs" />
     <Compile Include="Dados\Conexao.cs" />
     <Compile Include="Infra\Extensions.cs" />
-    <Compile Include="View\Form1.cs">
+    <Compile Include="View\Autenticacao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="View\Autenticacao.Designer.cs">
+      <DependentUpon>Autenticacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Navegador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Navegador.Designer.cs">
+      <DependentUpon>Navegador.cs</DependentUpon>
     </Compile>
     <Compile Include="View\ListaDeCampos.cs">
       <SubType>Component</SubType>
@@ -81,8 +88,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="View\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="View\Autenticacao.resx">
+      <DependentUpon>Autenticacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Navegador.resx">
+      <DependentUpon>Navegador.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
