@@ -6,12 +6,12 @@ using System.Windows.Forms;
 
 namespace LBJC.NavegadorDeDados
 {
-	public partial class ListCampos : ListBox
+	public partial class ListaDeCampos : ListBox
 	{
 		public delegate void SelecionarEventHandler(String item);
 		private event SelecionarEventHandler OnSelecionar;
 
-		private ListCampos(IList<String> listaString, Control parent, Point position, SelecionarEventHandler onSelecionar)
+		private ListaDeCampos(IList<String> listaString, Control parent, Point position, SelecionarEventHandler onSelecionar)
 		{
 			InitializeComponent();
 			Reset(listaString, parent, position, onSelecionar);
@@ -19,7 +19,7 @@ namespace LBJC.NavegadorDeDados
 
 		private void Reset(IList<String> listaString, Control parent, Point position, SelecionarEventHandler onSelecionar)
 		{
-			var listaCamposOld = parent.Controls.Cast<Control>().FirstOrDefault(c => c.Name == Name) as ListCampos;
+			var listaCamposOld = parent.Controls.Cast<Control>().FirstOrDefault(c => c.Name == Name) as ListaDeCampos;
 			if (listaCamposOld != null)
 			{
 				parent.Controls.Remove(listaCamposOld);
@@ -61,8 +61,8 @@ namespace LBJC.NavegadorDeDados
 
 		public static void Exibir(IEnumerable<String> campos, Control parent, Point position, SelecionarEventHandler onSelecionar)
 		{
-			var listaString = campos.ToList().OrderBy(a => a).ToList();
-			new ListCampos(listaString, parent, position, onSelecionar);
+			var listaString = campos.OrderBy(a => a).ToList();
+			new ListaDeCampos(listaString, parent, position, onSelecionar);
 		}
 	}
 }

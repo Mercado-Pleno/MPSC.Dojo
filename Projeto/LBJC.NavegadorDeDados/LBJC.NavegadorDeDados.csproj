@@ -58,11 +58,11 @@
     <Compile Include="View\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\ListCampos.cs">
+    <Compile Include="View\ListaDeCampos.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="View\ListCampos.Designer.cs">
-      <DependentUpon>ListCampos.cs</DependentUpon>
+    <Compile Include="View\ListaDeCampos.Designer.cs">
+      <DependentUpon>ListaDeCampos.cs</DependentUpon>
     </Compile>
     <Compile Include="Principal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,9 +75,6 @@
     <EmbeddedResource Include="View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\ListCampos.resx">
-      <DependentUpon>ListCampos.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -87,9 +84,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="View\QueryResult.resx">
-      <DependentUpon>QueryResult.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

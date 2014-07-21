@@ -1,6 +1,6 @@
 ﻿namespace LBJC.NavegadorDeDados
 {
-	partial class ListCampos
+	partial class ListaDeCampos
 	{
 
 		#region Windows Form Designer generated code
