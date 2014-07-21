@@ -1,30 +1,31 @@
 ﻿using System;
 using System.Data;
-using System.Data.OleDb;
-using System.Data.SqlClient;
-using IBM.Data.DB2.iSeries;
+using LBJC.NavegadorDeDados.View;
 
 namespace LBJC.NavegadorDeDados
 {
 	public class Conexao
 	{
+		private IDbConnection iDbConnection = null;
+		private IDbCommand iDbCommand = null;
+		private IDataReader iDataReader = null;
+
 		public IDataReader Executar(String query)
 		{
-			IDbConnection iDbConnection = ObterConexao();
-			IDbCommand iDbCommand = CriarComando(iDbConnection, query);
-			return iDbCommand.ExecuteReader();
+			Free();
+			iDbConnection = iDbConnection ?? ObterConexao();
+			iDbCommand = CriarComando(iDbConnection, query);
+			return (iDataReader = iDbCommand.ExecuteReader());
 		}
 
 		private IDbCommand CriarComando(IDbConnection iDbConnection, String query)
 		{
-			if (iDbConnection.State != ConnectionState.Closed)
-				iDbConnection.Close();
-			if (iDbConnection.State == ConnectionState.Closed)
+			if (iDbConnection.State != ConnectionState.Open)
 				iDbConnection.Open();
 			IDbCommand iDbCommand = iDbConnection.CreateCommand();
 			iDbCommand.CommandText = query;
 			iDbCommand.CommandType = CommandType.Text;
-			iDbCommand.CommandTimeout = 30;
+			iDbCommand.CommandTimeout = 60;
 			return iDbCommand;
 		}
 
@@ -33,9 +34,7 @@ namespace LBJC.NavegadorDeDados
 			IDbConnection iDbConnection = null;
 			try
 			{
-				iDbConnection = new ConnectionString().ObterConexao<iDB2Connection>("10.21.4.52", "eSim", "UsrBen", "@poiuy");
-				//iDbConnection = new ConnectionString().ObterConexao<OleDbConnection>("10.21.4.52", "eSim", "UsrBen", "@poiuy");
-				//iDbConnection = new ConnectionString().ObterConexao<SqlConnection>("mssql.mercadopleno.com.br", "PlenoSMS", "PlenoSMS", "PlenoSMS");
+				iDbConnection = Autenticacao.Dialog();
 			}
 			catch (Exception) { }
 			return iDbConnection;
@@ -43,49 +42,45 @@ namespace LBJC.NavegadorDeDados
 
 		public void Dispose()
 		{
-			
-		}
-	}
+			Free();
 
-	public class ConnectionString
-	{
-		public String Server { get; private set; }
-		public String DataBase { get; private set; }
-		public String Usuario { get; private set; }
-		public String Senha { get; private set; }
-
-		public IDbConnection ObterConexao<TConnection>(String server, String dataBase, String usuario, String senha) where TConnection : IDbConnection
-		{
-			Server = server;
-			DataBase = dataBase;
-			Usuario = usuario;
-			Senha = senha;
-			return ObterConexao(typeof(TConnection));
+			if (iDbConnection != null)
+			{
+				try
+				{
+					if (iDbConnection.State != ConnectionState.Closed)
+						iDbConnection.Close();
+					iDbConnection.Dispose();
+				}
+				catch (Exception) { }
+				iDbConnection = null;
+			}
 		}
 
-		public IDbConnection ObterConexao<TConnection>() where TConnection : IDbConnection
+		private void Free()
 		{
-			return ObterConexao(typeof(TConnection));
-		}
+			if (iDataReader != null)
+			{
+				try
+				{
+					if (!iDataReader.IsClosed)
+						iDataReader.Close();
+					iDataReader.Dispose();
+				}
+				catch (Exception) { }
+				iDataReader = null;
+			}
 
-		private IDbConnection ObterConexao(Type tipo)
-		{
-			var templateStingConexao = ObterTemplate(tipo);
-			var stringConexao = String.Format(templateStingConexao, Server, DataBase, Usuario, Senha);
-			return Activator.CreateInstance(tipo, stringConexao) as IDbConnection;
-		}
-
-		private String ObterTemplate(Type tipo)
-		{
-			String retorno = "";
-			if (tipo == typeof(SqlConnection))
-				retorno = "Persist Security Info=True;Data Source={0};Initial Catalog={1};User ID={2};Password={3};MultipleActiveResultSets=True;";
-			else if (tipo == typeof(iDB2Connection))
-				retorno = "DataSource={0};UserID={2};Password={3};DataCompression=True;SortSequence=SharedWeight;SortLanguageId=PTG;DefaultCollection={1};";
-			else if (tipo == typeof(OleDbConnection))
-				retorno = "Provider=IBMDA400;Data Source={0};Default Collection={1};User ID={2};Password={3}";
-
-			return retorno;
+			if (iDbCommand != null)
+			{
+				try
+				{
+					iDbCommand.Cancel();
+					iDbCommand.Dispose();
+				}
+				catch (Exception) { }
+				iDbCommand = null;
+			}
 		}
 	}
 }

@@ -1,6 +1,6 @@
 ﻿namespace LBJC.NavegadorDeDados
 {
-	partial class Form1
+	partial class Navegador
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Navegador));
 			this.scVertical = new System.Windows.Forms.SplitContainer();
 			this.tvDataConnection = new System.Windows.Forms.TreeView();
 			this.tabQueryResult = new System.Windows.Forms.TabControl();
