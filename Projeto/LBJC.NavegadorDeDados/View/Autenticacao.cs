@@ -8,14 +8,8 @@ namespace LBJC.NavegadorDeDados.View
 {
 	public partial class Autenticacao : Form
 	{
-		public BancoDeDados<IDbConnection> BancoDeDados
-		{
-			get
-			{
-				return (cbTipoBanco.SelectedValue as BancoDeDados<IDbConnection>)
-					.Configurar(txtServidor.Text, cbBancoSchema.Text, txtUsuario.Text, txtSenha.Text);
-			}
-		}
+		private IBancoDeDados BancoDeDados { get { return cbTipoBanco.SelectedValue as IBancoDeDados; } }
+		public IDbConnection Conexao { get; private set; }
 
 		public Autenticacao()
 		{
@@ -29,14 +23,30 @@ namespace LBJC.NavegadorDeDados.View
 
 		private void btConectar_Click(object sender, EventArgs e)
 		{
-			DialogResult = DialogResult.OK;
+			try
+			{
+				var bancoDeDados = BancoDeDados;
+				if (bancoDeDados != null)
+					Conexao = bancoDeDados.ObterConexao(txtServidor.Text, cbBancoSchema.Text, txtUsuario.Text, txtSenha.Text);
+
+				if (Conexao != null)
+				{
+					Conexao.Open();
+					Conexao.Close();
+					DialogResult = DialogResult.OK;
+				}
+			}
+			catch (Exception)
+			{
+
+			}
 		}
 
 		public static IDbConnection Dialog()
 		{
 			var autenticacao = new Autenticacao();
 			if (autenticacao.ShowDialog() == DialogResult.OK)
-				return autenticacao.BancoDeDados.ObterConexao();
+				return autenticacao.Conexao;
 			return null;
 		}
 	}

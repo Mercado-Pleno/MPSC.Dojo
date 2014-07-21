@@ -7,16 +7,15 @@ using IBM.Data.DB2.iSeries;
 
 namespace LBJC.NavegadorDeDados.Dados
 {
-	public interface IBanco
+	public interface IBancoDeDados
 	{
-		//Type Conexao { get; }
 		String Descricao { get; }
-		String StringConexaoTemplate { get; }
+		IDbConnection ObterConexao(String server, String dataBase, String usuario, String senha);
 	}
 
-	public abstract class BancoDeDados<TConexao> : IBanco where TConexao : IDbConnection
+	public abstract class BancoDeDados<TConexao> : IBancoDeDados where TConexao : IDbConnection
 	{
-		public static IEnumerable<IBanco> Conexoes = new List<IBanco>(new IBanco[]{
+		public static IEnumerable<IBancoDeDados> Conexoes = new List<IBancoDeDados>(new IBancoDeDados[]{
 			new SQLServer(),
 			new OleDb(),
 			new IBMDB2()
@@ -26,28 +25,14 @@ namespace LBJC.NavegadorDeDados.Dados
 		public abstract String Descricao { get; }
 		public abstract String StringConexaoTemplate { get; }
 
-		public String Server { get; private set; }
-		public String DataBase { get; private set; }
-		public String Usuario { get; private set; }
-		public String Senha { get; private set; }
-
-		public BancoDeDados<TConexao> Configurar(String server, String dataBase, String usuario, String senha)
+		public IDbConnection ObterConexao(String server, String dataBase, String usuario, String senha)
 		{
-			Server = server;
-			DataBase = dataBase;
-			Usuario = usuario;
-			Senha = senha;
-			return this;
+			return CriarNovaConexao(Tipo, server, dataBase, usuario, senha);
 		}
 
-		public IDbConnection ObterConexao()
+		protected virtual IDbConnection CriarNovaConexao(Type tipo, String server, String dataBase, String usuario, String senha)
 		{
-			return CriarNovaConexao(Tipo);
-		}
-
-		protected virtual IDbConnection CriarNovaConexao(Type tipo)
-		{
-			var stringConexao = String.Format(StringConexaoTemplate, Server, DataBase, Usuario, Senha);
+			var stringConexao = String.Format(StringConexaoTemplate, server, dataBase, usuario, senha);
 			return Activator.CreateInstance(tipo, stringConexao) as IDbConnection;
 		}
 	}
