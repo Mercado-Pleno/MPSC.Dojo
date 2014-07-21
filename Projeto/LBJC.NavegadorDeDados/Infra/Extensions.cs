@@ -73,12 +73,11 @@ namespace LBJC.NavegadorDeDados
 
 		public static Point CurrentCharacterPosition(this TextBox textBox)
 		{
-			var f = textBox.Font;
 			int s = textBox.SelectionStart;
 			int y = textBox.GetLineFromCharIndex(s) ;
 			int x = s - textBox.GetFirstCharIndexFromLine(y);
 
-			return new Point(x * 9, (y+ 1) * f.Height);
+			return new Point(x * 9, (y + 1) * textBox.Font.Height);
 		}
 	}
 }
