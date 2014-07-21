@@ -33,9 +33,9 @@ namespace LBJC.NavegadorDeDados
 			IDbConnection iDbConnection = null;
 			try
 			{
-				//iDbConnection = new ConnectionString().ObterConexao<iDB2Connection>("10.21.4.52", "eSim", "UsrBen", "@poiuy");
+				iDbConnection = new ConnectionString().ObterConexao<iDB2Connection>("10.21.4.52", "eSim", "UsrBen", "@poiuy");
 				//iDbConnection = new ConnectionString().ObterConexao<OleDbConnection>("10.21.4.52", "eSim", "UsrBen", "@poiuy");
-				iDbConnection = new ConnectionString().ObterConexao<SqlConnection>("mssql.mercadopleno.com.br", "PlenoSMS", "PlenoSMS", "PlenoSMS");
+				//iDbConnection = new ConnectionString().ObterConexao<SqlConnection>("mssql.mercadopleno.com.br", "PlenoSMS", "PlenoSMS", "PlenoSMS");
 			}
 			catch (Exception) { }
 			return iDbConnection;

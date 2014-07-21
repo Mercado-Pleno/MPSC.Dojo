@@ -49,33 +49,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClasseDinamica.cs" />
-    <Compile Include="Conexao.cs" />
-    <Compile Include="Extensions.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Infra\ClasseDinamica.cs" />
+    <Compile Include="Dados\Conexao.cs" />
+    <Compile Include="Infra\Extensions.cs" />
+    <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="View\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListCampos.cs">
-      <SubType>Form</SubType>
+    <Compile Include="View\ListCampos.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ListCampos.Designer.cs">
+    <Compile Include="View\ListCampos.Designer.cs">
       <DependentUpon>ListCampos.cs</DependentUpon>
     </Compile>
     <Compile Include="Principal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryResult.cs">
+    <Compile Include="View\QueryResult.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="QueryResult.Designer.cs">
+    <Compile Include="View\QueryResult.Designer.cs">
       <DependentUpon>QueryResult.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListCampos.resx">
+    <EmbeddedResource Include="View\ListCampos.resx">
       <DependentUpon>ListCampos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -87,7 +87,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="QueryResult.resx">
+    <EmbeddedResource Include="View\QueryResult.resx">
       <DependentUpon>QueryResult.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace LBJC.NavegadorDeDados
 {
@@ -71,10 +72,19 @@ namespace LBJC.NavegadorDeDados
 			for (i = 0; i < colunas; i++)
 				properties += dataReader.GetName(i) + "\r\n";
 
-			var start = txtQuery.SelectionStart + 1;
-			var retorno = ListCampos.Exibir(properties.Split(tokenKeys.ToCharArray(), StringSplitOptions.RemoveEmptyEntries).ToList().OrderBy(a => a).ToList());
-			txtQuery.Text = txtQuery.Text.Insert(start, retorno);
-			txtQuery.SelectionStart = start + retorno.Length;
+			var lista = properties.Split(tokenKeys.ToCharArray(), StringSplitOptions.RemoveEmptyEntries).ToList().OrderBy(a => a).ToList();
+			ListCampos.Exibir(lista, this, new Point(100, 100), OnSelecionarAutoCompletar);
+		}
+
+		private void OnSelecionarAutoCompletar(String item)
+		{
+			if (!String.IsNullOrWhiteSpace(item))
+			{
+				var start = txtQuery.SelectionStart;
+				txtQuery.Text = txtQuery.Text.Insert(start, item);
+				txtQuery.SelectionStart = start + item.Length;
+			}
+			txtQuery.Focus();
 		}
 
 		private void txtQuery_KeyUp(object sender, KeyEventArgs e)
