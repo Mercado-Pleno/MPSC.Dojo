@@ -40,6 +40,11 @@ namespace LBJC.NavegadorDeDados
 			catch (Exception) { }
 			return iDbConnection;
 		}
+
+		public void Dispose()
+		{
+			
+		}
 	}
 
 	public class ConnectionString

@@ -10,6 +10,26 @@ namespace LBJC.NavegadorDeDados
 	{
 		public const String TokenKeys = "\r\n\t(){}[] ";
 
+		public static String[] GetFilesToOpen(params String[] extensoes)
+		{
+			String[] retorno = new String[] { };
+			var openFileDialog = new OpenFileDialog();
+			openFileDialog.Filter = extensoes.Concatenar("|");
+			openFileDialog.Multiselect = true;
+			if (DialogResult.OK == openFileDialog.ShowDialog())
+				retorno = openFileDialog.FileNames;
+			return retorno;
+		}
+
+		public static String GetFileToSave(params String[] extensoes)
+		{
+			String retorno = null;
+			var saveFileDialog = new SaveFileDialog();
+			saveFileDialog.Filter = extensoes.Concatenar("|");
+			if (DialogResult.OK == saveFileDialog.ShowDialog())
+				retorno = saveFileDialog.FileName;
+			return retorno;
+		}
 		public static String Concatenar<T>(this IEnumerable<T> source, String join)
 		{
 			return String.Join<T>(join, source);
