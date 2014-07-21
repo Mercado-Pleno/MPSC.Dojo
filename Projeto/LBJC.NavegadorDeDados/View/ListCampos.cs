@@ -59,8 +59,9 @@ namespace LBJC.NavegadorDeDados
 			GC.Collect();
 		}
 
-		public static void Exibir(IList<String> listaString, Control parent, Point position, SelecionarEventHandler onSelecionar)
+		public static void Exibir(IEnumerable<String> campos, Control parent, Point position, SelecionarEventHandler onSelecionar)
 		{
+			var listaString = campos.ToList().OrderBy(a => a).ToList();
 			new ListCampos(listaString, parent, position, onSelecionar);
 		}
 	}
