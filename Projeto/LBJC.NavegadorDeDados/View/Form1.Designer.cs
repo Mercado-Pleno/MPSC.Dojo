@@ -110,7 +110,7 @@
 			// btNovoDocumento
 			// 
 			this.btNovoDocumento.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.btNovoDocumento.Image = ((System.Drawing.Image)(resources.GetObject("btNovoDocumento.Image")));
+			this.btNovoDocumento.Image = ((System.Drawing.Image)(resources.GetObject("button.Image")));
 			this.btNovoDocumento.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.btNovoDocumento.Name = "btNovoDocumento";
 			this.btNovoDocumento.Size = new System.Drawing.Size(23, 22);
@@ -120,7 +120,7 @@
 			// btExecutar
 			// 
 			this.btExecutar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.btExecutar.Image = ((System.Drawing.Image)(resources.GetObject("btExecutar.Image")));
+			this.btExecutar.Image = ((System.Drawing.Image)(resources.GetObject("button.Image")));
 			this.btExecutar.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.btExecutar.Name = "btExecutar";
 			this.btExecutar.Size = new System.Drawing.Size(23, 22);
@@ -130,7 +130,7 @@
 			// btAbrirDocumento
 			// 
 			this.btAbrirDocumento.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.btAbrirDocumento.Image = ((System.Drawing.Image)(resources.GetObject("btAbrirDocumento.Image")));
+			this.btAbrirDocumento.Image = ((System.Drawing.Image)(resources.GetObject("button.Image")));
 			this.btAbrirDocumento.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.btAbrirDocumento.Name = "btAbrirDocumento";
 			this.btAbrirDocumento.Size = new System.Drawing.Size(23, 22);
@@ -140,7 +140,7 @@
 			// btSalvarDocumento
 			// 
 			this.btSalvarDocumento.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.btSalvarDocumento.Image = ((System.Drawing.Image)(resources.GetObject("btSalvarDocumento.Image")));
+			this.btSalvarDocumento.Image = ((System.Drawing.Image)(resources.GetObject("button.Image")));
 			this.btSalvarDocumento.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.btSalvarDocumento.Name = "btSalvarDocumento";
 			this.btSalvarDocumento.Size = new System.Drawing.Size(23, 22);
@@ -155,7 +155,7 @@
 			// btSalvarTodos
 			// 
 			this.btSalvarTodos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.btSalvarTodos.Image = ((System.Drawing.Image)(resources.GetObject("btSalvarTodos.Image")));
+			this.btSalvarTodos.Image = ((System.Drawing.Image)(resources.GetObject("button.Image")));
 			this.btSalvarTodos.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.btSalvarTodos.Name = "btSalvarTodos";
 			this.btSalvarTodos.Size = new System.Drawing.Size(23, 22);
