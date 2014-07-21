@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace LBJC.NavegadorDeDados
 {
-	public partial class QueryResult : TabPage, IQueryResult
+	public partial class QueryResult : TabPage, IQueryResult, IDisposable
 	{
 		private static Int32 _quantidade = 1;
 		public String NomeDoArquivo { get; private set; }
@@ -42,14 +42,14 @@ namespace LBJC.NavegadorDeDados
 			if (String.IsNullOrWhiteSpace(NomeDoArquivo) || !File.Exists(NomeDoArquivo))
 				NomeDoArquivo = Extensions.GetFileToSave("Arquivos de Banco de Dados|*.sql") ?? NomeDoArquivo;
 
-			if (!String.IsNullOrWhiteSpace(NomeDoArquivo))
+			if (!String.IsNullOrWhiteSpace(NomeDoArquivo) && !String.IsNullOrWhiteSpace(Path.GetDirectoryName(NomeDoArquivo)))
 			{
 				txtQuery.Modified = false;
 				File.WriteAllText(NomeDoArquivo, txtQuery.Text);
 			}
 			UpdateDisplay();
 
-			return !String.IsNullOrWhiteSpace(NomeDoArquivo);
+			return !String.IsNullOrWhiteSpace(NomeDoArquivo) && File.Exists(NomeDoArquivo);
 		}
 
 		private void txtQuery_KeyDown(object sender, KeyEventArgs e)
@@ -136,7 +136,7 @@ namespace LBJC.NavegadorDeDados
 			txtQuery.Focus();
 		}
 
-		public void Dispose()
+		void IDisposable.Dispose()
 		{
 			if (_conexao != null)
 			{
@@ -158,12 +158,32 @@ namespace LBJC.NavegadorDeDados
 
 			base.Dispose();
 		}
+
+		public Boolean Fechar()
+		{
+			Boolean fechar = true;
+
+			if (txtQuery.Modified)
+			{
+				var dialogResult = MessageBox.Show("O arquivo foi alterado desde sua última gravação. Deseja Salvá-lo?", "Confirmação", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+				if (dialogResult == DialogResult.Yes)
+					fechar = Salvar();
+				else
+					fechar = (dialogResult == DialogResult.No);
+			}
+
+			if (fechar)
+				Dispose();
+
+			return fechar;
+		}
 	}
 
-	public interface IQueryResult : IDisposable
+	public interface IQueryResult
 	{
 		void Executar();
 		Boolean Salvar();
+		Boolean Fechar();
 	}
 
 	public class NullQueryResult : IQueryResult
@@ -171,6 +191,8 @@ namespace LBJC.NavegadorDeDados
 		public void Executar() { }
 		public Boolean Salvar() { return false; }
 		public void Dispose() { }
+		public Boolean Fechar() { return false; }
+
 
 		private static IQueryResult _instance;
 		public static IQueryResult Instance { get { return _instance ?? (_instance = new NullQueryResult()); } }
