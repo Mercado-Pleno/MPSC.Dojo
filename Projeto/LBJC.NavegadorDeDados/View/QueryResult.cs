@@ -40,40 +40,12 @@ namespace LBJC.NavegadorDeDados
 		{
 			try
 			{
-				AutoCompletarImpl();
+				var apelido = Extensions.ObterApelidoAntesDoPonto(txtQuery.Text, txtQuery.SelectionStart);
+				var tabela = Extensions.ObterNomeTabelaPorApelido(txtQuery.Text, txtQuery.SelectionStart, apelido);
+				var campos = Extensions.ListarColunasDasTabelas(Conexao, tabela);
+				ListCampos.Exibir(campos, this, new Point(100, 100), OnSelecionarAutoCompletar);
 			}
 			catch (Exception) { }
-		}
-
-		private void AutoCompletarImpl()
-		{
-			var tokenKeys = "\r\n\t() ";
-			var query = txtQuery.Text.ToUpper().Insert(txtQuery.SelectionStart, ".");
-			var tokens = query.Split(tokenKeys.ToCharArray(), StringSplitOptions.RemoveEmptyEntries).ToList();
-
-			var i = txtQuery.SelectionStart;
-			while (!tokenKeys.Contains(query[--i - 1])) ;
-			var token = query.Substring(i, txtQuery.SelectionStart - i);
-			var index = tokens.LastIndexOf(token);
-			if (tokens.Count > 1)
-			{
-				if (tokens[index - 1].Equals("AS"))
-					token = tokens[index - 2];
-				else if (tokens[index - 1].Equals("FROM") || tokens[index - 1].Equals("JOIN"))
-					token = tokens[index];
-				else
-					token = tokens[index - 1];
-			}
-			query = "Select * From " + token + " Where 0=1";
-
-			var dataReader = Conexao.Executar(query);
-			var properties = "";
-			var colunas = dataReader.FieldCount;
-			for (i = 0; i < colunas; i++)
-				properties += dataReader.GetName(i) + "\r\n";
-
-			var lista = properties.Split(tokenKeys.ToCharArray(), StringSplitOptions.RemoveEmptyEntries).ToList().OrderBy(a => a).ToList();
-			ListCampos.Exibir(lista, this, new Point(100, 100), OnSelecionarAutoCompletar);
 		}
 
 		private void OnSelecionarAutoCompletar(String item)
