@@ -81,17 +81,7 @@ namespace LBJC.NavegadorDeDados
 			{
 				try
 				{
-					var tempQuery = txtQuery.Text + "/**/";
-					var comentarios = tempQuery.Substring(tempQuery.IndexOf("/*") + 2);
-					comentarios = comentarios.Substring(0, comentarios.IndexOf("*/"));
-					var variaveis = comentarios.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-					foreach (String variavel in variaveis)
-					{
-						var param = variavel.Substring(0, variavel.IndexOf("=") + 1).Replace("=", "").Trim();
-						var valor = variavel.Substring(variavel.IndexOf("=") + 1).Trim();
-						query = query.Replace(param, valor);
-					}
-
+					query = Extensions.ConverterParametrosEmConstantes(txtQuery.Text, query);
 					var dataReader = Conexao.Executar(query);
 					ClasseDinamica.Reset(dataReader);
 					dgResult.DataSource = null;
