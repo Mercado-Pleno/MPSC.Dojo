@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Drawing;
 
 namespace LBJC.NavegadorDeDados
 {
 	public partial class QueryResult : TabPage, IQueryResult
 	{
 		private static Int32 _quantidade = 1;
+		public String NomeDoArquivo { get; private set; }
 
 		private Conexao _conexao = null;
 		private ClasseDinamica _classeDinamica = null;
@@ -18,10 +19,37 @@ namespace LBJC.NavegadorDeDados
 
 		private String QueryAtiva { get { return ((txtQuery.SelectedText.Length > 1) ? txtQuery.SelectedText : txtQuery.Text); } }
 
-		public QueryResult()
+		public QueryResult(String nomeDoArquivo)
 		{
 			InitializeComponent();
-			this.Text = "Query" + _quantidade++;
+			Abrir(nomeDoArquivo);
+		}
+
+		public void Abrir(String nomeDoArquivo)
+		{
+			if (!String.IsNullOrWhiteSpace(nomeDoArquivo) && File.Exists(nomeDoArquivo))
+			{
+				txtQuery.Modified = false;
+				txtQuery.Text = File.ReadAllText(NomeDoArquivo = nomeDoArquivo);
+			}
+			else
+				NomeDoArquivo = "Query" + (_quantidade++) + ".sql";
+			UpdateDisplay();
+		}
+
+		public Boolean Salvar()
+		{
+			if (String.IsNullOrWhiteSpace(NomeDoArquivo) || !File.Exists(NomeDoArquivo))
+				NomeDoArquivo = Extensions.GetFileToSave("Arquivos de Banco de Dados|*.sql") ?? NomeDoArquivo;
+
+			if (!String.IsNullOrWhiteSpace(NomeDoArquivo))
+			{
+				txtQuery.Modified = false;
+				File.WriteAllText(NomeDoArquivo, txtQuery.Text);
+			}
+			UpdateDisplay();
+
+			return !String.IsNullOrWhiteSpace(NomeDoArquivo);
 		}
 
 		private void txtQuery_KeyDown(object sender, KeyEventArgs e)
@@ -30,39 +58,22 @@ namespace LBJC.NavegadorDeDados
 				AutoCompletar();
 			else if ((e.Modifiers == Keys.Control) && (e.KeyCode == Keys.A))
 				txtQuery.SelectAll();
+			else if ((e.Modifiers == Keys.Control) && (e.KeyCode == Keys.S))
+				Salvar();
 			else if (e.KeyCode == Keys.F5)
 				Executar();
 			else if ((e.Modifiers == Keys.Control) && (e.KeyCode == Keys.Y))
 				Executar();
 		}
 
-		private void AutoCompletar()
-		{
-			try
-			{
-				var apelido = Extensions.ObterApelidoAntesDoPonto(txtQuery.Text, txtQuery.SelectionStart);
-				var tabela = Extensions.ObterNomeTabelaPorApelido(txtQuery.Text, txtQuery.SelectionStart, apelido);
-				var campos = Extensions.ListarColunasDasTabelas(Conexao, tabela);
-				ListaDeCampos.Exibir(campos, this, txtQuery.CurrentCharacterPosition(), OnSelecionarAutoCompletar);
-
-				
-			}
-			catch (Exception) { }
-		}
-
-		private void OnSelecionarAutoCompletar(String item)
-		{
-			if (!String.IsNullOrWhiteSpace(item))
-			{
-				var start = txtQuery.SelectionStart;
-				txtQuery.Text = txtQuery.Text.Insert(start, item);
-				txtQuery.SelectionStart = start + item.Length;
-			}
-			txtQuery.Focus();
-		}
-
 		private void txtQuery_KeyUp(object sender, KeyEventArgs e)
 		{
+			UpdateDisplay();
+		}
+
+		private void UpdateDisplay()
+		{
+			Text = Path.GetFileName(NomeDoArquivo) + (txtQuery.Modified ? " *" : "");
 		}
 
 		private void dgResult_Scroll(object sender, ScrollEventArgs e)
@@ -96,23 +107,70 @@ namespace LBJC.NavegadorDeDados
 			}
 		}
 
-		public void Binding()
+		private void Binding()
 		{
 			var result = ClasseDinamica.Transformar();
 			dgResult.DataSource = (dgResult.DataSource as IEnumerable<Object> ?? new List<Object>()).Union(result).ToList();
 		}
+
+		private void AutoCompletar()
+		{
+			try
+			{
+				var apelido = Extensions.ObterApelidoAntesDoPonto(txtQuery.Text, txtQuery.SelectionStart);
+				var tabela = Extensions.ObterNomeTabelaPorApelido(txtQuery.Text, txtQuery.SelectionStart, apelido);
+				var campos = Extensions.ListarColunasDasTabelas(Conexao, tabela);
+				ListaDeCampos.Exibir(campos, this, txtQuery.CurrentCharacterPosition(), OnSelecionarAutoCompletar);
+			}
+			catch (Exception) { }
+		}
+
+		private void OnSelecionarAutoCompletar(String item)
+		{
+			if (!String.IsNullOrWhiteSpace(item))
+			{
+				var start = txtQuery.SelectionStart;
+				txtQuery.Text = txtQuery.Text.Insert(start, item);
+				txtQuery.SelectionStart = start + item.Length;
+			}
+			txtQuery.Focus();
+		}
+
+		public void Dispose()
+		{
+			if (_conexao != null)
+			{
+				_conexao.Dispose();
+				_conexao = null;
+			}
+
+			if (_classeDinamica != null)
+			{
+				_classeDinamica.Dispose();
+				_classeDinamica = null;
+			}
+
+			txtQuery.Clear();
+			txtQuery.Dispose();
+
+			dgResult.DataSource = null;
+			dgResult.Dispose();
+
+			base.Dispose();
+		}
 	}
 
-	public interface IQueryResult
+	public interface IQueryResult : IDisposable
 	{
 		void Executar();
-		void Binding();
+		Boolean Salvar();
 	}
 
 	public class NullQueryResult : IQueryResult
 	{
 		public void Executar() { }
-		public void Binding() { }
+		public Boolean Salvar() { return false; }
+		public void Dispose() { }
 
 		private static IQueryResult _instance;
 		public static IQueryResult Instance { get { return _instance ?? (_instance = new NullQueryResult()); } }

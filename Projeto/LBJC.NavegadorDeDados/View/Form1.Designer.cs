@@ -36,6 +36,11 @@
 			this.tsBarraFerramentas = new System.Windows.Forms.ToolStrip();
 			this.btNovoDocumento = new System.Windows.Forms.ToolStripButton();
 			this.btExecutar = new System.Windows.Forms.ToolStripButton();
+			this.btAbrirDocumento = new System.Windows.Forms.ToolStripButton();
+			this.btSalvarDocumento = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.btSalvarTodos = new System.Windows.Forms.ToolStripButton();
+			this.btFechar = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.scVertical)).BeginInit();
 			this.scVertical.Panel1.SuspendLayout();
 			this.scVertical.Panel2.SuspendLayout();
@@ -91,6 +96,10 @@
 			// 
 			this.tsBarraFerramentas.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btNovoDocumento,
+            this.btAbrirDocumento,
+            this.btSalvarDocumento,
+            this.btSalvarTodos,
+            this.toolStripSeparator1,
             this.btExecutar});
 			this.tsBarraFerramentas.Location = new System.Drawing.Point(0, 0);
 			this.tsBarraFerramentas.Name = "tsBarraFerramentas";
@@ -118,11 +127,59 @@
 			this.btExecutar.Text = "Executar";
 			this.btExecutar.Click += new System.EventHandler(this.btExecutar_Click);
 			// 
+			// btAbrirDocumento
+			// 
+			this.btAbrirDocumento.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.btAbrirDocumento.Image = ((System.Drawing.Image)(resources.GetObject("btAbrirDocumento.Image")));
+			this.btAbrirDocumento.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.btAbrirDocumento.Name = "btAbrirDocumento";
+			this.btAbrirDocumento.Size = new System.Drawing.Size(23, 22);
+			this.btAbrirDocumento.Text = "Abrir";
+			this.btAbrirDocumento.Click += new System.EventHandler(this.btAbrirDocumento_Click);
+			// 
+			// btSalvarDocumento
+			// 
+			this.btSalvarDocumento.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.btSalvarDocumento.Image = ((System.Drawing.Image)(resources.GetObject("btSalvarDocumento.Image")));
+			this.btSalvarDocumento.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.btSalvarDocumento.Name = "btSalvarDocumento";
+			this.btSalvarDocumento.Size = new System.Drawing.Size(23, 22);
+			this.btSalvarDocumento.Text = "Salvar";
+			this.btSalvarDocumento.Click += new System.EventHandler(this.btSalvarDocumento_Click);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+			// 
+			// btSalvarTodos
+			// 
+			this.btSalvarTodos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.btSalvarTodos.Image = ((System.Drawing.Image)(resources.GetObject("btSalvarTodos.Image")));
+			this.btSalvarTodos.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.btSalvarTodos.Name = "btSalvarTodos";
+			this.btSalvarTodos.Size = new System.Drawing.Size(23, 22);
+			this.btSalvarTodos.Text = "Salvar Todos";
+			this.btSalvarTodos.Click += new System.EventHandler(this.btSalvarTodos_Click);
+			// 
+			// btFechar
+			// 
+			this.btFechar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btFechar.Location = new System.Drawing.Point(605, 1);
+			this.btFechar.Margin = new System.Windows.Forms.Padding(0);
+			this.btFechar.Name = "btFechar";
+			this.btFechar.Size = new System.Drawing.Size(15, 20);
+			this.btFechar.TabIndex = 3;
+			this.btFechar.Text = "X";
+			this.btFechar.UseVisualStyleBackColor = true;
+			this.btFechar.Click += new System.EventHandler(this.btFechar_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(623, 373);
+			this.Controls.Add(this.btFechar);
 			this.Controls.Add(this.tsBarraFerramentas);
 			this.Controls.Add(this.ssStatus);
 			this.Controls.Add(this.scVertical);
@@ -150,6 +207,11 @@
 		private System.Windows.Forms.ToolStripButton btNovoDocumento;
 		private System.Windows.Forms.TabControl tabQueryResult;
 		private System.Windows.Forms.ToolStripButton btExecutar;
+		private System.Windows.Forms.ToolStripButton btAbrirDocumento;
+		private System.Windows.Forms.ToolStripButton btSalvarDocumento;
+		private System.Windows.Forms.ToolStripButton btSalvarTodos;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.Button btFechar;
 	}
 }
 
