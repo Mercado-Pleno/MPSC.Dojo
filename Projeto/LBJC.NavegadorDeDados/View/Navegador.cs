@@ -48,5 +48,13 @@ namespace LBJC.NavegadorDeDados
 		{
 			ActiveTab.Fechar();
 		}
+
+		private void Navegador_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			Boolean salvouTodos = true;
+			foreach (IQueryResult queryResult in tabQueryResult.Controls)
+				salvouTodos = salvouTodos && queryResult.Fechar();
+			e.Cancel = !salvouTodos;
+		}
 	}
 }

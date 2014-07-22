@@ -10,17 +10,18 @@ namespace LBJC.NavegadorDeDados
 	public class ClasseDinamica : IDisposable
 	{
 		private Type _tipo = null;
-		private IDataReader _dataReader = null;
+		private Conexao _conexao = null;
+		public Conexao Conexao { get { return (_conexao ?? (_conexao = new Conexao())); } }
 
-		public void Reset(IDataReader dataReader)
+		public Object Executar(String query)
 		{
-			Dispose();
+			var dataReader = Conexao.Executar(query);
+			
 			if (dataReader != null)
 			{
-				_dataReader = dataReader;
 				var properties = String.Empty;
 				var colunas = dataReader.FieldCount;
-				for (int i = 0; i < colunas; i++)
+				for (Int32 i = 0; i < colunas; i++)
 				{
 					var propertyName = dataReader.GetName(i);
 					if (!properties.Contains(" " + propertyName + " "))
@@ -28,20 +29,21 @@ namespace LBJC.NavegadorDeDados
 				}
 				_tipo = CriarClasseVirtual("DadosDinamicos", properties);
 			}
+			return null;
 		}
 
 		public IEnumerable<Object> Transformar()
 		{
 			var page = 0;
-			while ((_dataReader != null) && !_dataReader.IsClosed && _dataReader.Read() && page++ < 100)
-				yield return CreateAnonymousObject(_dataReader);
+			while ((Conexao.iDataReader != null) && !Conexao.iDataReader.IsClosed && Conexao.iDataReader.Read() && page++ < 100)
+				yield return CreateAnonymousObject(Conexao.iDataReader);
 		}
 
 		private Object CreateAnonymousObject(IDataReader dataReader)
 		{
 			var obj = Activator.CreateInstance(_tipo);
 			var colunas = dataReader.FieldCount;
-			for (int i = 0; i < colunas; i++)
+			for (Int32 i = 0; i < colunas; i++)
 			{
 				var prop = _tipo.GetProperty(dataReader.GetName(i));
 				prop.SetValue(obj, dataReader.IsDBNull(i) ? null : dataReader.GetValue(i), null);
@@ -55,7 +57,6 @@ namespace LBJC.NavegadorDeDados
 		{
 #pragma warning disable 0618
 			Type vType = null;
-			//ICodeCompiler vCodeCompiler = (new CSharpCodeProvider() as CodeDomProvider).CreateCompiler();
 			CodeDomProvider vCodeCompiler = new CSharpCodeProvider();
 			CompilerParameters vCompilerParameters = new CompilerParameters();
 			vCompilerParameters.GenerateInMemory = true;
@@ -75,12 +76,13 @@ namespace LBJC.NavegadorDeDados
 
 		public void Dispose()
 		{
-			if (_dataReader != null)
-			{
-				_dataReader.Close();
-				_dataReader.Dispose();
-				_dataReader = null;
+			if (_tipo != null)
 				_tipo = null;
+
+			if (_conexao != null)
+			{
+				_conexao.Dispose();
+				_conexao = null;
 			}
 		}
 	}
