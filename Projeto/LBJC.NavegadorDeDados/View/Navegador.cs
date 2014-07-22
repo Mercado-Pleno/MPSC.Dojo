@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using LBJC.NavegadorDeDados.Infra;
 using System.Collections.Generic;
+using System.IO;
 
 namespace LBJC.NavegadorDeDados
 {
@@ -28,7 +29,7 @@ namespace LBJC.NavegadorDeDados
 			var arquivos = Extensions.GetFilesToOpen("Arquivos de Banco de Dados|*.sql;*.qry");
 			foreach (var arquivo in arquivos)
 				tabQueryResult.Controls.Add(new QueryResult(arquivo));
-			
+
 			tabQueryResult.SelectedIndex = tabQueryResult.TabCount - 1;
 		}
 
@@ -54,6 +55,11 @@ namespace LBJC.NavegadorDeDados
 			ActiveTab.Fechar();
 		}
 
+		private void tabQueryResult_Click(object sender, EventArgs e)
+		{
+			ActiveTab.Focus();
+		}
+
 		private void Navegador_Load(object sender, EventArgs e)
 		{
 			var arquivos = Util.FileToArray(arquivoConfig);
@@ -66,23 +72,21 @@ namespace LBJC.NavegadorDeDados
 
 		private void Navegador_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			arquivos.Clear();
 			Boolean salvouTodos = true;
-			foreach (IQueryResult queryResult in tabQueryResult.Controls)
+			while (salvouTodos && tabQueryResult.Controls.Count > 0)
 			{
+				IQueryResult queryResult = tabQueryResult.Controls[0] as IQueryResult;
 				salvouTodos = salvouTodos && queryResult.Fechar();
-				if (salvouTodos) arquivos.Add(queryResult.NomeDoArquivo);
+				if (File.Exists(queryResult.NomeDoArquivo))
+					arquivos.Add(queryResult.NomeDoArquivo);
 			}
 			e.Cancel = !salvouTodos;
 		}
-		
+
 		private void Navegador_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			Util.ArrayToFile(arquivoConfig, arquivos.ToArray());
-		}
-
-		private void tabQueryResult_Click(object sender, EventArgs e)
-		{
-			ActiveTab.Focus();
 		}
 	}
 }
