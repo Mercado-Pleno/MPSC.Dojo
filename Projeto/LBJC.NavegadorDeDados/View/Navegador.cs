@@ -10,7 +10,7 @@ namespace LBJC.NavegadorDeDados
 	public partial class Navegador : Form
 	{
 		private const String arquivoConfig = "NavegadorDeDados.txt";
-		private readonly IList<String> arquivos = new List<String>();
+		private IList<String> arquivos = new List<String>();
 		private IQueryResult ActiveTab { get { return (tabQueryResult.TabPages.Count > 0) ? tabQueryResult.TabPages[tabQueryResult.SelectedIndex] as IQueryResult : NullQueryResult.Instance; } }
 
 		public Navegador()
@@ -77,6 +77,7 @@ namespace LBJC.NavegadorDeDados
 			while (salvouTodos && tabQueryResult.Controls.Count > 0)
 			{
 				IQueryResult queryResult = tabQueryResult.Controls[0] as IQueryResult;
+				tabQueryResult.Controls.RemoveAt(0);
 				salvouTodos = salvouTodos && queryResult.Fechar();
 				if (File.Exists(queryResult.NomeDoArquivo))
 					arquivos.Add(queryResult.NomeDoArquivo);
@@ -87,6 +88,8 @@ namespace LBJC.NavegadorDeDados
 		private void Navegador_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			Util.ArrayToFile(arquivoConfig, arquivos.ToArray());
+			arquivos.Clear();
+			arquivos = null;
 		}
 	}
 }

@@ -35,8 +35,8 @@ namespace LBJC.NavegadorDeDados
 		public IEnumerable<Object> Transformar()
 		{
 			var page = 0;
-			while ((Conexao.iDataReader != null) && !Conexao.iDataReader.IsClosed && Conexao.iDataReader.Read() && page++ < 100)
-				yield return CreateAnonymousObject(Conexao.iDataReader);
+			while ((_conexao != null) && (_conexao.iDataReader != null) && !_conexao.iDataReader.IsClosed && _conexao.iDataReader.Read() && page++ < 100)
+				yield return CreateAnonymousObject(_conexao.iDataReader);
 		}
 
 		private Object CreateAnonymousObject(IDataReader dataReader)

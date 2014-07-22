@@ -167,10 +167,12 @@
 			// btFechar
 			// 
 			this.btFechar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btFechar.Location = new System.Drawing.Point(605, 1);
+			this.btFechar.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.btFechar.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btFechar.Location = new System.Drawing.Point(606, 4);
 			this.btFechar.Margin = new System.Windows.Forms.Padding(0);
 			this.btFechar.Name = "btFechar";
-			this.btFechar.Size = new System.Drawing.Size(15, 20);
+			this.btFechar.Size = new System.Drawing.Size(16, 16);
 			this.btFechar.TabIndex = 3;
 			this.btFechar.Text = "X";
 			this.btFechar.UseVisualStyleBackColor = true;

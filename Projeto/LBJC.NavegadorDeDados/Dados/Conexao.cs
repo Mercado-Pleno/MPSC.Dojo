@@ -15,10 +15,11 @@ namespace LBJC.NavegadorDeDados
 			Free();
 			iDbConnection = iDbConnection ?? ObterConexao();
 			iDbCommand = CriarComando(iDbConnection, query);
-			return (iDataReader = iDbCommand.ExecuteReader());
+			iDataReader = iDbCommand.ExecuteReader();
+			return iDataReader;
 		}
 
-		private IDbCommand CriarComando(IDbConnection iDbConnection, String query)
+		private static IDbCommand CriarComando(IDbConnection iDbConnection, String query)
 		{
 			if (iDbConnection.State != ConnectionState.Open)
 				iDbConnection.Open();
@@ -29,7 +30,7 @@ namespace LBJC.NavegadorDeDados
 			return iDbCommand;
 		}
 
-		private IDbConnection ObterConexao()
+		private static IDbConnection ObterConexao()
 		{
 			IDbConnection iDbConnection = null;
 			try
@@ -50,9 +51,9 @@ namespace LBJC.NavegadorDeDados
 				{
 					if (iDbConnection.State != ConnectionState.Closed)
 						iDbConnection.Close();
-					iDbConnection.Dispose();
 				}
 				catch (Exception) { }
+				finally { iDbConnection.Dispose(); }
 				iDbConnection = null;
 			}
 		}
@@ -65,9 +66,10 @@ namespace LBJC.NavegadorDeDados
 				{
 					if (!iDataReader.IsClosed)
 						iDataReader.Close();
-					iDataReader.Dispose();
+					
 				}
 				catch (Exception) { }
+				finally { iDataReader.Dispose(); }
 				iDataReader = null;
 			}
 
@@ -76,9 +78,9 @@ namespace LBJC.NavegadorDeDados
 				try
 				{
 					iDbCommand.Cancel();
-					iDbCommand.Dispose();
 				}
 				catch (Exception) { }
+				finally { iDbCommand.Dispose(); }
 				iDbCommand = null;
 			}
 		}

@@ -10,10 +10,9 @@ namespace LBJC.NavegadorDeDados
 	{
 		private static Int32 _quantidade = 0;
 		private String originalQuery = String.Empty;
-		public String NomeDoArquivo { get; private set; }
-
 		private ClasseDinamica _classeDinamica = null;
 		private ClasseDinamica ClasseDinamica { get { return (_classeDinamica ?? (_classeDinamica = new ClasseDinamica())); } }
+		public String NomeDoArquivo { get; private set; }
 
 		private String QueryAtiva { get { return ((txtQuery.SelectedText.Length > 1) ? txtQuery.SelectedText : txtQuery.Text); } }
 
@@ -134,6 +133,8 @@ namespace LBJC.NavegadorDeDados
 				_classeDinamica = null;
 			}
 
+			originalQuery = null;
+
 			txtQuery.Clear();
 			txtQuery.Dispose();
 
@@ -180,11 +181,11 @@ namespace LBJC.NavegadorDeDados
 
 	public class NullQueryResult : IQueryResult
 	{
-		public String NomeDoArquivo { get { return String.Empty; } }
+		public String NomeDoArquivo { get { return null; } }
 		public void Executar() { }
 		public Boolean Focus() { return false; }
 		public Boolean Salvar() { return false; }
-		public Boolean Fechar() { return false; }
+		public Boolean Fechar() { _instance = null; return true; }
 
 		private static IQueryResult _instance;
 		public static IQueryResult Instance { get { return _instance ?? (_instance = new NullQueryResult()); } }
