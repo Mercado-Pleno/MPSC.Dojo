@@ -35,11 +35,11 @@
 			this.ssStatus = new System.Windows.Forms.StatusStrip();
 			this.tsBarraFerramentas = new System.Windows.Forms.ToolStrip();
 			this.btNovoDocumento = new System.Windows.Forms.ToolStripButton();
-			this.btExecutar = new System.Windows.Forms.ToolStripButton();
 			this.btAbrirDocumento = new System.Windows.Forms.ToolStripButton();
 			this.btSalvarDocumento = new System.Windows.Forms.ToolStripButton();
-			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.btSalvarTodos = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.btExecutar = new System.Windows.Forms.ToolStripButton();
 			this.btFechar = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.scVertical)).BeginInit();
 			this.scVertical.Panel1.SuspendLayout();
@@ -94,6 +94,7 @@
 			// 
 			// tsBarraFerramentas
 			// 
+			this.tsBarraFerramentas.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.tsBarraFerramentas.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btNovoDocumento,
             this.btAbrirDocumento,
@@ -103,64 +104,64 @@
             this.btExecutar});
 			this.tsBarraFerramentas.Location = new System.Drawing.Point(0, 0);
 			this.tsBarraFerramentas.Name = "tsBarraFerramentas";
-			this.tsBarraFerramentas.Size = new System.Drawing.Size(623, 25);
+			this.tsBarraFerramentas.Size = new System.Drawing.Size(623, 27);
 			this.tsBarraFerramentas.TabIndex = 2;
 			this.tsBarraFerramentas.Text = "toolStrip1";
 			// 
 			// btNovoDocumento
 			// 
 			this.btNovoDocumento.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.btNovoDocumento.Image = ((System.Drawing.Image)(resources.GetObject("button.Image")));
+			this.btNovoDocumento.Image = ((System.Drawing.Image)(resources.GetObject("btNovoDocumento.Image")));
 			this.btNovoDocumento.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.btNovoDocumento.Name = "btNovoDocumento";
-			this.btNovoDocumento.Size = new System.Drawing.Size(23, 22);
+			this.btNovoDocumento.Size = new System.Drawing.Size(24, 24);
 			this.btNovoDocumento.Text = "Novo";
 			this.btNovoDocumento.Click += new System.EventHandler(this.btNovoDocumento_Click);
-			// 
-			// btExecutar
-			// 
-			this.btExecutar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.btExecutar.Image = ((System.Drawing.Image)(resources.GetObject("button.Image")));
-			this.btExecutar.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.btExecutar.Name = "btExecutar";
-			this.btExecutar.Size = new System.Drawing.Size(23, 22);
-			this.btExecutar.Text = "Executar";
-			this.btExecutar.Click += new System.EventHandler(this.btExecutar_Click);
 			// 
 			// btAbrirDocumento
 			// 
 			this.btAbrirDocumento.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.btAbrirDocumento.Image = ((System.Drawing.Image)(resources.GetObject("button.Image")));
+			this.btAbrirDocumento.Image = ((System.Drawing.Image)(resources.GetObject("btAbrirDocumento.Image")));
 			this.btAbrirDocumento.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.btAbrirDocumento.Name = "btAbrirDocumento";
-			this.btAbrirDocumento.Size = new System.Drawing.Size(23, 22);
+			this.btAbrirDocumento.Size = new System.Drawing.Size(24, 24);
 			this.btAbrirDocumento.Text = "Abrir";
 			this.btAbrirDocumento.Click += new System.EventHandler(this.btAbrirDocumento_Click);
 			// 
 			// btSalvarDocumento
 			// 
 			this.btSalvarDocumento.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.btSalvarDocumento.Image = ((System.Drawing.Image)(resources.GetObject("button.Image")));
+			this.btSalvarDocumento.Image = ((System.Drawing.Image)(resources.GetObject("btSalvarDocumento.Image")));
 			this.btSalvarDocumento.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.btSalvarDocumento.Name = "btSalvarDocumento";
-			this.btSalvarDocumento.Size = new System.Drawing.Size(23, 22);
+			this.btSalvarDocumento.Size = new System.Drawing.Size(24, 24);
 			this.btSalvarDocumento.Text = "Salvar";
 			this.btSalvarDocumento.Click += new System.EventHandler(this.btSalvarDocumento_Click);
-			// 
-			// toolStripSeparator1
-			// 
-			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
 			// 
 			// btSalvarTodos
 			// 
 			this.btSalvarTodos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.btSalvarTodos.Image = ((System.Drawing.Image)(resources.GetObject("button.Image")));
+			this.btSalvarTodos.Image = ((System.Drawing.Image)(resources.GetObject("btSalvarTodos.Image")));
 			this.btSalvarTodos.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.btSalvarTodos.Name = "btSalvarTodos";
-			this.btSalvarTodos.Size = new System.Drawing.Size(23, 22);
+			this.btSalvarTodos.Size = new System.Drawing.Size(24, 24);
 			this.btSalvarTodos.Text = "Salvar Todos";
 			this.btSalvarTodos.Click += new System.EventHandler(this.btSalvarTodos_Click);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+			// 
+			// btExecutar
+			// 
+			this.btExecutar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.btExecutar.Image = ((System.Drawing.Image)(resources.GetObject("btExecutar.Image")));
+			this.btExecutar.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.btExecutar.Name = "btExecutar";
+			this.btExecutar.Size = new System.Drawing.Size(24, 24);
+			this.btExecutar.Text = "Executar";
+			this.btExecutar.Click += new System.EventHandler(this.btExecutar_Click);
 			// 
 			// btFechar
 			// 
@@ -174,7 +175,7 @@
 			this.btFechar.UseVisualStyleBackColor = true;
 			this.btFechar.Click += new System.EventHandler(this.btFechar_Click);
 			// 
-			// Form1
+			// Navegador
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -183,7 +184,7 @@
 			this.Controls.Add(this.tsBarraFerramentas);
 			this.Controls.Add(this.ssStatus);
 			this.Controls.Add(this.scVertical);
-			this.Name = "Form1";
+			this.Name = "Navegador";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Navegador De Banco De Dados";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
