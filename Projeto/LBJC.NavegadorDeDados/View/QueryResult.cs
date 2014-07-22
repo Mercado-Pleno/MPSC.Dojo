@@ -166,22 +166,29 @@ namespace LBJC.NavegadorDeDados
 
 			return fechar;
 		}
+
+		public void Focus()
+		{
+			txtQuery.Focus();
+		}
 	}
 
 	public interface IQueryResult
 	{
+		String NomeDoArquivo { get; }
 		void Executar();
 		Boolean Salvar();
 		Boolean Fechar();
+		void Focus();
 	}
 
 	public class NullQueryResult : IQueryResult
 	{
+		public String NomeDoArquivo { get { return String.Empty; } }
 		public void Executar() { }
+		public void Focus() { }
 		public Boolean Salvar() { return false; }
-		public void Dispose() { }
 		public Boolean Fechar() { return false; }
-
 
 		private static IQueryResult _instance;
 		public static IQueryResult Instance { get { return _instance ?? (_instance = new NullQueryResult()); } }
