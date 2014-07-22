@@ -28,6 +28,12 @@ namespace LBJC.NavegadorDeDados.View
 			cbBancoSchema.Text = config[3];
 		}
 
+		private void Autenticacao_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			Util.ArrayToFile(arquivoConfig, cbTipoBanco.SelectedIndex.ToString(), txtServidor.Text, txtUsuario.Text, cbBancoSchema.Text);
+			cbTipoBanco.DataSource = null;
+		}
+
 		private void btConectar_Click(object sender, EventArgs e)
 		{
 			try
@@ -45,7 +51,8 @@ namespace LBJC.NavegadorDeDados.View
 			}
 			catch (Exception)
 			{
-
+				if (Conexao != null)
+					Conexao.Dispose();
 			}
 		}
 
@@ -56,12 +63,9 @@ namespace LBJC.NavegadorDeDados.View
 			if (autenticacao.ShowDialog() == DialogResult.OK)
 				iDbConnection = autenticacao.Conexao;
 			autenticacao.Close();
+			autenticacao.Dispose();
+			autenticacao = null;
 			return iDbConnection;
-		}
-
-		private void Autenticacao_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			Util.ArrayToFile(arquivoConfig, cbTipoBanco.SelectedIndex.ToString(), txtServidor.Text, txtUsuario.Text, cbBancoSchema.Text);
 		}
 	}
 }

@@ -18,6 +18,8 @@ namespace LBJC.NavegadorDeDados
 			openFileDialog.Multiselect = true;
 			if (DialogResult.OK == openFileDialog.ShowDialog())
 				retorno = openFileDialog.FileNames;
+			openFileDialog.Dispose();
+			openFileDialog = null;
 			return retorno;
 		}
 
@@ -28,6 +30,8 @@ namespace LBJC.NavegadorDeDados
 			saveFileDialog.Filter = extensoes.Concatenar("|");
 			if (DialogResult.OK == saveFileDialog.ShowDialog())
 				retorno = saveFileDialog.FileName;
+			saveFileDialog.Dispose();
+			saveFileDialog = null;
 			return retorno;
 		}
 		public static String Concatenar<T>(this IEnumerable<T> source, String join)

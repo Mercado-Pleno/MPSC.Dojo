@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace LBJC.NavegadorDeDados
 {
@@ -39,7 +40,7 @@ namespace LBJC.NavegadorDeDados
 			if (String.IsNullOrWhiteSpace(NomeDoArquivo) || NomeDoArquivo.StartsWith("Query") || !File.Exists(NomeDoArquivo))
 				NomeDoArquivo = Extensions.GetFileToSave("Arquivos de Banco de Dados|*.sql") ?? NomeDoArquivo;
 
-			if (!String.IsNullOrWhiteSpace(NomeDoArquivo) && !NomeDoArquivo.StartsWith("Query") && !String.IsNullOrWhiteSpace(Path.GetDirectoryName(NomeDoArquivo)))
+			if (!String.IsNullOrWhiteSpace(NomeDoArquivo) && !NomeDoArquivo.StartsWith("Query"))
 			{
 				File.WriteAllText(NomeDoArquivo, txtQuery.Text);
 				originalQuery = txtQuery.Text;
@@ -99,7 +100,15 @@ namespace LBJC.NavegadorDeDados
 		public void Binding()
 		{
 			var result = ClasseDinamica.Transformar();
-			dgResult.DataSource = (dgResult.DataSource as IEnumerable<Object> ?? new List<Object>()).Union(result).ToList();
+			if (dgResult.DataSource == null)
+				dgResult.DataSource = result.ToList();
+			else
+			{
+				var linha = dgResult.FirstDisplayedScrollingRowIndex;
+				dgResult.DataSource = (dgResult.DataSource as IEnumerable<Object>).Union(result).ToList();
+				dgResult.FirstDisplayedScrollingRowIndex = linha;
+				
+			}
 		}
 
 		private void AutoCompletar()
@@ -142,6 +151,7 @@ namespace LBJC.NavegadorDeDados
 			dgResult.Dispose();
 
 			base.Dispose();
+			GC.Collect();
 		}
 
 		public Boolean Fechar()
