@@ -167,9 +167,9 @@ namespace LBJC.NavegadorDeDados
 			return fechar;
 		}
 
-		public void Focus()
+		public new Boolean Focus()
 		{
-			txtQuery.Focus();
+			return txtQuery.Focus();
 		}
 	}
 
@@ -179,14 +179,14 @@ namespace LBJC.NavegadorDeDados
 		void Executar();
 		Boolean Salvar();
 		Boolean Fechar();
-		void Focus();
+		Boolean Focus();
 	}
 
 	public class NullQueryResult : IQueryResult
 	{
 		public String NomeDoArquivo { get { return String.Empty; } }
 		public void Executar() { }
-		public void Focus() { }
+		public Boolean Focus() { return false; }
 		public Boolean Salvar() { return false; }
 		public Boolean Fechar() { return false; }
 
