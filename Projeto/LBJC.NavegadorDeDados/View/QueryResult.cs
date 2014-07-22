@@ -9,6 +9,7 @@ namespace LBJC.NavegadorDeDados
 	public partial class QueryResult : TabPage, IQueryResult, IDisposable
 	{
 		private static Int32 _quantidade = 0;
+		private String originalQuery = String.Empty;
 		public String NomeDoArquivo { get; private set; }
 
 		private ClasseDinamica _classeDinamica = null;
@@ -26,8 +27,8 @@ namespace LBJC.NavegadorDeDados
 		{
 			if (!String.IsNullOrWhiteSpace(nomeDoArquivo) && File.Exists(nomeDoArquivo))
 			{
-				txtQuery.Modified = false;
 				txtQuery.Text = File.ReadAllText(NomeDoArquivo = nomeDoArquivo);
+				originalQuery = txtQuery.Text;
 			}
 			else
 				NomeDoArquivo = String.Format("Query{0}.sql", ++_quantidade);
@@ -41,8 +42,8 @@ namespace LBJC.NavegadorDeDados
 
 			if (!String.IsNullOrWhiteSpace(NomeDoArquivo) && !NomeDoArquivo.StartsWith("Query") && !String.IsNullOrWhiteSpace(Path.GetDirectoryName(NomeDoArquivo)))
 			{
-				txtQuery.Modified = false;
 				File.WriteAllText(NomeDoArquivo, txtQuery.Text);
+				originalQuery = txtQuery.Text;
 			}
 			UpdateDisplay();
 
@@ -70,18 +71,12 @@ namespace LBJC.NavegadorDeDados
 
 		private void UpdateDisplay()
 		{
-			Text = Path.GetFileName(NomeDoArquivo) + (txtQuery.Modified ? " *" : "");
+			Text = Path.GetFileName(NomeDoArquivo) + (txtQuery.Text != originalQuery ? " *" : "");
 		}
 
-		private void dgResult_Scroll(object sender, ScrollEventArgs e)
+		private void btBinding_Click(object sender, EventArgs e)
 		{
-			if (e.ScrollOrientation == ScrollOrientation.VerticalScroll)
-			{
-				var linhasVisiveis = dgResult.Height / (dgResult.RowTemplate.Height + 1);
-				var primeiraLinha = dgResult.RowCount - linhasVisiveis;
-				if (e.NewValue >= primeiraLinha)
-					Binding();
-			}
+			Binding();
 		}
 
 		public void Executar()
@@ -92,7 +87,7 @@ namespace LBJC.NavegadorDeDados
 				try
 				{
 					query = Extensions.ConverterParametrosEmConstantes(txtQuery.Text, query);
-					dgResult.DataSource = ClasseDinamica.Executar(query); ;
+					dgResult.DataSource = ClasseDinamica.Executar(query);
 					Binding();
 				}
 				catch (Exception vException)
@@ -102,7 +97,7 @@ namespace LBJC.NavegadorDeDados
 			}
 		}
 
-		private void Binding()
+		public void Binding()
 		{
 			var result = ClasseDinamica.Transformar();
 			dgResult.DataSource = (dgResult.DataSource as IEnumerable<Object> ?? new List<Object>()).Union(result).ToList();
@@ -152,7 +147,7 @@ namespace LBJC.NavegadorDeDados
 		{
 			Boolean fechar = true;
 
-			if (txtQuery.Modified)
+			if (txtQuery.Text != originalQuery)
 			{
 				var dialogResult = MessageBox.Show("O arquivo foi alterado desde sua última gravação. Deseja Salvá-lo?", "Confirmação", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 				if (dialogResult == DialogResult.Yes)
@@ -171,6 +166,7 @@ namespace LBJC.NavegadorDeDados
 		{
 			return txtQuery.Focus();
 		}
+
 	}
 
 	public interface IQueryResult
