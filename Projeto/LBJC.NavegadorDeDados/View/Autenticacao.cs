@@ -19,7 +19,7 @@ namespace LBJC.NavegadorDeDados.View
 
 		private void Autenticacao_Load(object sender, EventArgs e)
 		{
-			cbTipoBanco.DataSource = BancoDeDados<IDbConnection>.Conexoes.ToList();
+			cbTipoBanco.DataSource = BancoDeDados<IDbConnection>.Conexoes;
 			var config = Util.FileToArray(arquivoConfig);
 			cbTipoBanco.SelectedIndex = Convert.ToInt32("0" + config[0]);
 			txtServidor.Text = config[1];

@@ -13,7 +13,7 @@ namespace LBJC.NavegadorDeDados
 		public IDataReader Executar(String query)
 		{
 			Free();
-			iDbConnection = iDbConnection ?? ObterConexao();
+			iDbConnection = iDbConnection ?? Autenticacao.Dialog();
 			iDbCommand = CriarComando(iDbConnection, query);
 			iDataReader = iDbCommand.ExecuteReader();
 			return iDataReader;
@@ -28,17 +28,6 @@ namespace LBJC.NavegadorDeDados
 			iDbCommand.CommandType = CommandType.Text;
 			iDbCommand.CommandTimeout = 60;
 			return iDbCommand;
-		}
-
-		private static IDbConnection ObterConexao()
-		{
-			IDbConnection iDbConnection = null;
-			try
-			{
-				iDbConnection = Autenticacao.Dialog();
-			}
-			catch (Exception) { }
-			return iDbConnection;
 		}
 
 		public void Dispose()
