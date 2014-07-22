@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using LBJC.NavegadorDeDados.Dados;
 using LBJC.NavegadorDeDados.Infra;
-using System.Collections.Generic;
-using System.IO;
 
 namespace LBJC.NavegadorDeDados
 {
@@ -90,6 +92,7 @@ namespace LBJC.NavegadorDeDados
 			Util.ArrayToFile(arquivoConfig, arquivos.ToArray());
 			arquivos.Clear();
 			arquivos = null;
+			BancoDeDados<IDbConnection>.Conexoes = null;
 		}
 	}
 }

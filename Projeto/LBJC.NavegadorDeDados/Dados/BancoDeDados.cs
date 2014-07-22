@@ -15,7 +15,7 @@ namespace LBJC.NavegadorDeDados.Dados
 
 	public abstract class BancoDeDados<TConexao> : IBancoDeDados, IDisposable where TConexao : IDbConnection
 	{
-		public static IEnumerable<IBancoDeDados> Conexoes = new List<IBancoDeDados>(
+		public static IList<IBancoDeDados> Conexoes = new List<IBancoDeDados>(
 			new IBancoDeDados[]
 			{
 				new SQLServer(),
@@ -40,7 +40,7 @@ namespace LBJC.NavegadorDeDados.Dados
 
 		public virtual void Dispose()
 		{
-		
+			Conexoes.Clear();
 		}
 	}
 
