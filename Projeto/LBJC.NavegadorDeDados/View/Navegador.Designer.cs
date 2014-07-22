@@ -188,6 +188,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Navegador De Banco De Dados";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Navegador_FormClosing);
 			this.scVertical.Panel1.ResumeLayout(false);
 			this.scVertical.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.scVertical)).EndInit();

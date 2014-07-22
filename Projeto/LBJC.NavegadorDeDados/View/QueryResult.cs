@@ -8,13 +8,10 @@ namespace LBJC.NavegadorDeDados
 {
 	public partial class QueryResult : TabPage, IQueryResult, IDisposable
 	{
-		private static Int32 _quantidade = 1;
+		private static Int32 _quantidade = 0;
 		public String NomeDoArquivo { get; private set; }
 
-		private Conexao _conexao = null;
 		private ClasseDinamica _classeDinamica = null;
-
-		private Conexao Conexao { get { return (_conexao ?? (_conexao = new Conexao())); } }
 		private ClasseDinamica ClasseDinamica { get { return (_classeDinamica ?? (_classeDinamica = new ClasseDinamica())); } }
 
 		private String QueryAtiva { get { return ((txtQuery.SelectedText.Length > 1) ? txtQuery.SelectedText : txtQuery.Text); } }
@@ -33,23 +30,23 @@ namespace LBJC.NavegadorDeDados
 				txtQuery.Text = File.ReadAllText(NomeDoArquivo = nomeDoArquivo);
 			}
 			else
-				NomeDoArquivo = "Query" + (_quantidade++) + ".sql";
+				NomeDoArquivo = String.Format("Query{0}.sql", ++_quantidade);
 			UpdateDisplay();
 		}
 
 		public Boolean Salvar()
 		{
-			if (String.IsNullOrWhiteSpace(NomeDoArquivo) || !File.Exists(NomeDoArquivo))
+			if (String.IsNullOrWhiteSpace(NomeDoArquivo) || NomeDoArquivo.StartsWith("Query") || !File.Exists(NomeDoArquivo))
 				NomeDoArquivo = Extensions.GetFileToSave("Arquivos de Banco de Dados|*.sql") ?? NomeDoArquivo;
 
-			if (!String.IsNullOrWhiteSpace(NomeDoArquivo) && !String.IsNullOrWhiteSpace(Path.GetDirectoryName(NomeDoArquivo)))
+			if (!String.IsNullOrWhiteSpace(NomeDoArquivo) && !NomeDoArquivo.StartsWith("Query") && !String.IsNullOrWhiteSpace(Path.GetDirectoryName(NomeDoArquivo)))
 			{
 				txtQuery.Modified = false;
 				File.WriteAllText(NomeDoArquivo, txtQuery.Text);
 			}
 			UpdateDisplay();
 
-			return !String.IsNullOrWhiteSpace(NomeDoArquivo) && File.Exists(NomeDoArquivo);
+			return !String.IsNullOrWhiteSpace(NomeDoArquivo) && !NomeDoArquivo.StartsWith("Query") && File.Exists(NomeDoArquivo);
 		}
 
 		private void txtQuery_KeyDown(object sender, KeyEventArgs e)
@@ -95,9 +92,7 @@ namespace LBJC.NavegadorDeDados
 				try
 				{
 					query = Extensions.ConverterParametrosEmConstantes(txtQuery.Text, query);
-					var dataReader = Conexao.Executar(query);
-					ClasseDinamica.Reset(dataReader);
-					dgResult.DataSource = null;
+					dgResult.DataSource = ClasseDinamica.Executar(query); ;
 					Binding();
 				}
 				catch (Exception vException)
@@ -119,7 +114,7 @@ namespace LBJC.NavegadorDeDados
 			{
 				var apelido = Extensions.ObterApelidoAntesDoPonto(txtQuery.Text, txtQuery.SelectionStart);
 				var tabela = Extensions.ObterNomeTabelaPorApelido(txtQuery.Text, txtQuery.SelectionStart, apelido);
-				var campos = Extensions.ListarColunasDasTabelas(Conexao, tabela);
+				var campos = Extensions.ListarColunasDasTabelas(ClasseDinamica.Conexao, tabela);
 				ListaDeCampos.Exibir(campos, this, txtQuery.CurrentCharacterPosition(), OnSelecionarAutoCompletar);
 			}
 			catch (Exception) { }
@@ -138,12 +133,6 @@ namespace LBJC.NavegadorDeDados
 
 		void IDisposable.Dispose()
 		{
-			if (_conexao != null)
-			{
-				_conexao.Dispose();
-				_conexao = null;
-			}
-
 			if (_classeDinamica != null)
 			{
 				_classeDinamica.Dispose();

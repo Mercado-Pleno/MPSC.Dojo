@@ -8,7 +8,7 @@ namespace LBJC.NavegadorDeDados
 	{
 		private IDbConnection iDbConnection = null;
 		private IDbCommand iDbCommand = null;
-		private IDataReader iDataReader = null;
+		public IDataReader iDataReader { get; private set; }
 
 		public IDataReader Executar(String query)
 		{
