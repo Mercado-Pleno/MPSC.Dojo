@@ -13,7 +13,7 @@
 		{
 			this.SuspendLayout();
 			// 
-			// ListCampos
+			// ListaDeCampos
 			// 
 			this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.FormattingEnabled = true;
@@ -22,6 +22,7 @@
 			this.Size = new System.Drawing.Size(200, 200);
 			this.DoubleClick += new System.EventHandler(this.Selecionar);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox_KeyDown);
+			this.Leave += new System.EventHandler(this.ListaDeCampos_Leave);
 			this.ResumeLayout(false);
 
 		}

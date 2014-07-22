@@ -6,9 +6,10 @@ using System.Windows.Forms;
 
 namespace LBJC.NavegadorDeDados
 {
+	public delegate void SelecionarEventHandler(String item);
+
 	public partial class ListaDeCampos : ListBox
 	{
-		public delegate void SelecionarEventHandler(String item);
 		private event SelecionarEventHandler OnSelecionar;
 
 		private ListaDeCampos(IList<String> listaString, Control parent, Point position, SelecionarEventHandler onSelecionar)
@@ -24,6 +25,7 @@ namespace LBJC.NavegadorDeDados
 			{
 				parent.Controls.Remove(listaCamposOld);
 				listaCamposOld.OnSelecionar = null;
+				listaCamposOld.DataSource = null;
 				listaCamposOld.Dispose();
 			}
 
@@ -45,6 +47,11 @@ namespace LBJC.NavegadorDeDados
 				DoSelecionar(Convert.ToString(SelectedItem));
 		}
 
+		private void ListaDeCampos_Leave(object sender, EventArgs e)
+		{
+			DoSelecionar(null);
+		}
+
 		private void Selecionar(object sender, EventArgs e)
 		{
 			DoSelecionar(Convert.ToString(SelectedItem));
@@ -52,10 +59,15 @@ namespace LBJC.NavegadorDeDados
 
 		private void DoSelecionar(String selectedItem)
 		{
-			if (OnSelecionar != null)
-				OnSelecionar(selectedItem);
-			Parent.Controls.Remove(this);
-			Dispose();
+			if (Parent != null)
+			{
+				if (OnSelecionar != null)
+					OnSelecionar(selectedItem);
+				Parent.Controls.Remove(this);
+				OnSelecionar = null;
+				DataSource = null;
+				Dispose();
+			}
 			GC.Collect();
 		}
 

@@ -10,7 +10,6 @@ namespace LBJC.NavegadorDeDados.View
 	public partial class Autenticacao : Form
 	{
 		private const String arquivoConfig = "Autenticacao.txt";
-		private IBancoDeDados BancoDeDados { get { return cbTipoBanco.SelectedValue as IBancoDeDados; } }
 		public IDbConnection Conexao { get; private set; }
 
 		public Autenticacao()
@@ -38,7 +37,7 @@ namespace LBJC.NavegadorDeDados.View
 		{
 			try
 			{
-				var bancoDeDados = BancoDeDados;
+				var bancoDeDados = cbTipoBanco.SelectedValue as IBancoDeDados;
 				if (bancoDeDados != null)
 					Conexao = bancoDeDados.ObterConexao(txtServidor.Text, cbBancoSchema.Text, txtUsuario.Text, txtSenha.Text);
 
@@ -49,10 +48,11 @@ namespace LBJC.NavegadorDeDados.View
 					DialogResult = DialogResult.OK;
 				}
 			}
-			catch (Exception)
+			catch (Exception exception)
 			{
 				if (Conexao != null)
 					Conexao.Dispose();
+				MessageBox.Show("Houve um problema ao tentar conectar ao banco de dados. Detalhes:\n\n" + exception.Message, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 			}
 		}
 
