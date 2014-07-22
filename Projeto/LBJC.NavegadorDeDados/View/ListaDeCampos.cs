@@ -59,15 +59,13 @@ namespace LBJC.NavegadorDeDados
 
 		private void DoSelecionar(String selectedItem)
 		{
+			if (OnSelecionar != null)
+				OnSelecionar(selectedItem);
 			if (Parent != null)
-			{
-				if (OnSelecionar != null)
-					OnSelecionar(selectedItem);
 				Parent.Controls.Remove(this);
-				OnSelecionar = null;
-				DataSource = null;
-				Dispose();
-			}
+			OnSelecionar = null;
+			DataSource = null;
+			Dispose();
 			GC.Collect();
 		}
 

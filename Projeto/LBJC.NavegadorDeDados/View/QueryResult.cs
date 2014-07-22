@@ -106,8 +106,8 @@ namespace LBJC.NavegadorDeDados
 			{
 				var linha = dgResult.FirstDisplayedScrollingRowIndex;
 				dgResult.DataSource = (dgResult.DataSource as IEnumerable<Object>).Union(result).ToList();
-				dgResult.FirstDisplayedScrollingRowIndex = linha;
-				
+				if (linha >= 0)
+					dgResult.FirstDisplayedScrollingRowIndex = linha;
 			}
 		}
 
@@ -154,23 +154,25 @@ namespace LBJC.NavegadorDeDados
 			GC.Collect();
 		}
 
-		public Boolean Fechar()
+		public Boolean PodeFechar()
 		{
 			Boolean fechar = true;
 
 			if (txtQuery.Text != originalQuery)
 			{
-				var dialogResult = MessageBox.Show("O arquivo foi alterado desde sua última gravação. Deseja Salvá-lo?", "Confirmação", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+				var dialogResult = MessageBox.Show(String.Format("O arquivo '{0}' foi alterado. Deseja Salvá-lo?", NomeDoArquivo), "Confirmação", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 				if (dialogResult == DialogResult.Yes)
 					fechar = Salvar();
 				else
 					fechar = (dialogResult == DialogResult.No);
 			}
 
-			if (fechar)
-				Dispose();
-
 			return fechar;
+		}
+
+		public void Fechar()
+		{
+			Dispose();
 		}
 
 		public new Boolean Focus()
@@ -185,7 +187,8 @@ namespace LBJC.NavegadorDeDados
 		String NomeDoArquivo { get; }
 		void Executar();
 		Boolean Salvar();
-		Boolean Fechar();
+		Boolean PodeFechar();
+		void Fechar();
 		Boolean Focus();
 	}
 
@@ -195,7 +198,8 @@ namespace LBJC.NavegadorDeDados
 		public void Executar() { }
 		public Boolean Focus() { return false; }
 		public Boolean Salvar() { return false; }
-		public Boolean Fechar() { _instance = null; return true; }
+		public Boolean PodeFechar() { return true; }
+		public void Fechar() { _instance = null; }
 
 		private static IQueryResult _instance;
 		public static IQueryResult Instance { get { return _instance ?? (_instance = new NullQueryResult()); } }

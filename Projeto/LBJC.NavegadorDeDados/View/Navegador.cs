@@ -54,7 +54,12 @@ namespace LBJC.NavegadorDeDados
 
 		private void btFechar_Click(object sender, EventArgs e)
 		{
-			ActiveTab.Fechar();
+			var tab = ActiveTab;
+			if (tab.PodeFechar())
+			{
+				tabQueryResult.Controls.Remove(tab as TabPage);
+				tab.Fechar();
+			}
 		}
 
 		private void tabQueryResult_Click(object sender, EventArgs e)
@@ -78,9 +83,16 @@ namespace LBJC.NavegadorDeDados
 			Boolean salvouTodos = true;
 			while (salvouTodos && tabQueryResult.Controls.Count > 0)
 			{
-				IQueryResult queryResult = tabQueryResult.Controls[0] as IQueryResult;
-				tabQueryResult.Controls.RemoveAt(0);
-				salvouTodos = salvouTodos && queryResult.Fechar();
+				var queryResult = tabQueryResult.Controls[0] as IQueryResult;
+				if (queryResult.PodeFechar())
+				{
+					tabQueryResult.Controls.Remove(queryResult as TabPage);
+					queryResult.Fechar();
+				}
+				else
+					salvouTodos = false;
+				
+
 				if (File.Exists(queryResult.NomeDoArquivo))
 					arquivos.Add(queryResult.NomeDoArquivo);
 			}
