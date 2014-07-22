@@ -30,6 +30,7 @@
 		{
 			this.scHorizontal = new System.Windows.Forms.SplitContainer();
 			this.txtQuery = new System.Windows.Forms.TextBox();
+			this.btBinding = new System.Windows.Forms.Button();
 			this.dgResult = new System.Windows.Forms.DataGridView();
 			((System.ComponentModel.ISupportInitialize)(this.scHorizontal)).BeginInit();
 			this.scHorizontal.Panel1.SuspendLayout();
@@ -51,9 +52,10 @@
 			// 
 			// scHorizontal.Panel2
 			// 
+			this.scHorizontal.Panel2.Controls.Add(this.btBinding);
 			this.scHorizontal.Panel2.Controls.Add(this.dgResult);
-			this.scHorizontal.Size = new System.Drawing.Size(795, 459);
-			this.scHorizontal.SplitterDistance = 340;
+			this.scHorizontal.Size = new System.Drawing.Size(400, 400);
+			this.scHorizontal.SplitterDistance = 300;
 			this.scHorizontal.TabIndex = 1;
 			// 
 			// txtQuery
@@ -67,10 +69,26 @@
 			this.txtQuery.Multiline = true;
 			this.txtQuery.Name = "txtQuery";
 			this.txtQuery.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.txtQuery.Size = new System.Drawing.Size(795, 340);
+			this.txtQuery.Size = new System.Drawing.Size(400, 300);
 			this.txtQuery.TabIndex = 0;
 			this.txtQuery.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtQuery_KeyDown);
 			this.txtQuery.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtQuery_KeyUp);
+			// 
+			// btBinding
+			// 
+			this.btBinding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btBinding.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.btBinding.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btBinding.Location = new System.Drawing.Point(382, 78);
+			this.btBinding.Margin = new System.Windows.Forms.Padding(0);
+			this.btBinding.MaximumSize = new System.Drawing.Size(18, 18);
+			this.btBinding.MinimumSize = new System.Drawing.Size(18, 18);
+			this.btBinding.Name = "btBinding";
+			this.btBinding.Size = new System.Drawing.Size(18, 18);
+			this.btBinding.TabIndex = 0;
+			this.btBinding.Text = "+";
+			this.btBinding.UseVisualStyleBackColor = false;
+			this.btBinding.Click += new System.EventHandler(this.btBinding_Click);
 			// 
 			// dgResult
 			// 
@@ -78,14 +96,13 @@
 			this.dgResult.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dgResult.Location = new System.Drawing.Point(0, 0);
 			this.dgResult.Name = "dgResult";
-			this.dgResult.Size = new System.Drawing.Size(795, 115);
+			this.dgResult.Size = new System.Drawing.Size(400, 96);
 			this.dgResult.TabIndex = 0;
-			this.dgResult.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dgResult_Scroll);
 			// 
 			// QueryResult
 			// 
 			this.Controls.Add(this.scHorizontal);
-			this.Size = new System.Drawing.Size(795, 459);
+			this.Size = new System.Drawing.Size(400, 400);
 			this.scHorizontal.Panel1.ResumeLayout(false);
 			this.scHorizontal.Panel1.PerformLayout();
 			this.scHorizontal.Panel2.ResumeLayout(false);
@@ -101,5 +118,6 @@
 		private System.Windows.Forms.SplitContainer scHorizontal;
 		private System.Windows.Forms.TextBox txtQuery;
 		private System.Windows.Forms.DataGridView dgResult;
+		private System.Windows.Forms.Button btBinding;
 	}
 }
