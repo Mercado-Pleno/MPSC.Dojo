@@ -89,14 +89,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="View\Autenticacao.resx">
-      <DependentUpon>Autenticacao.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\Navegador.resx">
       <DependentUpon>Navegador.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\QueryResult.resx">
-      <DependentUpon>QueryResult.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
