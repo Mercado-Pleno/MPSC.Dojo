@@ -95,6 +95,9 @@
     <EmbeddedResource Include="View\Navegador.resx">
       <DependentUpon>Navegador.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\QueryResult.resx">
+      <DependentUpon>QueryResult.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

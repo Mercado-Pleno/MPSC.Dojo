@@ -83,6 +83,7 @@
 			this.tabQueryResult.SelectedIndex = 0;
 			this.tabQueryResult.Size = new System.Drawing.Size(555, 320);
 			this.tabQueryResult.TabIndex = 0;
+			this.tabQueryResult.Click += new System.EventHandler(this.tabQueryResult_Click);
 			// 
 			// ssStatus
 			// 
@@ -189,6 +190,8 @@
 			this.Text = "Navegador De Banco De Dados";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Navegador_FormClosing);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Navegador_FormClosed);
+			this.Load += new System.EventHandler(this.Navegador_Load);
 			this.scVertical.Panel1.ResumeLayout(false);
 			this.scVertical.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.scVertical)).EndInit();
