@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Drawing;
 
 namespace LBJC.NavegadorDeDados
 {
@@ -58,10 +57,17 @@ namespace LBJC.NavegadorDeDados
 				txtQuery.SelectAll();
 			else if ((e.Modifiers == Keys.Control) && (e.KeyCode == Keys.S))
 				Salvar();
+			else if ((e.Modifiers == (Keys.Control | Keys.Shift)) && (e.KeyCode == Keys.T))
+				ListarTabelas();
 			else if (e.KeyCode == Keys.F5)
 				Executar();
 			else if ((e.Modifiers == Keys.Control) && (e.KeyCode == Keys.Y))
 				Executar();
+		}
+
+		private void ListarTabelas()
+		{
+			//Banc
 		}
 
 		private void txtQuery_KeyUp(object sender, KeyEventArgs e)
