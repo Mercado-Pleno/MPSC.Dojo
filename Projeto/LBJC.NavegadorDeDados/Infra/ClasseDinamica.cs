@@ -2,6 +2,8 @@
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using Microsoft.CSharp;
 
@@ -16,7 +18,7 @@ namespace LBJC.NavegadorDeDados
 		public Object Executar(String query)
 		{
 			var dataReader = Conexao.Executar(query);
-			
+
 			if (dataReader != null)
 			{
 				var properties = String.Empty;
@@ -25,7 +27,7 @@ namespace LBJC.NavegadorDeDados
 				{
 					var propertyName = dataReader.GetName(i);
 					if (!properties.Contains(" " + propertyName + " "))
-						properties += String.Format("\t\tpublic {0}{1} {2} {{ get; set; }}\r\n", dataReader.GetFieldType(i).Name, dataReader.GetFieldType(i).IsValueType ? "?" : "", propertyName);
+						properties += String.Format("\t\tpublic {0}{1} {2} {{ get; set; }}\r\n", dataReader.GetFieldType(i).Name, dataReader.GetFieldType(i).IsValueType ? "?" : "", propertyName.Replace(" ", "_").Replace(".", "_").Replace("\"", ""));
 				}
 				_tipo = CriarClasseVirtual("DadosDinamicos", properties);
 			}
@@ -45,7 +47,7 @@ namespace LBJC.NavegadorDeDados
 			var colunas = dataReader.FieldCount;
 			for (Int32 i = 0; i < colunas; i++)
 			{
-				var prop = _tipo.GetProperty(dataReader.GetName(i));
+				var prop = _tipo.GetProperty(dataReader.GetName(i).Replace(" ", "_").Replace(".", "_").Replace("\"", ""));
 				prop.SetValue(obj, dataReader.IsDBNull(i) ? null : dataReader.GetValue(i), null);
 				Application.DoEvents();
 			}
@@ -55,23 +57,20 @@ namespace LBJC.NavegadorDeDados
 
 		private Type CriarClasseVirtual(String nomeClasse, String codigo)
 		{
-#pragma warning disable 0618
-			Type vType = null;
+			var classe = String.Format("using System;\nnamespace Virtual\n{{\n\tpublic class {0}\n\t{{\n{1}\t}}\n}}", nomeClasse, codigo);
 			CodeDomProvider vCodeCompiler = new CSharpCodeProvider();
-			CompilerParameters vCompilerParameters = new CompilerParameters();
-			vCompilerParameters.GenerateInMemory = true;
-			vCompilerParameters.GenerateExecutable = false;
-			vCompilerParameters.IncludeDebugInformation = true;
-			var classe = String.Format("using System;\nnamespace LBJC.Virtual\n{{\n\tpublic class {0}\n\t{{\n{1}\t}}\n}}", nomeClasse, codigo);
-			try
-			{
-				CompilerResults vResults = vCodeCompiler.CompileAssemblyFromSource(vCompilerParameters, classe);
-				vType = vResults.CompiledAssembly.GetType("LBJC.Virtual." + nomeClasse, true);
-			}
-			catch (Exception) { }
+			CompilerResults vResults = vCodeCompiler.CompileAssemblyFromSource(CreateCompillerParameters(false, true), classe);
+			return vResults.CompiledAssembly.GetType("Virtual." + nomeClasse, false, true);
+		}
 
-#pragma warning restore 0618
-			return vType;
+		private static CompilerParameters CreateCompillerParameters(Boolean generateExecutable, Boolean includeDebugInformation)
+		{
+			return new CompilerParameters(new String[] { Path.GetFileName(Assembly.GetExecutingAssembly().CodeBase) })
+			{
+				GenerateInMemory = !generateExecutable,
+				GenerateExecutable = generateExecutable,
+				IncludeDebugInformation = includeDebugInformation
+			};
 		}
 
 		public void Dispose()
