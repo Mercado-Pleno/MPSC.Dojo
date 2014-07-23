@@ -89,6 +89,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\Autenticacao.resx">
+      <DependentUpon>Autenticacao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Navegador.resx">
       <DependentUpon>Navegador.cs</DependentUpon>
     </EmbeddedResource>

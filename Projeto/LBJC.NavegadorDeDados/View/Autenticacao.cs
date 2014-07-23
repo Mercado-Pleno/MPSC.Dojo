@@ -27,6 +27,16 @@ namespace LBJC.NavegadorDeDados.View
 			cbBancoSchema.Text = config[3];
 		}
 
+		private void Autenticacao_Shown(object sender, EventArgs e)
+		{
+			var f = Foco(cbTipoBanco) || Foco(txtServidor) || Foco(txtUsuario) || Foco(txtSenha) || Foco(cbBancoSchema);
+		}
+
+		private bool Foco(Control control)
+		{
+			return String.IsNullOrWhiteSpace(control.Text) && control.Focus();
+		}
+
 		private void Autenticacao_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			Util.ArrayToFile(arquivoConfig, cbTipoBanco.SelectedIndex.ToString(), txtServidor.Text, txtUsuario.Text, cbBancoSchema.Text);

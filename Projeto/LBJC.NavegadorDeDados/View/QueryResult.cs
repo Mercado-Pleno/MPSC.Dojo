@@ -7,14 +7,14 @@ using System.Drawing;
 
 namespace LBJC.NavegadorDeDados
 {
-	public partial class QueryResult : TabPage, IQueryResult, IDisposable
+	public partial class QueryResult : TabPage, IQueryResult
 	{
 		private static Int32 _quantidade = 0;
 		private String originalQuery = String.Empty;
 		private ClasseDinamica _classeDinamica = null;
+
 		private ClasseDinamica ClasseDinamica { get { return (_classeDinamica ?? (_classeDinamica = new ClasseDinamica())); } }
 		public String NomeDoArquivo { get; private set; }
-
 		private String QueryAtiva { get { return ((txtQuery.SelectedText.Length > 1) ? txtQuery.SelectedText : txtQuery.Text); } }
 
 		public QueryResult(String nomeDoArquivo)
@@ -134,26 +134,6 @@ namespace LBJC.NavegadorDeDados
 			txtQuery.Focus();
 		}
 
-		void IDisposable.Dispose()
-		{
-			if (_classeDinamica != null)
-			{
-				_classeDinamica.Dispose();
-				_classeDinamica = null;
-			}
-
-			originalQuery = null;
-
-			txtQuery.Clear();
-			txtQuery.Dispose();
-
-			dgResult.DataSource = null;
-			dgResult.Dispose();
-
-			base.Dispose();
-			GC.Collect();
-		}
-
 		public Boolean PodeFechar()
 		{
 			Boolean fechar = true;
@@ -172,7 +152,22 @@ namespace LBJC.NavegadorDeDados
 
 		public void Fechar()
 		{
-			Dispose();
+			if (_classeDinamica != null)
+			{
+				_classeDinamica.Dispose();
+				_classeDinamica = null;
+			}
+
+			originalQuery = null;
+
+			txtQuery.Clear();
+			txtQuery.Dispose();
+
+			dgResult.DataSource = null;
+			dgResult.Dispose();
+
+			base.Dispose();
+			GC.Collect();
 		}
 
 		public new Boolean Focus()

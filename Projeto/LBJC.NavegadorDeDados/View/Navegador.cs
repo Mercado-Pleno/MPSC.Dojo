@@ -102,9 +102,6 @@ namespace LBJC.NavegadorDeDados
 		private void Navegador_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			Util.ArrayToFile(arquivoConfig, arquivos.ToArray());
-			arquivos.Clear();
-			arquivos = null;
-			BancoDeDados<IDbConnection>.Conexoes = null;
 		}
 	}
 }

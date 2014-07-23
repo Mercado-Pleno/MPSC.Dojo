@@ -12,8 +12,6 @@ namespace LBJC.NavegadorDeDados
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new Navegador());
 			GC.Collect();
-			Application.Exit();
-			Application.ExitThread();
 		}
 	}
 }
