@@ -55,7 +55,6 @@ namespace LBJC.NavegadorDeDados
 				{
 					if (!iDataReader.IsClosed)
 						iDataReader.Close();
-					
 				}
 				catch (Exception) { }
 				finally { iDataReader.Dispose(); }
