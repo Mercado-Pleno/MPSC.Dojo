@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using LBJC.NavegadorDeDados.Dados;
+using System.Data;
 
 namespace LBJC.NavegadorDeDados
 {
 	public partial class QueryResult : TabPage, IQueryResult
 	{
 		private static Int32 _quantidade = 0;
-		private String originalQuery = String.Empty;
-		private ClasseDinamica _classeDinamica = null;
+		private IBancoDeDados _bancoDeDados = null;
+		public IBancoDeDados BancoDeDados { get { return _bancoDeDados ?? (_bancoDeDados = BancoDeDados<IDbConnection>.Conectar()); } }
 
-		private ClasseDinamica ClasseDinamica { get { return (_classeDinamica ?? (_classeDinamica = new ClasseDinamica())); } }
+		private String originalQuery = String.Empty;
 		public String NomeDoArquivo { get; private set; }
 		private String QueryAtiva { get { return ((txtQuery.SelectedText.Length > 1) ? txtQuery.SelectedText : txtQuery.Text); } }
 
@@ -57,17 +59,19 @@ namespace LBJC.NavegadorDeDados
 				txtQuery.SelectAll();
 			else if ((e.Modifiers == Keys.Control) && (e.KeyCode == Keys.S))
 				Salvar();
-			else if ((e.Modifiers == (Keys.Control | Keys.Shift)) && (e.KeyCode == Keys.T))
+			else if ((e.Modifiers == Keys.Control) && (e.KeyCode == Keys.T))
 				ListarTabelas();
 			else if (e.KeyCode == Keys.F5)
 				Executar();
 			else if ((e.Modifiers == Keys.Control) && (e.KeyCode == Keys.Y))
 				Executar();
-		}
-
-		private void ListarTabelas()
-		{
-			//Banc
+			else if ((e.Modifiers == (Keys.Control | Keys.Shift)) && (e.KeyCode == Keys.Space))
+			{
+				if (txtQuery.Text[txtQuery.SelectionStart - 1].Equals('.'))
+					AutoCompletar();
+				else
+					ListarTabelas();
+			}
 		}
 
 		private void txtQuery_KeyUp(object sender, KeyEventArgs e)
@@ -93,7 +97,8 @@ namespace LBJC.NavegadorDeDados
 				try
 				{
 					query = Extensions.ConverterParametrosEmConstantes(txtQuery.Text, query);
-					dgResult.DataSource = ClasseDinamica.Executar(query);
+					dgResult.DataSource = null;
+					BancoDeDados.Executar(query);
 					Binding();
 				}
 				catch (Exception vException)
@@ -105,7 +110,7 @@ namespace LBJC.NavegadorDeDados
 
 		public void Binding()
 		{
-			var result = ClasseDinamica.Transformar();
+			var result = BancoDeDados.Transformar();
 			if (dgResult.DataSource == null)
 				dgResult.DataSource = result.ToList();
 			else
@@ -117,13 +122,24 @@ namespace LBJC.NavegadorDeDados
 			}
 		}
 
+		private void ListarTabelas()
+		{
+			try
+			{
+				var apelido = Extensions.ObterPrefixo(txtQuery.Text, txtQuery.SelectionStart);
+				var campos = BancoDeDados.ListarTabelas(apelido);
+				ListaDeCampos.Exibir(campos, this, txtQuery.CurrentCharacterPosition(), OnSelecionarAutoCompletar);
+			}
+			catch (Exception) { }
+		}
+
 		private void AutoCompletar()
 		{
 			try
 			{
 				var apelido = Extensions.ObterApelidoAntesDoPonto(txtQuery.Text, txtQuery.SelectionStart);
 				var tabela = Extensions.ObterNomeTabelaPorApelido(txtQuery.Text, txtQuery.SelectionStart, apelido);
-				var campos = Extensions.ListarColunasDasTabelas(ClasseDinamica.Conexao, tabela);
+				var campos = BancoDeDados.ListarColunasDasTabelas(tabela);
 				ListaDeCampos.Exibir(campos, this, txtQuery.CurrentCharacterPosition(), OnSelecionarAutoCompletar);
 			}
 			catch (Exception) { }
@@ -158,10 +174,10 @@ namespace LBJC.NavegadorDeDados
 
 		public void Fechar()
 		{
-			if (_classeDinamica != null)
+			if (_bancoDeDados != null)
 			{
-				_classeDinamica.Dispose();
-				_classeDinamica = null;
+				_bancoDeDados.Dispose();
+				_bancoDeDados = null;
 			}
 
 			originalQuery = null;
