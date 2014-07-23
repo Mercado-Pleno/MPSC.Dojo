@@ -62,6 +62,7 @@ namespace LBJC.NavegadorDeDados.View
 			{
 				if (Conexao != null)
 					Conexao.Dispose();
+				Conexao = null;
 				MessageBox.Show("Houve um problema ao tentar conectar ao banco de dados. Detalhes:\n\n" + exception.Message, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 			}
 		}

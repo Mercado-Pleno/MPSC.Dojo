@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using LBJC.NavegadorDeDados.Dados;
 using LBJC.NavegadorDeDados.Infra;
 
 namespace LBJC.NavegadorDeDados
@@ -91,7 +89,6 @@ namespace LBJC.NavegadorDeDados
 				}
 				else
 					salvouTodos = false;
-				
 
 				if (File.Exists(queryResult.NomeDoArquivo))
 					arquivos.Add(queryResult.NomeDoArquivo);

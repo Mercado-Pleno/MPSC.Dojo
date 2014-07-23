@@ -40,7 +40,7 @@
 			this.btSalvarTodos = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.btExecutar = new System.Windows.Forms.ToolStripButton();
-			this.btFechar = new System.Windows.Forms.Button();
+			this.btFechar = new System.Windows.Forms.ToolStripButton();
 			((System.ComponentModel.ISupportInitialize)(this.scVertical)).BeginInit();
 			this.scVertical.Panel1.SuspendLayout();
 			this.scVertical.Panel2.SuspendLayout();
@@ -102,7 +102,8 @@
             this.btSalvarDocumento,
             this.btSalvarTodos,
             this.toolStripSeparator1,
-            this.btExecutar});
+            this.btExecutar,
+            this.btFechar});
 			this.tsBarraFerramentas.Location = new System.Drawing.Point(0, 0);
 			this.tsBarraFerramentas.Name = "tsBarraFerramentas";
 			this.tsBarraFerramentas.Size = new System.Drawing.Size(623, 27);
@@ -166,16 +167,13 @@
 			// 
 			// btFechar
 			// 
-			this.btFechar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btFechar.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.btFechar.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btFechar.Location = new System.Drawing.Point(606, 4);
-			this.btFechar.Margin = new System.Windows.Forms.Padding(0);
+			this.btFechar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+			this.btFechar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.btFechar.Image = ((System.Drawing.Image)(resources.GetObject("btFechar.Image")));
+			this.btFechar.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.btFechar.Name = "btFechar";
-			this.btFechar.Size = new System.Drawing.Size(16, 16);
-			this.btFechar.TabIndex = 3;
-			this.btFechar.Text = "X";
-			this.btFechar.UseVisualStyleBackColor = true;
+			this.btFechar.Size = new System.Drawing.Size(24, 24);
+			this.btFechar.Text = "Fechar";
 			this.btFechar.Click += new System.EventHandler(this.btFechar_Click);
 			// 
 			// Navegador
@@ -183,7 +181,6 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(623, 373);
-			this.Controls.Add(this.btFechar);
 			this.Controls.Add(this.tsBarraFerramentas);
 			this.Controls.Add(this.ssStatus);
 			this.Controls.Add(this.scVertical);
@@ -218,7 +215,7 @@
 		private System.Windows.Forms.ToolStripButton btSalvarDocumento;
 		private System.Windows.Forms.ToolStripButton btSalvarTodos;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-		private System.Windows.Forms.Button btFechar;
+		private System.Windows.Forms.ToolStripButton btFechar;
 	}
 }
 
