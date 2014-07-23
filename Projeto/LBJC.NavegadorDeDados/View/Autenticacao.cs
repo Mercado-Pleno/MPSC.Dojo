@@ -9,7 +9,7 @@ namespace LBJC.NavegadorDeDados.View
 	public partial class Autenticacao : Form
 	{
 		private const String arquivoConfig = "Autenticacao.txt";
-		public IDbConnection Conexao { get; private set; }
+		private IBancoDeDados _bancoDeDados;
 
 		public Autenticacao()
 		{
@@ -18,7 +18,7 @@ namespace LBJC.NavegadorDeDados.View
 
 		private void Autenticacao_Load(object sender, EventArgs e)
 		{
-			cbTipoBanco.DataSource = BancoDeDados<IDbConnection>.Conexoes;
+			cbTipoBanco.DataSource = BancoDeDados<IDbConnection>.ListaDeBancoDeDados;
 			var config = Util.FileToArray(arquivoConfig);
 			cbTipoBanco.SelectedIndex = Convert.ToInt32("0" + config[0]);
 			txtServidor.Text = config[1];
@@ -44,38 +44,43 @@ namespace LBJC.NavegadorDeDados.View
 
 		private void btConectar_Click(object sender, EventArgs e)
 		{
-			try
+			_bancoDeDados = cbTipoBanco.SelectedValue as IBancoDeDados;
+			if (_bancoDeDados != null)
 			{
-				var bancoDeDados = cbTipoBanco.SelectedValue as IBancoDeDados;
-				if (bancoDeDados != null)
-					Conexao = bancoDeDados.ObterConexao(txtServidor.Text, cbBancoSchema.Text, txtUsuario.Text, txtSenha.Text);
-
-				if (Conexao != null)
+				IDbConnection iDbConnection = null;
+				try
 				{
-					Conexao.Open();
-					Conexao.Close();
-					DialogResult = DialogResult.OK;
+					iDbConnection = _bancoDeDados.ObterConexao(txtServidor.Text, cbBancoSchema.Text, txtUsuario.Text, txtSenha.Text);
+					if (iDbConnection != null)
+					{
+						iDbConnection.Open();
+						iDbConnection.Close();
+						DialogResult = DialogResult.OK;
+					}
 				}
-			}
-			catch (Exception exception)
-			{
-				if (Conexao != null)
-					Conexao.Dispose();
-				Conexao = null;
-				MessageBox.Show("Houve um problema ao tentar conectar ao banco de dados. Detalhes:\n\n" + exception.Message, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+				catch (Exception exception)
+				{
+					MessageBox.Show("Houve um problema ao tentar conectar ao banco de dados. Detalhes:\n\n" + exception.Message, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+				}
+				finally
+				{
+					if (iDbConnection != null)
+						iDbConnection.Dispose();
+					iDbConnection = null;
+				}
 			}
 		}
 
-		public static IDbConnection Dialog()
+		public static IBancoDeDados Dialog()
 		{
-			IDbConnection iDbConnection = null;
+			IBancoDeDados iBancoDeDados = null;
 			var autenticacao = new Autenticacao();
 			if (autenticacao.ShowDialog() == DialogResult.OK)
-				iDbConnection = autenticacao.Conexao;
+				iBancoDeDados = autenticacao._bancoDeDados;
 			autenticacao.Close();
 			autenticacao.Dispose();
 			autenticacao = null;
-			return iDbConnection;
+			return iBancoDeDados;
 		}
 	}
 }

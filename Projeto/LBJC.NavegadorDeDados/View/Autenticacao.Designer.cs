@@ -146,7 +146,7 @@
 			// btConectar
 			// 
 			this.btConectar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btConectar.Location = new System.Drawing.Point(199, 156);
+			this.btConectar.Location = new System.Drawing.Point(199, 137);
 			this.btConectar.Name = "btConectar";
 			this.btConectar.Size = new System.Drawing.Size(75, 23);
 			this.btConectar.TabIndex = 10;
@@ -158,7 +158,7 @@
 			// 
 			this.btCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btCancelar.Location = new System.Drawing.Point(280, 156);
+			this.btCancelar.Location = new System.Drawing.Point(280, 137);
 			this.btCancelar.Name = "btCancelar";
 			this.btCancelar.Size = new System.Drawing.Size(75, 23);
 			this.btCancelar.TabIndex = 11;

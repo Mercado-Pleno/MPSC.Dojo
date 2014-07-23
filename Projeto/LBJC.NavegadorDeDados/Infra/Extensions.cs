@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using LBJC.NavegadorDeDados.Infra;
+using LBJC.NavegadorDeDados.Dados;
 
 namespace LBJC.NavegadorDeDados
 {
@@ -55,7 +57,7 @@ namespace LBJC.NavegadorDeDados
 			query = query.ToUpper().Insert(selectionStart, ".");
 			var tokens = query.Split(Extensions.TokenKeys.ToCharArray(), StringSplitOptions.RemoveEmptyEntries).ToList();
 
-			var index = tokens.LastIndexOf(apelido);
+			var index = tokens.LastIndexOf(apelido.Replace(".", ""));
 			if (tokens.Count > 1)
 			{
 				if (tokens[index - 1].Equals("AS"))
@@ -67,17 +69,6 @@ namespace LBJC.NavegadorDeDados
 			}
 
 			return nomeDaTabela;
-		}
-
-		public static IEnumerable<String> ListarColunasDasTabelas(Conexao conexao, String tabela)
-		{
-			var dataReader = conexao.Executar("Select * From " + tabela + " Where 0=1");
-			var colunas = dataReader.FieldCount;
-			for (Int32 i = 0; i < colunas; i++)
-				yield return dataReader.GetName(i);
-
-			dataReader.Close();
-			dataReader.Dispose();
 		}
 
 		public static String ConverterParametrosEmConstantes(String tempQuery, String selectedQuery)
@@ -102,6 +93,16 @@ namespace LBJC.NavegadorDeDados
 			int x = s - textBox.GetFirstCharIndexFromLine(y);
 
 			return new Point(x * 9, (y + 1) * textBox.Font.Height);
+		}
+
+		public static String ObterPrefixo(string query, int selectionStart)
+		{
+			query = query.Substring(0, selectionStart).ToUpper();
+
+			Int32 i = selectionStart+1;
+			while (!TokenKeys.Contains(query[--i - 1])) ;
+
+			return query.Substring(i, selectionStart - i).Trim();
 		}
 	}
 }

@@ -50,8 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dados\BancoDeDados.cs" />
+    <Compile Include="Dados\IBancoDeDados.cs" />
     <Compile Include="Infra\ClasseDinamica.cs" />
-    <Compile Include="Dados\Conexao.cs" />
     <Compile Include="Infra\Extensions.cs" />
     <Compile Include="Infra\Util.cs" />
     <Compile Include="View\Autenticacao.cs">
