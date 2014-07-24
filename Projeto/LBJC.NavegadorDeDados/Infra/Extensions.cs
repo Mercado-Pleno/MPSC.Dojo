@@ -95,14 +95,18 @@ namespace LBJC.NavegadorDeDados
 			return new Point(x * 9, (y + 1) * textBox.Font.Height);
 		}
 
-		public static String ObterPrefixo(string query, int selectionStart)
+		public static String ObterPrefixo(TextBox textBox)
 		{
-			query = query.Substring(0, selectionStart).ToUpper();
-
+			Int32 selectionStart = textBox.SelectionStart;
+			String query = textBox.Text.Substring(0, selectionStart).ToUpper();
+	
 			Int32 i = selectionStart+1;
 			while (!TokenKeys.Contains(query[--i - 1])) ;
 
-			return query.Substring(i, selectionStart - i).Trim();
+			var tamanho = selectionStart - i;
+			textBox.SelectionLength = tamanho;
+			textBox.SelectionStart = i;
+			return query.Substring(i, tamanho).Trim();
 		}
 	}
 }

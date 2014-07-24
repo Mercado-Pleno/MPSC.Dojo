@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using LBJC.NavegadorDeDados.Dados;
 using System.Data;
+using System.Collections;
 
 namespace LBJC.NavegadorDeDados
 {
@@ -112,7 +113,13 @@ namespace LBJC.NavegadorDeDados
 		{
 			var result = BancoDeDados.Transformar();
 			if (dgResult.DataSource == null)
-				dgResult.DataSource = result.ToList();
+			{
+				var lista = result.ToList();
+				dgResult.Enabled = lista.Count > 0;
+				dgResult.DataSource = (lista.Count == 0) ? BancoDeDados.Cabecalho().ToList() : lista;
+				if (lista.Count == 0)
+					MessageBox.Show("A query não retornou resultados!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
 			else
 			{
 				var linha = dgResult.FirstDisplayedScrollingRowIndex;
@@ -126,7 +133,7 @@ namespace LBJC.NavegadorDeDados
 		{
 			try
 			{
-				var apelido = Extensions.ObterPrefixo(txtQuery.Text, txtQuery.SelectionStart);
+				var apelido = Extensions.ObterPrefixo(txtQuery);
 				var campos = BancoDeDados.ListarTabelas(apelido);
 				ListaDeCampos.Exibir(campos, this, txtQuery.CurrentCharacterPosition(), OnSelecionarAutoCompletar);
 			}
@@ -148,11 +155,7 @@ namespace LBJC.NavegadorDeDados
 		private void OnSelecionarAutoCompletar(String item)
 		{
 			if (!String.IsNullOrWhiteSpace(item))
-			{
-				var start = txtQuery.SelectionStart;
-				txtQuery.Text = txtQuery.Text.Insert(start, item);
-				txtQuery.SelectionStart = start + item.Length;
-			}
+				txtQuery.Paste(item);
 			txtQuery.Focus();
 		}
 

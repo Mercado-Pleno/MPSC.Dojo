@@ -15,7 +15,7 @@ namespace LBJC.NavegadorDeDados
 			Object obj = ((tipo == null) ? null : Activator.CreateInstance(tipo));
 			for (Int32 i = 0; (iDataReader != null) && (!iDataReader.IsClosed) && (i < iDataReader.FieldCount); i++)
 			{
-				var property = tipo.GetProperty(NomeDoCampo(iDataReader.GetName(i)));
+				var property = tipo.GetProperty(NomeDoCampo(iDataReader, i));
 				if (property != null)
 					property.SetValue(obj, iDataReader.IsDBNull(i) ? null : iDataReader.GetValue(i), null);
 			}
@@ -28,16 +28,18 @@ namespace LBJC.NavegadorDeDados
 			var properties = String.Empty;
 			for (Int32 i = 0; (iDataReader != null) && (!iDataReader.IsClosed) && (i < iDataReader.FieldCount); i++)
 			{
-				var propertyName = NomeDoCampo(iDataReader.GetName(i));
+				var propertyName = NomeDoCampo(iDataReader, i);
 				if (!properties.Contains(" " + propertyName + " "))
 					properties += String.Format("\t\tpublic {0}{1} {2} {{ get; set; }}\r\n", iDataReader.GetFieldType(i).Name, iDataReader.GetFieldType(i).IsValueType ? "?" : "", propertyName);
 			}
 			return CriarClasseVirtual("DadosDinamicos", properties);
 		}
 
-		private static String NomeDoCampo(String original)
+		private static String NomeDoCampo(IDataReader iDataReader, Int32 index)
 		{
-			return original.Replace(" ", "_").Replace(".", "_").Replace("\"", "");
+			var nomeDoCampo = iDataReader.GetName(index);
+			nomeDoCampo = String.IsNullOrWhiteSpace(nomeDoCampo) ? "Campo" + index.ToString() : nomeDoCampo.Replace(" ", "_").Replace(".", "_").Replace("\"", "");
+			return Char.IsDigit(nomeDoCampo, 0) ? "C" + nomeDoCampo : nomeDoCampo;
 		}
 
 		private static Type CriarClasseVirtual(String nomeClasse, String codigo)
