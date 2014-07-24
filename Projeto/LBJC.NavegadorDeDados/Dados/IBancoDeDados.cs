@@ -12,6 +12,7 @@ namespace LBJC.NavegadorDeDados.Dados
 		void Executar(String query);
 		IDataReader ExecutarQuery(String query);
 		IEnumerable<Object> Transformar();
+		IEnumerable<Object> Cabecalho();
 
 		IEnumerable<String> ListarColunasDasTabelas(String tabela);
 		IEnumerable<String> ListarTabelas(String tabela);

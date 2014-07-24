@@ -66,9 +66,27 @@ namespace LBJC.NavegadorDeDados.Dados
 
 		public IEnumerable<Object> Transformar()
 		{
-			var page = 0;
-			while ((iDataReader != null) && !iDataReader.IsClosed && iDataReader.Read() && page++ < 100)
+			var linhas = -1;
+			while ((iDataReader != null) && !iDataReader.IsClosed && (++linhas < 100) && iDataReader.Read())
 				yield return ClasseDinamica.CreateObjetoVirtual(_tipo, iDataReader);
+
+			if (linhas == 0)
+			{
+				iDataReader.Close();
+				iDataReader.Dispose();
+				iDataReader = null;
+			}
+			else if ((linhas < 100) && (iDataReader != null) && !iDataReader.IsClosed && !iDataReader.Read())
+			{
+				iDataReader.Close();
+				iDataReader.Dispose();
+				iDataReader = null;
+			}
+		}
+
+		public IEnumerable<Object> Cabecalho()
+		{
+			yield return ClasseDinamica.CreateObjetoVirtual(_tipo, null);
 		}
 
 		public virtual void Dispose()
