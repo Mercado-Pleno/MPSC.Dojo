@@ -51,6 +51,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.XML" />
   </ItemGroup>
@@ -109,6 +110,9 @@
     <Compile Include="ControleDeFluxo\SaberQuemInstanciou.cs" />
     <Compile Include="Reflection\AtributosDescritivosDosEnumerados.cs" />
     <Compile Include="ControleDeFluxo\TesteDeConstrutoresEstaticos.cs" />
+    <Compile Include="Utilidades\VerLog.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Medidas\DateTimeHelper.cs" />
@@ -121,6 +125,9 @@
       <Project>{11D9B5F9-3478-47CA-9445-ED102A18317E}</Project>
       <Name>Curso</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Utilidades\VerLog.asmx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

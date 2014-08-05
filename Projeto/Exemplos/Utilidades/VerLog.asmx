@@ -1,0 +1,1 @@
+﻿<%@ WebService Debug="true" Language="C#" Class="MP.Library.Exemplos.Utilidades.VerLogWS" %>
