@@ -26,15 +26,15 @@ Inner Join WSD3{0}.dbo.WSD_WCO_Sessao S On S.ObjRef = L.ObjRef_WCO_Sessao";
 
 
 		[WebMethod]
-		public XmlDocument MostrarLogProducao(String senha)
+		public XmlDocument MostrarLogProducao()
 		{
-			return MostrarLog(String.Empty, senha);
+			return MostrarLog(String.Empty, "M3uPr0ntu@r10");
 		}
 
 		[WebMethod]
-		public XmlDocument MostrarLogHomologacao(String senha)
+		public XmlDocument MostrarLogHomologacao()
 		{
-			return MostrarLog("_HOM", senha);
+			return MostrarLog("_HOM", "M3uPr0ntu@r10");
 		}
 
 		private XmlDocument MostrarLog(String ambiente, String senha)
@@ -52,9 +52,8 @@ Inner Join WSD3{0}.dbo.WSD_WCO_Sessao S On S.ObjRef = L.ObjRef_WCO_Sessao";
 					using (var vSqlDataReader = vSqlCommand.ExecuteReader())
 					{
 						while (vSqlDataReader.Read())
-						{
 							tbody.Add(TransformarDataReader(vSqlDataReader));
-						}
+
 						vSqlDataReader.Close();
 					}
 				}
@@ -76,8 +75,7 @@ Inner Join WSD3{0}.dbo.WSD_WCO_Sessao S On S.ObjRef = L.ObjRef_WCO_Sessao";
 			th.Add("td", "Registro");
 			th.Add("td", "Usuario");
 			th.Add("td", "Solicitacao");
-			var tbody = table.Add("tbody");
-			return tbody;
+			return table.Add("tbody");
 		}
 
 		private XMLCreator TransformarDataReader(SqlDataReader vSqlDataReader)
@@ -86,10 +84,9 @@ Inner Join WSD3{0}.dbo.WSD_WCO_Sessao S On S.ObjRef = L.ObjRef_WCO_Sessao";
 			tr.Add("td", Convert.ToString(vSqlDataReader["OBJREF"]));
 			tr.Add("td", Convert.ToString(vSqlDataReader["OBJREF_WCO_SESSAO"]));
 			tr.Add("td", "<![CDATA[" + Convert.ToString(vSqlDataReader["MENSAGEM"]) + Convert.ToString(vSqlDataReader["SUBMENSAGEM"]) + "]]>");
-			tr.Add("td", Convert.ToString(vSqlDataReader["REGISTRO"]));
+			tr.Add("td", Convert.ToDateTime(vSqlDataReader["REGISTRO"]).ToString("dd/MM/yyyy HH:mm:ss.fff"));
 			tr.Add("td", Convert.ToString(vSqlDataReader["WFK_USUINCL"]));
 			tr.Add("td", "<![CDATA[" + MSV_Descompactar(Convert.ToString(vSqlDataReader["Solicitacao"])) + "]]>");
-
 			return tr;
 		}
 
