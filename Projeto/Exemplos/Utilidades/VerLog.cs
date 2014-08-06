@@ -26,6 +26,7 @@ Inner Join WSD3{0}.dbo.WSD_WCO_Sessao S On S.ObjRef = L.ObjRef_WCO_Sessao";
 
 
 		[WebMethod]
+		//[ScriptMethod(UseHttpGet = true)]
 		public XmlDocument MostrarLogProducao()
 		{
 			return MostrarLog(String.Empty, "M3uPr0ntu@r10");
