@@ -15,7 +15,7 @@ namespace MP.Library.Exemplos.ControleDeFluxo
 			for (int conta = 0; conta < 20; conta++)
 			{
 				new Thread(ts).Start(new int[] { conta, conta % 4 });
-				Thread.Sleep(200);
+				Thread.Sleep(300);
 			}
 			Console.WriteLine("Acabou...");
 		}
