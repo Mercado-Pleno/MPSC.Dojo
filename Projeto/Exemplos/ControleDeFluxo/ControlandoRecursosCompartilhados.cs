@@ -15,7 +15,7 @@ namespace MP.Library.Exemplos.ControleDeFluxo
 			for (int conta = 0; conta < 20; conta++)
 			{
 				new Thread(ts).Start(new int[] { conta, conta % 4 });
-				Thread.Sleep(500);
+				Thread.Sleep(200);
 			}
 			Console.WriteLine("Acabou...");
 		}
@@ -26,24 +26,26 @@ namespace MP.Library.Exemplos.ControleDeFluxo
 			var threadId = array[0];
 			var matriculaId = array[1];
 			var tempo = random.Next(5000);
-			try
+			if (ControleExecucao.PodeExecutar(matriculaId))
 			{
-				if (ControleExecucao.PodeExecutar(matriculaId))
+				try
+				{
 					ChamarProcedure(threadId, matriculaId, tempo);
-				else
-					Console.WriteLine("Erro:  Thread {0}, matricula {1} Já está sendo executada", threadId, matriculaId);
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.Message);
+				}
+				finally
+				{
+					ControleExecucao.Terminou(matriculaId);
+				}
 			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e.Message);
-			}
-			finally
-			{
-				ControleExecucao.Terminou(matriculaId);
-			}
+			else
+				Console.WriteLine("Erro:  Thread {0}, matricula {1} Já está sendo executada", threadId, matriculaId);
 		}
 
-		private static void ChamarProcedure(int threadId, int matriculaId, int tempo)
+		private void ChamarProcedure(int threadId, int matriculaId, int tempo)
 		{
 			Console.WriteLine("Processando Thread {0}, matricula {1} ({2} milissegundos)", threadId, matriculaId, tempo);
 			Thread.Sleep(tempo);
