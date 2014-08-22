@@ -3,7 +3,7 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-    using MPSC.Library.Exemplos.BancoDeDados;
+	using MPSC.Library.Exemplos.BancoDeDados;
 	using MPSC.Library.Exemplos.ControleDeFluxo;
 	using MPSC.Library.Exemplos.ControleDeFluxo.Reflection;
 	using MPSC.Library.Exemplos.DesignPattern.Strategy.Classes;
@@ -28,7 +28,9 @@
 			while (((itemMenu = mainMenu.Mostrar()) != null) && (itemMenu.Comando != null))
 			{
 				itemMenu.Comando.Executar();
-				Console.ReadLine();
+				var key = Console.ReadKey();
+				while ((key.Key != ConsoleKey.Escape) && (key.Key != ConsoleKey.Enter))
+					key = Console.ReadKey();
 			}
 		}
 
