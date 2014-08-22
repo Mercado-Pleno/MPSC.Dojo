@@ -40,6 +40,9 @@
     <Reference Include="IBM.Data.DB2.iSeries">
       <HintPath>..\Lib\IBM.Data.DB2.iSeries.dll</HintPath>
     </Reference>
+    <Reference Include="MP.LBJC.Kernel">
+      <HintPath>..\FrameWork\MP.LBJC.Kernel.dll</HintPath>
+    </Reference>
     <Reference Include="MP.LBJC.ServicoWindows">
       <HintPath>..\FrameWork\MP.LBJC.ServicoWindows.dll</HintPath>
     </Reference>
