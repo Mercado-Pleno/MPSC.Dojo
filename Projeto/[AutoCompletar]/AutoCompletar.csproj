@@ -52,6 +52,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Exemplo.resx">
       <DependentUpon>Exemplo.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

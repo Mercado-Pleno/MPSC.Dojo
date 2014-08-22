@@ -12,6 +12,7 @@
 	using MPSC.Library.Exemplos.Service;
 	using MPSC.Library.Exemplos.Transformacao;
 	using MPSC.Library.Exemplos.Utilidades;
+	using MP.Library.Exemplos.ControleDeFluxo;
 
 	public interface IExecutavel
 	{
@@ -51,7 +52,8 @@
 					new ItemMenu('5', "Definindo Quem Pode Alterar Os Atributos Do Objeto", new DefinindoQuemPodeAlterarOsAtributosDoObjeto()),
 					new ItemMenu('6', "Definindo Quem Pode Alterar Os Atributos Do Objeto Em Tempo Design 1", new DefinindoQuemPodeAlterarOsAtributosDoObjetoEmTempoDesign1()),
 					new ItemMenu('7', "Definindo Quem Pode Alterar Os Atributos Do Objeto Em Tempo Design 2", new DefinindoQuemPodeAlterarOsAtributosDoObjetoEmTempoDesign2()),
-					new ItemMenu('8', "Controlando Se O Programa Esta Sendo Executado", new ControlandoSeOProgramaEstaSendoExecutado())
+					new ItemMenu('8', "Controlando Se O Programa Esta Sendo Executado", new ControlandoSeOProgramaEstaSendoExecutado()),
+					new ItemMenu('9', "Controlando Recursos Compartilhados", new ControlandoRecursosCompartilhados())
 				),
 
 				new ItemMenu('3', "Reflection",
