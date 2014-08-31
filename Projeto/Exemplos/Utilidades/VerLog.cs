@@ -6,6 +6,7 @@ using System.IO.Compression;
 using System.Text;
 using System.Web.Services;
 using System.Xml;
+using MP.Library.Exemplos.Utilidades;
 
 namespace MP.Library.Exemplos.Utilidades
 {
@@ -119,95 +120,149 @@ Inner Join WSD3{0}.dbo.WSD_WCO_Sessao S On S.ObjRef = L.ObjRef_WCO_Sessao";
 
 	public class XMLCreator
 	{
-		private readonly String _nome;
-		private readonly String _valor;
-		private readonly List<XMLCreator> XMLCreators = new List<XMLCreator>();
+		protected readonly String nome;
+		protected readonly String valor;
+		protected readonly List<XMLCreator> XMLCreators = new List<XMLCreator>();
 
 		public XMLCreator() : this(null, null) { }
-		public XMLCreator(String prstNome) : this(prstNome, null) { }
-		public XMLCreator(String prstNome, String prstValor)
+		public XMLCreator(String nome) : this(nome, null) { }
+		public XMLCreator(String nome, String valor)
 		{
-			_nome = prstNome;
-			if (String.IsNullOrEmpty(prstValor))
-				_valor = String.Empty;
+			this.nome = nome;
+			if (String.IsNullOrEmpty(valor))
+				this.valor = String.Empty;
 			else
-				_valor = prstValor;
+				this.valor = valor;
 		}
 
-		public XMLCreator Add(XMLCreator prXMLCreator)
+		public virtual XMLCreator Add(XMLCreator xmlCreator)
 		{
-			return ((prXMLCreator == null) ? this : Add(prXMLCreator, prXMLCreator._nome == null));
+			return (xmlCreator == null) ? this : Add(xmlCreator, String.IsNullOrEmpty(xmlCreator.nome));
 		}
 
-		public XMLCreator Add(XMLCreator prXMLCreator, Boolean prboOnlyChilds)
+		public virtual XMLCreator Add(XMLCreator xmlCreator, Boolean onlyChilds)
 		{
-			if (prboOnlyChilds)
+			if (onlyChilds || String.IsNullOrEmpty(xmlCreator.nome))
 			{
-				XMLCreators.AddRange(prXMLCreator.XMLCreators);
-				prXMLCreator = this;
+				XMLCreators.AddRange(xmlCreator.XMLCreators);
+				xmlCreator = this;
 			}
 			else
-				XMLCreators.Add(prXMLCreator);
+				XMLCreators.Add(xmlCreator);
 
-			return prXMLCreator;
+			return xmlCreator;
 		}
 
-		public XMLCreator Add(String prstNome)
+		public virtual XMLCreator Add(String nome)
 		{
-			XMLCreator lXMLCreator = new XMLCreator(prstNome);
-			XMLCreators.Add(lXMLCreator);
-			return lXMLCreator;
+			XMLCreator vXMLCreator = new XMLCreator(nome);
+			XMLCreators.Add(vXMLCreator);
+			return vXMLCreator;
 		}
 
-		public XMLCreator Add(String prstNome, String prstValor)
+		public virtual XMLCreator Add(String nome, String valor)
 		{
-			XMLCreator lXMLCreator = new XMLCreator(prstNome, prstValor);
-			XMLCreators.Add(lXMLCreator);
-			return lXMLCreator;
+			XMLCreator vXMLCreator = new XMLCreator(nome, valor);
+			XMLCreators.Add(vXMLCreator);
+			return vXMLCreator;
 		}
 
-		public String GerarXML()
+		public virtual XMLCreator Clone(String nomeClone)
 		{
-			return GerarXML(_nome != null);
+			XMLCreator vXMLCreator = new XMLCreator(nomeClone);
+			vXMLCreator.Add(this, true);
+			return vXMLCreator;
 		}
 
-		private String GerarXML(Boolean prboRoot)
-		{
-			StringBuilder lStringBuffer = new StringBuilder();
-
-			if (prboRoot)
-			{
-				lStringBuffer.Append("<");
-				lStringBuffer.Append(_nome);
-				lStringBuffer.Append(">");
-			}
-
-			if (XMLCreators.Count == 0)
-				lStringBuffer.Append(_valor);
-			else
-				foreach (XMLCreator lXMLCreator in XMLCreators)
-					lStringBuffer.Append(lXMLCreator.GerarXML());
-
-			if (prboRoot)
-			{
-				lStringBuffer.Append("</");
-				lStringBuffer.Append(_nome);
-				lStringBuffer.Append(">");
-			}
-
-			return lStringBuffer.ToString();
-		}
-
-		public int Count()
+		public virtual int Count()
 		{
 			return XMLCreators.Count;
 		}
 
-		public XMLCreator Clone(String nomeClone)
+		public virtual String GerarXML()
 		{
-			XMLCreator lXMLCreator = new XMLCreator(nomeClone);
-			lXMLCreator.Add(this, true);
-			return lXMLCreator;
+			return GerarXML(String.Empty).ToString();
 		}
+
+		protected virtual StringBuilder GerarXML(String tab)
+		{
+			return GerarXML(!String.IsNullOrEmpty(this.nome), tab);
+		}
+
+		protected virtual StringBuilder GerarXML(Boolean root, String tab)
+		{
+			StringBuilder vStringBuilder = new StringBuilder();
+			Append(vStringBuilder, tab);
+
+			if (root)
+				vStringBuilder.AppendFormat("<{0}>", this.nome);
+
+			if (XMLCreators.Count == 0)
+				vStringBuilder.Append(this.valor);
+			else
+			{
+				Append(vStringBuilder, "\r\n");
+				foreach (XMLCreator vXMLCreator in XMLCreators)
+					vStringBuilder.Append(vXMLCreator.GerarXML(tab + "\t"));
+				Append(vStringBuilder, tab);
+			}
+
+			if (root)
+				vStringBuilder.AppendFormat("</{0}>", this.nome);
+
+			Append(vStringBuilder, "\r\n");
+			return vStringBuilder;
+		}
+
+		protected virtual void Append(StringBuilder stringBuilder, String str)
+		{
+			stringBuilder.Append(str);
+		}
+
+		public override string ToString()
+		{
+			return this.GerarXML();
+		}
+	}
+}
+
+public static class Teste
+{
+	public static String Testar()
+	{
+		var x = new XMLCreator("root");
+		var apolices = x.Add("Apolices");
+		var apolice = apolices.Add("Apolice");
+		apolice.Add("Numero", "123456");
+		apolice.Add("Contrato", "654321");
+		apolice.Add("VigenciaI", "01/01/2014");
+		apolice.Add("VigenciaF", "31/12/2014");
+		var coberturas = apolice.Add("Coberturas");
+
+		coberturas.Add(Cob("cob1"), true);
+		coberturas.Add(Cob("cob2"));
+		coberturas.Add(Cob("cob3"), false);
+
+		coberturas.Add(Cob(""), true);
+		coberturas.Add(Cob(""));
+		coberturas.Add(Cob(""), false);
+
+		coberturas.Add(Cob(null), true);
+		coberturas.Add(Cob(null));
+		coberturas.Add(Cob(null), false);
+
+		var s = x.GerarXML();
+		return s;
+	}
+
+	public static XMLCreator Cob(string nome)
+	{
+		var coberturas = new XMLCreator(nome);
+		var cobertura = coberturas.Add("Cobertura");
+		cobertura.Add("Numero", "123456");
+		cobertura.Add("Contrato", "654321");
+		cobertura.Add("VigenciaI", "01/01/2014");
+		cobertura.Add("VigenciaF", "31/12/2014");
+		return coberturas;
 	}
 }
