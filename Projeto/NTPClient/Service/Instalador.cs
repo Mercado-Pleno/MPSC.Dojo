@@ -2,9 +2,8 @@
 {
 	using System;
 	using System.ComponentModel;
-	using System.Reflection;
 	using System.ServiceProcess;
-    using MPSC.Library.Exemplos.Service;
+	using MPSC.Library.Exemplos.Service;
 
 	[RunInstaller(true)]
 	public class Instalador : InstaladorDeServico
@@ -15,14 +14,12 @@
 
 		public static int Main(String[] args)
 		{
-			var servicoDoWindows = new ServicoDoWindows(servico, new NTPClient());
-			var controladorDeServico = new ControladorDeServico(servicoDoWindows);
-			return controladorDeServico.ProcessarParametro(args);
+			return servico.IniciarExecucao(new NTPClient(), args);
 		}
 
 		private static DadosDoServico ConfigurarServico()
 		{
-			return new DadosDoServico(Assembly.GetExecutingAssembly())
+			return new DadosDoServico()
 			.ComServiceName("MP.Teste.Name")
 			.ComDisplayName("MP.Teste.Display")
 			.ComDescricao("MP.Teste.Description")
