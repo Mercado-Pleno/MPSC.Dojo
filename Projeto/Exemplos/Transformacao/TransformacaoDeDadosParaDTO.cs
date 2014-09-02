@@ -69,7 +69,7 @@ namespace MPSC.Library.Exemplos.Transformacao
 	[XmlRootAttribute("PurchaseOrder", Namespace = "http://www.cpandl.com", IsNullable = false)]
 	public class PurchaseOrder
 	{
-
+		
 		//[XmlAttribute]
 		public Address ShipTo;
 
@@ -109,19 +109,22 @@ namespace MPSC.Library.Exemplos.Transformacao
 
 	public class OrderedItem
 	{
-		//[XmlAttribute]
+		[XmlAttribute]
+		public DateTime DataHora = DateTime.Now;
+
+		[XmlAttribute]
 		public string ItemName;
 
-		//[XmlAttribute]
+		[XmlAttribute]
 		public string Description;
 
-		//[XmlAttribute]
+		[XmlAttribute]
 		public decimal UnitPrice;
 
-		//[XmlAttribute]
+		[XmlAttribute]
 		public int Quantity;
 
-		//[XmlAttribute]
+		[XmlAttribute]
 		public decimal LineTotal;
 
 		public void Calculate()
