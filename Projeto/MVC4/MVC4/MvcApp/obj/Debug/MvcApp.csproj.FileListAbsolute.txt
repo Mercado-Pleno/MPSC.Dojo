@@ -1,0 +1,5 @@
+D:\Projeto\[MP]\MPSC.Estudos\MVC4\MVC4\MvcApp\bin\MvcApp.dll
+D:\Projeto\[MP]\MPSC.Estudos\MVC4\MVC4\MvcApp\bin\MvcApp.pdb
+D:\Projeto\[MP]\MPSC.Estudos\MVC4\MVC4\MvcApp\obj\Debug\MvcApp.csprojResolveAssemblyReference.cache
+D:\Projeto\[MP]\MPSC.Estudos\MVC4\MVC4\MvcApp\obj\Debug\MvcApp.dll
+D:\Projeto\[MP]\MPSC.Estudos\MVC4\MVC4\MvcApp\obj\Debug\MvcApp.pdb
