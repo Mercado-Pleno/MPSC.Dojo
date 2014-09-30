@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+<head>
+	<title>Deployment Ajax Uploader</title>
+    <link rel="stylesheet" href="main.css" type="text/css" />
+</head>
+<body bottomMargin="0" leftMargin="0" topMargin="5">
+	<div id="Common">
+		<div id="CommonHeader">	
+			<a href="default.htm"><img alt="Ajax Uploader" src="sampleimages/logo.gif" border=0></a>
+			<br />
+		</div>
+		<div class="CommonTabBar">
+			<a class="CommonSimpleTabStripTab" href="default.htm" title="Home">Home</a> | 
+			<a class="CommonSimpleTabStripTab" href="Demo/">Demo(C#)</a> | 
+			<a class="CommonSimpleTabStripSelectedTab" href="Deployment.htm">Deployment</a> | 
+			<a class="CommonSimpleTabStripTab" href="http://CuteSoft.net/forums/" title="File Upload Forums">Forums</a> | 
+			<a class="CommonSimpleTabStripTab" href="http://ajaxuploader.com/Order.aspx" title="Purchase">Order</a>
+        </div>
+		<div class="CommonBody">
+			<table cellspacing="0" cellpadding="15" width="100%" border="0" ID="Table2">
+				<tr>
+					<td>
+						<h1>Deployment</h1>
+						<p>There are two simple steps to install Ajax Uploader in your application:</p>
+						<ol>
+							<li><h4>Install the assembly</h4>
+								<p>Copy the CuteWebUI.AjaxUploader.dll assembly to your application bin folder.</p>
+							</li>
+							<li><h4>Add AjaxUploader httpModule to web.config's httpModules list</h4>
+								<p>To allow Ajax Uploader to handle upload requests, you need to add its HttpModule to your application. 
+								</p>
+								<p><b>IIS 6.0 and IIS 7.0 Classic mode</b></p>
+								<code>
+								    &lt;configuration&gt;<br />
+                                    &nbsp; &lt;system.web&gt;<br />
+                                    &nbsp;&nbsp;&nbsp; &lt;httpModules&gt;<br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;add name="CuteWebUI.UploadModule" type="CuteWebUI.UploadModule,CuteWebUI.AjaxUploader"/&gt;<br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp; &lt;/httpModules&gt;<br />
+                                    &nbsp; &lt;/system.web&gt;<br />
+                                    &lt;/configuration&gt;
+								</code>
+								<br />
+								<p><b>IIS 7.0 Integrated mode</b></p>
+								<code>
+								    &lt;configuration&gt;<br />
+                                    &nbsp; &lt;system.webServer&gt;<br />
+                                    &nbsp;&nbsp;&nbsp; &lt;modules&gt;<br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;add name="CuteWebUI.UploadModule" type="CuteWebUI.UploadModule,CuteWebUI.AjaxUploader"/&gt;<br />
+                                    &nbsp;&nbsp;&nbsp; &lt;/modules&gt;<br />
+                                    &nbsp; &lt;/system.webServer&gt;<br />
+                                    &lt;/configuration&gt;
+								</code>
+							</li>
+						</ol>
+					</td>
+					<td width="140" valign="top">
+						<br/>		
+						<div style="padding: 5px; border: solid 1px #cccccc;width:140;">
+							<b>.NET Framework</b><br/>
+							<br/>
+							<img src="sampleimages/dotNETlogo.png" alt=".NET Framework" />
+							<br />Compatible with .NET Framework 1.1, 2.0, 3.0, 3.5. 
+						</div>
+						<br/>		
+						<div style="padding: 5px;width:140;">
+							<a href="http://ajaxuploader.com/download/Ajax-Uploader.zip" title="Download ajax uploader"><img border="0" src="sampleimages/download_now.gif" /></a> 
+						</div>					
+					</td>
+				</tr>
+			</table>
+			<div id="footer">
+				<p><a href="http://cutesoft.net">Copyright 2003-2008 CuteSoft.Net. All rights reserved.</a></p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

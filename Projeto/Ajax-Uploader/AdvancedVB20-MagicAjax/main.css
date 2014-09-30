@@ -1,0 +1,84 @@
+body {
+	margin: 0px;
+	font-family:Segoe UI, Arial,Verdana,Helvetica,sans-serif;
+    font-size: 75%;
+    padding-bottom: 10px;
+	background-color:#cccccc;  
+	padding-top: 5px; 
+}
+
+td,th, input, textarea, select, code {
+   font-family:Segoe UI, Arial,Verdana,Helvetica,sans-serif;color: #000000;
+}
+
+a:link {color: #224488; text-decoration: underline}
+a:visited {	color: #224488; text-decoration: underline}
+a:active { color: #224488; text-decoration: underline}
+a:hover { color: #0000cc; text-decoration: none}
+
+h1 {
+	FONT-SIZE: 18px; MARGIN-BOTTOM: 8px; FONT-FAMILY: verdana,arial,helvetica;
+}
+img
+{
+	border:0;
+}
+#Common
+{
+	margin-top: 0px;
+	background-color: #ffffff;
+	width: auto;
+	width: 830px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#CommonHeader
+{
+	width: 100%;
+	overflow: hidden; 
+}
+
+#footer
+{
+	border-style: solid;
+	border-width: 0px;
+	padding: 8px;
+	text-align:center;
+	font-size:11px;
+}
+a.CommonSimpleTabStripTab:link,a.CommonSimpleTabStripTab:visited {    
+	font-size: 110%;
+    font-family: "Segoe UI", sans-serif;	
+    color:White;
+	padding:0 2px 0 2px;
+}
+a.CommonSimpleTabStripTab:hover {
+	color:#dddddd;
+}
+
+a.CommonSimpleTabStripSelectedTab:link,a.CommonSimpleTabStripSelectedTab:visited {
+	font-size: 110%;
+    font-family: "Segoe UI", sans-serif;	
+	color:#eeeeee;
+	padding:0 2px 0 2px;
+}
+a.CommonSimpleTabStripSelectedTab:hover {
+	color:White;
+}
+
+.CommonTabBar
+{	
+	padding: 3px 2px 2px 15px;
+	background-color: #305081;
+	border-color: #cccccc;
+	color: #444444;
+	font-family: Tahoma, Arial, Helvetica;
+	height:22px;
+}
+.strong
+{  
+   font-weight: bold;
+   font-size: 100%;
+   margin-bottom:10px;
+}

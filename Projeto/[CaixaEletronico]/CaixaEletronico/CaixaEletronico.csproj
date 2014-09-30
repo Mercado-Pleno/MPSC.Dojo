@@ -38,6 +38,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContCedulas.cs" />
     <Compile Include="Nota200.cs" />
     <Compile Include="Nota2.cs" />
     <Compile Include="Nota5.cs" />
