@@ -1,4 +1,4 @@
-﻿namespace MP.Library.Exemplos.Transformacao.Serializacao
+﻿namespace MPSC.Library.Exemplos.Transformacao.Serializacao
 {
 	using System;
 	using System.Diagnostics;

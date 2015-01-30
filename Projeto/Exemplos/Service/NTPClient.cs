@@ -3,7 +3,7 @@ using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
-using MP.LBJC.ServicoWindows.Interface;
+using MPSC.LBJC.ServicoWindows.Interface;
 
 namespace MPSC.Library.Exemplos.Service
 {

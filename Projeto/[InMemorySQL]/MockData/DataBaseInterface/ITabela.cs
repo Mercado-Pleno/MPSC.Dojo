@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MP.SVNControl.MockData.DataBaseInterface
+namespace MPSC.SVNControl.MockData.DataBaseInterface
 {
 	public interface ITabela
 	{

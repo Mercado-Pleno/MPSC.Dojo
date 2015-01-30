@@ -32,8 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MP.LBJC.System.Linq.Framework2_0">
-      <HintPath>..\..\FrameWork\MP.LBJC.System.Linq.Framework2_0.dll</HintPath>
+    <Reference Include="MPSC.LBJC.Linq, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\FrameWork\MPSC.LBJC.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>

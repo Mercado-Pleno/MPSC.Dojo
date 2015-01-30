@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MP.SVNControl.MockData.DataBaseInterface
+namespace MPSC.SVNControl.MockData.DataBaseInterface
 {
 	public interface IStoredProcedure
 	{

@@ -2,7 +2,7 @@
 using System.Data.Common;
 using System;
 
-namespace MP.SVNControl.MockData
+namespace MPSC.SVNControl.MockData
 {
 	public class MockCommand : IDbCommand
 	{

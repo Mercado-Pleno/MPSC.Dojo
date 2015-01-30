@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MP.SVNControl.MockData;
-using MP.SVNControl.MockData.DataBaseInterface;
+using MPSC.SVNControl.MockData;
+using MPSC.SVNControl.MockData.DataBaseInterface;
 
-namespace MP.SVNControl.Test
+namespace MPSC.SVNControl.Test
 {
 	[TestClass]
 	public class InMemorySQLTest

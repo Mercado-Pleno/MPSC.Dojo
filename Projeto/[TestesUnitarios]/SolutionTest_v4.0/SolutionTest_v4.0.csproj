@@ -40,8 +40,8 @@
       <HintPath>..\..\Lib\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="MP.LBJC.IoC">
-      <HintPath>..\..\FrameWork\MP.LBJC.IoC.dll</HintPath>
+    <Reference Include="MPSC.LBJC.IoC">
+      <HintPath>..\..\FrameWork\MPSC.LBJC.IoC.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

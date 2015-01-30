@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MP.Library.VendasView.Properties {
+namespace MPSC.Library.VendasView.Properties {
     using System;
     
     
