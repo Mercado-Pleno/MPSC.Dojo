@@ -6,7 +6,7 @@ using System.IO;
 namespace MPSC.Library.Exemplos.Transformacao
 {
 	using System;
-	using MP.Library.Exemplos.Transformacao.Serializacao;
+	using MPSC.Library.Exemplos.Transformacao.Serializacao;
 
 	public class TransformacaoDeDadosParaDTO : IExecutavel
 	{

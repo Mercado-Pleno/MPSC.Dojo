@@ -6,9 +6,9 @@ using System.IO.Compression;
 using System.Text;
 using System.Web.Services;
 using System.Xml;
-using MP.Library.Exemplos.Utilidades;
+using MPSC.Library.Exemplos.Utilidades;
 
-namespace MP.Library.Exemplos.Utilidades
+namespace MPSC.Library.Exemplos.Utilidades
 {
 	public class VerLogWS : WebService
 	{

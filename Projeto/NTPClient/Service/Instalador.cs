@@ -1,4 +1,4 @@
-﻿namespace MP.LBJC.ServicoWindows.Util
+﻿namespace MPSC.LBJC.ServicoWindows.Util
 {
 	using System;
 	using System.ComponentModel;

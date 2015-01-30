@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MP.Library.Aula.Curso;
+using MPSC.Library.Aula.Curso;
 
-namespace MP.Library.TestesUnitarios.SolutionTest.Curso
+namespace MPSC.Library.TestesUnitarios.SolutionTest.Curso
 {
 	[TestClass]
 	public class NumeroRomanoTest

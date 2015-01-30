@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Threading;
 using MPSC.Library.Exemplos;
 using System.Linq;
-using MP.LBJC.Kernel.Delegates;
+using MPSC.LBJC.Kernel.Delegates;
 
-namespace MP.Library.Exemplos.ControleDeFluxo
+namespace MPSC.Library.Exemplos.ControleDeFluxo
 {
 	public class ControlandoRecursosCompartilhados : IExecutavel
 	{

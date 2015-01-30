@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 
-namespace MP.LBJC.Tests
+namespace MPSC.LBJC.Tests
 {
 	[TestFixture]
 	public class LinqTest

@@ -1,4 +1,4 @@
-﻿namespace MP.SVNControl
+﻿namespace MPSC.SVNControl
 {
     using System;
 

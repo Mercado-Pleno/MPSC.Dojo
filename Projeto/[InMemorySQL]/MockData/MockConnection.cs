@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data;
-using MP.SVNControl.MockData.DataBaseInterface;
+using MPSC.SVNControl.MockData.DataBaseInterface;
 
-namespace MP.SVNControl.MockData
+namespace MPSC.SVNControl.MockData
 {
 	public class MockConnection : IDbConnection
 	{

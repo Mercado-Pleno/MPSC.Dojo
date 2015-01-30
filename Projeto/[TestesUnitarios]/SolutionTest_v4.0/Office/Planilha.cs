@@ -7,7 +7,7 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 
-namespace MP.Library.TestesUnitarios.SolutionTest_v4.Office
+namespace MPSC.Library.TestesUnitarios.SolutionTest_v4.Office
 {
 	public enum Style : uint
 	{

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace MP.SVNControl.MockData.DataBaseInterface
+namespace MPSC.SVNControl.MockData.DataBaseInterface
 {
 	public delegate void A(String a);
 	public interface IBancoDados

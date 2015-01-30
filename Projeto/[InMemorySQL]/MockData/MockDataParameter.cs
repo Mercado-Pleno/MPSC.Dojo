@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace MP.SVNControl.MockData
+namespace MPSC.SVNControl.MockData
 {
 	public class MockDataParameter : IDbDataParameter
 	{

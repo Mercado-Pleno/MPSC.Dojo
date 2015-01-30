@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MP.SVNControl.MockData.DataBaseInterface
+namespace MPSC.SVNControl.MockData.DataBaseInterface
 {
 	public interface IRecurso
 	{

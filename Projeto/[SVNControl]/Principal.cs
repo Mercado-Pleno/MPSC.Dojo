@@ -1,7 +1,7 @@
-﻿namespace MP.SVNControl
+﻿namespace MPSC.SVNControl
 {
 	using System;
-	using MP.SVNControl;
+	using MPSC.SVNControl;
 	using System.Threading;
 	using System.Diagnostics;
 	using System.Runtime.InteropServices;

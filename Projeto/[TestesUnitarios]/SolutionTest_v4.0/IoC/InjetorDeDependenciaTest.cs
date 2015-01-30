@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using MP.LBJC.IoC;
+using MPSC.LBJC.IoC;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MP.Library.TestesUnitarios.SolutionTest
+namespace MPSC.Library.TestesUnitarios.SolutionTest
 {
 	[TestClass]
     public class InjetorDeDependenciaTest

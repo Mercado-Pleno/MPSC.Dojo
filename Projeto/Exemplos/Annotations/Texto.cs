@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MP.Library.Exemplos.Annotations
+namespace MPSC.Library.Exemplos.Annotations
 {
 	[AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
 	public class TextoAttribute : Attribute

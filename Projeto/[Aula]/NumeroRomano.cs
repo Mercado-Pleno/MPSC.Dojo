@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MP.Library.Aula.Curso
+namespace MPSC.Library.Aula.Curso
 {
 	public abstract class NumeroRomano
 	{
