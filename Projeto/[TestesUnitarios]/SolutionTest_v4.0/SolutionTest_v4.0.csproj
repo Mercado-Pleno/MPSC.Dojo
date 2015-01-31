@@ -62,6 +62,7 @@
     <Compile Include="InMemorySQL\InMemorySQLTest.cs" />
     <Compile Include="Office\ExcelTest.cs" />
     <Compile Include="Office\Planilha.cs" />
+    <Compile Include="Serializador\SerializadorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Exemplos\Exemplos.csproj">
