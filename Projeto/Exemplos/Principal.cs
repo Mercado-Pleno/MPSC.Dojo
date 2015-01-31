@@ -12,7 +12,6 @@
 	using MPSC.Library.Exemplos.Service;
 	using MPSC.Library.Exemplos.Transformacao;
 	using MPSC.Library.Exemplos.Utilidades;
-	using MPSC.Library.Exemplos.ControleDeFluxo;
 
 	public interface IExecutavel
 	{
