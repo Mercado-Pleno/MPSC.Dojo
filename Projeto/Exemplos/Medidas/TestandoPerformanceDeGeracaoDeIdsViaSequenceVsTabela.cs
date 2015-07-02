@@ -1,13 +1,11 @@
 ﻿using IBM.Data.DB2.iSeries;
 using MPSC.LBJC.Persistencia.Base.Repositorio;
-using MPSC.Library.Exemplos;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Threading;
 using Numero = System.Int64;
-
 
 namespace MPSC.Library.Exemplos.Medidas
 {
@@ -75,7 +73,6 @@ namespace MPSC.Library.Exemplos.Medidas
 			for (var i = 0; i < quantidade; i++)
 				lista.Add(geradorDeId.ObterProximo("TabelaA"));
 		}
-
 	}
 	public class BancoFake : IRepositorioGeradorDeId
 	{
@@ -157,70 +154,6 @@ namespace MPSC.Library.Exemplos.Medidas
 
 			iDbCommand.Parameters.Add(iDbDataParameter);
 			return iDbDataParameter;
-		}
-	}
-
-}
-
-
-
-namespace MPSC.LBJC.Persistencia.Base.Repositorio
-{
-	public interface IRepositorioGeradorDeId
-	{
-		Numero GerarProximoIdentificador(String chavePesquisa, Numero pool);
-	}
-
-	public class GeradorDeId
-	{
-		private readonly static Object _lock = new Object();
-		private readonly Dictionary<String, GeradorDeIdentidade> _dic;
-		private readonly IRepositorioGeradorDeId _repositorioGeradorDeId;
-		private readonly Numero _pool;
-
-		public GeradorDeId(IRepositorioGeradorDeId repositorioGeradorDeId, Numero pool)
-		{
-			_dic = new Dictionary<String, GeradorDeIdentidade>();
-			_repositorioGeradorDeId = repositorioGeradorDeId;
-			_pool = pool;
-		}
-
-		public Numero ObterProximo(String chavePesquisa)
-		{
-			lock (_lock)
-			{
-				if ((!_dic.ContainsKey(chavePesquisa)))
-					_dic[chavePesquisa] = new GeradorDeIdentidade(this, chavePesquisa);
-
-				return _dic[chavePesquisa].ObterProximo();
-			}
-		}
-
-		private class GeradorDeIdentidade
-		{
-			private readonly String _chavePesquisa;
-			private readonly GeradorDeId _geradorDeId;
-			private Numero _maxId;
-			private Numero _nextId;
-
-			internal GeradorDeIdentidade(GeradorDeId geradorId, String chavePesquisa)
-			{
-				_geradorDeId = geradorId;
-				_chavePesquisa = chavePesquisa;
-				_nextId = _maxId = 0;
-			}
-
-			internal Numero ObterProximo()
-			{
-				if (_nextId >= _maxId)
-				{
-					var retorno = _nextId = _geradorDeId._repositorioGeradorDeId.GerarProximoIdentificador(_chavePesquisa, _geradorDeId._pool);
-					_maxId = _nextId + _geradorDeId._pool - 1;
-					return retorno;
-				}
-
-				return ++_nextId;
-			}
 		}
 	}
 }
