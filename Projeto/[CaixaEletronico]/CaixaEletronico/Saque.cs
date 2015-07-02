@@ -46,12 +46,12 @@ namespace CaixaEletronico
 
 		private Nota ObterMaiorNotaMenorQueAtual(Nota nota)
 		{
-			return notasDisponiveis.Where(n => n.Valor < nota.Valor).Max(n => n.Valor);
+			return notasDisponiveis.Where(n => n.Valor < nota.Valor).Max(n => n);
 		}
 
 		public Nota MenorNotaDisponivel()
 		{
-			Nota menorNota = notasDisponiveis.Min(n => n.Valor);
+			Nota menorNota = notasDisponiveis.Min(n => n);
 
 			if (menorNota == null)
 				throw new ArgumentNullException("NotasDisponiveis", "As cédulas disponiveis para saque não foram inicializadas!");
@@ -61,7 +61,7 @@ namespace CaixaEletronico
 
 		public Nota MaiorNotaDisponivel()
 		{
-			Nota maiorNota = notasDisponiveis.Max(n => n.Valor);
+			Nota maiorNota = notasDisponiveis.Max(n => n);
 
 			if (maiorNota == null)
 				throw new ArgumentNullException("NotasDisponiveis", "As cédulas disponiveis para saque não foram inicializadas!");

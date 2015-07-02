@@ -1,19 +1,31 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exemplos", "Exemplos\Exemplos.csproj", "{EC3FFAC1-2161-4CBE-9A29-A020686E466E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTPClient", "NTPClient\NTPClient.csproj", "{240043CD-0CA6-447E-8BAA-8B421E3DF664}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[TestesUnitarios]", "[TestesUnitarios]", "{6784F855-478F-4860-9046-5E40C833C763}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[CaixaEletronico]", "[CaixaEletronico]", "{4928335C-2A8E-4007-96D0-378B9B798F16}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[Vendas]", "[Vendas]", "{A7650E02-89E1-41A8-8691-75F682A2A04A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[AutoCompletar]", "[AutoCompletar]", "{3A7BA554-87A9-4C6D-BB38-107C1D58B3F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[SVNControl]", "[SVNControl]", "{316B32E1-4092-4AD8-A6B1-4AA0B4D213EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[InMemorySQL]", "[InMemorySQL]", "{A3CD87DE-9EAB-4852-802E-82FA5F59663C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aula", "Aula", "{481A32C5-B3C6-438F-9F90-BD939CAB98C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[CiaDoDireito]", "[CiaDoDireito]", "{72C4D94C-9A86-4214-B631-F4D0D848A9FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exemplos", "Exemplos\Exemplos.csproj", "{EC3FFAC1-2161-4CBE-9A29-A020686E466E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTPClient", "NTPClient\NTPClient.csproj", "{240043CD-0CA6-447E-8BAA-8B421E3DF664}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaixaEletronico", "[CaixaEletronico]\CaixaEletronico\CaixaEletronico.csproj", "{378955D6-7B4F-46FD-9AC0-FE50F6383518}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaixaEletronicoWeb", "[CaixaEletronico]\CaixaEletronicoWeb\CaixaEletronicoWeb.csproj", "{CD176A12-B57F-4E2B-A777-6E6718B351E1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[Vendas]", "[Vendas]", "{A7650E02-89E1-41A8-8691-75F682A2A04A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendasView", "[Vendas]\VendasView\VendasView.csproj", "{0585196C-2171-493F-9654-14E1B8E97D94}"
 EndProject
@@ -21,25 +33,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendasModel", "[Vendas]\Ven
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendasController", "[Vendas]\VendasController\VendasController.csproj", "{59B29EA4-6134-4E52-BE2A-C89B3528B080}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[AutoCompletar]", "[AutoCompletar]", "{3A7BA554-87A9-4C6D-BB38-107C1D58B3F2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoCompletar", "[AutoCompletar]\AutoCompletar.csproj", "{4E944FFB-9CEA-4716-948F-9F6D6F271151}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[SVNControl]", "[SVNControl]", "{316B32E1-4092-4AD8-A6B1-4AA0B4D213EB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SVNControl", "[SVNControl]\SVNControl.csproj", "{1310BE88-E9B8-436D-92DE-D594CACEA81E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[InMemorySQL]", "[InMemorySQL]", "{A3CD87DE-9EAB-4852-802E-82FA5F59663C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InMemorySQL", "[InMemorySQL]\InMemorySQL.csproj", "{AB71FC5F-B42B-43F0-9754-6048A6866025}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aula", "Aula", "{481A32C5-B3C6-438F-9F90-BD939CAB98C5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Curso", "[Aula]\Curso.csproj", "{11D9B5F9-3478-47CA-9445-ED102A18317E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionTest_v4.0", "[TestesUnitarios]\SolutionTest_v4.0\SolutionTest_v4.0.csproj", "{345570C3-2354-4927-90C3-E4F38B247D31}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[CiaDoDireito]", "[CiaDoDireito]", "{72C4D94C-9A86-4214-B631-F4D0D848A9FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CiaDoDireito.Controller", "[CiaDoDireito]\CiaDoDireito.Controller\CiaDoDireito.Controller.csproj", "{B40C7211-AF0A-4831-8A83-DE33A0EB921E}"
 EndProject

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading;
 using MPSC.Library.Exemplos;
 using System.Linq;
-using MPSC.LBJC.Kernel.Delegates;
 
 namespace MPSC.Library.Exemplos.ControleDeFluxo
 {

@@ -41,5 +41,10 @@ namespace CaixaEletronico
 			}
 			return retorno;
 		}
+
+		public static implicit operator Int32(Nota nota)
+		{
+			return nota.Valor;
+		}
 	}
 }

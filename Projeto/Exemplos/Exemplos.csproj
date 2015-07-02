@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MP.Library.Exemplos</RootNamespace>
     <AssemblyName>MP.Library.Exemplos</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -26,6 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,6 +37,7 @@
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="IBM.Data.DB2.iSeries">
@@ -46,9 +48,6 @@
     </Reference>
     <Reference Include="MPSC.LBJC.ServicoWindows">
       <HintPath>..\FrameWork\MPSC.LBJC.ServicoWindows.dll</HintPath>
-    </Reference>
-    <Reference Include="MPSC.LBJC.Linq">
-      <HintPath>..\FrameWork\MPSC.LBJC.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration.Install" />
@@ -75,6 +74,7 @@
     <Compile Include="DesignPattern\Strategy\Classes\PatoSelvagem.cs" />
     <Compile Include="DesignPattern\Strategy\Comportamento\IBarulho.cs" />
     <Compile Include="DesignPattern\Strategy\Comportamento\IVoador.cs" />
+    <Compile Include="Medidas\TestandoPerformanceDeGeracaoDeIdsViaSequenceVsTabela.cs" />
     <Compile Include="Principal.cs" />
     <Compile Include="PrincipiosSOLID\1SingleResponsability\Model\Cliente.cs" />
     <Compile Include="PrincipiosSOLID\1SingleResponsability\Controller\ClienteController.cs" />
