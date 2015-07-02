@@ -11,8 +11,8 @@ namespace MP.LBJC.Tests
 		[TestMethod]
 		public void Testar()
 		{
-			var array = File.ReadAllText(@"C:\SVN.svnprops").Where(c => Convert.ToByte(c) != 0).Select(c => c).ToArray();
-			Assert.IsNotNull(array);
+			//var array = File.ReadAllText(@"C:\SVN.svnprops").Where(c => Convert.ToByte(c) != 0).Select(c => c).ToArray();
+			//Assert.IsNotNull(array);
 		}
 	}
 }
