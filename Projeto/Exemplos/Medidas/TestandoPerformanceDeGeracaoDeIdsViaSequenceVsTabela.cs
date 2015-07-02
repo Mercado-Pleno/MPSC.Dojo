@@ -9,13 +9,21 @@ using System.Threading;
 using Numero = System.Int64;
 
 
-namespace MP.Library.Exemplos.Medidas
+namespace MPSC.Library.Exemplos.Medidas
 {
 	public class TestandoPerformanceDeGeracaoDeIdsViaSequenceVsTabela : IExecutavel
 	{
 		public void Executar()
 		{
+			Console.WriteLine("Pressione alguma Tecla para Iniciar a contagem de BancoExecutandoSequence");
+			Console.ReadKey();
 			Executar(new BancoExecutandoSequence());
+
+			Console.WriteLine("Pressione alguma Tecla para Iniciar a contagem de BancoAtualizandoTabela");
+			Console.ReadKey();
+			Executar(new BancoAtualizandoTabela());
+
+			Console.ReadKey();
 		}
 
 		private void Executar(IRepositorioGeradorDeId iRepositorioGeradorDeId)
