@@ -46,6 +46,9 @@
     <Reference Include="MPSC.LBJC.Kernel">
       <HintPath>..\FrameWork\MPSC.LBJC.Kernel.dll</HintPath>
     </Reference>
+    <Reference Include="MPSC.LBJC.Persistencia">
+      <HintPath>..\FrameWork\MPSC.LBJC.Persistencia.dll</HintPath>
+    </Reference>
     <Reference Include="MPSC.LBJC.ServicoWindows">
       <HintPath>..\FrameWork\MPSC.LBJC.ServicoWindows.dll</HintPath>
     </Reference>
