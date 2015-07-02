@@ -23,8 +23,7 @@ namespace MPSC.Library.Exemplos.Medidas
 			Console.Write("BancoAtualizandoTabela: ");
 			Executar(new BancoAtualizandoTabela());
 
-			Console.Write("Acabou");
-			Console.ReadLine();
+			Console.Write("\r\nAcabou");
 		}
 
 		private void Executar(IRepositorioGeradorDeId iRepositorioGeradorDeId)
@@ -33,7 +32,7 @@ namespace MPSC.Library.Exemplos.Medidas
 			{
 				var stopwatch = new Stopwatch();
 				stopwatch.Start();
-				Varias_Threads_Simultaneas(iRepositorioGeradorDeId, 300, 3000);
+				Varias_Threads_Simultaneas(iRepositorioGeradorDeId, 500, 20000);
 				stopwatch.Stop();
 				Console.WriteLine(stopwatch.Elapsed.TotalSeconds.ToString());
 			}
@@ -49,7 +48,7 @@ namespace MPSC.Library.Exemplos.Medidas
 			var listaThread = new List<Thread>();
 
 			for (var i = 0; i < threads; i++)
-				listaIds[new List<Numero>()] = new GeradorDeId(iRepositorioGeradorDeId, 1000);
+				listaIds[new List<Numero>()] = new GeradorDeId(iRepositorioGeradorDeId, 3000);
 
 			foreach (var p in listaIds)
 			{
@@ -65,13 +64,13 @@ namespace MPSC.Library.Exemplos.Medidas
 		private void Processar(Object obj)
 		{
 			var array = obj as Object[];
-			Processar(array[0] as List<Numero>, array[1] as GeradorDeId, Convert.ToInt32(array[2]));
+			Processar(null, array[1] as GeradorDeId, Convert.ToInt32(array[2]));
 		}
 
 		private void Processar(List<Numero> lista, GeradorDeId geradorDeId, Int32 quantidade)
 		{
 			for (var i = 0; i < quantidade; i++)
-				lista.Add(geradorDeId.ObterProximo("TabelaA"));
+				geradorDeId.ObterProximo("TabelaA");
 		}
 	}
 	public class BancoFake : IRepositorioGeradorDeId
@@ -91,7 +90,7 @@ namespace MPSC.Library.Exemplos.Medidas
 	{
 		public override Numero GerarProximoIdentificador(String chavePesquisa, Numero pool)
 		{
-			iDbCommand.CommandText = String.Format(@"Select (Next Value For eSim.tmpSQ_{0}) As ProximoId From DUAL", chavePesquisa);
+			iDbCommand.CommandText = String.Format(@"Select (NextVal For eSim.tmpSQ_{0}) As ProximoId From eSim.Dual Fetch First 1 Rows Only", chavePesquisa);
 			return Convert.ToInt64(iDbCommand.ExecuteScalar());
 		}
 	}
@@ -130,12 +129,12 @@ namespace MPSC.Library.Exemplos.Medidas
 			iDbCommand = conexao.CreateCommand();
 			iDbCommand.CommandType = CommandType.Text;
 		}
-		~BancoAbstrato() { Dispose(); }
+		//~BancoAbstrato() { Dispose(); }
 		public void Dispose()
 		{
-			iDbCommand.Dispose();
-			conexao.Close();
-			conexao.Dispose();
+			//iDbCommand.Dispose();
+			//conexao.Close();
+			//conexao.Dispose();
 		}
 
 		public abstract Numero GerarProximoIdentificador(String chavePesquisa, Numero pool);
