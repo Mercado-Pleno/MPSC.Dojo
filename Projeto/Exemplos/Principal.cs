@@ -62,7 +62,8 @@
 				),
 
 				new ItemMenu('4', "Medidas",
-					new ItemMenu('1', "Duracção de um Intervalo de Tempo de Alta Precisão", new DuracaoIntervaloTempoAltaPrecisao())
+					new ItemMenu('1', "Duração de um Intervalo de Tempo de Alta Precisão", new DuracaoIntervaloTempoAltaPrecisao()),
+					new ItemMenu('2', "Performance de Geração de Ids via Sequence vs Tabela", new DuracaoIntervaloTempoAltaPrecisao())
 				),
 
 				new ItemMenu('5', "Utilidades",
