@@ -12,106 +12,106 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest
         [TestMethod()]
         public void Se_Clonar_10_Nota2_Deve_Retornar_10_Notas_de_2_Reais()
         {
-            Nota nota = new Nota2();
-            int quantidade = 10;
-            List<Nota> notas = nota.Clonar(quantidade);
+            var nota = new Nota2();
+            var quantidade = 10;
+            var notas = nota.Clonar(quantidade);
 
-            Assert.AreEqual(quantidade, notas.Count);
+			Assert.AreEqual(quantidade, notas.Count());
             Assert.AreEqual(quantidade, notas.Count(n => n.Valor == 2)); //Expressao Lambda
         }
 
         [TestMethod()]
         public void Se_Clonar_10_Nota5_Deve_Retornar_10_Notas_de_5_Reais()
         {
-            Nota nota = new Nota5();
-            int quantidade = 10;
-            List<Nota> notas = nota.Clonar(quantidade);
+			var nota = new Nota5();
+			var quantidade = 10;
+            var notas = nota.Clonar(quantidade);
 
-            Assert.AreEqual(quantidade, notas.Count);
+            Assert.AreEqual(quantidade, notas.Count());
             Assert.AreEqual(quantidade, notas.Count(n => n.Valor == 5));
         }
 
         [TestMethod()]
         public void Se_Clonar_10_Nota10_Deve_Retornar_10_Notas_de_10_Reais()
         {
-            Nota nota = new Nota10();
-            int quantidade = 10;
-            List<Nota> notas = nota.Clonar(quantidade);
+			var nota = new Nota10();
+			var quantidade = 10;
+            var notas = nota.Clonar(quantidade);
 
-            Assert.AreEqual(quantidade, notas.Count);
+			Assert.AreEqual(quantidade, notas.Count());
             Assert.AreEqual(quantidade, notas.Count(n => n.Valor == 10));
         }
 
         [TestMethod()]
         public void Se_Clonar_10_Nota20_Deve_Retornar_10_Notas_de_20_Reais()
         {
-            Nota nota = new Nota20();
-            int quantidade = 10;
-            List<Nota> notas = nota.Clonar(quantidade);
+			var nota = new Nota20();
+			var quantidade = 10;
+            var notas = nota.Clonar(quantidade);
 
-            Assert.AreEqual(quantidade, notas.Count);
+			Assert.AreEqual(quantidade, notas.Count());
             Assert.AreEqual(quantidade, notas.Count(n => n.Valor == 20));
         }
 
         [TestMethod()]
         public void Se_Clonar_10_Nota50_Deve_Retornar_10_Notas_de_50_Reais()
         {
-            Nota nota = new Nota50();
-            int quantidade = 10;
-            List<Nota> notas = nota.Clonar(quantidade);
+			var nota = new Nota50();
+			var quantidade = 10;
+            var notas = nota.Clonar(quantidade);
 
-            Assert.AreEqual(quantidade, notas.Count);
+			Assert.AreEqual(quantidade, notas.Count());
             Assert.AreEqual(quantidade, notas.Count(n => n.Valor == 50));
         }
 
         [TestMethod()]
         public void Se_Clonar_10_Nota100_Deve_Retornar_10_Notas_de_100_Reais()
         {
-            Nota nota = new Nota100();
-            int quantidade = 10;
-            List<Nota> notas = nota.Clonar(quantidade);
+			var nota = new Nota100();
+			var quantidade = 10;
+            var notas = nota.Clonar(quantidade);
 
-            Assert.AreEqual(quantidade, notas.Count);
+			Assert.AreEqual(quantidade, notas.Count());
             Assert.AreEqual(quantidade, notas.Count(n => n.Valor == 100));
         }
 
         [TestMethod()]
         public void Se_Comparar_Uma_Nota_de_20_Reais_Com_Outra_Nota_De_10_Reais_a_Comparacao_Deve_Retornar_1_Positivo()
         {
-            Nota nota = new Nota20();
-            object obj = new Nota10();
-            int expected = 1;
-            int notas = nota.CompareTo(obj);
+            var nota = new Nota20();
+            var obj = new Nota10();
+			var expected = 1;
+			var notas = nota.CompareTo(obj);
             Assert.AreEqual(expected, notas);
         }
 
         [TestMethod()]
         public void Se_Comparar_Uma_Nota_de_20_Reais_Com_Outra_Nota_De_20_Reais_a_Comparacao_Deve_Retornar_Zero()
         {
-            Nota nota = new Nota20();
-            object obj = new Nota20();
-            int expected = 0;
-            int notas = nota.CompareTo(obj);
+			var nota = new Nota20();
+			var obj = new Nota20();
+			var expected = 0;
+			var notas = nota.CompareTo(obj);
             Assert.AreEqual(expected, notas);
         }
 
         [TestMethod()]
         public void Se_Comparar_Uma_Nota_de_20_Reais_Com_Nulo_a_Comparacao_Deve_Retornar_Zero()
         {
-            Nota nota = new Nota20();
-            object obj = null;
-            int expected = 0;
-            int notas = nota.CompareTo(obj);
+			var nota = new Nota20();
+			Object obj = null;
+			var expected = 0;
+			var notas = nota.CompareTo(obj);
             Assert.AreEqual(expected, notas);
         }
 
         [TestMethod()]
         public void Se_Comparar_Uma_Nota_de_20_Reais_Com_Algum_Objeto_Que_Nao_Herda_De_Nota_a_Comparacao_Deve_Retornar_Zero()
         {
-            Nota nota = new Nota20();
-            object obj = new Object();
-            int expected = 0;
-            int notas = nota.CompareTo(obj);
+			var nota = new Nota20();
+			var obj = new Object();
+			var expected = 0;
+			var notas = nota.CompareTo(obj);
             Assert.AreEqual(expected, notas);
         }
 
