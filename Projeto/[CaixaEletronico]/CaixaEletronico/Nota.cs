@@ -3,37 +3,36 @@ using System.Collections.Generic;
 
 namespace CaixaEletronico
 {
-	public abstract class Nota : IComparable
+	public abstract class Nota : IComparable, IComparable<Nota>
 	{
-		public int Valor { get; private set; }
+		public Int32 Valor { get; private set; }
 
-		public Nota(int valor)
+		public Nota(Int32 valor)
 		{
 			Valor = valor;
 		}
 
-		public override string ToString()
+		public override String ToString()
 		{
 			return "R$ " + Valor.ToString() + ",00"; 
 		}
 
-		public List<Nota> Clonar(int quantidade)
+		public IEnumerable<Nota> Clonar(Int32 quantidade)
 		{
-			List<Nota> clones = new List<Nota>();
-			for (int i = 0; i < quantidade; i++)
-			{
-				clones.Add(this);
-			}
-
-			return clones;
+			for (var i = 0; i < quantidade; i++)
+				yield return this;
 		}
 
-		public int CompareTo(object obj)
+		public Int32 CompareTo(Object obj)
 		{
-			int retorno = 0;
-			if ((obj != null) && (obj is Nota))
+			return CompareTo(obj as Nota);
+		}
+
+		public Int32 CompareTo(Nota nota)
+		{
+			var retorno = 0;
+			if (nota != null) 
 			{
-				Nota nota = obj as Nota;
 				if (this.Valor > nota.Valor)
 					retorno = 1;
 				else if (this.Valor < nota.Valor)
