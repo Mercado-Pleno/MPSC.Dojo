@@ -15,15 +15,18 @@ namespace MPSC.Library.Exemplos.Medidas
 	{
 		public void Executar()
 		{
-			Console.WriteLine("Pressione alguma Tecla para Iniciar a contagem de BancoExecutandoSequence");
-			Console.ReadKey();
+			Console.Write("\r\nPressione alguma Tecla para Iniciar a contagem de BancoExecutandoSequence");
+			Console.ReadLine();
+			Console.Write("BancoExecutandoSequence: ");
 			Executar(new BancoExecutandoSequence());
 
-			Console.WriteLine("Pressione alguma Tecla para Iniciar a contagem de BancoAtualizandoTabela");
-			Console.ReadKey();
+			Console.Write("\r\nPressione alguma Tecla para Iniciar a contagem de BancoAtualizandoTabela");
+			Console.ReadLine();
+			Console.Write("BancoAtualizandoTabela: ");
 			Executar(new BancoAtualizandoTabela());
 
-			Console.ReadKey();
+			Console.Write("Acabou");
+			Console.ReadLine();
 		}
 
 		private void Executar(IRepositorioGeradorDeId iRepositorioGeradorDeId)
@@ -40,7 +43,6 @@ namespace MPSC.Library.Exemplos.Medidas
 			{
 				Console.WriteLine(exception.Message);
 			}
-
 		}
 
 		private void Varias_Threads_Simultaneas(IRepositorioGeradorDeId iRepositorioGeradorDeId, Int32 threads, Int32 itens)
@@ -60,10 +62,6 @@ namespace MPSC.Library.Exemplos.Medidas
 
 			foreach (var thread in listaThread)
 				thread.Join();
-
-
-
-
 		}
 
 		private void Processar(Object obj)
