@@ -1,8 +1,8 @@
-﻿using System;
+﻿using CaixaEletronico;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using CaixaEletronico;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MPSC.Library.TestesUnitarios.SolutionTest
 {
@@ -38,7 +38,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest
 		{
 			Saque saque = new Saque();
 
-			IList<Nota> notas = saque.Sacar(50);
+			var notas = saque.Sacar(50);
 
 			Assert.AreEqual(1, notas.Count, "Quantidade de Notas");
 			Assert.AreEqual(50, notas.Sum(n => n.Valor), "Valor do Saque");
