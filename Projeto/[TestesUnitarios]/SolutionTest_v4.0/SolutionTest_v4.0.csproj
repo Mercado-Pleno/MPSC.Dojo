@@ -52,6 +52,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\Container.cs" />
+    <Compile Include="Cache\TestandoContainer.cs" />
     <Compile Include="CaixaEletronico\Nota100Test.cs" />
     <Compile Include="CaixaEletronico\Nota10Test.cs" />
     <Compile Include="CaixaEletronico\Nota200Test.cs" />
