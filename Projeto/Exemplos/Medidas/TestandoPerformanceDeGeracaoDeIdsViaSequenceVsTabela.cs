@@ -26,7 +26,7 @@ namespace MPSC.Library.Exemplos.Medidas
 			Console.Write("\r\nAcabou");
 		}
 
-		private void Executar(IRepositorioGeradorDeId iRepositorioGeradorDeId)
+		private void Executar(IRepositorioGeradorDeIdentidade iRepositorioGeradorDeId)
 		{
 			try
 			{
@@ -42,13 +42,13 @@ namespace MPSC.Library.Exemplos.Medidas
 			}
 		}
 
-		private void Varias_Threads_Simultaneas(IRepositorioGeradorDeId iRepositorioGeradorDeId, Int32 threads, Int32 itens)
+		private void Varias_Threads_Simultaneas(IRepositorioGeradorDeIdentidade iRepositorioGeradorDeId, Int32 threads, Int32 itens)
 		{
-			var listaIds = new Dictionary<List<Numero>, GeradorDeId>();
+			var listaIds = new Dictionary<List<Numero>, ContainerGeradorDeIdentidade>();
 			var listaThread = new List<Thread>();
 
 			for (var i = 0; i < threads; i++)
-				listaIds[new List<Numero>()] = new GeradorDeId(iRepositorioGeradorDeId, 3000);
+				listaIds[new List<Numero>()] = new ContainerGeradorDeIdentidade(iRepositorioGeradorDeId);
 
 			foreach (var p in listaIds)
 			{
@@ -64,48 +64,48 @@ namespace MPSC.Library.Exemplos.Medidas
 		private void Processar(Object obj)
 		{
 			var array = obj as Object[];
-			Processar(null, array[1] as GeradorDeId, Convert.ToInt32(array[2]));
+			Processar(null, array[1] as ContainerGeradorDeIdentidade, Convert.ToInt32(array[2]));
 		}
 
-		private void Processar(List<Numero> lista, GeradorDeId geradorDeId, Int32 quantidade)
+		private void Processar(List<Numero> lista, ContainerGeradorDeIdentidade geradorDeId, Int32 quantidade)
 		{
 			for (var i = 0; i < quantidade; i++)
 				geradorDeId.ObterProximo("TabelaA");
 		}
 	}
-	public class BancoFake : IRepositorioGeradorDeId
+	public class BancoFake : IRepositorioGeradorDeIdentidade
 	{
-		private readonly Dictionary<String, Numero> _gerador = new Dictionary<String, Numero>();
-		public BancoFake() { }
-		public Numero GerarProximoIdentificador(String chavePesquisa, Numero pool)
-		{
-			if ((!_gerador.ContainsKey(chavePesquisa)))
-				_gerador[chavePesquisa] = 1;
+		private readonly Dictionary<String, Numero> _sequence = new Dictionary<String, Numero>();
+		private const long cQuantidadeDeIdentificadoresEmCache = 3000L;
 
-			return (_gerador[chavePesquisa] += pool) - pool;
+		public Numero GerarProximoIdentificador(String nomeDaTabela)
+		{
+			if (!_sequence.ContainsKey(nomeDaTabela))
+				_sequence[nomeDaTabela] = 1;
+
+			var retorno = _sequence[nomeDaTabela];
+			_sequence[nomeDaTabela] += cQuantidadeDeIdentificadoresEmCache;
+			return retorno;
+		}
+
+		public Numero ObterQuantidadeDeIdentificadoresEmCache(String nomeDaTabela)
+		{
+			return cQuantidadeDeIdentificadoresEmCache;
 		}
 	}
 
-	public class BancoExecutandoSequence : BancoAbstrato
+	internal class BancoAtualizandoTabela : BancoAbstrato
 	{
-		public override Numero GerarProximoIdentificador(String chavePesquisa, Numero pool)
+		protected override long gerarProximoIdentificador(string nomeDaTabela, long quantidadeDeIdentificadoresEmCache)
 		{
-			iDbCommand.CommandText = String.Format(@"Select (NextVal For eSim.tmpSQ_{0}) As ProximoId From eSim.Dual Fetch First 1 Rows Only", chavePesquisa);
-			return Convert.ToInt64(iDbCommand.ExecuteScalar());
-		}
-	}
+			//private const String cCmdSqlCreate = @"Create Table eSim.tmp_ControleId (Tabela Char(20) Not Null Primary Key, NextId BigInt Not Null)";
+			const String cCmdSqlUpdate = @"Update eSim.tmp_ControleId Set NextId = NextId + @Pool Where (Tabela = @Tabela)";
+			const String cCmdSqlSelect = @"Select NextId From eSim.tmp_ControleId Where (Tabela = @Tabela) For Update Of NextId With RR";
 
-	public class BancoAtualizandoTabela : BancoAbstrato
-	{
-		//private const String cCmdSqlCreate = @"Create Table eSim.tmp_ControleId (Tabela Char(20) Not Null Primary Key, NextId BigInt Not Null)";
-		private const String cCmdSqlUpdate = @"Update eSim.tmp_ControleId Set NextId = NextId + @Pool Where (Tabela = @Tabela)";
-		private const String cCmdSqlSelect = @"Select NextId From eSim.tmp_ControleId Where (Tabela = @Tabela) For Update Of NextId With RR";
 
-		public override Numero GerarProximoIdentificador(String chavePesquisa, Numero pool)
-		{
 			iDbCommand.Parameters.Clear();
-			var parameterPool = AdicionarParametro("@Pool", pool, DbType.Int64, ParameterDirection.Input);
-			var parameterTabela1 = AdicionarParametro("@Tabela", chavePesquisa, DbType.String, ParameterDirection.Input);
+			var parameterPool = AdicionarParametro("@Pool", quantidadeDeIdentificadoresEmCache, DbType.Int64, ParameterDirection.Input);
+			var parameterTabela1 = AdicionarParametro("@Tabela", nomeDaTabela, DbType.String, ParameterDirection.Input);
 			iDbCommand.Transaction = iDbCommand.Connection.BeginTransaction();
 
 			iDbCommand.CommandText = cCmdSqlSelect;
@@ -119,9 +119,19 @@ namespace MPSC.Library.Exemplos.Medidas
 		}
 	}
 
-	public abstract class BancoAbstrato : IRepositorioGeradorDeId, IDisposable
+	internal class BancoExecutandoSequence : BancoAbstrato
 	{
-		private readonly static IDbConnection conexao = new iDB2Connection("DataSource=mtzsrva2;UserID=usrben;Password=@poiuy;DataCompression=True;SortSequence=SharedWeight;SortLanguageId=PTG;DefaultCollection=eSim;");
+		protected override long gerarProximoIdentificador(string nomeDaTabela, long quantidadeDeIdentificadoresEmCache)
+		{
+			iDbCommand.CommandText = String.Format(@"Select (Next Value For eSim.tmpSQ_{0}) As ProximoId From DUAL", nomeDaTabela);
+			return Convert.ToInt64(iDbCommand.ExecuteScalar());
+		}
+	}
+
+	internal abstract class BancoAbstrato : IRepositorioGeradorDeIdentidade, IDisposable
+	{
+		private readonly static IDbConnection conexao = null;//new iDB2Connection("DataSource=mtzsrva2;UserID=usrben;Password=@poiuy;DataCompression=True;SortSequence=SharedWeight;SortLanguageId=PTG;DefaultCollection=eSim;");
+		private const long cQuantidadeDeIdentificadoresEmCache = 3000L;
 		protected readonly IDbCommand iDbCommand;
 		static BancoAbstrato() { conexao.Open(); }
 		protected BancoAbstrato()
@@ -129,15 +139,25 @@ namespace MPSC.Library.Exemplos.Medidas
 			iDbCommand = conexao.CreateCommand();
 			iDbCommand.CommandType = CommandType.Text;
 		}
-		//~BancoAbstrato() { Dispose(); }
+		~BancoAbstrato() { Dispose(); }
 		public void Dispose()
 		{
-			//iDbCommand.Dispose();
-			//conexao.Close();
-			//conexao.Dispose();
+			iDbCommand.Dispose();
+			conexao.Close();
+			conexao.Dispose();
 		}
 
-		public abstract Numero GerarProximoIdentificador(String chavePesquisa, Numero pool);
+		long IRepositorioGeradorDeIdentidade.GerarProximoIdentificador(String nomeDaTabela)
+		{
+			return gerarProximoIdentificador(nomeDaTabela, cQuantidadeDeIdentificadoresEmCache);
+		}
+
+		long IRepositorioGeradorDeIdentidade.ObterQuantidadeDeIdentificadoresEmCache(string nomeDaTabela)
+		{
+			return cQuantidadeDeIdentificadoresEmCache;
+		}
+
+		protected abstract long gerarProximoIdentificador(String nomeDaTabela, long quantidadeDeIdentificadoresEmCache);
 
 		protected IDbDataParameter AdicionarParametro(String parameterName, Object value, DbType dbType, ParameterDirection parameterDirection = ParameterDirection.Input)
 		{
