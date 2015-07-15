@@ -53,9 +53,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cache\Container.cs" />
+    <Compile Include="Cache\Container\Container.cs" />
+    <Compile Include="Cache\Container\Intervalo.cs" />
+    <Compile Include="Cache\Container\Validade.cs" />
     <Compile Include="Cache\MemoryCache\Cache.cs" />
     <Compile Include="Cache\MemoryCache\CacheContainer.cs" />
     <Compile Include="Cache\MemoryCache\PoliticaDeRenovacaoDoCache.cs" />
+    <Compile Include="Cache\MemoryCache\ProdutoCache.cs" />
     <Compile Include="Cache\TestandoContainer.cs" />
     <Compile Include="CaixaEletronico\Nota100Test.cs" />
     <Compile Include="CaixaEletronico\Nota10Test.cs" />
