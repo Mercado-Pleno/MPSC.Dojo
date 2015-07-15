@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Mongeral.eSim.Common.MemoryCache
+namespace MPSC.Library.TestesUnitarios.SolutionTest_v4.Cache.MemoryCache
 {
 	public interface ICache
 	{

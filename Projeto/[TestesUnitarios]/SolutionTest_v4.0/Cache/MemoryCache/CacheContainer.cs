@@ -4,8 +4,7 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 
-
-namespace Mongeral.eSim.Common.MemoryCache
+namespace MPSC.Library.TestesUnitarios.SolutionTest_v4.Cache.MemoryCache
 {
 	public static class AppCache
 	{
@@ -50,7 +49,7 @@ namespace Mongeral.eSim.Common.MemoryCache
 				Log.Logar(String.Format("Load CacheContainer<{0}, {1}, {2}>().Obter({3})", typeof(TKey).Name, name(typeof(TClasse)), typeof(TChild).Name, key));
 				return ObterDadosExternos(key);
 			}
-			catch (Exception exception)
+			catch (Exception)// exception)
 			{
 				//exception.Log();
 				return default(TClasse);
@@ -89,7 +88,7 @@ namespace Mongeral.eSim.Common.MemoryCache
 						cache[item.Key] = item.Value;
 				}
 			}
-			catch (Exception exception)
+			catch (Exception)// exception)
 			{
 				//exception.Log();
 			}

@@ -2,7 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 
-namespace MP.Library.TestesUnitarios.SolutionTest_v4.Cache
+namespace MPSC.Library.TestesUnitarios.SolutionTest_v4.Cache
 {
 	public interface IContainer { }
 

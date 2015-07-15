@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Mongeral.eSim.Common.MemoryCache
+namespace MPSC.Library.TestesUnitarios.SolutionTest_v4.Cache.MemoryCache
 {
 	public interface IRenovacao<TKey, TClasse> where TKey : struct
 	{

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MP.Library.TestesUnitarios.SolutionTest_v4.Cache
+namespace MPSC.Library.TestesUnitarios.SolutionTest_v4.Cache
 {
 	[TestClass]
 	public class TestandoContainer
