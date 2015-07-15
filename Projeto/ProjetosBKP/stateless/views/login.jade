@@ -1,0 +1,11 @@
+extends layout-login
+
+block content
+  h1= Login
+  p #{title}
+  div(ng-controller="logincontroller")
+    label(for="username") Usuário
+    input(type="text",id="username",ng-model="username")
+    label(for="senha") Senha
+    input(type="password",id="senha",ng-model="senha")
+    input(type="button",id="login",ng-click="loginUsuario()",value="Login")
