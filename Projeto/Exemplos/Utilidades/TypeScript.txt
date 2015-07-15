@@ -1,0 +1,42 @@
+class Animal {
+	private nome: string;
+	constructor(nome: string) {
+        this.nome = nome;
+    }
+	protected barulho(): string { return "zzz zzz!"; }
+
+	public FazerBarulho() {
+		alert(this.nome + " está fazendo o barulho: " + this.barulho())
+	}
+}
+
+class Abelha extends Animal{
+	constructor(nome: string) { super(nome); }
+	protected barulho(): string { return "zum zum " + super.barulho(); }
+}
+
+class Cachorro extends Animal{
+	constructor(nome: string) { super(nome); }
+	protected barulho(): string { return "au au au!"; }
+}
+
+class Gato extends Animal{
+	constructor(nome: string) { super(nome); }
+	protected barulho(): string{ return "miau miau!"; }
+	
+	public Miar() {
+		super.FazerBarulho()
+	}
+}
+
+var animal: Animal = new Animal("Animal")
+animal.FazerBarulho();
+
+var zangao: Animal = new Abelha("Zangao")
+zangao.FazerBarulho();
+
+var mingal: Animal = new Gato("Mingal");
+mingal.FazerBarulho();
+
+var doguinho: Animal = new Cachorro("Doguinho");
+doguinho.FazerBarulho();
