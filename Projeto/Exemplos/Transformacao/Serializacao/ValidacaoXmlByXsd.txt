@@ -1,0 +1,44 @@
+	public class XMLValidation
+	{
+		public static String Validar(string pathXML, string fileXSD)
+		{
+			var retorno = String.Empty;
+			var directoryInfo = new DirectoryInfo(pathXML);
+			var files = directoryInfo.GetFiles("Certificado*.xml");
+			foreach (var file in files)
+			{
+				if (file.Name.StartsWith("Certificado"))
+				{
+					string erroValidacao;
+					if (!ValidaXML(file.FullName, fileXSD, out erroValidacao))
+						retorno += file.Name + ": " + erroValidacao + "\r\n";
+				}
+			}
+			return retorno;
+		}
+
+		public static bool ValidaXML(string pathXML, string pathXSD, out string erroValidacao)
+		{
+			bool isValid = true;
+			erroValidacao = "";
+
+			try
+			{
+
+				XmlReaderSettings settings = new XmlReaderSettings();
+				settings.Schemas.Add(null, pathXSD);
+				settings.ValidationType = ValidationType.Schema;
+				XmlDocument document = new XmlDocument();
+				document.Load(pathXML);
+				XmlReader rdr = XmlReader.Create(new StringReader(document.InnerXml), settings);
+				while (rdr.Read()) { }
+			}
+			catch (Exception ex)
+			{
+				erroValidacao = "Erro: " + ex.Message;
+				isValid = false;
+			}
+
+			return isValid;
+		}
+	}
