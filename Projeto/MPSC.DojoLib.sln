@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CiaDoDireito.Model", "[CiaD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CiaDoDireito.View", "[CiaDoDireito]\CiaDoDireito.View\CiaDoDireito.View.csproj", "{47D7620A-4C13-4F45-851A-3340BAC12709}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Einstein", "Einstein\Einstein.csproj", "{F51141A4-CCFE-413D-8AAC-EE669440FDED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -209,6 +211,16 @@ Global
 		{47D7620A-4C13-4F45-851A-3340BAC12709}.Release|Mixed Platforms.Build.0 = Release|x86
 		{47D7620A-4C13-4F45-851A-3340BAC12709}.Release|x86.ActiveCfg = Release|x86
 		{47D7620A-4C13-4F45-851A-3340BAC12709}.Release|x86.Build.0 = Release|x86
+		{F51141A4-CCFE-413D-8AAC-EE669440FDED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F51141A4-CCFE-413D-8AAC-EE669440FDED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F51141A4-CCFE-413D-8AAC-EE669440FDED}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F51141A4-CCFE-413D-8AAC-EE669440FDED}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F51141A4-CCFE-413D-8AAC-EE669440FDED}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F51141A4-CCFE-413D-8AAC-EE669440FDED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F51141A4-CCFE-413D-8AAC-EE669440FDED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F51141A4-CCFE-413D-8AAC-EE669440FDED}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F51141A4-CCFE-413D-8AAC-EE669440FDED}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F51141A4-CCFE-413D-8AAC-EE669440FDED}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
