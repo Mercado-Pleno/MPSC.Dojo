@@ -41,21 +41,23 @@ namespace MPSC.Einstein
 					letra = Console.ReadKey();
 				}
 				Console.CursorLeft = posicao;
-				Console.ReadLine();
-				Console.WriteLine();
-				Calculando();
-				Console.Write(resposta);
-				retorno = Console.ReadKey();
-				Console.WriteLine();
+				retorno = Responder(resposta);
 			}
 			else
-			{
-				Console.ReadLine();
-				Calculando();
-				Console.WriteLine("Só respondo essa pergunta pro meu dono!");
-				retorno = Console.ReadKey();
-				Console.WriteLine();
-			}
+				retorno = Responder("Só respondo essa pergunta pro meu dono!");
+
+			return retorno;
+		}
+
+		private static ConsoleKeyInfo Responder(String resposta)
+		{
+			Console.ReadLine();
+			Console.WriteLine();
+			Calculando();
+			Console.Write(resposta);
+			Console.WriteLine("\r\nPressione alguma tecla para fazer outra pergunta\r\n");
+			var retorno = Console.ReadKey();
+			Console.WriteLine();
 			return retorno;
 		}
 
@@ -65,14 +67,14 @@ namespace MPSC.Einstein
 			Console.Write("Calculando resposta ");
 			for (int j = 0; j < 4; j++)
 			{
-				for (int i = 0; i < 50; i++)
-				{
-					Thread.Sleep(15);
-					Console.Write(".");
-				}
-				for (int i = 0; i < 50; i++)
+				for (int i = 0; i < 40; i++)
 				{
 					Thread.Sleep(10);
+					Console.Write(".");
+				}
+				for (int i = 0; i < 40; i++)
+				{
+					Thread.Sleep(5);
 					Console.CursorLeft--;
 					Console.Write(" ");
 					Console.CursorLeft--;
