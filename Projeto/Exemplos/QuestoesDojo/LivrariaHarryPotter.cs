@@ -13,16 +13,44 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 		{
 			var titulosDesagrupados = DesagruparTitulos(titulos);
 			var quantidadeDiferente = titulosDesagrupados.Distinct(IntencaoDeCompra.Comparador.Instancia).Count();
+			var conjuntos = AgruparTitulosDiferentes(quantidadeDiferente, titulosDesagrupados);
 
 			var valorTotal = 0.00M;
-			foreach (var titulo in titulosDesagrupados)
+			foreach (var conjunto in conjuntos)
 			{
-				valorTotal += valorCadaLivro * titulo.Quantidade;
+				quantidadeDiferente = conjunto.Livros.Distinct(IntencaoDeCompra.Comparador.Instancia).Count();
+				var fatorDeDesconto = ObterFatorDeDesconto(quantidadeDiferente);
+				foreach (var titulo in conjunto.Livros)
+				{
+					valorTotal += (valorCadaLivro * titulo.Quantidade * fatorDeDesconto);
+				}
 			}
 
-			var fatorDeDesconto = ObterFatorDeDesconto(quantidadeDiferente);
+			return valorTotal;
+		}
 
-			return valorTotal * fatorDeDesconto;
+		public IEnumerable<ConjuntoDeLivros> AgruparTitulosDiferentes(Int32 quantidadeMaxima, params IntencaoDeCompra[] titulos)
+		{
+			var retorno = new List<ConjuntoDeLivros>();
+			var livros = titulos.ToList();
+			var conjunto = new ConjuntoDeLivros();
+
+			while (livros.Any())
+			{
+				var livro = livros.FirstOrDefault(l => !conjunto.Livros.Any(cl => cl.Livro == l.Livro));
+				if ((livro != null) && (conjunto.Livros.Count < quantidadeMaxima))
+				{
+					livros.Remove(livro);
+					conjunto.Livros.Add(livro);
+				}
+				else
+				{
+					retorno.Add(conjunto);
+					conjunto = new ConjuntoDeLivros();
+				}
+			}
+			retorno.Add(conjunto);
+			return retorno;
 		}
 
 		public IntencaoDeCompra[] DesagruparTitulos(params IntencaoDeCompra[] titulos)
@@ -54,6 +82,16 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 				return 0.85M;
 			else
 				return 0.80M;
+		}
+	}
+
+	public class ConjuntoDeLivros
+	{
+		public List<IntencaoDeCompra> Livros { get; private set; }
+
+		public ConjuntoDeLivros()
+		{
+			Livros = new List<IntencaoDeCompra>();
 		}
 	}
 
