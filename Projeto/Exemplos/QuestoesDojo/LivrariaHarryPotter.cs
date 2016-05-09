@@ -9,10 +9,10 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 		private Decimal _valorCadaLivro = 42.00M;
 		private Decimal[] _descontosProgressivos;
 
-		public LivrariaHarryPotter(Decimal valorCadaLivro, params Decimal[] descontosProgressivos)
+		public LivrariaHarryPotter(Decimal valorCadaLivro, params Decimal[] descontosPercentuaisProgressivos)
 		{
 			_valorCadaLivro = valorCadaLivro;
-			_descontosProgressivos = descontosProgressivos;
+			_descontosProgressivos = descontosPercentuaisProgressivos.Select(d => 1.00M - (d / 100.00M)).ToArray();
 		}
 
 		public Decimal ValorAPagar(params IntencaoDeCompra[] titulos)
