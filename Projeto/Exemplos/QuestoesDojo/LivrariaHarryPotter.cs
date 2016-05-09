@@ -12,18 +12,37 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 		public Decimal ValorAPagar(params IntencaoDeCompra[] titulos)
 		{
 			var titulosDesagrupados = DesagruparTitulos(titulos);
-			var quantidadeDiferente = titulosDesagrupados.Distinct(IntencaoDeCompra.Comparador.Instancia).Count();
-			var conjuntos = AgruparTitulosDiferentes(quantidadeDiferente, titulosDesagrupados);
+			var agrupamento = titulosDesagrupados.Distinct(IntencaoDeCompra.Comparador.Instancia).Count();
+			var conjunto = VerificarOMenorValor(agrupamento, titulosDesagrupados);
 
+			return CalcularValorDosConjutosDeLivros(conjunto);
+		}
+
+		private IEnumerable<ConjuntoDeLivros> VerificarOMenorValor(Int32 agrupamento, params IntencaoDeCompra[] titulosDesagrupados)
+		{
+			if (agrupamento == 1)
+				return AgruparTitulosDiferentes(agrupamento, titulosDesagrupados);
+			else
+			{
+				var conjunto1 = AgruparTitulosDiferentes(agrupamento, titulosDesagrupados);
+				var valor1 = CalcularValorDosConjutosDeLivros(conjunto1);
+
+				var conjunto2 = VerificarOMenorValor(agrupamento, titulosDesagrupados);
+				var valor2 = CalcularValorDosConjutosDeLivros(conjunto2);
+
+				return valor1 < valor2 ? conjunto1: conjunto2;
+			}
+		}
+
+		private Decimal CalcularValorDosConjutosDeLivros(IEnumerable<ConjuntoDeLivros> conjuntos)
+		{
 			var valorTotal = 0.00M;
 			foreach (var conjunto in conjuntos)
 			{
-				quantidadeDiferente = conjunto.Livros.Distinct(IntencaoDeCompra.Comparador.Instancia).Count();
+				var quantidadeDiferente = conjunto.Livros.Distinct(IntencaoDeCompra.Comparador.Instancia).Count();
 				var fatorDeDesconto = ObterFatorDeDesconto(quantidadeDiferente);
 				foreach (var titulo in conjunto.Livros)
-				{
-					valorTotal += (valorCadaLivro * titulo.Quantidade * fatorDeDesconto);
-				}
+					valorTotal += (titulo.Quantidade * valorCadaLivro * fatorDeDesconto);
 			}
 
 			return valorTotal;
