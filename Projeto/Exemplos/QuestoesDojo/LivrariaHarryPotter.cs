@@ -6,8 +6,14 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 {
 	public class LivrariaHarryPotter
 	{
-		private const Decimal valorCadaLivro = 42.00M;
+		private Decimal _valorCadaLivro = 42.00M;
+		private Decimal[] _descontosProgressivos;
 
+		public LivrariaHarryPotter(Decimal valorCadaLivro, params Decimal[] descontosProgressivos)
+		{
+			_valorCadaLivro = valorCadaLivro;
+			_descontosProgressivos = descontosProgressivos;
+		}
 
 		public Decimal ValorAPagar(params IntencaoDeCompra[] titulos)
 		{
@@ -20,17 +26,19 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 
 		private IEnumerable<ConjuntoDeLivros> VerificarOMenorValor(Int32 agrupamento, params IntencaoDeCompra[] titulosDesagrupados)
 		{
-			if (agrupamento == 1)
+			if (agrupamento <= 0)
+				return new List<ConjuntoDeLivros>();
+			else if (agrupamento == 1)
 				return AgruparTitulosDiferentes(agrupamento, titulosDesagrupados);
 			else
 			{
 				var conjunto1 = AgruparTitulosDiferentes(agrupamento, titulosDesagrupados);
 				var valor1 = CalcularValorDosConjutosDeLivros(conjunto1);
 
-				var conjunto2 = VerificarOMenorValor(agrupamento, titulosDesagrupados);
+				var conjunto2 = VerificarOMenorValor(agrupamento - 1, titulosDesagrupados);
 				var valor2 = CalcularValorDosConjutosDeLivros(conjunto2);
 
-				return valor1 < valor2 ? conjunto1: conjunto2;
+				return valor1 < valor2 ? conjunto1 : conjunto2;
 			}
 		}
 
@@ -42,7 +50,7 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 				var quantidadeDiferente = conjunto.Livros.Distinct(IntencaoDeCompra.Comparador.Instancia).Count();
 				var fatorDeDesconto = ObterFatorDeDesconto(quantidadeDiferente);
 				foreach (var titulo in conjunto.Livros)
-					valorTotal += (titulo.Quantidade * valorCadaLivro * fatorDeDesconto);
+					valorTotal += (titulo.Quantidade * _valorCadaLivro * fatorDeDesconto);
 			}
 
 			return valorTotal;
@@ -89,18 +97,15 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 
 		public Decimal ObterFatorDeDesconto(Int32 quantidadeDeLivrosNoPacote)
 		{
+			var indiceDoDesconto = 0;
 			if (quantidadeDeLivrosNoPacote <= 0)
 				throw new Exception("Informe uma quantidade Válida");
-			else if (quantidadeDeLivrosNoPacote == 1)
-				return 1.00M;
-			else if (quantidadeDeLivrosNoPacote == 2)
-				return 0.95M;
-			else if (quantidadeDeLivrosNoPacote == 3)
-				return 0.90M;
-			else if (quantidadeDeLivrosNoPacote == 4)
-				return 0.85M;
+			else if (quantidadeDeLivrosNoPacote <= _descontosProgressivos.Length)
+				indiceDoDesconto = quantidadeDeLivrosNoPacote - 1;
 			else
-				return 0.80M;
+				indiceDoDesconto = _descontosProgressivos.Length - 1;
+
+			return _descontosProgressivos[indiceDoDesconto];
 		}
 	}
 
