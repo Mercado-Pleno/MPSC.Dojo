@@ -11,7 +11,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoAgrupa1Livro1Titulos()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			var agrupado = livraria.AgruparTitulos(new IntencaoDeCompra { Livro = "A", Quantidade = 1 });
 			var desagrupado = livraria.DesagruparTitulos(agrupado);
 
@@ -29,7 +29,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoAgrupa2Livros1Titulos()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			var agrupado = livraria.AgruparTitulos(
 				new IntencaoDeCompra { Livro = "A", Quantidade = 1 },
 				new IntencaoDeCompra { Livro = "A", Quantidade = 5 });
@@ -48,7 +48,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoAgrupa5Livros1Titulos()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			var agrupado = livraria.AgruparTitulos(
 				new IntencaoDeCompra { Livro = "A", Quantidade = 2 },
 				new IntencaoDeCompra { Livro = "A", Quantidade = 3 },
@@ -70,7 +70,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoAgrupa5Livros2Titulos()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			var agrupado = livraria.AgruparTitulos(
 				new IntencaoDeCompra { Livro = "A", Quantidade = 2 },
 				new IntencaoDeCompra { Livro = "A", Quantidade = 3 },
@@ -102,42 +102,42 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoCompraApenasUmLivro()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(1.0M, livraria.ObterFatorDeDesconto(1));
 		}
 
 		[TestMethod]
 		public void QuandoCompraDoisLivrosDeTitulosDiferentes()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(0.95M, livraria.ObterFatorDeDesconto(2));
 		}
 
 		[TestMethod]
 		public void QuandoCompraTresLivrosDeTitulosDiferentes()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(0.90M, livraria.ObterFatorDeDesconto(3));
 		}
 
 		[TestMethod]
 		public void QuandoCompraQuatroLivrosDeTitulosDiferentes()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(0.85M, livraria.ObterFatorDeDesconto(4));
 		}
 
 		[TestMethod]
 		public void QuandoCompraCincoLivrosDeTitulosDiferentes()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(0.80M, livraria.ObterFatorDeDesconto(5));
 		}
 
 		[TestMethod]
 		public void QuandoCompraMaisDeCincoLivrosDeTitulosDiferentes()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(0.80M, livraria.ObterFatorDeDesconto(6));
 			Assert.AreEqual(0.80M, livraria.ObterFatorDeDesconto(7));
 			Assert.AreEqual(0.80M, livraria.ObterFatorDeDesconto(8));
@@ -148,7 +148,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod, ExpectedException(typeof(Exception))]
 		public void QuandoCompraUmaQuantidadeIgualAZeroDeveLancarExcecao()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(0.80M, livraria.ObterFatorDeDesconto(0));
 			Assert.Fail("Deveria Lancar Excecao e não lancou");
 		}
@@ -156,7 +156,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod, ExpectedException(typeof(Exception))]
 		public void QuandoCompraUmaQuantidadeMenorQueZeroDeveLancarExcecao()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(0.80M, livraria.ObterFatorDeDesconto(-1));
 			Assert.Fail("Deveria Lancar Excecao e não lancou");
 		}
@@ -164,21 +164,21 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoCalculaACompraApenasUmLivro()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(42.00M, livraria.ValorAPagar(new IntencaoDeCompra { Livro = "A", Quantidade = 1 }));
 		}
 
 		[TestMethod]
 		public void QuandoCalculaACompraDeDoisLivrosDoMesmoTituloManeira1()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(84.00M, livraria.ValorAPagar(new IntencaoDeCompra { Livro = "A", Quantidade = 2 }));
 		}
 
 		[TestMethod]
 		public void QuandoCalculaACompraDeDoisLivrosDoMesmoTituloManeira2()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(84.00M, livraria.ValorAPagar(
 				new IntencaoDeCompra { Livro = "A", Quantidade = 1 },
 				new IntencaoDeCompra { Livro = "A", Quantidade = 1 }));
@@ -187,7 +187,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoCalculaACompraDeDoisLivrosDeTitulosDiferentes()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(79.80M, livraria.ValorAPagar(
 				new IntencaoDeCompra { Livro = "A", Quantidade = 1 },
 				new IntencaoDeCompra { Livro = "B", Quantidade = 1 }));
@@ -196,7 +196,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoCalculaACompraDeTresLivrosDeTresTitulosDiferentes()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(113.4M, livraria.ValorAPagar(
 				new IntencaoDeCompra { Livro = "A", Quantidade = 1 },
 				new IntencaoDeCompra { Livro = "B", Quantidade = 1 },
@@ -206,7 +206,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoCalculaACompraDeTresLivrosDeDoisTitulosDiferentesManeira1()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(121.80M, livraria.ValorAPagar(
 				new IntencaoDeCompra { Livro = "A", Quantidade = 2 },
 				new IntencaoDeCompra { Livro = "B", Quantidade = 1 }));
@@ -215,7 +215,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoCalculaACompraDeTresLivrosDeDoisTitulosDiferentesManeira2()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(121.80M, livraria.ValorAPagar(
 				new IntencaoDeCompra { Livro = "A", Quantidade = 1 },
 				new IntencaoDeCompra { Livro = "A", Quantidade = 1 },
@@ -225,7 +225,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoCalculaACompraDeQuatroLivrosDeDoisTitulosDiferentesManeira1()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(159.60M, livraria.ValorAPagar(
 				new IntencaoDeCompra { Livro = "A", Quantidade = 2 },
 				new IntencaoDeCompra { Livro = "B", Quantidade = 2 }));
@@ -234,7 +234,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoCalculaACompraDeQuatroLivrosDeDoisTitulosDiferentesManeira2()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(159.60m, livraria.ValorAPagar(
 				new IntencaoDeCompra { Livro = "A", Quantidade = 1 },
 				new IntencaoDeCompra { Livro = "A", Quantidade = 1 },
@@ -245,7 +245,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoCalculaACompraDeQuatroLivrosDeTresTitulosDiferentesManeira1()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(155.40M, livraria.ValorAPagar(
 				new IntencaoDeCompra { Livro = "A", Quantidade = 1 },
 				new IntencaoDeCompra { Livro = "B", Quantidade = 2 },
@@ -255,7 +255,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoCalculaACompraDeQuatroLivrosDeTresTitulosDiferentesManeira2()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(155.40M, livraria.ValorAPagar(
 				new IntencaoDeCompra { Livro = "A", Quantidade = 1 },
 				new IntencaoDeCompra { Livro = "B", Quantidade = 1 },
@@ -266,7 +266,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoCalculaACompraDeQuatroLivrosDeQuatroTitulosDiferentes()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(142.80M, livraria.ValorAPagar(
 				new IntencaoDeCompra { Livro = "A", Quantidade = 1 },
 				new IntencaoDeCompra { Livro = "B", Quantidade = 1 },
@@ -277,7 +277,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoCalculaACompraDeAcordoComAsInformacoesDoDOJO()
 		{
-			var livraria = new LivrariaHarryPotter(42.00M, 1.00M, 0.95M, 0.90M, 0.85M, 0.80M);
+			var livraria = new LivrariaHarryPotter(42.00M, 0M, 5M, 10M, 15M, 20M);
 			Assert.AreEqual(281.40M, livraria.ValorAPagar(
 				new IntencaoDeCompra { Livro = "A", Quantidade = 2 },
 				new IntencaoDeCompra { Livro = "B", Quantidade = 2 },
@@ -285,5 +285,19 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 				new IntencaoDeCompra { Livro = "D", Quantidade = 1 },
 				new IntencaoDeCompra { Livro = "E", Quantidade = 1 }));
 		}
+
+
+		[TestMethod]
+		public void QuandoCalculaACompraComOutrosValoresEEoutrosPercentuais()
+		{
+			var livraria = new LivrariaHarryPotter(10.00M, 0M, 1M, 2M, 20M, 21M);
+			Assert.AreEqual(64.00M, livraria.ValorAPagar(
+				new IntencaoDeCompra { Livro = "A", Quantidade = 2 },
+				new IntencaoDeCompra { Livro = "B", Quantidade = 2 },
+				new IntencaoDeCompra { Livro = "C", Quantidade = 2 },
+				new IntencaoDeCompra { Livro = "D", Quantidade = 1 },
+				new IntencaoDeCompra { Livro = "E", Quantidade = 1 }));
+		}
+
 	}
 }
