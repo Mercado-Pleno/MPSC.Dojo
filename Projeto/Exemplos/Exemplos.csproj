@@ -93,6 +93,7 @@
     <Compile Include="PrincipiosSOLID\3LiskovSubstitution\Imposto.cs" />
     <Compile Include="PrincipiosSOLID\3LiskovSubstitution\Produto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestoesDojo\AutorDeObraBibliografica.cs" />
     <Compile Include="QuestoesDojo\LivrariaHarryPotter.cs" />
     <Compile Include="QuestoesDojo\MatrizEspiral.cs" />
     <Compile Include="QuestoesDojo\PalavrasPrimas.cs" />
