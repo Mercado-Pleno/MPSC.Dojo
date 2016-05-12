@@ -84,7 +84,7 @@
 				),
 
 				new ItemMenu('8', "Questões e Treinamentos de DOJO (On-Line)",
-					new ItemMenu('1', "Gerador de Matriz Espiral", new MatrizEspiral()),
+					new ItemMenu('1', "Gerador de Matriz Espiral", new MatrizEspiralRunner()),
 					new ItemMenu('2', "TestaPivot", new TestaPivot())
 				),
 

@@ -9,7 +9,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoTestaDividirEmNomes()
 		{
-			var autorDeObraBibliografica = new AutorDeObraBibliografica();
+			var autorDeObraBibliografica = new AutorDeObraBibliograficaRunner();
 
 			Assert.AreEqual(0, autorDeObraBibliografica.DividirEmNomes("").Length);
 			Assert.AreEqual(3, autorDeObraBibliografica.DividirEmNomes("Bruno Nogueira Fernandes").Length);
@@ -18,7 +18,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoTestaPrimeirosNomes()
 		{
-			var autorDeObraBibliografica = new AutorDeObraBibliografica();
+			var autorDeObraBibliografica = new AutorDeObraBibliograficaRunner();
 
 			Assert.AreEqual("", autorDeObraBibliografica.PrimeirosNomes(""));
 			Assert.AreEqual("Bruno Nogueira", autorDeObraBibliografica.PrimeirosNomes("Bruno Nogueira Fernandes"));
@@ -30,7 +30,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoTestaSobreNome()
 		{
-			var autorDeObraBibliografica = new AutorDeObraBibliografica();
+			var autorDeObraBibliografica = new AutorDeObraBibliograficaRunner();
 
 			Assert.AreEqual("", autorDeObraBibliografica.SobreNome(""));
 			Assert.AreEqual("Fernandes", autorDeObraBibliografica.SobreNome("Bruno Nogueira Fernandes"));
@@ -42,7 +42,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		[TestMethod]
 		public void QuandoTestaFormatar()
 		{
-			var autorDeObraBibliografica = new AutorDeObraBibliografica();
+			var autorDeObraBibliografica = new AutorDeObraBibliograficaRunner();
 
 			Assert.AreEqual("FERNANDES NETO, Antonio José", autorDeObraBibliografica.Formatar("Antonio José Fernandes Neto"));
 			Assert.AreEqual("FERNANDES NETO, Antonio José", autorDeObraBibliografica.Formatar("ANTONIO JOSÉ FERNANDES NETO"));

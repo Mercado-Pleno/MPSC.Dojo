@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MPSC.Library.Aula.Curso;
+using MPSC.Library.Exemplos.QuestoesDojo;
 
-namespace MPSC.Library.TestesUnitarios.SolutionTest.Curso
+namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 {
 	[TestClass]
-	public class NumeroRomanoTest
+	public class TestandoNumeroRomano
 	{
 		[TestMethod]
 		public void Se_Instanciar_O_Numero_1_Deve_Retornar_I_eo_Valor_Deve_Ser_1()
