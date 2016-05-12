@@ -1,71 +1,94 @@
 ﻿using System;
-using System.Globalization;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MPSC.Library.Exemplos.QuestoesDojo
 {
 	public class AutorDeObraBibliografica
 	{
-
 		public String[] DividirEmNomes(String nome)
 		{
-			return nome.Split(new[] { " ", "\t", "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+			return new Autor(nome).Nomes;
 		}
 
 		public String SobreNome(String nome)
 		{
-			var nomes = DividirEmNomes(nome);
-			return nomes.Length > 0 ? SobreNomeComposto(nomes, nomes.Length - 1, nomes.Length > 2) : String.Empty;
+			return new Autor(nome).SobreNome;
 		}
 
 		public String PrimeirosNomes(String nome)
 		{
-			var nomes = DividirEmNomes(nome);
-			var sobreNome = DividirEmNomes(SobreNome(nome));
-			return String.Join(" ", nomes.Where(n => !In(n, sobreNome)));
+			return new Autor(nome).Nome;
 		}
 
 		public String Formatar(String nome)
 		{
-			var qtdNomes = DividirEmNomes(PrimeirosNomes(nome)).Length;
-			return qtdNomes > 0 ? String.Format("{0}, {1}", SobreNome(nome).ToUpper(), Capitalizar(PrimeirosNomes(nome))) : SobreNome(nome).ToUpper();
+			return new Autor(nome).Referencia;
 		}
 
-		private String Capitalizar(String nome)
+		public class Autor
 		{
-			var nomes = DividirEmNomes(nome.ToLower());
-			for (int i = 0; i < nomes.Length; i++)
+			public readonly String[] Nomes;
+			public readonly String[] SobreNomes;
+			public readonly String Nome;
+			public readonly String SobreNome;
+			public readonly String Referencia;
+
+			public Autor(String nome)
 			{
-				if (!In(nomes[i], "e", "da", "de", "do", "das", "dos"))
-					nomes[i] = ToFirstUpper(nomes[i]);
+				Nomes = DividirEmNomes(nome);
+				SobreNomes = (Nomes.Length > 0) ? SobreNomeComposto(Nomes, Nomes.Length - 1, Nomes.Length > 2).ToArray() : new String[0];
+
+				SobreNome = String.Join(" ", SobreNomes);
+				Nome = String.Join(" ", Nomes.Where(n => !In(n, SobreNomes)));
+
+				Referencia = (String.IsNullOrWhiteSpace(Nome)) ? SobreNome.ToUpper() : String.Format("{0}, {1}", SobreNome.ToUpper(), Capitalizar(Nome.ToLower()));
 			}
 
-			return String.Join(" ", nomes);
+			private String Capitalizar(String nome)
+			{
+				var nomes = DividirEmNomes(nome);
+				for (var i = 0; i < nomes.Length; i++)
+				{
+					if (!EhComplemento(nomes[i]))
+						nomes[i] = ToFirstUpper(nomes[i]);
+				}
+				return String.Join(" ", nomes);
+			}
+
+			private IEnumerable<String> SobreNomeComposto(String[] nomes, Int32 posicao, Boolean composto)
+			{
+				var sobreNome = nomes[posicao];
+				if (composto && EhComposto(sobreNome))
+					yield return nomes[posicao - 1];
+
+				yield return sobreNome;
+			}
+
+			private String ToFirstUpper(String nome)
+			{
+				return nome[0].ToString().ToUpper() + nome.Substring(1).ToLower();
+			}
+
+			private Boolean EhComplemento(String nome)
+			{
+				return In(nome.ToLower(), "e", "da", "de", "do", "das", "dos");
+			}
+
+			private Boolean EhComposto(String sobreNome)
+			{
+				return In(sobreNome.ToUpper(), "FILHO", "FILHA", "NETO", "NETA", "SOBRINHO", "SOBRINHA", "JUNIOR");
+			}
+
+			private Boolean In(String item, params String[] lista)
+			{
+				return lista.Contains(item);
+			}
+
+			public String[] DividirEmNomes(String nome)
+			{
+				return nome.Split(new[] { " ", "\t", "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+			}
 		}
-
-		private String ToFirstUpper(String nome)
-		{
-			return nome[0].ToString().ToUpper() + nome.Substring(1).ToLower();
-		}
-
-
-		private String SobreNomeComposto(String[] nomes, Int32 posicao, Boolean composto)
-		{
-			var sobreNome = nomes[posicao];
-			if (composto && EhComposto(sobreNome))
-				sobreNome = String.Format("{0} {1}", nomes[posicao - 1], nomes[posicao]);
-			return sobreNome;
-		}
-
-		private Boolean EhComposto(String sobreNome)
-		{
-			return In(sobreNome.ToUpper(), "FILHO", "FILHA", "NETO", "NETA", "SOBRINHO", "SOBRINHA", "JUNIOR");
-		}
-
-		private Boolean In(String sobreNome, params String[] sobrenomes)
-		{
-			return sobrenomes.Contains(sobreNome);
-		}
-
 	}
 }
