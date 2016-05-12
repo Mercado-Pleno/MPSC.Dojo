@@ -73,6 +73,7 @@
     <Compile Include="Curso\EspiralTest.cs" />
     <Compile Include="Curso\NumeroRomanoTest.cs" />
     <Compile Include="Exemplos\QuestoesDojo\TestandoLivrariaHarryPotter.cs" />
+    <Compile Include="Exemplos\QuestoesDojo\TestandoPalavrasPrimas.cs" />
     <Compile Include="InMemorySQL\InMemorySQLTest.cs" />
     <Compile Include="Office\ExcelTest.cs" />
     <Compile Include="Office\Planilha.cs" />
