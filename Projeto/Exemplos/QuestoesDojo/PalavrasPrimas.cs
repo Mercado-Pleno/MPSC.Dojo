@@ -4,6 +4,14 @@ using System.Text.RegularExpressions;
 
 namespace MPSC.Library.Exemplos.QuestoesDojo
 {
+	public class PalavrasPrimasRunner: IExecutavel
+	{
+		public void Executar()
+		{
+			throw new NotImplementedException();
+		}
+	}
+	
 	public class PalavrasPrimas
 	{
 		public Boolean EhPrima(String palavra)

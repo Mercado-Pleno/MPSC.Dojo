@@ -1,12 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace MPSC.Library.Aula.Curso
+namespace MPSC.Library.Exemplos.QuestoesDojo
 {
+	public class NumeroRomanoRunner : IExecutavel
+	{
+		public void Executar()
+		{
+		}
+	}
+
 	public abstract class NumeroRomano
 	{
-		public int Valor { get; set; }
+		public Int32 Valor { get; set; }
 		public String Caracter { get; private set; }
 
 		public NumeroRomano(int valor, String caracter)
@@ -92,10 +97,8 @@ namespace MPSC.Library.Aula.Curso
 		public Numero40() : base(new Numero10(), new Numero50()) { }
 	}
 
-
 	public class Numero49 : NumeroRomano
 	{
 		public Numero49() : base(new Numero40(), new Numero9()) { }
 	}
-
 }

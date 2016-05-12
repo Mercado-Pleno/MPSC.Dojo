@@ -4,6 +4,14 @@ using System.Linq;
 
 namespace MPSC.Library.Exemplos.QuestoesDojo
 {
+	public class LivrariaHarryPotterRunner: IExecutavel
+	{
+		public void Executar()
+		{
+			var livrariaHarryPotter = new LivrariaHarryPotter(42, 0, 5, 10, 15, 20);
+		}
+	}
+
 	public class LivrariaHarryPotter
 	{
 		private Decimal _valorCadaLivro = 42.00M;
