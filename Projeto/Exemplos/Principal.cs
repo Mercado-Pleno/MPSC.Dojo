@@ -85,7 +85,11 @@
 
 				new ItemMenu('8', "Questões e Treinamentos de DOJO (On-Line)",
 					new ItemMenu('1', "Gerador de Matriz Espiral", new MatrizEspiralRunner()),
-					new ItemMenu('2', "TestaPivot", new TestaPivot())
+					new ItemMenu('2', "Numero Romano", new NumeroRomanoRunner()),
+					new ItemMenu('3', "Autor De Obra Bibliográfica", new AutorDeObraBibliograficaRunner()),
+					new ItemMenu('4', "Livraria Do Harry Potter", new LivrariaHarryPotterRunner()),
+					new ItemMenu('5', "Palavras Primas", new PalavrasPrimasRunner()),
+					new ItemMenu('6', "TestaPivot", new TestaPivot())
 				),
 
 				new ItemMenu(esc, "Sair")

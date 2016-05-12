@@ -4,11 +4,35 @@ using System.Linq;
 
 namespace MPSC.Library.Exemplos.QuestoesDojo
 {
-	public class LivrariaHarryPotterRunner: IExecutavel
+	public class LivrariaHarryPotterRunner : IExecutavel
 	{
 		public void Executar()
 		{
+			Console.WriteLine("Informe os livos que tem a intenção de comprar:");
+			var livros = Perguntar();
 			var livrariaHarryPotter = new LivrariaHarryPotter(42, 0, 5, 10, 15, 20);
+			Console.WriteLine(livrariaHarryPotter.ValorAPagar(livros.ToArray()));
+		}
+
+
+		private IEnumerable<IntencaoDeCompra> Perguntar()
+		{
+			var livro = ".";
+			while (!String.IsNullOrEmpty(livro))
+			{
+				Console.Write("\r\nNome do Livro: ");
+				livro = Console.ReadLine();
+				if (!String.IsNullOrEmpty(livro))
+				{
+					Console.Write("Quantidade: ");
+					var qtd = Console.ReadLine();
+					var quantidade = qtd.Trim().All(c => Char.IsDigit(c)) ? Convert.ToInt32(qtd.Trim()) : 0;
+					if (quantidade > 0)
+						yield return new IntencaoDeCompra { Livro = livro.Trim(), Quantidade = quantidade };
+					else
+						livro = null;
+				}
+			}
 		}
 	}
 
