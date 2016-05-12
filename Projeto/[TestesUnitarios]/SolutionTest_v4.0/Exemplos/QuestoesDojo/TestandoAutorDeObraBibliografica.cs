@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MPSC.Library.Exemplos.QuestoesDojo;
 
 namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
