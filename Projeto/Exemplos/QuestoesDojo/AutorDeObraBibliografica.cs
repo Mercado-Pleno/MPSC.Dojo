@@ -67,7 +67,7 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 
 			private String ToFirstUpper(String nome)
 			{
-				return nome[0].ToString().ToUpper() + nome.Substring(1).ToLower();
+				return nome.Substring(0, 1).ToUpper() + nome.Substring(1).ToLower();
 			}
 
 			private Boolean EhComplemento(String nome)
