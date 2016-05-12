@@ -6,6 +6,14 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 {
 	public class AutorDeObraBibliograficaRunner : IExecutavel
 	{
+		public void Executar()
+		{
+			Console.Write("Informe um nome de autor: ");
+			var nome = Console.ReadLine();
+			var autor = new AutorDeObraBibliografica(nome);
+			Console.WriteLine("Esse autor deve ser referenciado assim: {0}", autor.Referencia);
+		}
+		
 		public String[] DividirEmNomes(String nome)
 		{
 			return new AutorDeObraBibliografica(nome).Nomes;
@@ -26,10 +34,6 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 			return new AutorDeObraBibliografica(nome).Referencia;
 		}
 
-		public void Executar()
-		{
-
-		}
 	}
 
 	public class AutorDeObraBibliografica

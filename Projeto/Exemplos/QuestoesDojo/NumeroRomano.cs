@@ -8,7 +8,9 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 	{
 		public void Executar()
 		{
-			var numero = Convert.ToInt32(Console.ReadLine());
+			Console.Write("Informe um número para representação em Algarísmos Romanos: ");
+			var num = Console.ReadLine();
+			var numero = num.Trim().All(c => Char.IsDigit(c)) ? Convert.ToInt32(num.Trim()) : 0;
 			var numeroRomano = NumeroRomano.Novo(numero);
 			Console.WriteLine(numeroRomano.ToString());
 		}
@@ -33,7 +35,7 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 		public static NumeroRomano Novo(Int32 numero)
 		{
 			var valorSemantico = 0;
-			var representacao = "";
+			var representacao = (numero == 0) ? "O" : String.Empty;
 			while (numero > 0)
 			{
 				var ultimoMenor = numerosRomanos.Last(nr => nr.ValorSemantico <= numero);
@@ -43,7 +45,7 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 			}
 			return new NumeroRomano(valorSemantico, representacao);
 		}
-		
+
 		private static readonly List<NumeroRomano> numerosRomanos = new List<NumeroRomano> 
 		{
 			new NumeroRomano(0001, "I"), new NumeroRomano(0004, "IV"), new NumeroRomano(0005, "V"), new NumeroRomano(0009, "IX"),

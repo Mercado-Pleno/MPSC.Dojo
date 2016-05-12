@@ -4,14 +4,18 @@ using System.Text.RegularExpressions;
 
 namespace MPSC.Library.Exemplos.QuestoesDojo
 {
-	public class PalavrasPrimasRunner: IExecutavel
+	public class PalavrasPrimasRunner : IExecutavel
 	{
 		public void Executar()
 		{
-			throw new NotImplementedException();
+			Console.Write("Informe uma palavra para saber se ela é prima ou não: ");
+			var palavra = Console.ReadLine();
+			var palavraPrima = new PalavrasPrimas();
+			var resultado = palavraPrima.EhPrima(palavra);
+			Console.WriteLine("A palavra {0} foi quantificada em {1} pontos e {2} uma palavra prima", palavra, palavraPrima.Quantificar(palavra), resultado ? "É" : "NÃO É");
 		}
 	}
-	
+
 	public class PalavrasPrimas
 	{
 		public Boolean EhPrima(String palavra)
