@@ -10,7 +10,7 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 		{
 			Console.Write("Informe um número para representação em Algarísmos Romanos: ");
 			var num = Console.ReadLine();
-			var numero = num.Trim().All(c => Char.IsDigit(c)) ? Convert.ToInt32(num.Trim()) : 0;
+			var numero = num.Trim().All(c => Char.IsDigit(c)) ? Convert.ToInt32("0" + num.Trim()) : 0;
 			var numeroRomano = NumeroRomano.Novo(numero);
 			Console.WriteLine(numeroRomano.ToString());
 		}
