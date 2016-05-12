@@ -95,6 +95,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestoesDojo\LivrariaHarryPotter.cs" />
     <Compile Include="QuestoesDojo\MatrizEspiral.cs" />
+    <Compile Include="QuestoesDojo\PalavrasPrimas.cs" />
     <Compile Include="Reflection\CloneUtil.cs" />
     <Compile Include="Service\ExtensionMethods.cs" />
     <Compile Include="Service\NTPClient.cs" />
