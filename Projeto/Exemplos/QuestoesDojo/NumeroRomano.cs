@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MPSC.Library.Exemplos.QuestoesDojo
 {
@@ -6,99 +8,48 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 	{
 		public void Executar()
 		{
+			var numero = Convert.ToInt32(Console.ReadLine());
+			var numeroRomano = NumeroRomano.Novo(numero);
+			Console.WriteLine(numeroRomano.ToString());
 		}
 	}
 
-	public abstract class NumeroRomano
+	public class NumeroRomano
 	{
-		public Int32 Valor { get; set; }
-		public String Caracter { get; private set; }
+		public Int32 ValorSemantico { get; private set; }
+		public String Representacao { get; private set; }
 
-		public NumeroRomano(int valor, String caracter)
+		private NumeroRomano(Int32 valorSemantico, String representacao)
 		{
-			Valor = valor;
-			Caracter = caracter;
+			ValorSemantico = valorSemantico;
+			Representacao = representacao;
 		}
 
-		protected NumeroRomano(NumeroRomano numeroAntes, NumeroRomano numeroDepois)
+		public override String ToString()
 		{
-			Valor = numeroAntes.Valor < numeroDepois.Valor ? numeroDepois.Valor - numeroAntes.Valor : numeroAntes.Valor + numeroDepois.Valor;
-			Caracter = numeroAntes.Caracter + numeroDepois.Caracter;
+			return String.Format("A representação do número {0} em Algarismos romanos é {1}", ValorSemantico, Representacao);
 		}
-	}
 
-	public class Numero1 : NumeroRomano
-	{
-		public Numero1() : base(1, "I") { }
-	}
-
-	public class Numero2 : NumeroRomano
-	{
-		public Numero2() : base(new Numero1(), new Numero1()) { }
-	}
-
-	public class Numero3 : NumeroRomano
-	{
-		public Numero3() : base(new Numero2(), new Numero1()) { }
-	}
-
-	public class Numero4 : NumeroRomano
-	{
-		public Numero4() : base(new Numero1(), new Numero5()) { }
-	}
-
-	public class Numero5 : NumeroRomano
-	{
-		public Numero5() : base(5, "V") { }
-	}
-
-	public class Numero6 : NumeroRomano
-	{
-		public Numero6() : base(new Numero5(), new Numero1()) { }
-	}
-
-	public class Numero7 : NumeroRomano
-	{
-		public Numero7() : base(new Numero5(), new Numero2()) { }
-	}
-
-	public class Numero8 : NumeroRomano
-	{
-		public Numero8() : base(new Numero5(), new Numero3()) { }
-	}
-
-	public class Numero9 : NumeroRomano
-	{
-		public Numero9() : base(new Numero1(), new Numero10()) { }
-	}
-
-	public class Numero10 : NumeroRomano
-	{
-		public Numero10() : base(10, "X") { }
-	}
-
-	public class Numero20 : NumeroRomano
-	{
-		public Numero20() : base(new Numero10(), new Numero10()) { }
-	}
-
-	public class Numero19 : NumeroRomano
-	{
-		public Numero19() : base(new Numero10(), new Numero9()) { }
-	}
-
-	public class Numero50 : NumeroRomano
-	{
-		public Numero50() : base(50, "L") { }
-	}
-
-	public class Numero40 : NumeroRomano
-	{
-		public Numero40() : base(new Numero10(), new Numero50()) { }
-	}
-
-	public class Numero49 : NumeroRomano
-	{
-		public Numero49() : base(new Numero40(), new Numero9()) { }
+		public static NumeroRomano Novo(Int32 numero)
+		{
+			var valorSemantico = 0;
+			var representacao = "";
+			while (numero > 0)
+			{
+				var ultimoMenor = numerosRomanos.Last(nr => nr.ValorSemantico <= numero);
+				valorSemantico += ultimoMenor.ValorSemantico;
+				representacao += ultimoMenor.Representacao;
+				numero -= ultimoMenor.ValorSemantico;
+			}
+			return new NumeroRomano(valorSemantico, representacao);
+		}
+		
+		private static readonly List<NumeroRomano> numerosRomanos = new List<NumeroRomano> 
+		{
+			new NumeroRomano(0001, "I"), new NumeroRomano(0004, "IV"), new NumeroRomano(0005, "V"), new NumeroRomano(0009, "IX"),
+			new NumeroRomano(0010, "X"), new NumeroRomano(0040, "XL"), new NumeroRomano(0050, "L"), new NumeroRomano(0090, "XC"),
+			new NumeroRomano(0100, "C"), new NumeroRomano(0400, "CD"), new NumeroRomano(0500, "D"), new NumeroRomano(0900, "CM"),
+			new NumeroRomano(1000, "M"), new NumeroRomano(4000, "iv"), new NumeroRomano(5000, "v"), new NumeroRomano(9000, "ix"),
+		};
 	}
 }
