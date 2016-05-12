@@ -19,27 +19,28 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 		{
 			var titulosDesagrupados = DesagruparTitulos(titulos);
 			var agrupamento = titulosDesagrupados.Distinct(IntencaoDeCompra.Comparador.Instancia).Count();
-			var conjunto = VerificarOMenorValor(agrupamento, titulosDesagrupados);
-
-			return CalcularValorDosConjutosDeLivros(conjunto);
+			return VerificarOMenorValor(agrupamento, titulosDesagrupados);
 		}
 
-		private IEnumerable<ConjuntoDeLivros> VerificarOMenorValor(Int32 agrupamento, params IntencaoDeCompra[] titulosDesagrupados)
+		private Decimal VerificarOMenorValor(Int32 agrupamento, params IntencaoDeCompra[] titulosDesagrupados)
 		{
 			if (agrupamento <= 0)
-				return new List<ConjuntoDeLivros>();
+				return 0.00M;
 			else if (agrupamento == 1)
-				return AgruparTitulosDiferentes(agrupamento, titulosDesagrupados);
+				return Calcular(agrupamento, titulosDesagrupados);
 			else
 			{
-				var conjunto1 = AgruparTitulosDiferentes(agrupamento, titulosDesagrupados);
-				var valor1 = CalcularValorDosConjutosDeLivros(conjunto1);
+				var valor1 = Calcular(agrupamento, titulosDesagrupados);
+				var valor2 = VerificarOMenorValor(agrupamento - 1, titulosDesagrupados);
 
-				var conjunto2 = VerificarOMenorValor(agrupamento - 1, titulosDesagrupados);
-				var valor2 = CalcularValorDosConjutosDeLivros(conjunto2);
-
-				return valor1 < valor2 ? conjunto1 : conjunto2;
+				return Math.Min(valor1, valor2);
 			}
+		}
+
+		public Decimal Calcular(Int32 quantidadeMaxima, params IntencaoDeCompra[] titulos)
+		{
+			var conjunto = AgruparTitulosDiferentes(quantidadeMaxima, titulos);
+			return CalcularValorDosConjutosDeLivros(conjunto);
 		}
 
 		private Decimal CalcularValorDosConjutosDeLivros(IEnumerable<ConjuntoDeLivros> conjuntos)
