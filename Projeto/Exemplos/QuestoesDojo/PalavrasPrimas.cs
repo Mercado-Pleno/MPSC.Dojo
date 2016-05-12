@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -7,8 +6,7 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 {
 	public class PalavrasPrimas
 	{
-
-		public Boolean EhUmaPalavraPrima(String palavra)
+		public Boolean EhPrima(String palavra)
 		{
 			if (Regex.IsMatch(palavra, "[a-zA-Z]"))
 			{
@@ -23,7 +21,7 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 			var EhPrimo = valor >= 2;
 			var maximo = Convert.ToInt64(Math.Sqrt(valor));
 
-			for (Int64 divisor = 2; EhPrimo && (divisor <= maximo); divisor++)
+			for (var divisor = 2; EhPrimo && (divisor <= maximo); divisor++)
 			{
 				EhPrimo = !EhDivisivel(valor, divisor);
 			}

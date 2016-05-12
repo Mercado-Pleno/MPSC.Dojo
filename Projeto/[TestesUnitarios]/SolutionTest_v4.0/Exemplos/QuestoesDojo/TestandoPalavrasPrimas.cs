@@ -105,7 +105,6 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 			Assert.IsTrue(palavrasPrimas.EhDivisivel(5, 5));
 		}
 
-
 		[TestMethod]
 		public void QuandoTestaUmaLetra()
 		{
@@ -138,6 +137,19 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 			Assert.AreEqual(50, palavrasPrimas.Quantificar('X'));
 			Assert.AreEqual(51, palavrasPrimas.Quantificar('Y'));
 			Assert.AreEqual(52, palavrasPrimas.Quantificar('Z'));
+		}
+
+		[TestMethod]
+		public void QuandoTestaUmaPalavra()
+		{
+			var palavrasPrimas = new PalavrasPrimas();
+			Assert.IsFalse(palavrasPrimas.EhPrima(""));
+			Assert.IsFalse(palavrasPrimas.EhPrima(" "));
+			Assert.IsFalse(palavrasPrimas.EhPrima("Bruno!"));
+			Assert.IsFalse(palavrasPrimas.EhPrima("Bruno Fernandes"));
+
+			Assert.IsTrue(palavrasPrimas.EhPrima("b"));
+			Assert.IsTrue(palavrasPrimas.EhPrima("Luani"));
 		}
 	}
 }
