@@ -38,8 +38,8 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 
 	public class LivrariaHarryPotter
 	{
-		private Decimal _valorCadaLivro = 42.00M;
-		private Decimal[] _descontosProgressivos;
+		private readonly Decimal _valorCadaLivro;
+		private readonly Decimal[] _descontosProgressivos;
 
 		public LivrariaHarryPotter(Decimal valorCadaLivro, params Decimal[] descontosPercentuaisProgressivos)
 		{

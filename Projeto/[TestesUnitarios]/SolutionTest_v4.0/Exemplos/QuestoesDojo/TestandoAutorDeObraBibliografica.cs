@@ -51,6 +51,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 			Assert.AreEqual("FERNANDES NETO, Antonio José de", autorDeObraBibliografica.Formatar("Antonio José de Fernandes Neto"));
 			Assert.AreEqual("FERNANDES NETO, Antonio José de", autorDeObraBibliografica.Formatar("ANTONIO JOSÉ DE FERNANDES NETO"));
 			Assert.AreEqual("FERNANDES NETO, Antonio José de", autorDeObraBibliografica.Formatar("antonio josé de fernandes neto"));
+			Assert.AreEqual("FERNANDES NETO, Antonio José de", autorDeObraBibliografica.Formatar("aNtOniO jOsÉ dE feRNANdes nEto"));
 
 			Assert.AreEqual("", autorDeObraBibliografica.Formatar(""));
 			Assert.AreEqual("FERNANDES", autorDeObraBibliografica.Formatar("Fernandes"));
