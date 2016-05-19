@@ -299,5 +299,16 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 				new IntencaoDeCompra { Livro = "E", Quantidade = 1 }));
 		}
 
+		[TestMethod]
+		public void QuandoCalculaACompraComOutrosValoresEEoutrosPercentuais2()
+		{
+			var livraria = new LivrariaHarryPotter(10.00M, 0M, 1M, 2M, 3M, 30M);
+			Assert.AreEqual(64.40M, livraria.ValorAPagar(
+				new IntencaoDeCompra { Livro = "A", Quantidade = 2 },
+				new IntencaoDeCompra { Livro = "B", Quantidade = 2 },
+				new IntencaoDeCompra { Livro = "C", Quantidade = 2 },
+				new IntencaoDeCompra { Livro = "D", Quantidade = 1 },
+				new IntencaoDeCompra { Livro = "E", Quantidade = 1 }));
+		}
 	}
 }
