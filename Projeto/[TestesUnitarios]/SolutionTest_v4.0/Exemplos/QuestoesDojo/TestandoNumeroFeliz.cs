@@ -320,5 +320,16 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 			Assert.IsFalse(numeroFeliz.EhFeliz(001, -1));
 		}
 
+		[TestMethod]
+		public void QuandoPerguntaSeNumerosEhSortudo()
+		{
+			var numeroFeliz = new NumeroFeliz();
+			Assert.IsTrue(numeroFeliz.EhSortudo(15, 0));
+			Assert.IsTrue(numeroFeliz.EhSortudo(15, 1));
+			Assert.IsTrue(numeroFeliz.EhSortudo(15, 2));
+			Assert.IsFalse(numeroFeliz.EhSortudo(15, 3));
+			Assert.IsFalse(numeroFeliz.EhSortudo(15, 4));
+			Assert.IsFalse(numeroFeliz.EhSortudo(15, 100));
+		}
 	}
 }
