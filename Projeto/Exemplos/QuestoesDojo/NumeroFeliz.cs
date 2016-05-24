@@ -8,31 +8,25 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 	{
 		public Boolean EhFeliz(Int64 numero, Int32 iteracoes)
 		{
-			return PosicaoDaFelicidade(numero, iteracoes) >= 0;
+			return IteracoesDeFelicidade(numero, iteracoes) >= 0;
 		}
 
-		public Int32 PosicaoDaFelicidade(Int64 numero, Int32 iteracoes)
+		public Int32 IteracoesDeFelicidade(Int64 numero, Int32 iteracoes)
 		{
-			var retorno = -1;
 			if ((numero == 1) && (iteracoes >= 0))
-				retorno = 0;
+				return 0;
 			else if ((numero > 1) && (iteracoes > 0))
 			{
-				var numeros = SepararNumeroEmDigitos(numero);
-				var novoNumero = numeros.Sum(n => n * n);
-				var ehFeliz = PosicaoDaFelicidade(novoNumero, iteracoes - 1);
-				retorno = ehFeliz + (ehFeliz >= 0 ? 1 : 0);
+				var digitos = ObterDigitos(numero);
+				var novoNumero = digitos.Sum(digito => digito * digito);
+				var ehFeliz = IteracoesDeFelicidade(novoNumero, iteracoes - 1);
+				return ehFeliz + (ehFeliz >= 0 ? 1 : 0);
 			}
 
-			return retorno;
+			return -1;
 		}
 
-		public IEnumerable<Int64> SepararNumeroEmDigitos(Int64 numero)
-		{
-			return ObterDigitos(numero).Reverse();
-		}
-
-		private IEnumerable<Int64> ObterDigitos(Int64 numero)
+		public IEnumerable<Int64> ObterDigitos(Int64 numero)
 		{
 			if (numero == 0L)
 				yield return numero;
@@ -40,7 +34,7 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 			{
 				while (numero > 0L)
 				{
-					yield return (numero % 10L);
+					yield return(numero % 10L);
 					numero = numero / 10L;
 				}
 			}
