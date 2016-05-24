@@ -96,6 +96,7 @@
     <Compile Include="QuestoesDojo\AutorDeObraBibliografica.cs" />
     <Compile Include="QuestoesDojo\LivrariaHarryPotter.cs" />
     <Compile Include="QuestoesDojo\MatrizEspiral.cs" />
+    <Compile Include="QuestoesDojo\NumeroFeliz.cs" />
     <Compile Include="QuestoesDojo\NumeroRomano.cs" />
     <Compile Include="QuestoesDojo\PalavrasPrimas.cs" />
     <Compile Include="Reflection\CloneUtil.cs" />
