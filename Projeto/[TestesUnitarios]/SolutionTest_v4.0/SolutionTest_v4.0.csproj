@@ -73,6 +73,7 @@
     <Compile Include="Exemplos\QuestoesDojo\TestandoMatrizEspiral.cs" />
     <Compile Include="Exemplos\QuestoesDojo\TestandoNumeroRomano.cs" />
     <Compile Include="Exemplos\QuestoesDojo\TestandoLivrariaHarryPotter.cs" />
+    <Compile Include="Exemplos\QuestoesDojo\TestandoNumeroSortudo.cs" />
     <Compile Include="Exemplos\QuestoesDojo\TestandoPalavrasPrimas.cs" />
     <Compile Include="Exemplos\QuestoesDojo\TestandoAutorDeObraBibliografica.cs" />
     <Compile Include="Exemplos\QuestoesDojo\TestandoNumeroFeliz.cs" />
