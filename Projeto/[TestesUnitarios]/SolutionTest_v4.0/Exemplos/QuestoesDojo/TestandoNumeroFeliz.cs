@@ -11,7 +11,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuantoPedePraSepararNumero0EmDigitos()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var digitos = numeroFeliz.SepararNumeroEmDigitos(0).ToArray();
+			var digitos = numeroFeliz.ObterDigitos(0).Reverse().ToArray();
 			Assert.AreEqual(1, digitos.Length);
 			Assert.AreEqual(0, digitos[0]);
 		}
@@ -20,7 +20,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuantoPedePraSepararNumero01EmDigitos()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var digitos = numeroFeliz.SepararNumeroEmDigitos(1).ToArray();
+			var digitos = numeroFeliz.ObterDigitos(1).Reverse().ToArray();
 			Assert.AreEqual(1, digitos.Length);
 			Assert.AreEqual(1, digitos[0]);
 		}
@@ -29,7 +29,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuantoPedePraSepararNumero05EmDigitos()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var digitos = numeroFeliz.SepararNumeroEmDigitos(5).ToArray();
+			var digitos = numeroFeliz.ObterDigitos(5).Reverse().ToArray();
 			Assert.AreEqual(1, digitos.Length);
 			Assert.AreEqual(5, digitos[0]);
 		}
@@ -38,7 +38,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuantoPedePraSepararNumero12EmDigitos()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var digitos = numeroFeliz.SepararNumeroEmDigitos(12).ToArray();
+			var digitos = numeroFeliz.ObterDigitos(12).Reverse().ToArray();
 			Assert.AreEqual(2, digitos.Length);
 			Assert.AreEqual(1, digitos[0]);
 			Assert.AreEqual(2, digitos[1]);
@@ -48,7 +48,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuantoPedePraSepararNumero123EmDigitos()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var digitos = numeroFeliz.SepararNumeroEmDigitos(123).ToArray();
+			var digitos = numeroFeliz.ObterDigitos(123).Reverse().ToArray();
 			Assert.AreEqual(3, digitos.Length);
 			Assert.AreEqual(1, digitos[0]);
 			Assert.AreEqual(2, digitos[1]);
@@ -59,7 +59,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuantoPedePraSepararNumero1234EmDigitos()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var digitos = numeroFeliz.SepararNumeroEmDigitos(1234).ToArray();
+			var digitos = numeroFeliz.ObterDigitos(1234).Reverse().ToArray();
 			Assert.AreEqual(4, digitos.Length);
 			Assert.AreEqual(1, digitos[0]);
 			Assert.AreEqual(2, digitos[1]);
@@ -71,7 +71,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuantoPedePraSepararNumero12345EmDigitos()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var digitos = numeroFeliz.SepararNumeroEmDigitos(12345).ToArray();
+			var digitos = numeroFeliz.ObterDigitos(12345).Reverse().ToArray();
 			Assert.AreEqual(5, digitos.Length);
 			Assert.AreEqual(1, digitos[0]);
 			Assert.AreEqual(2, digitos[1]);
@@ -84,7 +84,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuantoPedePraSepararNumero9223372036854775807EmDigitos()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var digitos = numeroFeliz.SepararNumeroEmDigitos(9223372036854775807).ToArray();
+			var digitos = numeroFeliz.ObterDigitos(9223372036854775807).Reverse().ToArray();
 			Assert.AreEqual(19, digitos.Length);
 			Assert.AreEqual(9, digitos[00]);
 			Assert.AreEqual(2, digitos[01]);
@@ -111,7 +111,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero01_100()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(1, 100);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(1, 100);
 			Assert.AreEqual(0, ehFeliz);
 		}
 
@@ -119,7 +119,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero10_100()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(10, 100);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(10, 100);
 			Assert.AreEqual(1, ehFeliz);
 		}
 
@@ -127,7 +127,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero130_100()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(130, 100);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(130, 100);
 			Assert.AreEqual(2, ehFeliz);
 		}
 
@@ -135,7 +135,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero97_100()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(97, 100);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(97, 100);
 			Assert.AreEqual(3, ehFeliz);
 		}
 
@@ -143,7 +143,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero49_100()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(49, 100);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(49, 100);
 			Assert.AreEqual(4, ehFeliz);
 		}
 
@@ -151,7 +151,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero07_100()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(07, 100);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(07, 100);
 			Assert.AreEqual(5, ehFeliz);
 		}
 
@@ -159,7 +159,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero01_0()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(1, 0);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(1, 0);
 			Assert.AreEqual(0, ehFeliz);
 		}
 
@@ -167,7 +167,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero10_0()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(10, 0);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(10, 0);
 			Assert.AreEqual(-1, ehFeliz);
 		}
 
@@ -175,7 +175,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero130_0()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(130, 0);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(130, 0);
 			Assert.AreEqual(-1, ehFeliz);
 		}
 
@@ -183,7 +183,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero97_0()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(97, 0);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(97, 0);
 			Assert.AreEqual(-1, ehFeliz);
 		}
 
@@ -191,7 +191,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero49_0()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(49, 0);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(49, 0);
 			Assert.AreEqual(-1, ehFeliz);
 		}
 
@@ -199,7 +199,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero07_0()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(07, 0);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(07, 0);
 			Assert.AreEqual(-1, ehFeliz);
 		}
 
@@ -207,7 +207,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero01_1()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(1, 1);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(1, 1);
 			Assert.AreEqual(0, ehFeliz);
 		}
 
@@ -215,7 +215,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero10_1()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(10, 1);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(10, 1);
 			Assert.AreEqual(1, ehFeliz);
 		}
 
@@ -223,7 +223,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero130_1()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(130, 1);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(130, 1);
 			Assert.AreEqual(-1, ehFeliz);
 		}
 
@@ -231,7 +231,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero97_1()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(97, 1);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(97, 1);
 			Assert.AreEqual(-1, ehFeliz);
 		}
 
@@ -239,7 +239,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero49_1()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(49, 1);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(49, 1);
 			Assert.AreEqual(-1, ehFeliz);
 		}
 
@@ -247,7 +247,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero07_1()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(07, 1);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(07, 1);
 			Assert.AreEqual(-1, ehFeliz);
 		}
 
@@ -256,7 +256,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero01_2()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(1, 2);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(1, 2);
 			Assert.AreEqual(0, ehFeliz);
 		}
 
@@ -264,7 +264,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero10_2()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(10, 2);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(10, 2);
 			Assert.AreEqual(1, ehFeliz);
 		}
 
@@ -272,7 +272,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero130_2()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(130, 2);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(130, 2);
 			Assert.AreEqual(2, ehFeliz);
 		}
 
@@ -280,7 +280,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero97_2()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(97, 2);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(97, 2);
 			Assert.AreEqual(-1, ehFeliz);
 		}
 
@@ -288,7 +288,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero49_2()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(49, 2);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(49, 2);
 			Assert.AreEqual(-1, ehFeliz);
 		}
 
@@ -296,7 +296,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPerguntaPeloNumero07_2()
 		{
 			var numeroFeliz = new NumeroFeliz();
-			var ehFeliz = numeroFeliz.PosicaoDaFelicidade(07, 2);
+			var ehFeliz = numeroFeliz.IteracoesDeFelicidade(07, 2);
 			Assert.AreEqual(-1, ehFeliz);
 		}
 
