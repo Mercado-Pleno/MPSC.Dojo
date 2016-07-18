@@ -81,6 +81,7 @@
     <Compile Include="Exemplos\QuestoesDojo\TestandoAutorDeObraBibliografica.cs" />
     <Compile Include="Exemplos\QuestoesDojo\TestandoNumeroFeliz.cs" />
     <Compile Include="Exemplos\Job\TestandoJobBase.cs" />
+    <Compile Include="Exemplos\QuestoesDojo\TestandoChequePorExtenso.cs" />
     <Compile Include="InMemorySQL\InMemorySQLTest.cs" />
     <Compile Include="Office\ExcelTest.cs" />
     <Compile Include="Office\Planilha.cs" />
