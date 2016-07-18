@@ -8,7 +8,7 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 	{
 		public void Executar()
 		{
-			Console.Write("Informe um número para representação em Algarísmos Romanos: ");
+			Console.Write("Informe um número para Escrever o cheque por extenso: ");
 			var num = Console.ReadLine();
 			var numero = num.Trim().All(c => Char.IsDigit(c) || c == ',') ? Convert.ToDecimal("0" + num.Trim()) : 0.0M;
 			var numeroRomano = ChequePorExtenso.Novo(numero);
