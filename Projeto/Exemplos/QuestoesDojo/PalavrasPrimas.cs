@@ -30,20 +30,34 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 
 		public Boolean EhPrimo(Int64 valor)
 		{
-			var EhPrimo = valor >= 2;
+			var ehPrimo = (valor == 2) || ((valor > 2) && (valor % 2 != 0));
 			var maximo = Convert.ToInt64(Math.Sqrt(valor));
 
-			for (var divisor = 2; EhPrimo && (divisor <= maximo); divisor++)
+			for (var divisor = 3; ehPrimo && (divisor <= maximo); divisor = Next(divisor + 2))
 			{
-				EhPrimo = !EhDivisivel(valor, divisor);
+				ehPrimo = !EhDivisivel(valor, divisor);
 			}
 
-			return EhPrimo;
+			return ehPrimo;
+		}
+
+		public Int32 Next(Int32 d)
+		{
+			var temp = 0;
+			while (temp != d)
+			{
+				temp = d;
+				if (d > 3 && (d % 3) == 0) d += 2;
+				if (d > 5 && (d % 5) == 0) d += 2;
+				if (d > 7 && (d % 7) == 0) d += 2;
+				if (d > 11 && (d % 11) == 0) d += 2;
+			}
+			return d;
 		}
 
 		public Boolean EhDivisivel(Int64 numerador, Int64 denominador)
 		{
-			return (denominador != 0) && ((numerador % denominador) == 0);
+			return (numerador % denominador) == 0;
 		}
 
 
