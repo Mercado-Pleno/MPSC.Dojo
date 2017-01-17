@@ -4,7 +4,6 @@
 
 	public class MiniSimuladorDePatos : IExecutavel
 	{
-
 		public void Executar()
 		{
 			Pato pato = new PatoSelvagem();
@@ -22,6 +21,10 @@
 			pato.FazerBarulho();
 			pato.Voar();
 
-		}
+            pato.SetBarulho(new Miar());
+            pato.Mostar();
+            pato.FazerBarulho();
+            pato.Voar();
+        }
 	}
 }

@@ -25,7 +25,12 @@
 			this.voador = voa;
 		}
 
-		public void FazerBarulho()
+        internal void SetBarulho(IBarulho barulho)
+        {
+            this.barulho = barulho;
+        }
+
+        public void FazerBarulho()
 		{
 			barulho.FazerBarulho();
 		}
