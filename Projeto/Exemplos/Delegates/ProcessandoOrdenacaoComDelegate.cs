@@ -22,12 +22,14 @@ namespace MPSC.Library.Exemplos.Delegates
 
 		public Boolean CompararPorVariosFatores(Pessoa p1, Pessoa p2)
 		{
-			if (p1.Nascimento != p2.Nascimento)
-				return p1.Nascimento < p2.Nascimento;
-			else if (p1.TempoExperiencia != p2.TempoExperiencia)
-				return p1.TempoExperiencia < p2.TempoExperiencia;
-			else
+			 if (p1.Idade != p2.Idade)
 				return p1.Idade < p2.Idade;
+			else if (p1.Nascimento != p2.Nascimento)
+				return p1.Nascimento > p2.Nascimento;
+			else if (p1.TempoExperiencia != p2.TempoExperiencia)
+				return p1.TempoExperiencia > p2.TempoExperiencia;
+			else
+				return p1.Nome.CompareTo(p2.Nome) > 0;
 		}
 	}
 
