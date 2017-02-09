@@ -1,0 +1,71 @@
+﻿Single Responsability Principle
+	Uma razão para mudar
+	Faça apenas uma coisa
+
+	Princípio muito vago
+	O que é uma responsabilidade única de qualquer maneira?
+	ETL: três responsabilidades ou uma?
+	Como você pode prever o que vai mudar?
+	
+	Escreva um código simples
+
+	Código simples é fácil de raciocinar
+	Pode facilmente a várias coisas relacionadas
+	Refatorar até que encaixe em sua cabeça
+	
+Open Closed Principle
+	Abra para extensão. Fechado para modificação
+	Quando os requisitos mudam, estenda o comportamento adicionando novo código, não altere o código que funciona
+	
+	Princípio de Acreção Cruft
+	Quando os requisitos mudam, O código existente está agora errado! Então substitua-o por um código que funcione
+	
+	Escreva um código simples
+
+	Código simples é fácil de alterar
+	Código simples é fácil de testar
+	Código simples é aberto e fechado
+	
+Liskov Substitution Principle
+	A substituição por um subtipo de comportamentamento forte preserva todas "Propriedades desejáveis" do tipo original "Provavelmente indecidível", mas útil
+	
+	Druckers Warning Principle
+	Não há nada tão inútil, como fazer com grande eficiência, algo que não deve ser feito em tudo
+	Preso na mentalidade de modelagem "é-um" e "tem-um"
+
+	Escreva um código simples
+
+	O que dizer de atos como um, pode ser usado como um?
+	A composição é mais simples do que a herança.
+	Tente evitar hierarquias de objeto completamente
+	
+Interface segregation pinciple
+	Muitas pequenas interfaces são melhores do que um grande objeto.
+	Projetar pequenas interfaces baseadas em papéis.
+	Nenhum cliente depende de métodos que não usa
+
+	stable door principle
+	Praticamente qualquer coisa é melhor do que um grande objeto
+	Desenhe pequenas classes baseadas em função
+	Nenhum cliente depende de métodos que não usa <- isso realmente é verdade!
+
+	Escreva um código simples
+
+	Não escreva objetos grandes em primeiro lugar
+	Escreva o código que cabe em sua cabeça
+	Se uma classe precisa de muitas interfaces, simplifique a classe
+
+Dependency Inversion Principle
+	Módulos de alto nível não devem depender de módulos de nível inferior
+	Abstração (por exemplo, interfaces) não deve depender de detalhes (por exemplo, implementações concretas)
+	
+	Objetivo errado
+	
+	Reutilização é sobrestimado, design para uso!
+	DIP leva a um tipo diferente de dependência, depende de frameworks de Injeção de Dependência
+	
+	Veja quão longe você consegue combinar classes simples!
+	Novo é o novo novo!
+	Monte em componentes menores que se encaixam em sua cabeça
+	
+SOLID é demais para lembrar ... basta escrever um código simples

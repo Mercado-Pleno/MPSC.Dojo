@@ -141,6 +141,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="PrincipiosSOLID\SOLID_pt-BR.txt" />
+    <Content Include="PrincipiosSOLID\SOLID_en-US.txt" />
     <Content Include="Transformacao\Serializacao\ValidacaoXmlByXsd.txt" />
     <Content Include="Utilidades\TypeScript.txt" />
     <Content Include="Utilidades\VerLog.asmx" />
