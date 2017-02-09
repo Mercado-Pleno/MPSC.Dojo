@@ -13,6 +13,7 @@
 	using MPSC.Library.Exemplos.Transformacao;
 	using MPSC.Library.Exemplos.Utilidades;
 	using MPSC.Library.Exemplos.Utilidades.Extensions;
+	using MPSC.Library.Exemplos.Delegates;
 
 	public interface IExecutavel
 	{
@@ -47,6 +48,7 @@
 				),
 
 				new ItemMenu('2', "Controle de Fluxo",
+					new ItemMenu('0', "Processando Ordenação Com Delegate", new ProcessandoOrdenacaoComDelegate()),
 					new ItemMenu('1', "Maquina de Estado", new ValidarTransicoesDeEstado()),
 					new ItemMenu('2', "Saber Quem Instanciou", new SaberQuemInstanciou()),
 					new ItemMenu('3', "Teste De Construtores Estaticos", new TesteDeConstrutoresEstaticos()),
