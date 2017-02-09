@@ -1,0 +1,71 @@
+﻿Single Responsability Principle
+	"One reason to change"
+	"Only do one thing"
+
+	Pointlessly Vague principle
+	What is a single responsibility anyway?
+	ETL: three responsibilities or one?
+	How can you predict what is going to change?
+	
+	Write Simple Code
+
+	Simple Code is easy to reason about
+	Can easily to several related things
+	Refactor until it fits in your head
+	
+Open Closed Principle
+	Open for extension. Closed for modification
+	when requirements change, extend behavior by adding new code, not change code that works
+	
+	Cruft Accretion Principle
+	when requirements change, the existing code is now wrong! So replace it with code that works.
+	
+	Write Simple Code
+
+	Simple Code is easy to change
+	Simple Code is easy to test
+	Simple Code is both open and closed
+	
+Liskov Substitution Principle
+	Strong Behavioral subTyping Substitution with a subType preserves all "desirable properties" of the original type "provably undecidable" but useful
+	
+	Druckers Warning Principle
+	there is nothing quite so useless, as doing	with great efficiency, something that should not be done at all.
+	Stuck in is-a and has-a modelling mindset
+
+	Write Simple Code
+
+	what about acts-like-a, can-be-used-as-a?
+	Composition is simpler than inheritance.
+	try to avoid object hierarchies altogether
+	
+Interface segregation pinciple
+	many small interfaces are better than one big object.
+	Design small, role-based interfaces.
+	No Client depends on methods it doesn't use
+
+	stable door pinciple
+	Practically anything is better than one big object.
+	Design small, role-based classes.
+	No Client depends on methods it doesn't use <- this is already true!!
+
+	Write Simple Code
+
+	dont write big objects in the first place.
+	write code that fits in your head.
+	if a class need lots of interfaces, simplify the class
+
+Dependency Inversion Principle
+	high-level modules should not depend on lower-level modules.
+	Abstraction (e.g. interfaces) should not depend on details (e.g. concrete implementations)
+	
+	wrong goal
+	
+	Reuse is overrated, design for use!
+	DIP leads to a different kind of dependency, dependency on DI frameworks
+	
+	See how far you get combining simple classes!
+	new is the new new! 
+	Assemble into smaller components that fit in your head
+	
+SOLID is too much to remember... Merely write a simple code!
