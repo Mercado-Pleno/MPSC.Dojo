@@ -31,22 +31,22 @@ namespace MPSC.Library.Exemplos
 
 	public static class Principal
 	{
+		public const Char ESC = (char)27;
 		public static void Main(String[] args)
 		{
 			var mainMenu = ObterMenuPrincipal();
-			var itemMenu = mainMenu.Mostrar();
+			var itemMenu = mainMenu.MostrarSub();
 			while ((itemMenu != null) && itemMenu.PossuiComando)
 			{
 				itemMenu.Executar();
-				itemMenu = mainMenu.Mostrar();
+				itemMenu = mainMenu.MostrarSub();
 			}
 		}
 
 
-		private static ListaMenu ObterMenuPrincipal()
+		private static ItemMenu ObterMenuPrincipal()
 		{
-			const char esc = (char)27;
-			return new ListaMenu(
+			return new ItemMenu('0', "",
 				new ItemMenu('1', "Banco de Dados",
 					new ItemMenu('1', "Sql Server",
 						new ItemMenu('1', "Como Pegar As Mensagens De Prints Do Sql Server", new ComoPegarAsMensagensDePrintsDoSqlServer())
@@ -103,7 +103,7 @@ namespace MPSC.Library.Exemplos
 					new ItemMenu('6', "TestaPivot", new TestaPivot())
 				),
 
-				new ItemMenu(esc, "Sair")
+				new ItemMenu(ESC, "Sair")
 			);
 		}
 	}
@@ -114,15 +114,16 @@ namespace MPSC.Library.Exemplos
 		private readonly String Descricao;
 		private readonly ListaMenu SubMenus;
 		private readonly IExecutavel Comando;
+		public ItemMenu Parent { get; internal set; }
 		public Boolean PossuiComando { get { return Comando != null; } }
 		public Boolean PossuiSubMenus { get { return SubMenus.Count > 0; } }
 
 		#region //Contrutores
-		public ItemMenu(Char codigo, String descricao) { Codigo = codigo; Descricao = descricao; SubMenus = new ListaMenu(); }
+		public ItemMenu(Char codigo, String descricao) { Codigo = codigo; Descricao = descricao; SubMenus = new ListaMenu(this); }
 
 		public ItemMenu(Char codigo, String descricao, IExecutavel comando) : this(codigo, descricao) { Comando = comando; }
 
-		public ItemMenu(Char codigo, String descricao, params ItemMenu[] menus) : this(codigo, descricao) { SubMenus.AddRange(menus); }
+		public ItemMenu(Char codigo, String descricao, params ItemMenu[] menus) : this(codigo, descricao) { SubMenus.AddRange(menus); SubMenus.ForEach(m => m.Parent = this); }
 
 		#endregion //Contrutores
 
@@ -152,18 +153,22 @@ namespace MPSC.Library.Exemplos
 
 	public class ListaMenu : List<ItemMenu>
 	{
-		public ListaMenu(params ItemMenu[] menus) : base(menus) { }
+		public readonly ItemMenu Parent;
+		public ListaMenu(ItemMenu parent, params ItemMenu[] menus) : base(menus) { Parent = parent; ForEach(m => m.Parent = parent); }
+
+		private void InternalShow(String primeiraOpcao)
+		{
+			Console.Clear();
+			Console.WriteLine(primeiraOpcao);
+			foreach (var item in this)
+				item.Mostrar();
+		}
 
 		public ItemMenu Mostrar()
 		{
-			Console.Clear();
-			foreach (var item in this)
-				item.Mostrar();
+			InternalShow("Selecione\r\n");
 
-			var itemMenu = EsperarUsuario();
-
-			Console.Clear();
-			return itemMenu;
+			return EsperarUsuario();
 		}
 
 		private ItemMenu EsperarUsuario()
@@ -171,10 +176,7 @@ namespace MPSC.Library.Exemplos
 			var itemMenu = Avaliar();
 			while (itemMenu == null)
 			{
-				Console.Clear();
-				Console.WriteLine("Opção inválida");
-				foreach (var item in this)
-					item.Mostrar();
+				InternalShow("Opção inválida\r\nSelecione\r\n");
 				itemMenu = Avaliar();
 			}
 
@@ -190,7 +192,7 @@ namespace MPSC.Library.Exemplos
 			while ((itemMenu != null) && itemMenu.PossuiSubMenus)
 				itemMenu = itemMenu.MostrarSub();
 
-			return itemMenu;
+			return (itemMenu == null) && (codigo == Principal.ESC) ? Parent.Parent : itemMenu;
 		}
 	}
 }
