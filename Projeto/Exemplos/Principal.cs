@@ -1,20 +1,29 @@
-﻿namespace MPSC.Library.Exemplos
-{
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using MPSC.Library.Exemplos.BancoDeDados;
-	using MPSC.Library.Exemplos.ControleDeFluxo;
-	using MPSC.Library.Exemplos.ControleDeFluxo.Reflection;
-	using MPSC.Library.Exemplos.DesignPattern.Strategy.Classes;
-	using MPSC.Library.Exemplos.Medidas;
-	using MPSC.Library.Exemplos.QuestoesDojo;
-	using MPSC.Library.Exemplos.Service;
-	using MPSC.Library.Exemplos.Transformacao;
-	using MPSC.Library.Exemplos.Utilidades;
-	using MPSC.Library.Exemplos.Utilidades.Extensions;
-	using MPSC.Library.Exemplos.Delegates;
+﻿using MPSC.Library.Exemplos.BancoDeDados;
+using MPSC.Library.Exemplos.ControleDeFluxo;
+using MPSC.Library.Exemplos.ControleDeFluxo.Reflection;
+using MPSC.Library.Exemplos.Delegates;
+using MPSC.Library.Exemplos.DesignPattern.Strategy.Classes;
+using MPSC.Library.Exemplos.Medidas;
+using MPSC.Library.Exemplos.QuestoesDojo;
+using MPSC.Library.Exemplos.Service;
+using MPSC.Library.Exemplos.Transformacao;
+using MPSC.Library.Exemplos.Utilidades;
+using MPSC.Library.Exemplos.Utilidades.Extensions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
+/*
+1) Site tipo OLX
+2) "Cozinhe com o que tem"
+3) Checkup de Autos
+4) "PetBook" (facebook de animais)
+5) Pesquisa de satisfação
+6) Implementação de um Jogo (dos pontos)
+*/
+
+namespace MPSC.Library.Exemplos
+{
 	public interface IExecutavel
 	{
 		void Executar();
@@ -24,19 +33,17 @@
 	{
 		public static void Main(String[] args)
 		{
-			ListaMenu mainMenu = MenuRepository();
-			ItemMenu itemMenu;
-			while (((itemMenu = mainMenu.Mostrar()) != null) && (itemMenu.Comando != null))
+			var mainMenu = ObterMenuPrincipal();
+			var itemMenu = mainMenu.Mostrar();
+			while ((itemMenu != null) && itemMenu.PossuiComando)
 			{
-				itemMenu.Comando.Executar();
-				var key = Console.ReadKey();
-				while ((key.Key != ConsoleKey.Escape) && (key.Key != ConsoleKey.Enter))
-					key = Console.ReadKey();
+				itemMenu.Executar();
+				itemMenu = mainMenu.Mostrar();
 			}
 		}
 
 
-		private static ListaMenu MenuRepository()
+		private static ListaMenu ObterMenuPrincipal()
 		{
 			const char esc = (char)27;
 			return new ListaMenu(
@@ -103,53 +110,57 @@
 
 	public class ItemMenu
 	{
-		public Char Codigo { get; set; }
-		public String Descricao { get; set; }
-		public ListaMenu Menus = new ListaMenu();
-		public IExecutavel Comando { get; set; }
+		private readonly Char Codigo;
+		private readonly String Descricao;
+		private readonly ListaMenu SubMenus;
+		private readonly IExecutavel Comando;
+		public Boolean PossuiComando { get { return Comando != null; } }
+		public Boolean PossuiSubMenus { get { return SubMenus.Count > 0; } }
 
 		#region //Contrutores
-		public ItemMenu(Char codigo, String descricao)
-		{
-			Codigo = codigo;
-			Descricao = descricao;
-		}
+		public ItemMenu(Char codigo, String descricao) { Codigo = codigo; Descricao = descricao; SubMenus = new ListaMenu(); }
 
-		public ItemMenu(Char codigo, String descricao, IExecutavel comando)
-			: this(codigo, descricao)
-		{
-			Comando = comando;
-		}
+		public ItemMenu(Char codigo, String descricao, IExecutavel comando) : this(codigo, descricao) { Comando = comando; }
 
-		public ItemMenu(Char codigo, String descricao, params ItemMenu[] menus)
-			: this(codigo, descricao)
-		{
-			foreach (var item in menus)
-				Menus.Add(item);
-		}
+		public ItemMenu(Char codigo, String descricao, params ItemMenu[] menus) : this(codigo, descricao) { SubMenus.AddRange(menus); }
+
 		#endregion //Contrutores
+
+		internal Boolean CodigoEhIgual(Char codigo)
+		{
+			return Codigo == codigo;
+		}
 
 		public void Mostrar()
 		{
 			Console.WriteLine(Codigo + " - " + Descricao);
 		}
+
+		internal ItemMenu MostrarSub()
+		{
+			return SubMenus.Mostrar();
+		}
+
+		public void Executar()
+		{
+			Comando.Executar();
+			var key = Console.ReadKey();
+			while ((key.Key != ConsoleKey.Escape) && (key.Key != ConsoleKey.Enter))
+				key = Console.ReadKey();
+		}
 	}
 
 	public class ListaMenu : List<ItemMenu>
 	{
-		public ListaMenu(params ItemMenu[] menus)
-		{
-			foreach (var item in menus)
-				this.Add(item);
-		}
+		public ListaMenu(params ItemMenu[] menus) : base(menus) { }
 
 		public ItemMenu Mostrar()
 		{
 			Console.Clear();
-			foreach (ItemMenu item in this)
+			foreach (var item in this)
 				item.Mostrar();
 
-			ItemMenu itemMenu = EsperarUsuario();
+			var itemMenu = EsperarUsuario();
 
 			Console.Clear();
 			return itemMenu;
@@ -157,12 +168,12 @@
 
 		private ItemMenu EsperarUsuario()
 		{
-			ItemMenu itemMenu = Avaliar();
+			var itemMenu = Avaliar();
 			while (itemMenu == null)
 			{
 				Console.Clear();
 				Console.WriteLine("Opção inválida");
-				foreach (ItemMenu item in this)
+				foreach (var item in this)
 					item.Mostrar();
 				itemMenu = Avaliar();
 			}
@@ -174,10 +185,10 @@
 		{
 			var codigo = Console.ReadKey().KeyChar;
 
-			ItemMenu itemMenu = this.FirstOrDefault(m => m.Codigo == codigo);
+			var itemMenu = this.FirstOrDefault(m => m.CodigoEhIgual(codigo));
 
-			while ((itemMenu != null) && (itemMenu.Menus != null) && (itemMenu.Menus.Count > 0))
-				itemMenu = itemMenu.Menus.Mostrar();
+			while ((itemMenu != null) && itemMenu.PossuiSubMenus)
+				itemMenu = itemMenu.MostrarSub();
 
 			return itemMenu;
 		}
