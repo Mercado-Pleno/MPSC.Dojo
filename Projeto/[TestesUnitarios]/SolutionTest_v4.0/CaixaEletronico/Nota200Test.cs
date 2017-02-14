@@ -1,9 +1,9 @@
-﻿using CaixaEletronico;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MP.Library.CaixaEletronico.Notas;
 
 namespace MPSC.Library.TestesUnitarios.SolutionTest
 {
-    [TestClass]
+	[TestClass]
     public class Nota200Test
     {
         [TestMethod]

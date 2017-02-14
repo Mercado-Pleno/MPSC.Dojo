@@ -61,6 +61,8 @@
     <Compile Include="Cache\MemoryCache\PoliticaDeRenovacaoDoCache.cs" />
     <Compile Include="Cache\MemoryCache\ProdutoCache.cs" />
     <Compile Include="Cache\TestandoContainer.cs" />
+    <Compile Include="CaixaEletronico\CaixaForteTest.cs" />
+    <Compile Include="CaixaEletronico\ClicloDeVida.cs" />
     <Compile Include="CaixaEletronico\Nota100Test.cs" />
     <Compile Include="CaixaEletronico\Nota10Test.cs" />
     <Compile Include="CaixaEletronico\Nota200Test.cs" />
@@ -70,9 +72,6 @@
     <Compile Include="CaixaEletronico\Nota5Test.cs" />
     <Compile Include="CaixaEletronico\NotaTest.cs" />
     <Compile Include="CaixaEletronico\SaqueTest.cs" />
-    <Compile Include="Exemplos\Job\CalculadoraDeRaizQuadrada.cs" />
-    <Compile Include="Exemplos\Job\JobBase.cs" />
-    <Compile Include="Exemplos\Job\outro.cs" />
     <Compile Include="Exemplos\QuestoesDojo\TestandoMatrizEspiral.cs" />
     <Compile Include="Exemplos\QuestoesDojo\TestandoNumeroRomano.cs" />
     <Compile Include="Exemplos\QuestoesDojo\TestandoLivrariaHarryPotter.cs" />
@@ -80,7 +79,6 @@
     <Compile Include="Exemplos\QuestoesDojo\TestandoPalavrasPrimas.cs" />
     <Compile Include="Exemplos\QuestoesDojo\TestandoAutorDeObraBibliografica.cs" />
     <Compile Include="Exemplos\QuestoesDojo\TestandoNumeroFeliz.cs" />
-    <Compile Include="Exemplos\Job\TestandoJobBase.cs" />
     <Compile Include="Exemplos\QuestoesDojo\TestandoChequePorExtenso.cs" />
     <Compile Include="InMemorySQL\InMemorySQLTest.cs" />
     <Compile Include="Office\ExcelTest.cs" />

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CaixaEletronico
+namespace MP.Library.CaixaEletronico.Notas
 {
 	public abstract class Nota : IComparable, IComparable<Nota>
 	{
-		public Int32 Valor { get; private set; }
+		public readonly Decimal Valor;
 
 		public Nota(Int32 valor)
 		{
@@ -14,7 +14,7 @@ namespace CaixaEletronico
 
 		public override String ToString()
 		{
-			return "R$ " + Valor.ToString() + ",00"; 
+			return "R$ " + Valor.ToString("0.00"); 
 		}
 
 		public IEnumerable<Nota> Clonar(Int32 quantidade)
@@ -33,15 +33,15 @@ namespace CaixaEletronico
 			var retorno = 0;
 			if (nota != null) 
 			{
-				if (this.Valor > nota.Valor)
+				if (Valor > nota.Valor)
 					retorno = 1;
-				else if (this.Valor < nota.Valor)
+				else if (Valor < nota.Valor)
 					retorno = -1;
 			}
 			return retorno;
 		}
 
-		public static implicit operator Int32(Nota nota)
+		public static implicit operator Decimal(Nota nota)
 		{
 			return nota.Valor;
 		}

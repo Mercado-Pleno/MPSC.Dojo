@@ -1,5 +1,5 @@
 ﻿
-namespace CaixaEletronico
+namespace MP.Library.CaixaEletronico.Notas
 {
 	public class Nota100 : Nota
 	{
