@@ -37,17 +37,19 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContCedulas.cs" />
-    <Compile Include="Nota200.cs" />
-    <Compile Include="Nota2.cs" />
-    <Compile Include="Nota5.cs" />
-    <Compile Include="Nota10.cs" />
-    <Compile Include="Nota20.cs" />
-    <Compile Include="Nota50.cs" />
-    <Compile Include="Nota100.cs" />
-    <Compile Include="Nota.cs" />
+    <Compile Include="CaixaForte.cs" />
+    <Compile Include="Cedulas.cs" />
+    <Compile Include="Notas\Nota200.cs" />
+    <Compile Include="Notas\Nota002.cs" />
+    <Compile Include="Notas\Nota005.cs" />
+    <Compile Include="Notas\Nota010.cs" />
+    <Compile Include="Notas\Nota020.cs" />
+    <Compile Include="Notas\Nota050.cs" />
+    <Compile Include="Notas\Nota100.cs" />
+    <Compile Include="Notas\Nota.cs" />
     <Compile Include="Saque.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaqueException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

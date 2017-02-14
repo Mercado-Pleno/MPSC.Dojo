@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MP.Library.CaixaEletronico.Notas;
+using System;
 using System.Linq;
-using CaixaEletronico;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MPSC.Library.TestesUnitarios.SolutionTest
 {
-    [TestClass()]
+	[TestClass()]
     public class NotaTest
     {
         [TestMethod()]
         public void Se_Clonar_10_Nota2_Deve_Retornar_10_Notas_de_2_Reais()
         {
-            var nota = new Nota2();
+            var nota = new Nota002();
             var quantidade = 10;
             var notas = nota.Clonar(quantidade);
 
@@ -23,7 +22,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest
         [TestMethod()]
         public void Se_Clonar_10_Nota5_Deve_Retornar_10_Notas_de_5_Reais()
         {
-			var nota = new Nota5();
+			var nota = new Nota005();
 			var quantidade = 10;
             var notas = nota.Clonar(quantidade);
 
@@ -34,7 +33,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest
         [TestMethod()]
         public void Se_Clonar_10_Nota10_Deve_Retornar_10_Notas_de_10_Reais()
         {
-			var nota = new Nota10();
+			var nota = new Nota010();
 			var quantidade = 10;
             var notas = nota.Clonar(quantidade);
 
@@ -45,7 +44,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest
         [TestMethod()]
         public void Se_Clonar_10_Nota20_Deve_Retornar_10_Notas_de_20_Reais()
         {
-			var nota = new Nota20();
+			var nota = new Nota020();
 			var quantidade = 10;
             var notas = nota.Clonar(quantidade);
 
@@ -56,7 +55,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest
         [TestMethod()]
         public void Se_Clonar_10_Nota50_Deve_Retornar_10_Notas_de_50_Reais()
         {
-			var nota = new Nota50();
+			var nota = new Nota050();
 			var quantidade = 10;
             var notas = nota.Clonar(quantidade);
 
@@ -78,8 +77,8 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest
         [TestMethod()]
         public void Se_Comparar_Uma_Nota_de_20_Reais_Com_Outra_Nota_De_10_Reais_a_Comparacao_Deve_Retornar_1_Positivo()
         {
-            var nota = new Nota20();
-            var obj = new Nota10();
+            var nota = new Nota020();
+            var obj = new Nota010();
 			var expected = 1;
 			var notas = nota.CompareTo(obj);
             Assert.AreEqual(expected, notas);
@@ -88,8 +87,8 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest
         [TestMethod()]
         public void Se_Comparar_Uma_Nota_de_20_Reais_Com_Outra_Nota_De_20_Reais_a_Comparacao_Deve_Retornar_Zero()
         {
-			var nota = new Nota20();
-			var obj = new Nota20();
+			var nota = new Nota020();
+			var obj = new Nota020();
 			var expected = 0;
 			var notas = nota.CompareTo(obj);
             Assert.AreEqual(expected, notas);
@@ -98,7 +97,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest
         [TestMethod()]
         public void Se_Comparar_Uma_Nota_de_20_Reais_Com_Nulo_a_Comparacao_Deve_Retornar_Zero()
         {
-			var nota = new Nota20();
+			var nota = new Nota020();
 			Object obj = null;
 			var expected = 0;
 			var notas = nota.CompareTo(obj);
@@ -108,7 +107,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest
         [TestMethod()]
         public void Se_Comparar_Uma_Nota_de_20_Reais_Com_Algum_Objeto_Que_Nao_Herda_De_Nota_a_Comparacao_Deve_Retornar_Zero()
         {
-			var nota = new Nota20();
+			var nota = new Nota020();
 			var obj = new Object();
 			var expected = 0;
 			var notas = nota.CompareTo(obj);
@@ -118,8 +117,8 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest
         [TestMethod()]
         public void Se_Comparar_Uma_Nota_de_20_Reais_Com_Outra_Nota_De_50_Reais_a_Comparacao_Deve_Retornar_1_Negativo()
         {
-            Nota nota = new Nota20();
-            object obj = new Nota50();
+            Nota nota = new Nota020();
+            object obj = new Nota050();
             int expected = -1;
             int notas = nota.CompareTo(obj);
             Assert.AreEqual(expected, notas);
@@ -128,7 +127,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest
         [TestMethod()]
         public void Quando_Converter_Uma_Nota_de_10_Reais_Em_String_Deve_Retornar_RS_10_00()
         {
-            Nota nota = new Nota10();
+            Nota nota = new Nota010();
             string expected = "R$ 10,00";
             string notas = nota.ToString();
             Assert.AreEqual(expected, notas);
@@ -137,7 +136,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest
         [TestMethod()]
         public void Quando_Converter_Uma_Nota_de_20_Reais_Em_String_Deve_Retornar_RS_20_00()
         {
-            Nota nota = new Nota20();
+            Nota nota = new Nota020();
             string expected = "R$ 20,00";
             string notas = nota.ToString();
             Assert.AreEqual(expected, notas);
@@ -146,7 +145,7 @@ namespace MPSC.Library.TestesUnitarios.SolutionTest
         [TestMethod()]
         public void Quando_Converter_Uma_Nota_de_50_Reais_Em_String_Deve_Retornar_RS_50_00()
         {
-            Nota nota = new Nota50();
+            Nota nota = new Nota050();
             string expected = "R$ 50,00";
             string notas = nota.ToString();
             Assert.AreEqual(expected, notas);

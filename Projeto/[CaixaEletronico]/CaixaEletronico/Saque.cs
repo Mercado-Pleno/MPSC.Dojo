@@ -1,44 +1,43 @@
-﻿using System;
+﻿using MP.Library.CaixaEletronico;
+using MP.Library.CaixaEletronico.Notas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CaixaEletronico
+namespace MP.Library.CaixaEletronico
 {
 	public class Saque
 	{
-		private List<Nota> notasDisponiveis;
+		private CaixaForte caixaForte;
+		private IEnumerable<Cedulas> cedulasDisponiveis { get { return caixaForte.ObterCedulasDisponiveis(); } }
 
-		public Saque()
+		public Saque(CaixaForte caixaForte)
 		{
-			notasDisponiveis = new List<Nota>();
-			notasDisponiveis.Add(new Nota100());
-			notasDisponiveis.Add(new Nota50());
-			notasDisponiveis.Add(new Nota20());
-			notasDisponiveis.Add(new Nota10());
+			this.caixaForte = caixaForte;
 		}
 
-		public List<Nota> Sacar(int valor)
+		public List<Nota> Sacar(Decimal valor)
 		{
 			List<Nota> notas = new List<Nota>();
 
 			Nota menorNota = MenorNotaDisponivel();
 			if (valor < menorNota.Valor)
-				throw new ArgumentOutOfRangeException("valor", valor, "O valor do saque não pode ser menor que " + menorNota.ToString());
+				throw new SaqueException(String.Format("O valor do saque R$ {0:0.00} não pode ser menor que {1}", valor, menorNota.ToString()));
 			else
 			{
-				int valorRestante = valor;
-				Nota nota = MaiorNotaDisponivel();
+				var valorRestante = valor;
+				var nota = MaiorNotaDisponivel();
 				while ((valorRestante >= menorNota.Valor) && (nota != null))
 				{
-					int quantidade = (valorRestante / nota.Valor);
+					int quantidade = Convert.ToInt32(valorRestante) / Convert.ToInt32(nota.Valor);
 					valorRestante -= (quantidade * nota.Valor);
 					notas.AddRange(nota.Clonar(quantidade));
 
 					nota = ObterMaiorNotaMenorQueAtual(nota);
 				}
 
-				if (valorRestante != 0)
-					throw new ArgumentOutOfRangeException("valor", valor, "O valor do saque não é um múltiplo de " + menorNota.ToString());
+				if (valorRestante != Decimal.Zero)
+					throw new SaqueException(String.Format("O valor do saque {0} não é um múltiplo de {1}", valor, menorNota.ToString()));
 			}
 
 			return notas;
@@ -46,12 +45,12 @@ namespace CaixaEletronico
 
 		private Nota ObterMaiorNotaMenorQueAtual(Nota nota)
 		{
-			return notasDisponiveis.Where(n => n.Valor < nota.Valor).Max(n => n);
+			return cedulasDisponiveis.Where(c => c.Nota.Valor < nota.Valor).Max(c => c.Nota);
 		}
 
 		public Nota MenorNotaDisponivel()
 		{
-			Nota menorNota = notasDisponiveis.Min(n => n);
+			Nota menorNota = cedulasDisponiveis.Min(c => c.Nota);
 
 			if (menorNota == null)
 				throw new ArgumentNullException("NotasDisponiveis", "As cédulas disponiveis para saque não foram inicializadas!");
@@ -61,7 +60,7 @@ namespace CaixaEletronico
 
 		public Nota MaiorNotaDisponivel()
 		{
-			Nota maiorNota = notasDisponiveis.Max(n => n);
+			Nota maiorNota = cedulasDisponiveis.Max(c => c.Nota);
 
 			if (maiorNota == null)
 				throw new ArgumentNullException("NotasDisponiveis", "As cédulas disponiveis para saque não foram inicializadas!");
@@ -69,5 +68,5 @@ namespace CaixaEletronico
 			return maiorNota;
 		}
 
-	}
+	} 
 }

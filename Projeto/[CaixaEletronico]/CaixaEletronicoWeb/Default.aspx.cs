@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using CaixaEletronico;
+﻿using MP.Library.CaixaEletronico;
+using MP.Library.CaixaEletronico.Notas;
+using System;
 
 namespace CaixaEletronicoWeb
 {
@@ -30,13 +30,14 @@ namespace CaixaEletronicoWeb
 			lblInformativo.Text = "";
 			lbListadeNotas.Items.Clear();
 
-			Saque saque = new Saque();
+			var caixaForte = new CaixaForte();
+			caixaForte.Inicializar();
+			Saque saque = new Saque(caixaForte);
 			try
 			{
 				Int32 vValorSaque = valorDesejado();
 
-				List<Nota> notas = saque.Sacar(vValorSaque);
-
+				var notas = saque.Sacar(vValorSaque);
 				foreach (Nota nota in notas)
 					lbListadeNotas.Items.Add(nota.ToString());
 
