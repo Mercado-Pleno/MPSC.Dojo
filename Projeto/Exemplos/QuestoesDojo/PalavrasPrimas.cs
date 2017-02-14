@@ -57,7 +57,7 @@ namespace MPSC.Library.Exemplos.QuestoesDojo
 
 		public Boolean EhDivisivel(Int64 numerador, Int64 denominador)
 		{
-			return (numerador % denominador) == 0;
+			return (denominador != 0) && ((numerador % denominador) == 0);
 		}
 
 
