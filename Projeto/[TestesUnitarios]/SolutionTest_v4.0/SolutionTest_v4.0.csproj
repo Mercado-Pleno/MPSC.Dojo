@@ -72,6 +72,7 @@
     <Compile Include="CaixaEletronico\Nota5Test.cs" />
     <Compile Include="CaixaEletronico\NotaTest.cs" />
     <Compile Include="CaixaEletronico\SaqueTest.cs" />
+    <Compile Include="Exemplos\QuestoesDojo\AlgoritmoVersionamento\TestandoVersionador.cs" />
     <Compile Include="Exemplos\QuestoesDojo\TestandoMatrizEspiral.cs" />
     <Compile Include="Exemplos\QuestoesDojo\TestandoNumeroRomano.cs" />
     <Compile Include="Exemplos\QuestoesDojo\TestandoLivrariaHarryPotter.cs" />
