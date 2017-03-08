@@ -597,5 +597,37 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 			Assert.AreEqual(198, matriz.Cast<int>().Max());
 			Assert.AreEqual(198, matriz.Cast<int>().Distinct().Count());
 		}
+
+		[TestMethod]
+		public void DeveDispararExcecao()
+		{
+			var ex = ThrowsAssert.Que<DivideByZeroException>(() => dividir(5, 0));
+			Assert.IsTrue(ex is DivideByZeroException);
+		}
+
+		private int dividir(int a, int b)
+		{
+			return a / b;
+		}
+	}
+
+	public static class ThrowsAssert
+	{
+		public static Exception Que<TException>(Action code) where TException : Exception
+		{
+			try
+			{
+				code();
+				Assert.Fail();
+				return null;
+			}
+			catch (Exception exception)
+			{
+				if (exception is TException)
+					return exception;
+				else
+					throw exception;
+			}
+		}
 	}
 }
