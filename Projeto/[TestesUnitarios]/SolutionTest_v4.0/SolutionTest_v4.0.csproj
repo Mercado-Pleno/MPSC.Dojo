@@ -11,7 +11,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MP.Library.TestesUnitarios.SolutionTest_v4</RootNamespace>
     <AssemblyName>MP.Library.TestesUnitarios.SolutionTest_v4</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkProfile />
@@ -43,12 +43,21 @@
     <Reference Include="DocumentFormat.OpenXml">
       <HintPath>..\..\Lib\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
+    <Reference Include="IBM.Data.DB2.iSeries, Version=12.0.0.0, Culture=neutral, PublicKeyToken=9cdb2ebfb1f93a26, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\IBM.Data.DB2.iSeries.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.HostIntegration.MsDb2Client, Version=7.0.2300.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Microsoft.HostIntegration.MsDb2Client.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="MPSC.LBJC.IoC">
       <HintPath>..\..\FrameWork\MPSC.LBJC.IoC.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +81,8 @@
     <Compile Include="CaixaEletronico\Nota5Test.cs" />
     <Compile Include="CaixaEletronico\NotaTest.cs" />
     <Compile Include="CaixaEletronico\SaqueTest.cs" />
+    <Compile Include="Exemplos\Arquivos\TestandoArquivo.cs" />
+    <Compile Include="Exemplos\BancoDeDados\TestandoCamposBlobNoIbmDb2.cs" />
     <Compile Include="Exemplos\QuestoesDojo\AlgoritmoVersionamento\TestandoVersionador.cs" />
     <Compile Include="Exemplos\QuestoesDojo\TestandoMatrizEspiral.cs" />
     <Compile Include="Exemplos\QuestoesDojo\TestandoNumeroRomano.cs" />
@@ -92,7 +103,7 @@
       <Name>Exemplos</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\[Aula]\Curso.csproj">
-      <Project>{11D9B5F9-3478-47CA-9445-ED102A18317E}</Project>
+      <Project>{11d9b5f9-3478-47ca-9445-ed102a18317e}</Project>
       <Name>Curso</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\[CaixaEletronico]\CaixaEletronico\CaixaEletronico.csproj">
