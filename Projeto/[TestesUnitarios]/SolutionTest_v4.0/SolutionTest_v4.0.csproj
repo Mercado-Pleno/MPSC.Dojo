@@ -82,6 +82,7 @@
     <Compile Include="CaixaEletronico\NotaTest.cs" />
     <Compile Include="CaixaEletronico\SaqueTest.cs" />
     <Compile Include="Exemplos\Arquivos\TestandoArquivo.cs" />
+    <Compile Include="Exemplos\Arquivos\TestandoApagadorDeBackup.cs" />
     <Compile Include="Exemplos\BancoDeDados\TestandoCamposBlobNoIbmDb2.cs" />
     <Compile Include="Exemplos\QuestoesDojo\AlgoritmoVersionamento\TestandoVersionador.cs" />
     <Compile Include="Exemplos\QuestoesDojo\TestandoMatrizEspiral.cs" />
@@ -98,6 +99,10 @@
     <Compile Include="Serializador\SerializadorTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Einstein\Einstein.csproj">
+      <Project>{f51141a4-ccfe-413d-8aac-ee669440fded}</Project>
+      <Name>Einstein</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Exemplos\Exemplos.csproj">
       <Project>{EC3FFAC1-2161-4CBE-9A29-A020686E466E}</Project>
       <Name>Exemplos</Name>
