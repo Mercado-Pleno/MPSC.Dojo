@@ -10,6 +10,28 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.Arquivos
 	public class TestandoArquivo
 	{
 		[TestMethod]
+		public void QuandoPedePraCopiarSomenteArquivosExistentesNoDestino()
+		{
+			var diretorioOrigem = new DirectoryInfo(@"D:\Prj\eSis\proj-individuais\Schedules\");
+			var diretorioDestino = new DirectoryInfo(@"\\svdatfs01\Sistemas\bNogueira\eSis.Individual_FIX_Reajuste\Schedules\");
+
+			var filesDestino = diretorioDestino.GetFiles("*.*", SearchOption.TopDirectoryOnly);
+			var filesOrigem = diretorioOrigem.GetFiles("*.*", SearchOption.TopDirectoryOnly);
+
+			var arquivos = filesOrigem.Join(
+				filesDestino, 
+				ori => ori.Name, 
+				des => des.Name, 
+				(ori, des) => new { ori, des }
+			).ToArray();
+
+			foreach (var arq in arquivos)
+			{
+				arq.ori.CopyTo(arq.des.FullName, true);
+			}
+		}
+
+		[TestMethod]
 		public void QuandoPedePraJuntarVariosArquivosEmUmSo()
 		{
 			var diretorioOrigem = new DirectoryInfo(@"C:\Temp\ICATU");
