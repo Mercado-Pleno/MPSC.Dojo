@@ -9,25 +9,62 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.Arquivos
 	[TestClass]
 	public class TestandoArquivo
 	{
+		class DualFileInfo
+		{
+			public readonly FileInfo Origem;
+			public readonly FileInfo Destino;
+
+			private DualFileInfo(FileInfo origem, FileInfo destino)
+			{
+				Origem = origem;
+				Destino = destino;
+			}
+
+			internal static DualFileInfo Create(FileInfo origem, FileInfo destino)
+			{
+				return new DualFileInfo(origem, destino);
+			}
+		}
+
+		class DualDirectoryInfo
+		{
+			public readonly DirectoryInfo Origem;
+			public readonly DirectoryInfo Destino;
+
+			public DualDirectoryInfo(String origem, String destino)
+			{
+				Origem = new DirectoryInfo(origem);
+				Destino = new DirectoryInfo(destino);
+
+				if (!Origem.Exists) Origem.Create();
+				if (!Destino.Exists) Destino.Create();
+			}
+		}
+
 		[TestMethod]
 		public void QuandoPedePraCopiarSomenteArquivosExistentesNoDestino()
 		{
-			var diretorioOrigem = new DirectoryInfo(@"D:\Prj\eSis\proj-individuais\Schedules\");
-			var diretorioDestino = new DirectoryInfo(@"\\svdatfs01\Sistemas\bNogueira\eSis.Individual_FIX_Reajuste\Schedules\");
+			var eSis = new DualDirectoryInfo(@"D:\Prj\eSis\proj-individuais\Schedules\",
+				@"\\svdatfs01\Sistemas\bNogueira\Fix.Reajuste.eSis.SicApp26\Schedules\");
 
-			var filesDestino = diretorioDestino.GetFiles("*.*", SearchOption.TopDirectoryOnly);
-			var filesOrigem = diretorioOrigem.GetFiles("*.*", SearchOption.TopDirectoryOnly);
+			var eSim = new DualDirectoryInfo(@"D:\Prj\eSim\proj-individuais\proj-individuais\Schedules\",
+				@"\\svdatfs01\Sistemas\bNogueira\Fix.Reajuste.eSim.SvDatApp11\Schedules\");
 
-			var arquivos = filesOrigem.Join(
-				filesDestino, 
-				ori => ori.Name, 
-				des => des.Name, 
-				(ori, des) => new { ori, des }
-			).ToArray();
+			Copiar(eSis);
+			Copiar(eSim);
+		}
 
-			foreach (var arq in arquivos)
+		private static void Copiar(DualDirectoryInfo dir)
+		{
+			var arquivosOrigem = dir.Origem.GetFiles("*.*", SearchOption.TopDirectoryOnly);
+			var arquivosDestino = dir.Destino.GetFiles("*.*", SearchOption.TopDirectoryOnly);
+
+			var arquivos = arquivosOrigem.Join(arquivosDestino, o => o.Name, d => d.Name, DualFileInfo.Create).ToArray();
+
+			foreach (var arquivo in arquivos)
 			{
-				arq.ori.CopyTo(arq.des.FullName, true);
+				Console.WriteLine(arquivo.Destino.Name);
+				arquivo.Origem.CopyTo(arquivo.Destino.FullName, true);
 			}
 		}
 
