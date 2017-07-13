@@ -31,7 +31,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.Arquivos
 			public readonly DirectoryInfo Origem;
 			public readonly DirectoryInfo Destino;
 
-			public DualDirectoryInfo(String origem, String destino)
+			public DualDirectoryInfo(String origem, String destino, params String[] servidor)
 			{
 				Origem = new DirectoryInfo(origem);
 				Destino = new DirectoryInfo(destino);
@@ -42,15 +42,24 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.Arquivos
 		}
 
 		[TestMethod]
-		public void QuandoPedePraCopiarSomenteArquivosExistentesNoDestino()
+		public void QuandoPedePraCopiarSomenteArquivosExistentesNoDestino_Sicoob()
 		{
-			var eSis = new DualDirectoryInfo(@"D:\Prj\eSis\proj-individuais\Schedules\",
-				@"\\svdatfs01\Sistemas\bNogueira\Fix.Reajuste.eSis.SicApp26\Schedules\");
-
-			var eSim = new DualDirectoryInfo(@"D:\Prj\eSim\proj-individuais\proj-individuais\Schedules\",
-				@"\\svdatfs01\Sistemas\bNogueira\Fix.Reajuste.eSim.SvDatApp11\Schedules\");
+			var eSis = new DualDirectoryInfo(@"D:\Prj\17062\proj-individuais\Schedules\",
+				@"\\svdatfs01\Sistemas\bNogueira\Fix17062.Reajuste.eSis.SicApp26\Schedules\",
+				@"\\SicApp26\E$\Jobs\eSim\Individual_Fix_Reajuste17062\"
+			);
 
 			Copiar(eSis);
+		}
+
+		[TestMethod]
+		public void QuandoPedePraCopiarSomenteArquivosExistentesNoDestino_Mongeral()
+		{
+			var eSim = new DualDirectoryInfo(@"D:\Prj\17283\proj-individuais\Schedules\",
+				@"\\svdatfs01\Sistemas\bNogueira\Fix17283.Reajuste.eSim.SvDatApp11\Schedules\",
+				@"\\SvDatApp11\E$\Jobs\eSim\Individual_Fix.Reajuste17283\"
+			);
+
 			Copiar(eSim);
 		}
 
