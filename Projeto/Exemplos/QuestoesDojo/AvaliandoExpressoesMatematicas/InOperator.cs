@@ -10,6 +10,11 @@ namespace MPSC.Library.Exemplos.QuestoesDojo.AvaliandoExpressoesMatematicas
 			return string.Join(join, lista);
 		}
 
+		public static bool In<T>(this T self, params T[] lista)
+		{
+			return lista.Contains(self);
+		}
+
 		public static int IndexOfAny<T>(this IEnumerable<T> self, bool tokenPriority, params T[] tokens)
 		{
 			var retorno = -1;

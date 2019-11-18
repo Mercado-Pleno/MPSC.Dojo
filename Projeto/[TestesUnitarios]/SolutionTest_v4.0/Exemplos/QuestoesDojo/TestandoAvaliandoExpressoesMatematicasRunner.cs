@@ -53,9 +53,26 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		}
 
 		[TestMethod]
-		public void QuandoPedeParaFormulaCalcularUmaExpressao_DeveRetornarOValorCorreto_07()
+		public void QuandoPedeParaFormulaCalcularExpressao5ElevadoA4aPotencia_DeveRetornar625()
 		{
 			CalcularUmaExpressaoVerificandoValorDeRetorno(625M, "5 ^ 4");
+		}
+
+		[TestMethod]
+		public void QuandoPedeParaFormulaCalcularExpressao5Modulo2_DeveRetornar1()
+		{
+			CalcularUmaExpressaoVerificandoValorDeRetorno(1M, "5 % 2");
+		}
+
+		[TestMethod]
+		public void QuandoPedeParaFormulaCalcularExpressao2Menos5_DeveRetornarMenos3()
+		{
+			CalcularUmaExpressaoVerificandoValorDeRetorno(-3M, "2 - 5");
+			CalcularUmaExpressaoVerificandoValorDeRetorno(-3M, "- 5 + 2");
+			CalcularUmaExpressaoVerificandoValorDeRetorno(+7M, "-- 5 + 2");
+			CalcularUmaExpressaoVerificandoValorDeRetorno(-3M, "--- 5 + 2");
+			CalcularUmaExpressaoVerificandoValorDeRetorno(+7M, "2 - -5");
+			CalcularUmaExpressaoVerificandoValorDeRetorno(-7M, "- 5 + -2");
 		}
 
 		private void CalcularUmaExpressaoVerificandoValorDeRetorno(decimal valorEsperado, string expressao)

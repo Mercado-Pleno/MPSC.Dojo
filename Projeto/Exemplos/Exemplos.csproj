@@ -85,7 +85,6 @@
     <Compile Include="QuestoesDojo\AlgoritmoVersionamento\Arquivo.cs" />
     <Compile Include="QuestoesDojo\AutorDeObraBibliografica.cs" />
     <Compile Include="QuestoesDojo\AvaliandoExpressoesMatematicasRunner.cs" />
-    <Compile Include="QuestoesDojo\AvaliandoExpressoesMatematicas\Analisador.cs" />
     <Compile Include="QuestoesDojo\AvaliandoExpressoesMatematicas\Elementos.cs" />
     <Compile Include="QuestoesDojo\AvaliandoExpressoesMatematicas\Expressao.cs" />
     <Compile Include="QuestoesDojo\AvaliandoExpressoesMatematicas\Formula.cs" />

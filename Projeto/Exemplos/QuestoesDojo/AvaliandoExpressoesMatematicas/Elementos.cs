@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MPSC.Library.Exemplos.QuestoesDojo.AvaliandoExpressoesMatematicas
@@ -13,6 +14,7 @@ namespace MPSC.Library.Exemplos.QuestoesDojo.AvaliandoExpressoesMatematicas
 
 		public Elementos(string expressao)
 		{
+			expressao = expressao.Replace(" ", "");
 			while (!string.IsNullOrWhiteSpace(expressao))
 			{
 				var index = expressao.IndexOfAny(OperacaoFactory.Tokens);
@@ -27,6 +29,37 @@ namespace MPSC.Library.Exemplos.QuestoesDojo.AvaliandoExpressoesMatematicas
 				if (!string.IsNullOrWhiteSpace(elemento))
 					Add(elemento);
 			}
+
+			while (TemSinalDuplicado(out var index))
+			{
+				var sinal = this[index];
+				RemoveAt(index);
+				this[index] = sinal + this[index];
+			}
+		}
+
+		private bool TemSinalDuplicado(out int index)
+		{
+			index = -1;
+			if (this.FirstOrDefault().All(c => c == '-'))
+			{
+				index = 0;
+				return true;
+			}
+			else
+			{
+				var i = 2;
+				while (i < Count)
+				{
+					if (this[i].All(c => Char.IsDigit(c)) && this[i - 1].All(c => c.In('+', '-')) && this[i - 2].All(c => c.In('^', '*', '/', '%', '+', '-')))
+					{
+						index = i - 1;
+						return true;
+					}
+					i++;
+				}
+			}
+			return false;
 		}
 
 		public void Simplificar(int expressaoStart, int expressaoCount, string expressao)
@@ -43,7 +76,7 @@ namespace MPSC.Library.Exemplos.QuestoesDojo.AvaliandoExpressoesMatematicas
 
 		public void RemoverParentesesDesnecessarios()
 		{
-			if (this.Count <= 4 && this.FirstOrDefault() == "(" && this.LastOrDefault() == ")")
+			if (this.Count == 3 && this.FirstOrDefault() == "(" && this.LastOrDefault() == ")")
 			{
 				RemoveAt(0);
 				RemoveAt(Count - 1);

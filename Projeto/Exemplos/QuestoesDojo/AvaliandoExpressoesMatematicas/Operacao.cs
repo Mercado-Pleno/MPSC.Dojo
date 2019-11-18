@@ -11,7 +11,9 @@ namespace MPSC.Library.Exemplos.QuestoesDojo.AvaliandoExpressoesMatematicas
 
 		protected virtual decimal ParseToDecimal(string numero)
 		{
-			return decimal.Parse(numero, NumberStyles.Number, pt_BR);
+			numero = numero.Replace("+", "").Replace(" ", "");
+			while (numero.Contains("--")) numero = numero.Replace("--", "");
+			return decimal.Parse(numero, NumberStyles.Number | NumberStyles.AllowLeadingSign, pt_BR);
 		}
 
 		public virtual string Calcular(string numero1, string numero2)

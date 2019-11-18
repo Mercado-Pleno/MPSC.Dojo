@@ -6,17 +6,16 @@ namespace MPSC.Library.Exemplos.QuestoesDojo.AvaliandoExpressoesMatematicas
 {
 	public static class OperacaoFactory
 	{
-		public static readonly char[] Tokens = new[] { '(', '[', '{', '*', '/', '^', '%', '+', '-', ' ', '}', ']', ')' };
-		public static readonly string[] StringTokens = Tokens.Select(t => t.ToString()).ToArray();
+		public static readonly char[] Tokens = new[] { '(', '[', '{', '^', '*', '/', '%', '+', '-', ' ', '}', ']', ')' };
 		private static readonly IDictionary<char, Operacao> _operacoes = CarregarOperacoesDisponiveis();
 
 		private static IDictionary<char, Operacao> CarregarOperacoesDisponiveis()
 		{
 			return new Dictionary<char, Operacao>
 			{
+				{ '^', new Potencia() },
 				{ '*', new Multiplicar() },
 				{ '/', new Dividir() },
-				{ '^', new Potencia() },
 				{ '%', new Modulo() },
 				{ '+', new Somar() },
 				{ '-', new Subtrair() },
