@@ -62,6 +62,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPedeParaFormulaCalcularExpressao5Modulo2_DeveRetornar1()
 		{
 			CalcularUmaExpressaoVerificandoValorDeRetorno(1M, "5 % 2");
+			CalcularUmaExpressaoVerificandoValorDeRetorno(43M, "(5 % 2) + (3 * ((2 + (1+2*2)) * 2))");
 		}
 
 		[TestMethod]
