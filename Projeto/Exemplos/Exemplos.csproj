@@ -19,7 +19,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>..\Bin\</OutputPath>
     <DefineConstants>
     </DefineConstants>
@@ -40,18 +40,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IBM.Data.DB2.iSeries">
-      <HintPath>..\Lib\IBM.Data.DB2.iSeries.dll</HintPath>
-    </Reference>
-    <Reference Include="MPSC.LBJC.Kernel">
-      <HintPath>..\FrameWork\MPSC.LBJC.Kernel.dll</HintPath>
-    </Reference>
-    <Reference Include="MPSC.LBJC.Persistencia">
-      <HintPath>..\FrameWork\MPSC.LBJC.Persistencia.dll</HintPath>
-    </Reference>
-    <Reference Include="MPSC.LBJC.ServicoWindows">
-      <HintPath>..\FrameWork\MPSC.LBJC.ServicoWindows.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
@@ -79,7 +67,6 @@
     <Compile Include="DesignPattern\Strategy\Classes\PatoSelvagem.cs" />
     <Compile Include="DesignPattern\Strategy\Comportamento\IBarulho.cs" />
     <Compile Include="DesignPattern\Strategy\Comportamento\IVoador.cs" />
-    <Compile Include="Medidas\TestandoPerformanceDeGeracaoDeIdsViaSequenceVsTabela.cs" />
     <Compile Include="Principal.cs" />
     <Compile Include="PrincipiosSOLID\1-SingleResponsability\Model\Cliente.cs" />
     <Compile Include="PrincipiosSOLID\1-SingleResponsability\Controller\ClienteController.cs" />
@@ -97,6 +84,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestoesDojo\AlgoritmoVersionamento\Arquivo.cs" />
     <Compile Include="QuestoesDojo\AutorDeObraBibliografica.cs" />
+    <Compile Include="QuestoesDojo\AvaliandoExpressoesMatematicasRunner.cs" />
+    <Compile Include="QuestoesDojo\AvaliandoExpressoesMatematicas\Analisador.cs" />
+    <Compile Include="QuestoesDojo\AvaliandoExpressoesMatematicas\Elementos.cs" />
+    <Compile Include="QuestoesDojo\AvaliandoExpressoesMatematicas\Expressao.cs" />
+    <Compile Include="QuestoesDojo\AvaliandoExpressoesMatematicas\Formula.cs" />
+    <Compile Include="QuestoesDojo\AvaliandoExpressoesMatematicas\InOperator.cs" />
+    <Compile Include="QuestoesDojo\AvaliandoExpressoesMatematicas\Operacao.cs" />
+    <Compile Include="QuestoesDojo\AvaliandoExpressoesMatematicas\OperacaoFactory.cs" />
     <Compile Include="QuestoesDojo\LivrariaHarryPotter.cs" />
     <Compile Include="QuestoesDojo\MatrizEspiral.cs" />
     <Compile Include="QuestoesDojo\NumeroFeliz.cs" />
@@ -107,9 +102,7 @@
     <Compile Include="Reflection\CloneUtil.cs" />
     <Compile Include="Service\ExtensionMethods.cs" />
     <Compile Include="Service\NTPClient.cs" />
-    <Compile Include="Service\WakeUpOnLAN.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Service\WakeUpOnLAN.cs" />
     <Compile Include="Transformacao\Pivot.cs" />
     <Compile Include="Transformacao\Serializacao\IDiscretizador.cs" />
     <Compile Include="Transformacao\Serializacao\ISerializador.cs" />

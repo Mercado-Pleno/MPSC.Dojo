@@ -3,19 +3,17 @@ using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
-using MPSC.LBJC.ServicoWindows.Interface;
 
 namespace MPSC.Library.Exemplos.Service
 {
-	public class NTPClient : IProcessador
+	public class NTPClient : IExecutavel
 	{
 		[DllImport("kernel32.dll")]
 		private extern static uint SetSystemTime(ref SYSTEMTIME lpSystemTime);
 
-		public Boolean Processar()
+		public void Executar()
 		{
 			NTPClient.SetSystemTime();
-			return true;
 		}
 
 		public void Dispose() { }

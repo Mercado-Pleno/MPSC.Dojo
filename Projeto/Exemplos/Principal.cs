@@ -66,8 +66,8 @@ namespace MPSC.Library.Exemplos
 				),
 
 				new Menu('4', "Medidas",
-					new Menu('1', "Duração de um Intervalo de Tempo de Alta Precisão", new DuracaoIntervaloTempoAltaPrecisao()),
-					new Menu('2', "Performance de Geração de Ids via Sequence vs Tabela", new TestandoPerformanceDeGeracaoDeIdsViaSequenceVsTabela())
+					new Menu('1', "Duração de um Intervalo de Tempo de Alta Precisão", new DuracaoIntervaloTempoAltaPrecisao())
+					//new Menu('2', "Performance de Geração de Ids via Sequence vs Tabela", new TestandoPerformanceDeGeracaoDeIdsViaSequenceVsTabela())
 				),
 
 				new Menu('5', "Utilidades",
@@ -94,7 +94,8 @@ namespace MPSC.Library.Exemplos
 					new Menu('3', "Autor De Obra Bibliográfica", new AutorDeObraBibliograficaRunner()),
 					new Menu('4', "Livraria Do Harry Potter", new LivrariaHarryPotterRunner()),
 					new Menu('5', "Palavras Primas", new PalavrasPrimasRunner()),
-					new Menu('6', "TestaPivot", new TestaPivot())
+					new Menu('6', "TestaPivot", new TestaPivot()),
+					new Menu('7', "Avaliando Expressoes Matemáticas", new AvaliandoExpressoesMatematicasRunner())
 				),
 
 				new Menu(ESC, "Sair")
