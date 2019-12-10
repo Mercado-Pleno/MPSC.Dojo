@@ -11,6 +11,7 @@ namespace MP.Library.TestesUnitarios.SolutionTest_v4.Exemplos.QuestoesDojo
 		public void QuandoPedeParaFormulaCalcularUmaExpressao_DeveRetornarOValorCorreto_01()
 		{
 			CalcularUmaExpressaoVerificandoValorDeRetorno(21M, "3 *  7 ");
+			CalcularUmaExpressaoVerificandoValorDeRetorno(-21M, "3 * ( -7 )");
 			CalcularUmaExpressaoVerificandoValorDeRetorno(21M, "3 * ( 7 )");
 			CalcularUmaExpressaoVerificandoValorDeRetorno(21M, "3 * ( 2 + 5 )");
 			CalcularUmaExpressaoVerificandoValorDeRetorno(21M, "3 * ( 2 + 3 + 2 )");
