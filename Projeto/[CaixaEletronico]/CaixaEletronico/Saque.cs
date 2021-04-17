@@ -16,31 +16,31 @@ namespace MP.Library.CaixaEletronico
 			this.caixaForte = caixaForte;
 		}
 
-		public List<Nota> Sacar(Decimal valor)
+		public List<Nota> Sacar(Decimal valorSolicitado)
 		{
-			List<Nota> notas = new List<Nota>();
+			var notasEntregues = new List<Nota>();
 
-			Nota menorNota = MenorNotaDisponivel();
-			if (valor < menorNota.Valor)
-				throw new SaqueException(String.Format("O valor do saque R$ {0:0.00} não pode ser menor que {1}", valor, menorNota.ToString()));
+			var menorNota = MenorNotaDisponivel();
+			if (valorSolicitado < menorNota.Valor)
+				throw new SaqueException(String.Format("O valor do saque R$ {0:0.00} não pode ser menor que {1}", valorSolicitado, menorNota.ToString()));
 			else
 			{
-				var valorRestante = valor;
+				var valorRestante = valorSolicitado;
 				var nota = MaiorNotaDisponivel();
 				while ((valorRestante >= menorNota.Valor) && (nota != null))
 				{
-					int quantidade = Convert.ToInt32(valorRestante) / Convert.ToInt32(nota.Valor);
+					var quantidade = Convert.ToInt32(valorRestante) / Convert.ToInt32(nota.Valor);
 					valorRestante -= (quantidade * nota.Valor);
-					notas.AddRange(nota.Clonar(quantidade));
+					notasEntregues.AddRange(nota.Clonar(quantidade));
 
 					nota = ObterMaiorNotaMenorQueAtual(nota);
 				}
 
 				if (valorRestante != Decimal.Zero)
-					throw new SaqueException(String.Format("O valor do saque {0} não é um múltiplo de {1}", valor, menorNota.ToString()));
+					throw new SaqueException(String.Format("O valor do saque {0} não é um múltiplo de {1}", valorSolicitado, menorNota.ToString()));
 			}
 
-			return notas;
+			return notasEntregues;
 		}
 
 		private Nota ObterMaiorNotaMenorQueAtual(Nota nota)
