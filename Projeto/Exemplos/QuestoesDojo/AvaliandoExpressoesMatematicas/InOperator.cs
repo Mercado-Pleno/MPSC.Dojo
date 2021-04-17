@@ -15,7 +15,13 @@ namespace MPSC.Library.Exemplos.QuestoesDojo.AvaliandoExpressoesMatematicas
 			return lista.Contains(self);
 		}
 
-		public static int IndexOfAny<T>(this IEnumerable<T> self, bool tokenPriority, params T[] tokens)
+		public static bool In<T>(this T self, IEnumerable<T> lista)
+		{
+			return lista.Contains(self);
+		}
+
+
+		public static int IndexOfAny<T>(this IEnumerable<T> self, bool tokenPriority, IEnumerable<T> tokens)
 		{
 			var retorno = -1;
 			foreach (var token in tokens)

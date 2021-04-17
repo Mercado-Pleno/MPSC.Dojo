@@ -12,7 +12,8 @@ namespace MPSC.Library.Exemplos.QuestoesDojo.AvaliandoExpressoesMatematicas
 
 		public decimal Calcular(string formula)
 		{
-			var elementos = new Elementos(formula);
+			var expressao = Padronizar(formula);
+			var elementos = new Elementos(expressao);
 			var resultado = ResolverExpressao(elementos);
 			return Convert.ToDecimal(resultado);
 		}
@@ -23,7 +24,7 @@ namespace MPSC.Library.Exemplos.QuestoesDojo.AvaliandoExpressoesMatematicas
 			var expressao = new Expressao(elementos);
 			while (expressao.PossuiParenteses)
 			{
-				ResolverExpressaoSimples(expressao.ElementosDentroDoParenteses);
+				expressao.ElementosDentroDoParenteses.ResolverExpressaoSimples();
 				elementos.Simplificar(expressao.Start, expressao.Count, expressao.ElementosDentroDoParenteses);
 				DoResolver("=>", elementos);
 				expressao = new Expressao(elementos);
@@ -31,24 +32,21 @@ namespace MPSC.Library.Exemplos.QuestoesDojo.AvaliandoExpressoesMatematicas
 
 			while (elementos.PrecisaCalcular)
 			{
-				ResolverExpressaoSimples(elementos);
+				elementos.ResolverExpressaoSimples();
 				DoResolver("=>", elementos);
 			}
 
 			return elementos.First();
 		}
-
-		private void ResolverExpressaoSimples(Elementos elementos)
+		public string Padronizar(string expressao)
 		{
-			var i = elementos.IndexOfAny(true, "*", "/", "^", "%", "+", "-");
-			if (i > 0)
-			{
-				var operacao = OperacaoFactory.ObterPor(operador: elementos[i]);
-				var valor = operacao.Calcular(numero1: elementos[i - 1], numero2: elementos[i + 1]);
-				elementos.Simplificar(i - 1, 3, valor);
-			}
-
-			elementos.RemoverParentesesDesnecessarios();
+			var retorno = expressao.Replace(" ", "");
+			retorno = retorno.Replace("{", "(");
+			retorno = retorno.Replace("[", "(");
+			retorno = retorno.Replace("}", ")");
+			retorno = retorno.Replace("]", ")");
+			return retorno;
 		}
+
 	}
 }

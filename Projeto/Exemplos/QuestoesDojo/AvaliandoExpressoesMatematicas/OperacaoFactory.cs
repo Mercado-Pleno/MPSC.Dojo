@@ -6,7 +6,7 @@ namespace MPSC.Library.Exemplos.QuestoesDojo.AvaliandoExpressoesMatematicas
 {
 	public static class OperacaoFactory
 	{
-		public static readonly char[] Tokens = new[] { '(', '[', '{', '^', '*', '/', '%', '+', '-', ' ', '}', ']', ')' };
+		public static IEnumerable<char> Operadores => _operacoes.Keys;
 		private static readonly IDictionary<char, Operacao> _operacoes = CarregarOperacoesDisponiveis();
 
 		private static IDictionary<char, Operacao> CarregarOperacoesDisponiveis()

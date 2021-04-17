@@ -6,6 +6,8 @@ namespace MPSC.Library.Exemplos.QuestoesDojo.AvaliandoExpressoesMatematicas
 {
 	public class Elementos : List<string>
 	{
+		private static readonly char[] Tokens = OperacaoFactory.Operadores.Union(new[] { '(', ')' }).ToArray();
+
 		public bool PrecisaCalcular => Count > 2;
 
 		public override string ToString() => this.Join(" ");
@@ -14,10 +16,9 @@ namespace MPSC.Library.Exemplos.QuestoesDojo.AvaliandoExpressoesMatematicas
 
 		public Elementos(string expressao)
 		{
-			expressao = expressao.Replace(" ", "");
 			while (!string.IsNullOrWhiteSpace(expressao))
 			{
-				var index = expressao.IndexOfAny(OperacaoFactory.Tokens);
+				var index = expressao.IndexOfAny(Tokens);
 				if (index == 0)
 					index = 1;
 				else if (index < 0)
@@ -48,18 +49,24 @@ namespace MPSC.Library.Exemplos.QuestoesDojo.AvaliandoExpressoesMatematicas
 			}
 			else
 			{
-				var i = 2;
-				while (i < Count)
+				var i = 1;
+				while (i < Count - 1)
 				{
-					if (this[i].All(c => Char.IsDigit(c)) && this[i - 1].All(c => c.In('+', '-')) && this[i - 2].All(c => c.In('^', '*', '/', '%', '+', '-')))
+					var exp = Discretizar(this, i);
+					if (exp.Antes.All(c => c.In(Tokens)) && exp.Atual.All(c => c.In('+', '-')) && exp.Depois.All(c => Char.IsDigit(c)))
 					{
-						index = i - 1;
+						index = i;
 						return true;
 					}
 					i++;
 				}
 			}
 			return false;
+		}
+
+		private (string Antes, string Atual, string Depois) Discretizar(List<string> elementos, int posicao)
+		{
+			return (elementos[posicao - 1], elementos[posicao], elementos[posicao + 1]);
 		}
 
 		public void Simplificar(int expressaoStart, int expressaoCount, string expressao)
@@ -82,5 +89,22 @@ namespace MPSC.Library.Exemplos.QuestoesDojo.AvaliandoExpressoesMatematicas
 				RemoveAt(Count - 1);
 			}
 		}
+
+
+
+		public void ResolverExpressaoSimples()
+		{
+			var i = this.IndexOfAny(true, OperacaoFactory.Operadores.Select(o => o.ToString()));
+			if (i > 0)
+			{
+				var exp = Discretizar(this, i);
+				var operacao = OperacaoFactory.ObterPor(operador: exp.Atual);
+				var valor = operacao.Calcular(numero1: exp.Antes, numero2: exp.Depois);
+				this.Simplificar(i - 1, 3, valor);
+			}
+
+			this.RemoverParentesesDesnecessarios();
+		}
+
 	}
 }

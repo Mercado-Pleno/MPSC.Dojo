@@ -12,7 +12,10 @@ namespace MPSC.Library.Exemplos.QuestoesDojo.AvaliandoExpressoesMatematicas
 		protected virtual decimal ParseToDecimal(string numero)
 		{
 			numero = numero.Replace("+", "").Replace(" ", "");
-			while (numero.Contains("--")) numero = numero.Replace("--", "");
+			
+			while (numero.Contains("--")) 
+				numero = numero.Replace("--", "");
+
 			return decimal.Parse(numero, NumberStyles.Number | NumberStyles.AllowLeadingSign, pt_BR);
 		}
 
