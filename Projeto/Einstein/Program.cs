@@ -1,72 +1,13 @@
 ﻿using System;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace MPSC.Einstein
 {
-	public class ApagadorDeBackup
-	{
-		public const String cExpressaoDePesquisa = @"\d{4}\.\d{2}\.01_.*\.rar";
-		public static readonly Regex cValidador = new Regex(cExpressaoDePesquisa, RegexOptions.Compiled);
-		public static readonly IFormatProvider pt_BR = new CultureInfo("pt-BR");
-		public static readonly DateTime semanaPassada = DateTime.Today.AddDays(-7);
-		public static readonly FileInfo assembly = new FileInfo(Assembly.GetExecutingAssembly().Location);
-		public static readonly DirectoryInfo currentDir = assembly.Directory;
-		//public static readonly String arquivoTxt = Path.ChangeExtension(assembly.FullName, ".txt");
-
-		public ApagadorDeBackup() { }
-
-		public void Apagar()
-		{
-			var arquivos = currentDir.GetFiles("*.rar", SearchOption.AllDirectories);
-			arquivos = arquivos.Where(a => !cValidador.IsMatch(a.Name)).ToArray();
-			arquivos = arquivos.Where(a => GeradoAntesDa(a, semanaPassada)).ToArray();
-
-			foreach (var arquivo in arquivos)
-			{
-				arquivo.Delete();
-				Console.WriteLine("A {0}", arquivo.Name);
-				if (!arquivo.Directory.EnumerateFiles().Any())
-				{
-					arquivo.Directory.Delete();
-					Console.WriteLine("D {0}", arquivo.Directory.FullName);
-				}
-			}
-
-			Console.ReadLine();
-		}
-
-		private Boolean GeradoAntesDa(FileInfo a, DateTime semanaPassada)
-		{
-			try
-			{
-				var arquivo = Path.GetFileNameWithoutExtension(a.Name);
-				arquivo = ((arquivo.Length > 10) ? arquivo.Substring(0, 10) : arquivo);
-				var dataGeracao = DateTime.ParseExact(arquivo, "yyyy.MM.dd", pt_BR);
-				return dataGeracao <= semanaPassada;
-			}
-			catch (Exception)
-			{
-				return false;
-			}
-		}
-
-
-		public static void Main(String[] args)
-		{
-			var apagador = new ApagadorDeBackup();
-			apagador.Apagar();
-		}
-	}
-
 	public class Einstein
 	{
-		static String elogio = "Oh meu querido computador que tudo sabes";
-		public static void Mains(String[] args)
+		private const string elogio = "Oh meu querido computador que tudo sabes, detentor de todo conhecimento, responda";
+
+		public static void Main(string[] args)
 		{
 			var key = new ConsoleKeyInfo();
 			while (key.Key != ConsoleKey.Escape)
@@ -86,17 +27,19 @@ namespace MPSC.Einstein
 				letra = Console.ReadKey();
 				while (letra.Key != ConsoleKey.Enter)
 				{
-					Console.CursorLeft--;
-					if (letra.Key != ConsoleKey.Backspace)
-					{
-						Console.Write(elogio[resposta.Length]);
-						resposta += letra.KeyChar;
-					}
-					else
+					if (letra.Key == ConsoleKey.Backspace)
 					{
 						Console.Write(" ");
 						Console.CursorLeft--;
+						resposta = resposta.Substring(0, Console.CursorLeft);
 					}
+					else
+					{
+						Console.CursorLeft--;
+						resposta += letra.KeyChar;
+						Console.Write(elogio.Length >= resposta.Length ? elogio[resposta.Length - 1] : resposta[resposta.Length - 1]);
+					}
+
 					posicao = Console.CursorLeft;
 					letra = Console.ReadKey();
 				}
@@ -112,35 +55,33 @@ namespace MPSC.Einstein
 		private static ConsoleKeyInfo Responder(String resposta)
 		{
 			Console.ReadLine();
-			Console.WriteLine();
 			Calculando();
-			Console.Write(resposta);
-			Console.WriteLine("\r\nPressione alguma tecla para fazer outra pergunta\r\n");
-			var retorno = Console.ReadKey();
-			Console.WriteLine();
-			return retorno;
+			Console.WriteLine(resposta + "\r\n\r\n");
+			return new ConsoleKeyInfo();
 		}
 
 		private static void Calculando()
 		{
 			Console.CursorVisible = false;
-			Console.Write("Calculando resposta ");
-			for (int j = 0; j < 4; j++)
+			Console.Write("Procurando resposta ");
+			for (int j = 0; j < 3; j++)
 			{
 				for (int i = 0; i < 40; i++)
 				{
-					Thread.Sleep(10);
-					Console.Write(".");
+					Thread.Sleep(6);
+					Console.Write(". ");
 				}
 				for (int i = 0; i < 40; i++)
 				{
-					Thread.Sleep(5);
-					Console.CursorLeft--;
-					Console.Write(" ");
-					Console.CursorLeft--;
+					Thread.Sleep(4);
+					Console.CursorLeft -= 2;
+					Console.Write("  ");
+					Console.CursorLeft -= 2;
 				}
 			}
-			Console.WriteLine();
+			Console.CursorLeft = 0;
+			Console.Write(new string(' ', 80));
+			Console.CursorLeft = 0;
 			Console.CursorVisible = true;
 		}
 	}
