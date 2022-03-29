@@ -15,7 +15,7 @@ namespace TesteUnitario.Core
 	{
 		protected override void ConfigureServices(IServiceCollection services)
 		{
-			services.AddSingleton<HelloWorldService, HelloWorldService>();
+			services.AddScoped<HelloWorldService, HelloWorldService>();
 		}
 
 		[Fact]
