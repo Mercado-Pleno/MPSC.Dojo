@@ -18,7 +18,6 @@ namespace MPSTI.Core.Services
 
 			if (dateTime.Hour < 6)
 				greet += "It's still too Early!";
-
 			else if (dateTime.Hour < 12)
 				greet += "Good Morning!";
 			else if (dateTime.Hour < 18)
