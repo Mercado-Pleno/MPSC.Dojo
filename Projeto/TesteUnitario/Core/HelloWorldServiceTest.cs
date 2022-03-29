@@ -101,7 +101,6 @@ namespace TesteUnitario.Core
 	public class FakeTimeProxy : IDateTimeProvider
 	{
 		private readonly DateTime _dateTime;
-
 		public FakeTimeProxy(DateTime dateTime) => _dateTime = dateTime;
 
 		public async Task<DateTime> GetUtcNow() => await Task.FromResult(_dateTime);
