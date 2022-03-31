@@ -55,6 +55,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.Core", "[TestesAutoma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteUnitario", "[TestesAutomatizados]\TesteUnitario\TesteUnitario.csproj", "{C49F8BAB-5C5B-4130-AA6B-6F93C8E1D5CE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileConverter", "ProvasTecnicas\FileConverter\FileConverter.csproj", "{03E8EFC9-DB07-4DC6-83D7-57E8B6368B53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -239,6 +241,18 @@ Global
 		{C49F8BAB-5C5B-4130-AA6B-6F93C8E1D5CE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C49F8BAB-5C5B-4130-AA6B-6F93C8E1D5CE}.Release|x86.ActiveCfg = Release|Any CPU
 		{C49F8BAB-5C5B-4130-AA6B-6F93C8E1D5CE}.Release|x86.Build.0 = Release|Any CPU
+		{03E8EFC9-DB07-4DC6-83D7-57E8B6368B53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03E8EFC9-DB07-4DC6-83D7-57E8B6368B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03E8EFC9-DB07-4DC6-83D7-57E8B6368B53}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{03E8EFC9-DB07-4DC6-83D7-57E8B6368B53}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{03E8EFC9-DB07-4DC6-83D7-57E8B6368B53}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{03E8EFC9-DB07-4DC6-83D7-57E8B6368B53}.Debug|x86.Build.0 = Debug|Any CPU
+		{03E8EFC9-DB07-4DC6-83D7-57E8B6368B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03E8EFC9-DB07-4DC6-83D7-57E8B6368B53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03E8EFC9-DB07-4DC6-83D7-57E8B6368B53}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{03E8EFC9-DB07-4DC6-83D7-57E8B6368B53}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{03E8EFC9-DB07-4DC6-83D7-57E8B6368B53}.Release|x86.ActiveCfg = Release|Any CPU
+		{03E8EFC9-DB07-4DC6-83D7-57E8B6368B53}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

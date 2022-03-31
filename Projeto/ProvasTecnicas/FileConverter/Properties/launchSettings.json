@@ -1,0 +1,8 @@
+{
+	"profiles": {
+		"technicaltests01": {
+			"commandName": "Project",
+			"commandLineArgs": "-F ../../../Files/Dados.txt -O ssv"
+		}
+	}
+}
